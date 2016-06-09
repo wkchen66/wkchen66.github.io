@@ -1,0 +1,702 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="JavaScript,js笔记," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="目录
+insertAfter函数
+addLoadEvent函数
+showPic函数
+Gallery函数
+placeholder函数
+每个函数都有合理的用处，insertAfter 和 addLoadEvent函数，是通用型函数（常用）。showPic函数，主要负责图片的切换，核心。Gallery函数，主要负责事件的处理，遍历每一个图片清单，为其添加onclick事件，和调用showPic()函数。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS学习笔记4_图片库二次优化">
+<meta property="og:url" content="http://www.tipdev.xyz/2015/07/10/2015-07-10-JS学习笔记4_图片库二次优化/index.html">
+<meta property="og:site_name" content="DEVTIP">
+<meta property="og:description" content="目录
+insertAfter函数
+addLoadEvent函数
+showPic函数
+Gallery函数
+placeholder函数
+每个函数都有合理的用处，insertAfter 和 addLoadEvent函数，是通用型函数（常用）。showPic函数，主要负责图片的切换，核心。Gallery函数，主要负责事件的处理，遍历每一个图片清单，为其添加onclick事件，和调用showPic()函数。">
+<meta property="og:updated_time" content="2015-09-03T06:10:58.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JS学习笔记4_图片库二次优化">
+<meta name="twitter:description" content="目录
+insertAfter函数
+addLoadEvent函数
+showPic函数
+Gallery函数
+placeholder函数
+每个函数都有合理的用处，insertAfter 和 addLoadEvent函数，是通用型函数（常用）。showPic函数，主要负责图片的切换，核心。Gallery函数，主要负责事件的处理，遍历每一个图片清单，为其添加onclick事件，和调用showPic()函数。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://www.tipdev.xyz/2015/07/10/2015-07-10-JS学习笔记4_图片库二次优化/"/>
+
+  <title> JS学习笔记4_图片库二次优化 | DEVTIP </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">DEVTIP</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                JS学习笔记4_图片库二次优化
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2015-07-10T00:00:00+08:00" content="2015-07-10">
+              2015-07-10
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h4><ul>
+<li>insertAfter函数</li>
+<li>addLoadEvent函数</li>
+<li>showPic函数</li>
+<li>Gallery函数</li>
+<li><p>placeholder函数</p>
+<p>每个函数都有合理的用处，insertAfter 和 addLoadEvent函数，是通用型函数（常用）。showPic函数，主要负责图片的切换，核心。Gallery函数，主要负责事件的处理，遍历每一个图片清单，为其添加onclick事件，和调用showPic()函数。placeholder函数，主要负责创建img、p标签，和添加其内容，把整个新创建的函数插入到节点树里去。</p>
+</li>
+</ul>
+<h5 id="insertAfter函数"><a href="#insertAfter函数" class="headerlink" title="insertAfter函数"></a>insertAfter函数</h5><pre><code>function insertAfter(newElement,targetElement){
+    var parent = targetElement.parentNode;
+    if(parent.lastChild == targetElement){
+        parent.appendChild(newElement);
+    }else{
+</code></pre><a id="more"></a>
+<pre><code>        parent.insertBefore(newElement,targetElement.nextSibling);
+    }
+}
+</code></pre><h5 id="addLoadEvent函数"><a href="#addLoadEvent函数" class="headerlink" title="addLoadEvent函数"></a>addLoadEvent函数</h5><pre><code>function addLoadEvent(func){
+    var oldonload = window.onload;
+    if(typeof window.onload != &apos;function&apos;){
+        window.onload = func;
+    }else{
+        window.onload = function(){
+            oldonload();
+            func();
+        }
+    }    
+}
+</code></pre><h5 id="showPic函数"><a href="#showPic函数" class="headerlink" title="showPic函数"></a>showPic函数</h5><pre><code>function showPic(whichpic){
+    if(!document.getElementById(&quot;img&quot;)){
+        return false;
+    }
+    var a = whichpic.getAttribute(&quot;href&quot;);
+    var b = document.getElementById(&quot;img&quot;);
+    if(b.nodeName != &quot;IMG&quot;){
+        return false;
+    }
+    b.setAttribute(&quot;src&quot;, a);
+    if(document.getElementById(&quot;title_p&quot;)){
+        if(whichpic.getAttribute(&quot;title&quot;)){
+            var c = whichpic.getAttribute(&quot;title&quot;);
+        }else{
+            var c = &quot;&quot;;
+        }
+        var d = document.getElementById(&quot;title_p&quot;);
+        if(d.firstChild.nodeType == 3){
+            d.firstChild.nodeValue=c;
+        }
+    }else{
+        return false;
+    }
+    return true;
+}
+</code></pre><h5 id="Gallery函数"><a href="#Gallery函数" class="headerlink" title="Gallery函数"></a>Gallery函数</h5><pre><code>function Gallery(){
+    if(!document.getElementById){
+        return false;
+    }
+    if(!document.getElementsByTagName){
+        return false;
+    }
+    if(!document.getElementById(&quot;gallery&quot;)){
+        return false;
+    }
+    var gallery = document.getElementById(&quot;gallery&quot;);
+    var links = gallery.getElementsByTagName(&quot;a&quot;);
+    for (var i = 0; i &lt; links.length ; i++) {
+        links[i].onclick=function(){
+            return !showPic(this);
+        }
+    }
+}
+</code></pre><h5 id="placeholder函数"><a href="#placeholder函数" class="headerlink" title="placeholder函数"></a>placeholder函数</h5><pre><code>function placeholder(){
+    if(!document.createElement) return false;
+    if(!document.createTextNode) return false;
+    if(!document.getElementById) return false;
+    if(!document.getElementById(&quot;gallery&quot;)) return false;
+    var img = document.createElement(&quot;img&quot;);
+    img.setAttribute(&quot;src&quot;,&quot;images/defaut.jpg&quot;);
+    img.setAttribute(&quot;id&quot;,&quot;img&quot;);
+    img.setAttribute(&quot;width&quot;,&quot;400px&quot;);
+    img.setAttribute(&quot;height&quot;,&quot;300px&quot;);
+    var pare = document.createElement(&quot;p&quot;);
+    pare.setAttribute(&quot;id&quot;, &quot;title_p&quot;);
+    var txt = document.createTextNode(&quot;defaut&quot;);
+    pare.appendChild(txt);
+    //
+    // document.getElementsByTagName(&quot;body&quot;)[0].appendChild(img);
+    // document.getElementsByTagName(&quot;body&quot;)[0].appendChild(pare);
+    var gallery = document.getElementById(&quot;gallery&quot;);
+    //
+    // gallery.parentNode.insertBefore(img, gallery);
+    // gallery.parentNode.insertBefore(pare,gallery);
+
+    insertAfter(pare,gallery);
+    insertAfter(img,gallery);
+
+}
+</code></pre><h5 id="添加函数"><a href="#添加函数" class="headerlink" title="添加函数"></a>添加函数</h5><pre><code>addLoadEvent(placeholder);
+addLoadEvent(Gallery);
+</code></pre><h5 id="HTML文档（此时，相应标记减少了，index-html文档只包含js脚本和css样式挂钩）"><a href="#HTML文档（此时，相应标记减少了，index-html文档只包含js脚本和css样式挂钩）" class="headerlink" title="HTML文档（此时，相应标记减少了，index.html文档只包含js脚本和css样式挂钩）"></a>HTML文档（此时，相应标记减少了，index.html文档只包含js脚本和css样式挂钩）</h5><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;meta charset=&quot;utf-8&quot; /&gt;
+        &lt;title&gt;&lt;/title&gt;
+        &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;css/style.css&quot; /&gt;
+        &lt;script type=&quot;text/javascript&quot; src=&quot;js/showPic.js&quot;&gt;&lt;/script&gt;
+    &lt;/head&gt; 
+    &lt;body&gt;
+        &lt;ul id=&quot;gallery&quot;&gt;
+            &lt;li&gt;
+                &lt;a href=&quot;images/wallpaper_01.jpg&quot; title=&quot;wallpaper_01&quot; &gt;one&lt;/a&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+                &lt;a href=&quot;images/wallpaper_02.jpg&quot; title=&quot;wallpaper_02&quot;&gt;two&lt;/a&gt;
+            &lt;/li&gt;
+            &lt;li&gt;    
+                &lt;a href=&quot;images/wallpaper_03.jpg&quot; title=&quot;wallpaper_03&quot;&gt;three&lt;/a&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+                &lt;a href=&quot;images/wallpaper_04.jpg&quot; title=&quot;wallpaper_04&quot;&gt;four&lt;/a&gt;
+            &lt;/li&gt;
+        &lt;/ul&gt;    
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>这是对图片库的第二次优化。整合整个js和html。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag">#JavaScript</a>
+          
+            <a href="/tags/js笔记/" rel="tag">#js笔记</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/07/06/2015-07-06-JS学习笔记3_动态创建HTML内容Demo/" rel="next" title="JS学习笔记3_动态创建HTML内容Demo">
+                <i class="fa fa-chevron-left"></i> JS学习笔记3_动态创建HTML内容Demo
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/07/11/2015-07-11-实现外网Android SSH远程登录Linux/" rel="prev" title="实现外网Android SSH远程登录Linux">
+                实现外网Android SSH远程登录Linux <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="wkchen" />
+          <p class="site-author-name" itemprop="name">wkchen</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">10</span>
+              <span class="site-state-item-name">Artikel</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">Tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#目录"><span class="nav-number">1.</span> <span class="nav-text">目录</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#insertAfter函数"><span class="nav-number">1.1.</span> <span class="nav-text">insertAfter函数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#addLoadEvent函数"><span class="nav-number">1.2.</span> <span class="nav-text">addLoadEvent函数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#showPic函数"><span class="nav-number">1.3.</span> <span class="nav-text">showPic函数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Gallery函数"><span class="nav-number">1.4.</span> <span class="nav-text">Gallery函数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#placeholder函数"><span class="nav-number">1.5.</span> <span class="nav-text">placeholder函数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#添加函数"><span class="nav-number">1.6.</span> <span class="nav-text">添加函数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#HTML文档（此时，相应标记减少了，index-html文档只包含js脚本和css样式挂钩）"><span class="nav-number">1.7.</span> <span class="nav-text">HTML文档（此时，相应标记减少了，index.html文档只包含js脚本和css样式挂钩）</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wkchen</span>
+</div>
+
+<div class="powered-by">
+  Erstellt mit  <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,675 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="JavaScript,js笔记," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="最近在看JavaScript DOM编程艺术这本书，准备开始学习js。因为有Java和C基础，js上手还是比较快的
+平稳退化
+&amp;lt;li&amp;gt;
+    &amp;lt;a href=&amp;quot;images/wallpaper_01.jpg&amp;quot; title=&amp;quot;wallpaper_01&amp;quot; onclick = &amp;quot;showPic(this); return false;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS学习笔记1_图片库showPic()">
+<meta property="og:url" content="http://www.tipdev.xyz/2015/06/28/2015-06-28-JS学习笔记1_图片库showPic()/index.html">
+<meta property="og:site_name" content="DEVTIP">
+<meta property="og:description" content="最近在看JavaScript DOM编程艺术这本书，准备开始学习js。因为有Java和C基础，js上手还是比较快的
+平稳退化
+&amp;lt;li&amp;gt;
+    &amp;lt;a href=&amp;quot;images/wallpaper_01.jpg&amp;quot; title=&amp;quot;wallpaper_01&amp;quot; onclick = &amp;quot;showPic(this); return false;">
+<meta property="og:updated_time" content="2015-09-03T06:10:20.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JS学习笔记1_图片库showPic()">
+<meta name="twitter:description" content="最近在看JavaScript DOM编程艺术这本书，准备开始学习js。因为有Java和C基础，js上手还是比较快的
+平稳退化
+&amp;lt;li&amp;gt;
+    &amp;lt;a href=&amp;quot;images/wallpaper_01.jpg&amp;quot; title=&amp;quot;wallpaper_01&amp;quot; onclick = &amp;quot;showPic(this); return false;">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://www.tipdev.xyz/2015/06/28/2015-06-28-JS学习笔记1_图片库showPic()/"/>
+
+  <title> JS学习笔记1_图片库showPic() | DEVTIP </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">DEVTIP</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                JS学习笔记1_图片库showPic()
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2015-06-28T00:00:00+08:00" content="2015-06-28">
+              2015-06-28
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>最近在看JavaScript DOM编程艺术这本书，准备开始学习js。因为有Java和C基础，js上手还是比较快的</p>
+<p>平稳退化</p>
+<pre><code>&lt;li&gt;
+    &lt;a href=&quot;images/wallpaper_01.jpg&quot; title=&quot;wallpaper_01&quot; onclick = &quot;showPic(this); return false;&quot;&gt;one&lt;/a&gt;
+&lt;/li&gt;
+</code></pre><p>伪代码</p>
+<pre><code>&lt;li&gt;
+    &lt;a href=&quot;javascript:showPic(&quot;images/wallpaper_01.jpg&quot;); return false;&quot; title=&quot;wallpaper_01&quot; &gt;one&lt;/a&gt;
+&lt;/li&gt;
+</code></pre><p>如果浏览器禁用javascript，伪代码就会无法显示。<br>把href的值设为一个真实存在的值。就能做到平稳退化。<br><a id="more"></a></p>
+<h3 id="分离JavaScript和HTML"><a href="#分离JavaScript和HTML" class="headerlink" title="分离JavaScript和HTML"></a>分离JavaScript和HTML</h3><p>添加一个时间处理函数gallery</p>
+<pre><code>function gallery(){
+    if(!document.getElementsByTagName) return false ;
+    if(!document.getElementById) return false;
+    if(!document.getElementById(&quot;gallery&quot;)) return false;
+    var gallery = document.getElementById(&quot;gallery&quot;);
+    var link = gallery.getElementsByTagName(&quot;a&quot;);
+    for (var i = 0 ; i &lt; link.length ; i++){
+        link[i].onclick= function(){
+            showPic(this);
+            return false;
+        }
+    }
+}
+</code></pre><p>获得link[]数组<code>gallery.getElementsByTagName(&quot;a&quot;)</code><br>遍历link数组<br>定义一个匿名函数<code>link[i].onclick= function()</code> 它把link[i]元素的<code>onclick</code>事件处理函数指定为这个匿名函数。这个匿名函数里的所有语句将在link[i]元素所对应的链接被点击时执行。</p>
+<h3 id="共享onload事件"><a href="#共享onload事件" class="headerlink" title="共享onload事件"></a>共享onload事件</h3><pre><code>function addLoadEvent(func){
+    var oldonload = window.onload;
+    if(typeof window.onload !=&apos;function&apos;){
+        window.onload = func ;
+    }else{
+        window.onload = function(){
+            oldonload();
+            func();
+        }
+    }
+}
+
+addLoadEvent(gallery);
+</code></pre><h3 id="最终实现"><a href="#最终实现" class="headerlink" title="最终实现"></a>最终实现</h3><h5 id="index-html"><a href="#index-html" class="headerlink" title="index.html"></a>index.html</h5><pre><code>&lt;!doctype html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;&lt;/title&gt;
+        &lt;meta charset=&quot;utf-8&quot; /&gt;
+        &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;css/layout.css&quot;&gt;
+        &lt;script type=&quot;text/javascript&quot; src=&quot;js/myFunction.js&quot; &gt;&lt;/script&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;ul id = &quot;imagegallery&quot;&gt;
+            &lt;li&gt;
+                &lt;a href=&quot;images/wallpaper_01.jpg&quot; title=&quot;wallpaper_01&quot;&gt;one&lt;/a&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+                &lt;a href=&quot;images/wallpaper_02.jpg&quot; title=&quot;wallpaper_02&quot;&gt;two&lt;/a&gt;
+            &lt;/li&gt;
+            &lt;li&gt;    
+                &lt;a href=&quot;images/wallpaper_03.jpg&quot; title=&quot;wallpaper_03&quot;&gt;three&lt;/a&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+                &lt;a href=&quot;images/wallpaper_04.jpg&quot; title=&quot;wallpaper_04&quot;&gt;four&lt;/a&gt;
+            &lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;img src=&quot;images/api.jpg&quot; id=&quot;img&quot; width = 400px height = 300px&gt;
+        &lt;p id=&quot;p_title&quot;&gt;api&lt;/p&gt;
+
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre><h5 id="myFunction-js"><a href="#myFunction-js" class="headerlink" title="myFunction.js"></a>myFunction.js</h5><pre><code>function showPic(whichpic){
+    if(!document.getElementById) return false;
+    var a = whichpic.getAttribute(&quot;href&quot;);
+    var b = document.getElementById(&quot;img&quot;);
+    b.setAttribute(&quot;src&quot;, a);
+    if(document.getElementById(&quot;p_title&quot;)){
+        var c = whichpic.getAttribute(&quot;title&quot;);
+        var d = document.getElementById(&quot;p_title&quot;);
+        d.firstChild.nodeValue = c;
+    }else{
+        return false;
+    }
+    return true;
+}
+
+function gallery(){
+    if(!document.getElementsByTagName) return false ;
+    if(!document.getElementById) return false;
+    if(!document.getElementById(&quot;gallery&quot;)) return false;
+    var gallery = document.getElementById(&quot;gallery&quot;);
+    var link = gallery.getElementsByTagName(&quot;a&quot;);
+    for (var i = 0 ; i &lt; link.length ; i++){
+        link[i].onclick= function(){
+            showPic(this);
+            return false;
+        }
+    }
+}
+
+function addLoadEvent(func){
+    var oldonload = window.onload;
+    if(typeof window.onload !=&apos;function&apos;){
+        window.onload = func ;
+    }else{
+        window.onload = function(){
+            oldonload();
+            func();
+        }
+    }
+}
+
+addLoadEvent(gallery);
+</code></pre>
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag">#JavaScript</a>
+          
+            <a href="/tags/js笔记/" rel="tag">#js笔记</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/05/16/2015-05-16-体验之行/" rel="next" title="走遍杭州体验店">
+                <i class="fa fa-chevron-left"></i> 走遍杭州体验店
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/07/05/2015-07-05-JS学习笔记2_图片库js代码优化/" rel="prev" title="JS学习笔记2_图片库js代码优化">
+                JS学习笔记2_图片库js代码优化 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="wkchen" />
+          <p class="site-author-name" itemprop="name">wkchen</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">10</span>
+              <span class="site-state-item-name">Artikel</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">Tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#分离JavaScript和HTML"><span class="nav-number">1.</span> <span class="nav-text">分离JavaScript和HTML</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#共享onload事件"><span class="nav-number">2.</span> <span class="nav-text">共享onload事件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最终实现"><span class="nav-number">3.</span> <span class="nav-text">最终实现</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#index-html"><span class="nav-number">3.0.1.</span> <span class="nav-text">index.html</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#myFunction-js"><span class="nav-number">3.0.2.</span> <span class="nav-text">myFunction.js</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wkchen</span>
+</div>
+
+<div class="powered-by">
+  Erstellt mit  <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
