@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://www.tipdev.xyz/2016/06/10/2016-06-10-git 复习笔记（记录）/index.html">
 <meta property="og:site_name" content="DEVTIP">
 <meta property="og:description" content="认识git已经一年多了，但一直没有正真的弄懂它。第一接触到时当时想要搭建博客，很幸运遇到了hexo（基于node.js的静态博客），其中涉及到了一些基本的命令，虽然在android和java开发的时候偶尔会去提交一些代码到github上（其实就三句git add、git commit、git push其他的都忘了），但是说真的压根不理解这玩意。直到最近github对我越来越重要，于此同时又是hex">
-<meta property="og:updated_time" content="2016-06-10T08:09:46.000Z">
+<meta property="og:updated_time" content="2016-06-10T08:12:22.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="git 复习笔记（记录）">
 <meta name="twitter:description" content="认识git已经一年多了，但一直没有正真的弄懂它。第一接触到时当时想要搭建博客，很幸运遇到了hexo（基于node.js的静态博客），其中涉及到了一些基本的命令，虽然在android和java开发的时候偶尔会去提交一些代码到github上（其实就三句git add、git commit、git push其他的都忘了），但是说真的压根不理解这玩意。直到最近github对我越来越重要，于此同时又是hex">
@@ -277,13 +277,12 @@
 
       
         <p>认识git已经一年多了，但一直没有正真的弄懂它。第一接触到时当时想要搭建博客，很幸运遇到了hexo（基于node.js的静态博客），其中涉及到了一些基本的命令，虽然在android和java开发的时候偶尔会去提交一些代码到github上（其实就三句git add、git commit、git push其他的都忘了），但是说真的压根不理解这玩意。直到最近github对我越来越重要，于此同时又是hexo,博客更新停止了有一段时间了，最近又打算开启每天写博客的习惯了，自学android差不多快一年了，但是进展让我不够满意，所以我打算每天写博客记录我的学习过程，也提醒自己坚持下去。本文配套github做的记录。</p>
-<h4 id="git-init-初始化仓库"><a href="#git-init-初始化仓库" class="headerlink" title="git init  //初始化仓库"></a>git init  //初始化仓库</h4><h4 id="git-status-查看git状态"><a href="#git-status-查看git状态" class="headerlink" title="git status   //查看git状态"></a>git status   //查看git状态</h4><h4 id="git-add-添加文件到本地库"><a href="#git-add-添加文件到本地库" class="headerlink" title="git add   //添加文件到本地库"></a>git add   //添加文件到本地库</h4><h4 id="git-commit-m-提交信息"><a href="#git-commit-m-提交信息" class="headerlink" title="git commit -m    //提交信息"></a>git commit -m    //提交信息</h4><h4 id="git-log-查看git-log日志"><a href="#git-log-查看git-log日志" class="headerlink" title="git log    //查看git log日志"></a>git log    //查看git log日志</h4><h4 id="git-branch-分支默认master"><a href="#git-branch-分支默认master" class="headerlink" title="git branch   分支默认master"></a>git branch   分支默认master</h4><ul>
-<li>git branch   //查看当前的所有分支</li>
-<li>git branch 分支名字   //创建该分支</li>
-<li>git checkout 分支名字   //切换到该分支</li>
-<li>git checkout -b 分支名字   //创建并切换到该分支</li>
-</ul>
-<h4 id="git-pull-origin-master-分支-从远程库拉取同步到本地"><a href="#git-pull-origin-master-分支-从远程库拉取同步到本地" class="headerlink" title="git pull origin master (分支)   //从远程库拉取同步到本地"></a>git pull origin master (分支)   //从远程库拉取同步到本地</h4><h4 id="git-push-origin-master-分支-从本地同步到远程库"><a href="#git-push-origin-master-分支-从本地同步到远程库" class="headerlink" title="git push origin master (分支)   //从本地同步到远程库"></a>git push origin master (分支)   //从本地同步到远程库</h4><h4 id="git-clone-git-github-com-username-仓库名-git-克隆改仓库到本地"><a href="#git-clone-git-github-com-username-仓库名-git-克隆改仓库到本地" class="headerlink" title="git clone git@github.com:username/仓库名.git     //克隆改仓库到本地"></a>git clone git@github.com:username/仓库名.git     //克隆改仓库到本地</h4>
+<h4 id="git-init-初始化仓库"><a href="#git-init-初始化仓库" class="headerlink" title="git init  //初始化仓库"></a>git init  //初始化仓库</h4><h4 id="git-status-查看git状态"><a href="#git-status-查看git状态" class="headerlink" title="git status   //查看git状态"></a>git status   //查看git状态</h4><h4 id="git-add-添加文件到本地库"><a href="#git-add-添加文件到本地库" class="headerlink" title="git add   //添加文件到本地库"></a>git add   //添加文件到本地库</h4><pre><code>git add .  //添加该文件夹下的所有文件
+</code></pre><h4 id="git-commit-m-提交信息"><a href="#git-commit-m-提交信息" class="headerlink" title="git commit -m    //提交信息"></a>git commit -m    //提交信息</h4><h4 id="git-log-查看git-log日志"><a href="#git-log-查看git-log日志" class="headerlink" title="git log    //查看git log日志"></a>git log    //查看git log日志</h4><h4 id="git-branch-分支默认master"><a href="#git-branch-分支默认master" class="headerlink" title="git branch   分支默认master"></a>git branch   分支默认master</h4><pre><code>git branch   //查看当前的所有分支
+git branch 分支名字   //创建该分支
+git checkout 分支名字   //切换到该分支
+git checkout -b 分支名字   //创建并切换到该分支
+</code></pre><h4 id="git-pull-origin-master-分支-从远程库拉取同步到本地"><a href="#git-pull-origin-master-分支-从远程库拉取同步到本地" class="headerlink" title="git pull origin master (分支)   //从远程库拉取同步到本地"></a>git pull origin master (分支)   //从远程库拉取同步到本地</h4><h4 id="git-push-origin-master-分支-从本地同步到远程库"><a href="#git-push-origin-master-分支-从本地同步到远程库" class="headerlink" title="git push origin master (分支)   //从本地同步到远程库"></a>git push origin master (分支)   //从本地同步到远程库</h4><h4 id="git-clone-git-github-com-username-仓库名-git-克隆改仓库到本地"><a href="#git-clone-git-github-com-username-仓库名-git-克隆改仓库到本地" class="headerlink" title="git clone git@github.com:username/仓库名.git     //克隆改仓库到本地"></a>git clone git@github.com:username/仓库名.git     //克隆改仓库到本地</h4>
       
     </div>
 
