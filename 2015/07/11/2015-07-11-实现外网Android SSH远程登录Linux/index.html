@@ -84,18 +84,18 @@
 
 
 
-<meta name="description" content="这个想法已经有一整子了，一直内沉下心来去做，今天台风正好闲着没事做。其实原理很简单，通过路由器（TP-Link WR740N）转发设置DMZ主机，让局域网中的一台计算机完全暴露给广域网，接着用动态DNS解析到主机。在手机端使用SSH登入Linux，这里推荐使用JuiceSSH 。一下介绍两款linux安装方法:
+<meta name="description" content="这个想法已经有一整子了，一直内沉下心来去做，今天台风正好闲着没事做。其实原理很简单，通过路由器（TP-Link WR740N）转发设置DMZ主机，让局域网中的一台计算机完全暴露给广域网，接着用动态DNS解析到主机。在手机端使用SSH登入Linux，这里推荐使用JuiceSSH 。以下介绍两款linux安装方法:
 1.安装ssh serverubuntusudo apt-get install op">
 <meta property="og:type" content="article">
 <meta property="og:title" content="实现外网Android SSH远程登录Linux">
 <meta property="og:url" content="http://www.tipdev.xyz/2015/07/11/2015-07-11-实现外网Android SSH远程登录Linux/index.html">
 <meta property="og:site_name" content="DEVTIP">
-<meta property="og:description" content="这个想法已经有一整子了，一直内沉下心来去做，今天台风正好闲着没事做。其实原理很简单，通过路由器（TP-Link WR740N）转发设置DMZ主机，让局域网中的一台计算机完全暴露给广域网，接着用动态DNS解析到主机。在手机端使用SSH登入Linux，这里推荐使用JuiceSSH 。一下介绍两款linux安装方法:
+<meta property="og:description" content="这个想法已经有一整子了，一直内沉下心来去做，今天台风正好闲着没事做。其实原理很简单，通过路由器（TP-Link WR740N）转发设置DMZ主机，让局域网中的一台计算机完全暴露给广域网，接着用动态DNS解析到主机。在手机端使用SSH登入Linux，这里推荐使用JuiceSSH 。以下介绍两款linux安装方法:
 1.安装ssh serverubuntusudo apt-get install op">
-<meta property="og:updated_time" content="2015-09-03T06:11:18.000Z">
+<meta property="og:updated_time" content="2016-06-10T07:39:47.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="实现外网Android SSH远程登录Linux">
-<meta name="twitter:description" content="这个想法已经有一整子了，一直内沉下心来去做，今天台风正好闲着没事做。其实原理很简单，通过路由器（TP-Link WR740N）转发设置DMZ主机，让局域网中的一台计算机完全暴露给广域网，接着用动态DNS解析到主机。在手机端使用SSH登入Linux，这里推荐使用JuiceSSH 。一下介绍两款linux安装方法:
+<meta name="twitter:description" content="这个想法已经有一整子了，一直内沉下心来去做，今天台风正好闲着没事做。其实原理很简单，通过路由器（TP-Link WR740N）转发设置DMZ主机，让局域网中的一台计算机完全暴露给广域网，接着用动态DNS解析到主机。在手机端使用SSH登入Linux，这里推荐使用JuiceSSH 。以下介绍两款linux安装方法:
 1.安装ssh serverubuntusudo apt-get install op">
 
 
@@ -279,7 +279,7 @@
       
 
       
-        <p>这个想法已经有一整子了，一直内沉下心来去做，今天台风正好闲着没事做。其实原理很简单，通过路由器（TP-Link WR740N）转发设置DMZ主机，让局域网中的一台计算机完全暴露给广域网，接着用动态DNS解析到主机。在手机端使用SSH登入Linux，这里推荐使用JuiceSSH 。<br>一下介绍两款linux安装方法:</p>
+        <p>这个想法已经有一整子了，一直内沉下心来去做，今天台风正好闲着没事做。其实原理很简单，通过路由器（TP-Link WR740N）转发设置DMZ主机，让局域网中的一台计算机完全暴露给广域网，接着用动态DNS解析到主机。在手机端使用SSH登入Linux，这里推荐使用JuiceSSH 。<br>以下介绍两款linux安装方法:</p>
 <h4 id="1-安装ssh-server"><a href="#1-安装ssh-server" class="headerlink" title="1.安装ssh server"></a>1.安装ssh server</h4><h5 id="ubuntu"><a href="#ubuntu" class="headerlink" title="ubuntu"></a>ubuntu</h5><pre><code>sudo apt-get install openssh-server
 </code></pre><h5 id="ArchLinux"><a href="#ArchLinux" class="headerlink" title="ArchLinux"></a>ArchLinux</h5><pre><code>sudo pacman -S openssh
 </code></pre><h4 id="2-查看ssh服务是否启动（一般情况下，安装完毕后自动启动）"><a href="#2-查看ssh服务是否启动（一般情况下，安装完毕后自动启动）" class="headerlink" title="2.查看ssh服务是否启动（一般情况下，安装完毕后自动启动）"></a>2.查看ssh服务是否启动（一般情况下，安装完毕后自动启动）</h4><pre><code>ps -ef | grep sshd
