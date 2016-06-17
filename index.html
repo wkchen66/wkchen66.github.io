@@ -175,7 +175,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            Home
           </a>
         </li>
       
@@ -185,7 +185,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            Archives
           </a>
         </li>
       
@@ -238,6 +238,287 @@
             
               
                 
+                <a class="post-title-link" href="/2016/06/17/2016-06-17-Gson使用笔记/" itemprop="url">
+                  Gson使用笔记
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-06-17T00:00:00+08:00" content="2016-06-17">
+              2016-06-17
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>关于Gson，只需要知道它是google推出的一个Json解析库。特点：快、官方、简单。</p>
+<h2 id="简单数据"><a href="#简单数据" class="headerlink" title="简单数据"></a>简单数据</h2><p>假设json数据如下：</p>
+<pre><code>{
+    city: &quot;南子岛&quot;,
+    cnty: &quot;中国&quot;,
+    id: &quot;CN101310230&quot;,
+    lat: &quot;11.26&quot;,
+    lon: &quot;114.20&quot;,
+    prov: &quot;海南&quot;
+}
+</code></pre><p>定义一个实体类</p>
+<pre><code>public class City{
+    public String city;
+    public String cnty;
+    public String id;
+    public String lat;
+    public String lon;
+    public String prov;
+}
+</code></pre><p>使用Gson解析（先导入Jar包）</p>
+<pre><code>//response:json数据
+City city ＝ new Gson().fromJson(response,City.class);
+</code></pre><h2 id="嵌套数组"><a href="#嵌套数组" class="headerlink" title="嵌套数组"></a>嵌套数组</h2><p>假设json数据如下：</p>
+<pre><code>city_info: [
+{
+    city: &quot;南子岛&quot;,
+    cnty: &quot;中国&quot;,
+    id: &quot;CN101310230&quot;,
+    lat: &quot;11.26&quot;,
+    lon: &quot;114.20&quot;,
+    prov: &quot;海南&quot;
+    },
+    {
+    city: &quot;北京&quot;,
+    cnty: &quot;中国&quot;,
+    id: &quot;CN101010100&quot;,
+    lat: &quot;39.904000&quot;,
+    lon: &quot;116.391000&quot;,
+    prov: &quot;直辖市&quot;
+}］
+</code></pre><p>首先创建实体类（推荐使用GsonFormat－－android studio 插件，快捷键command+n，有了这个插件，就非常简单了，创建实体类以下就不写了）</p>
+<pre><code>public class CityBean {
+
+    private List&lt;CityInfoBean&gt; city_info;
+
+    public List&lt;CityInfoBean&gt; getCity_info() {
+        return city_info;
+    }
+
+    public void setCity_info(List&lt;CityInfoBean&gt; city_info) {
+        this.city_info = city_info;
+    }
+
+    public static class CityInfoBean {
+        private String city;
+        private String cnty;
+        private String id;
+        private String lat;
+        private String lon;
+        private String prov;
+
+        public String getCity() {
+            return city;
+        }
+
+        public void setCity(String city) {
+            this.city = city;
+        }
+
+        public String getCnty() {
+            return cnty;
+        }
+
+        public void setCnty(String cnty) {
+            this.cnty = cnty;
+        }
+
+        public String getId() {
+            return id;
+        }
+
+        public void setId(String id) {
+            this.id = id;
+        }
+
+        public String getLat() {
+            return lat;
+        }
+
+        public void setLat(String lat) {
+            this.lat = lat;
+        }
+
+        public String getLon() {
+            return lon;
+        }
+
+        public void setLon(String lon) {
+            this.lon = lon;
+        }
+
+        public String getProv() {
+            return prov;
+        }
+
+        public void setProv(String prov) {
+            this.prov = prov;
+        }
+    }
+}
+</code></pre><p>使用Gson解析</p>
+<pre><code>JsonObject all ＝ new JsonObject(response);
+Type listType = new TypeToken&lt;ArrayList&lt;CityBean.CityInfoBean&gt;&gt;(){}.getType;
+ArrayList&lt;CityBean.CityInfoBean&gt; cityInfoBean = new Gson().fromJson(all.getString(&quot;city_info&quot;),listType);
+</code></pre><p>如果解析全部城市到listview怎么办？</p>
+<pre><code>for (int i = 0; i &lt; cityInfoBean.size(); i++) {
+    mList.add(cityBean.get(i).getCity());
+}
+</code></pre><p>创建adapter的时候把mList传递进去</p>
+<h2 id="复杂数据"><a href="#复杂数据" class="headerlink" title="复杂数据"></a>复杂数据</h2><p>假设json数据如下：</p>
+<pre><code>{
+    HeWeather data service 3.0: [
+    {
+    aqi: {
+    city: {
+    aqi: &quot;60&quot;,
+    co: &quot;1&quot;,
+    no2: &quot;49&quot;,
+    o3: &quot;52&quot;,
+    pm10: &quot;60&quot;,
+    pm25: &quot;42&quot;,
+    qlty: &quot;良&quot;,
+    so2: &quot;2&quot;
+    }
+    },
+    basic: {
+    city: &quot;北京&quot;,
+    cnty: &quot;中国&quot;,
+    id: &quot;CN101010100&quot;,
+    lat: &quot;39.904000&quot;,
+    lon: &quot;116.391000&quot;,
+    update: {
+    loc: &quot;2016-06-17 19:51&quot;,
+    utc: &quot;2016-06-17 11:51&quot;
+    }
+    },
+    daily_forecast: [
+    {
+    astro: {
+    sr: &quot;04:45&quot;,
+    ss: &quot;19:45&quot;
+    },
+    cond: {
+    code_d: &quot;100&quot;,
+    code_n: &quot;302&quot;,
+    txt_d: &quot;晴&quot;,
+    txt_n: &quot;雷阵雨&quot;
+    },
+    date: &quot;2016-06-17&quot;,
+    hum: &quot;21&quot;,
+    pcpn: &quot;0.2&quot;,
+    pop: &quot;57&quot;,
+    pres: &quot;998&quot;,
+    tmp: {
+    max: &quot;32&quot;,
+    min: &quot;20&quot;
+    },
+    vis: &quot;10&quot;,
+    wind: {
+    deg: &quot;21&quot;,
+    dir: &quot;无持续风向&quot;,
+    sc: &quot;微风&quot;,
+    spd: &quot;4&quot;
+    }
+    },
+    ..........
+</code></pre><p>1.碰到这样的数据怎么解析（HeWeather data service 3.0）<br>第一种使用Gson提供的注释的方式</p>
+<pre><code>@SerializedName(&quot;HeWeather data service 3.0&quot;)
+private List&lt;HeWeatherdataserviceBean&gt; HeWeatherdataservice;
+</code></pre><p>第二种去掉非法字符和空格再做处理</p>
+<p>2.比如说我要获取七天的天气预报，也就是daily_forecast中的数据</p>
+<pre><code>JSONObject all = new JSONObject(rawJsonResponse);
+JSONObject data = all.getJSONArray(&quot;HeWeather data service 3.0&quot;).getJSONObject(0);
+ArrayList&lt;WeatherCityBean.HeWeatherdataserviceBean.DailyForecastBean&gt; weatherCityBean = new Gson().fromJson(data.getString(&quot;daily_forecast&quot;),new TypeToken&lt;ArrayList&lt;WeatherCityBean.HeWeatherdataserviceBean.DailyForecastBean&gt;&gt;(){}.getType());
+for (int i = 0; i &lt; weatherCityBean.size(); i++) {
+    list.add(weatherCityBean.get(i));
+}
+</code></pre><p>传递到adapter即可</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/06/10/2016-06-10-git 复习笔记（记录）/" itemprop="url">
                   git 复习笔记（记录）
                 </a>
@@ -251,7 +532,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-06-10T00:00:00+08:00" content="2016-06-10">
               2016-06-10
             </time>
@@ -350,7 +631,7 @@ git checkout -b 分支名字   //创建并切换到该分支
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2015-09-03T00:00:00+08:00" content="2015-09-03">
               2015-09-03
             </time>
@@ -473,7 +754,7 @@ git checkout -b 分支名字   //创建并切换到该分支
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2015-07-26T00:00:00+08:00" content="2015-07-26">
               2015-07-26
             </time>
@@ -513,7 +794,7 @@ git checkout -b 分支名字   //创建并切换到该分支
 <h4 id="安装archlinux教程"><a href="#安装archlinux教程" class="headerlink" title="安装archlinux教程"></a>安装archlinux教程</h4>
           <div class="post-more-link text-center">
             <a class="btn" href="/2015/07/26/2015-07-26-Archlinux备忘笔记1之安装教程/#more" rel="contents">
-              Weiterlesen &raquo;
+              Read more &raquo;
             </a>
           </div>
         
@@ -576,7 +857,7 @@ git checkout -b 分支名字   //创建并切换到该分支
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2015-07-11T00:00:00+08:00" content="2015-07-11">
               2015-07-11
             </time>
@@ -613,7 +894,7 @@ git checkout -b 分支名字   //创建并切换到该分支
 </code></pre>
           <div class="post-more-link text-center">
             <a class="btn" href="/2015/07/11/2015-07-11-实现外网Android SSH远程登录Linux/#more" rel="contents">
-              Weiterlesen &raquo;
+              Read more &raquo;
             </a>
           </div>
         
@@ -676,7 +957,7 @@ git checkout -b 分支名字   //创建并切换到该分支
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2015-07-10T00:00:00+08:00" content="2015-07-10">
               2015-07-10
             </time>
@@ -723,7 +1004,7 @@ git checkout -b 分支名字   //创建并切换到该分支
 </code></pre>
           <div class="post-more-link text-center">
             <a class="btn" href="/2015/07/10/2015-07-10-JS学习笔记4_图片库二次优化/#more" rel="contents">
-              Weiterlesen &raquo;
+              Read more &raquo;
             </a>
           </div>
         
@@ -786,7 +1067,7 @@ git checkout -b 分支名字   //创建并切换到该分支
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2015-07-06T00:00:00+08:00" content="2015-07-06">
               2015-07-06
             </time>
@@ -831,7 +1112,7 @@ git checkout -b 分支名字   //创建并切换到该分支
 </code></pre>
           <div class="post-more-link text-center">
             <a class="btn" href="/2015/07/06/2015-07-06-JS学习笔记3_动态创建HTML内容Demo/#more" rel="contents">
-              Weiterlesen &raquo;
+              Read more &raquo;
             </a>
           </div>
         
@@ -894,7 +1175,7 @@ git checkout -b 分支名字   //创建并切换到该分支
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2015-07-05T00:00:00+08:00" content="2015-07-05">
               2015-07-05
             </time>
@@ -945,7 +1226,7 @@ git checkout -b 分支名字   //创建并切换到该分支
 </code></pre>
           <div class="post-more-link text-center">
             <a class="btn" href="/2015/07/05/2015-07-05-JS学习笔记2_图片库js代码优化/#more" rel="contents">
-              Weiterlesen &raquo;
+              Read more &raquo;
             </a>
           </div>
         
@@ -1008,7 +1289,7 @@ git checkout -b 分支名字   //创建并切换到该分支
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2015-06-28T00:00:00+08:00" content="2015-06-28">
               2015-06-28
             </time>
@@ -1050,7 +1331,7 @@ git checkout -b 分支名字   //创建并切换到该分支
 </code></pre><p>如果浏览器禁用javascript，伪代码就会无法显示。<br>把href的值设为一个真实存在的值。就能做到平稳退化。<br>
           <div class="post-more-link text-center">
             <a class="btn" href="/2015/06/28/2015-06-28-JS学习笔记1_图片库showPic()/#more" rel="contents">
-              Weiterlesen &raquo;
+              Read more &raquo;
             </a>
           </div>
         
@@ -1113,7 +1394,7 @@ git checkout -b 分支名字   //创建并切换到该分支
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2015-05-16T00:00:00+08:00" content="2015-05-16">
               2015-05-16
             </time>
@@ -1148,106 +1429,7 @@ git checkout -b 分支名字   //创建并切换到该分支
 <p><strong>总结: 在你不了解一个品牌它的尿性的情况下，你不要盲目的去推崇它。毕竟姜还是老的辣。</strong><br>
           <div class="post-more-link text-center">
             <a class="btn" href="/2015/05/16/2015-05-16-体验之行/#more" rel="contents">
-              Weiterlesen &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/05/13/2015-05-13-My-first-blog-to-myself/" itemprop="url">
-                  我的第一篇blog,致自己。
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
-            <time itemprop="dateCreated" datetime="2015-05-13T00:00:00+08:00" content="2015-05-13">
-              2015-05-13
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>Welcome to <a href="http://wkchen66.github.io/">Wkchen</a>! This is my blog. If you have any problems tell me, You can use Weibo to contact me <a href="http://weibo.com/2293648374/">Weibo</a> or you can ask me on <a href="https://github.com/wkchen66">GitHub</a>.</p>
-<h3 id="写这篇博客的初衷"><a href="#写这篇博客的初衷" class="headerlink" title="写这篇博客的初衷"></a>写这篇博客的初衷</h3><ul>
-<li>最近刚入全球最大的男性同性交友平台GitHub，注1.GitHub是全球最大的社交编程及代码托管网站。在GitHub上有一GitHub Pages功能。我的初衷是为了测试自己网站<a href="http://wkchen66.github.io/">Wkchen Juggling</a>!</li>
-</ul>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/05/13/2015-05-13-My-first-blog-to-myself/#more" rel="contents">
-              Weiterlesen &raquo;
+              Read more &raquo;
             </a>
           </div>
         
@@ -1321,8 +1503,8 @@ git checkout -b 分支名字   //创建并切换到该分支
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">11</span>
-              <span class="site-state-item-name">Artikel</span>
+              <span class="site-state-item-count">12</span>
+              <span class="site-state-item-name">posts</span>
             </a>
           </div>
 
@@ -1331,8 +1513,8 @@ git checkout -b 分支名字   //创建并切换到该分支
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">17</span>
-                <span class="site-state-item-name">Tags</span>
+                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-name">tags</span>
               </a>
             </div>
           
@@ -1376,7 +1558,7 @@ git checkout -b 分支名字   //创建并切换到该分支
 </div>
 
 <div class="powered-by">
-  Erstellt mit  <a class="theme-link" href="http://hexo.io">Hexo</a>
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">

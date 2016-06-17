@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="git,github,hexo," />
+  <meta name="keywords" content="gson,volley,android-async-http," />
 
 
 
@@ -84,16 +84,37 @@
 
 
 
-<meta name="description" content="认识git已经一年多了，但一直没有正真的弄懂它。第一接触到时当时想要搭建博客，很幸运遇到了hexo（基于node.js的静态博客），其中涉及到了一些基本的命令，虽然在android和java开发的时候偶尔会去提交一些代码到github上（其实就三句git add、git commit、git push其他的都忘了），但是说真的压根不理解这玩意。直到最近github对我越来越重要，于此同时又是hex">
+<meta name="description" content="关于Gson，只需要知道它是google推出的一个Json解析库。特点：快、官方、简单。
+简单数据假设json数据如下：
+{
+    city: &amp;quot;南子岛&amp;quot;,
+    cnty: &amp;quot;中国&amp;quot;,
+    id: &amp;quot;CN101310230&amp;quot;,
+    lat: &amp;quot;11.26&amp;quot;,
+    lon: &amp;quot;114.20&amp;q">
 <meta property="og:type" content="article">
-<meta property="og:title" content="git 复习笔记（记录）">
-<meta property="og:url" content="http://www.tipdev.xyz/2016/06/10/2016-06-10-git 复习笔记（记录）/index.html">
+<meta property="og:title" content="Gson使用笔记">
+<meta property="og:url" content="http://www.tipdev.xyz/2016/06/17/2016-06-17-Gson使用笔记/index.html">
 <meta property="og:site_name" content="DEVTIP">
-<meta property="og:description" content="认识git已经一年多了，但一直没有正真的弄懂它。第一接触到时当时想要搭建博客，很幸运遇到了hexo（基于node.js的静态博客），其中涉及到了一些基本的命令，虽然在android和java开发的时候偶尔会去提交一些代码到github上（其实就三句git add、git commit、git push其他的都忘了），但是说真的压根不理解这玩意。直到最近github对我越来越重要，于此同时又是hex">
-<meta property="og:updated_time" content="2016-06-10T08:12:22.000Z">
+<meta property="og:description" content="关于Gson，只需要知道它是google推出的一个Json解析库。特点：快、官方、简单。
+简单数据假设json数据如下：
+{
+    city: &amp;quot;南子岛&amp;quot;,
+    cnty: &amp;quot;中国&amp;quot;,
+    id: &amp;quot;CN101310230&amp;quot;,
+    lat: &amp;quot;11.26&amp;quot;,
+    lon: &amp;quot;114.20&amp;q">
+<meta property="og:updated_time" content="2016-06-17T13:47:01.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="git 复习笔记（记录）">
-<meta name="twitter:description" content="认识git已经一年多了，但一直没有正真的弄懂它。第一接触到时当时想要搭建博客，很幸运遇到了hexo（基于node.js的静态博客），其中涉及到了一些基本的命令，虽然在android和java开发的时候偶尔会去提交一些代码到github上（其实就三句git add、git commit、git push其他的都忘了），但是说真的压根不理解这玩意。直到最近github对我越来越重要，于此同时又是hex">
+<meta name="twitter:title" content="Gson使用笔记">
+<meta name="twitter:description" content="关于Gson，只需要知道它是google推出的一个Json解析库。特点：快、官方、简单。
+简单数据假设json数据如下：
+{
+    city: &amp;quot;南子岛&amp;quot;,
+    cnty: &amp;quot;中国&amp;quot;,
+    id: &amp;quot;CN101310230&amp;quot;,
+    lat: &amp;quot;11.26&amp;quot;,
+    lon: &amp;quot;114.20&amp;q">
 
 
 
@@ -114,9 +135,9 @@
 
 
 
-  <link rel="canonical" href="http://www.tipdev.xyz/2016/06/10/2016-06-10-git 复习笔记（记录）/"/>
+  <link rel="canonical" href="http://www.tipdev.xyz/2016/06/17/2016-06-17-Gson使用笔记/"/>
 
-  <title> git 复习笔记（记录） | DEVTIP </title>
+  <title> Gson使用笔记 | DEVTIP </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="">
@@ -236,7 +257,7 @@
             
             
               
-                git 复习笔记（记录）
+                Gson使用笔记
               
             
           </h1>
@@ -248,8 +269,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-06-10T00:00:00+08:00" content="2016-06-10">
-              2016-06-10
+            <time itemprop="dateCreated" datetime="2016-06-17T00:00:00+08:00" content="2016-06-17">
+              2016-06-17
             </time>
           </span>
 
@@ -276,13 +297,195 @@
       
 
       
-        <p>认识git已经一年多了，但一直没有正真的弄懂它。第一接触到时当时想要搭建博客，很幸运遇到了hexo（基于node.js的静态博客），其中涉及到了一些基本的命令，虽然在android和java开发的时候偶尔会去提交一些代码到github上（其实就三句git add、git commit、git push其他的都忘了），但是说真的压根不理解这玩意。直到最近github对我越来越重要，于此同时又是hexo,博客更新停止了有一段时间了，最近又打算开启每天写博客的习惯了，自学android差不多快一年了，但是进展让我不够满意，所以我打算每天写博客记录我的学习过程，也提醒自己坚持下去。本文配套github做的记录。</p>
-<h4 id="git-init-初始化仓库"><a href="#git-init-初始化仓库" class="headerlink" title="git init  //初始化仓库"></a>git init  //初始化仓库</h4><h4 id="git-status-查看git状态"><a href="#git-status-查看git状态" class="headerlink" title="git status   //查看git状态"></a>git status   //查看git状态</h4><h4 id="git-add-添加文件到本地库"><a href="#git-add-添加文件到本地库" class="headerlink" title="git add   //添加文件到本地库"></a>git add   //添加文件到本地库</h4><pre><code>git add .  //添加该文件夹下的所有文件
-</code></pre><h4 id="git-commit-m-提交信息"><a href="#git-commit-m-提交信息" class="headerlink" title="git commit -m    //提交信息"></a>git commit -m    //提交信息</h4><h4 id="git-log-查看git-log日志"><a href="#git-log-查看git-log日志" class="headerlink" title="git log    //查看git log日志"></a>git log    //查看git log日志</h4><h4 id="git-branch-分支默认master"><a href="#git-branch-分支默认master" class="headerlink" title="git branch   分支默认master"></a>git branch   分支默认master</h4><pre><code>git branch   //查看当前的所有分支
-git branch 分支名字   //创建该分支
-git checkout 分支名字   //切换到该分支
-git checkout -b 分支名字   //创建并切换到该分支
-</code></pre><h4 id="git-pull-origin-master-分支-从远程库拉取同步到本地"><a href="#git-pull-origin-master-分支-从远程库拉取同步到本地" class="headerlink" title="git pull origin master (分支)   //从远程库拉取同步到本地"></a>git pull origin master (分支)   //从远程库拉取同步到本地</h4><h4 id="git-push-origin-master-分支-从本地同步到远程库"><a href="#git-push-origin-master-分支-从本地同步到远程库" class="headerlink" title="git push origin master (分支)   //从本地同步到远程库"></a>git push origin master (分支)   //从本地同步到远程库</h4><h4 id="git-clone-git-github-com-username-仓库名-git-克隆改仓库到本地"><a href="#git-clone-git-github-com-username-仓库名-git-克隆改仓库到本地" class="headerlink" title="git clone git@github.com:username/仓库名.git     //克隆改仓库到本地"></a>git clone git@github.com:username/仓库名.git     //克隆改仓库到本地</h4>
+        <p>关于Gson，只需要知道它是google推出的一个Json解析库。特点：快、官方、简单。</p>
+<h2 id="简单数据"><a href="#简单数据" class="headerlink" title="简单数据"></a>简单数据</h2><p>假设json数据如下：</p>
+<pre><code>{
+    city: &quot;南子岛&quot;,
+    cnty: &quot;中国&quot;,
+    id: &quot;CN101310230&quot;,
+    lat: &quot;11.26&quot;,
+    lon: &quot;114.20&quot;,
+    prov: &quot;海南&quot;
+}
+</code></pre><p>定义一个实体类</p>
+<pre><code>public class City{
+    public String city;
+    public String cnty;
+    public String id;
+    public String lat;
+    public String lon;
+    public String prov;
+}
+</code></pre><p>使用Gson解析（先导入Jar包）</p>
+<pre><code>//response:json数据
+City city ＝ new Gson().fromJson(response,City.class);
+</code></pre><h2 id="嵌套数组"><a href="#嵌套数组" class="headerlink" title="嵌套数组"></a>嵌套数组</h2><p>假设json数据如下：</p>
+<pre><code>city_info: [
+{
+    city: &quot;南子岛&quot;,
+    cnty: &quot;中国&quot;,
+    id: &quot;CN101310230&quot;,
+    lat: &quot;11.26&quot;,
+    lon: &quot;114.20&quot;,
+    prov: &quot;海南&quot;
+    },
+    {
+    city: &quot;北京&quot;,
+    cnty: &quot;中国&quot;,
+    id: &quot;CN101010100&quot;,
+    lat: &quot;39.904000&quot;,
+    lon: &quot;116.391000&quot;,
+    prov: &quot;直辖市&quot;
+}］
+</code></pre><p>首先创建实体类（推荐使用GsonFormat－－android studio 插件，快捷键command+n，有了这个插件，就非常简单了，创建实体类以下就不写了）</p>
+<pre><code>public class CityBean {
+
+    private List&lt;CityInfoBean&gt; city_info;
+
+    public List&lt;CityInfoBean&gt; getCity_info() {
+        return city_info;
+    }
+
+    public void setCity_info(List&lt;CityInfoBean&gt; city_info) {
+        this.city_info = city_info;
+    }
+
+    public static class CityInfoBean {
+        private String city;
+        private String cnty;
+        private String id;
+        private String lat;
+        private String lon;
+        private String prov;
+
+        public String getCity() {
+            return city;
+        }
+
+        public void setCity(String city) {
+            this.city = city;
+        }
+
+        public String getCnty() {
+            return cnty;
+        }
+
+        public void setCnty(String cnty) {
+            this.cnty = cnty;
+        }
+
+        public String getId() {
+            return id;
+        }
+
+        public void setId(String id) {
+            this.id = id;
+        }
+
+        public String getLat() {
+            return lat;
+        }
+
+        public void setLat(String lat) {
+            this.lat = lat;
+        }
+
+        public String getLon() {
+            return lon;
+        }
+
+        public void setLon(String lon) {
+            this.lon = lon;
+        }
+
+        public String getProv() {
+            return prov;
+        }
+
+        public void setProv(String prov) {
+            this.prov = prov;
+        }
+    }
+}
+</code></pre><p>使用Gson解析</p>
+<pre><code>JsonObject all ＝ new JsonObject(response);
+Type listType = new TypeToken&lt;ArrayList&lt;CityBean.CityInfoBean&gt;&gt;(){}.getType;
+ArrayList&lt;CityBean.CityInfoBean&gt; cityInfoBean = new Gson().fromJson(all.getString(&quot;city_info&quot;),listType);
+</code></pre><p>如果解析全部城市到listview怎么办？</p>
+<pre><code>for (int i = 0; i &lt; cityInfoBean.size(); i++) {
+    mList.add(cityBean.get(i).getCity());
+}
+</code></pre><p>创建adapter的时候把mList传递进去</p>
+<h2 id="复杂数据"><a href="#复杂数据" class="headerlink" title="复杂数据"></a>复杂数据</h2><p>假设json数据如下：</p>
+<pre><code>{
+    HeWeather data service 3.0: [
+    {
+    aqi: {
+    city: {
+    aqi: &quot;60&quot;,
+    co: &quot;1&quot;,
+    no2: &quot;49&quot;,
+    o3: &quot;52&quot;,
+    pm10: &quot;60&quot;,
+    pm25: &quot;42&quot;,
+    qlty: &quot;良&quot;,
+    so2: &quot;2&quot;
+    }
+    },
+    basic: {
+    city: &quot;北京&quot;,
+    cnty: &quot;中国&quot;,
+    id: &quot;CN101010100&quot;,
+    lat: &quot;39.904000&quot;,
+    lon: &quot;116.391000&quot;,
+    update: {
+    loc: &quot;2016-06-17 19:51&quot;,
+    utc: &quot;2016-06-17 11:51&quot;
+    }
+    },
+    daily_forecast: [
+    {
+    astro: {
+    sr: &quot;04:45&quot;,
+    ss: &quot;19:45&quot;
+    },
+    cond: {
+    code_d: &quot;100&quot;,
+    code_n: &quot;302&quot;,
+    txt_d: &quot;晴&quot;,
+    txt_n: &quot;雷阵雨&quot;
+    },
+    date: &quot;2016-06-17&quot;,
+    hum: &quot;21&quot;,
+    pcpn: &quot;0.2&quot;,
+    pop: &quot;57&quot;,
+    pres: &quot;998&quot;,
+    tmp: {
+    max: &quot;32&quot;,
+    min: &quot;20&quot;
+    },
+    vis: &quot;10&quot;,
+    wind: {
+    deg: &quot;21&quot;,
+    dir: &quot;无持续风向&quot;,
+    sc: &quot;微风&quot;,
+    spd: &quot;4&quot;
+    }
+    },
+    ..........
+</code></pre><p>1.碰到这样的数据怎么解析（HeWeather data service 3.0）<br>第一种使用Gson提供的注释的方式</p>
+<pre><code>@SerializedName(&quot;HeWeather data service 3.0&quot;)
+private List&lt;HeWeatherdataserviceBean&gt; HeWeatherdataservice;
+</code></pre><p>第二种去掉非法字符和空格再做处理</p>
+<p>2.比如说我要获取七天的天气预报，也就是daily_forecast中的数据</p>
+<pre><code>JSONObject all = new JSONObject(rawJsonResponse);
+JSONObject data = all.getJSONArray(&quot;HeWeather data service 3.0&quot;).getJSONObject(0);
+ArrayList&lt;WeatherCityBean.HeWeatherdataserviceBean.DailyForecastBean&gt; weatherCityBean = new Gson().fromJson(data.getString(&quot;daily_forecast&quot;),new TypeToken&lt;ArrayList&lt;WeatherCityBean.HeWeatherdataserviceBean.DailyForecastBean&gt;&gt;(){}.getType());
+for (int i = 0; i &lt; weatherCityBean.size(); i++) {
+    list.add(weatherCityBean.get(i));
+}
+</code></pre><p>传递到adapter即可</p>
+
       
     </div>
 
@@ -303,11 +506,11 @@ git checkout -b 分支名字   //创建并切换到该分支
       
         <div class="post-tags">
           
-            <a href="/tags/git/" rel="tag">#git</a>
+            <a href="/tags/gson/" rel="tag">#gson</a>
           
-            <a href="/tags/github/" rel="tag">#github</a>
+            <a href="/tags/volley/" rel="tag">#volley</a>
           
-            <a href="/tags/hexo/" rel="tag">#hexo</a>
+            <a href="/tags/android-async-http/" rel="tag">#android-async-http</a>
           
         </div>
       
@@ -316,17 +519,13 @@ git checkout -b 分支名字   //创建并切换到该分支
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/09/03/2015-09-03-VPS之shadowsocks 翻墙技术那加强/" rel="next" title="VPS之shadowsocks 翻墙技术那加强">
-                <i class="fa fa-chevron-left"></i> VPS之shadowsocks 翻墙技术那加强
+              <a href="/2016/06/10/2016-06-10-git 复习笔记（记录）/" rel="next" title="git 复习笔记（记录）">
+                <i class="fa fa-chevron-left"></i> git 复习笔记（记录）
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/06/17/2016-06-17-Gson使用笔记/" rel="prev" title="Gson使用笔记">
-                Gson使用笔记 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -433,7 +632,7 @@ git checkout -b 分支名字   //创建并切换到该分支
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#git-init-初始化仓库"><span class="nav-number">1.</span> <span class="nav-text">git init  //初始化仓库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#git-status-查看git状态"><span class="nav-number">2.</span> <span class="nav-text">git status   //查看git状态</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#git-add-添加文件到本地库"><span class="nav-number">3.</span> <span class="nav-text">git add   //添加文件到本地库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#git-commit-m-提交信息"><span class="nav-number">4.</span> <span class="nav-text">git commit -m    //提交信息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#git-log-查看git-log日志"><span class="nav-number">5.</span> <span class="nav-text">git log    //查看git log日志</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#git-branch-分支默认master"><span class="nav-number">6.</span> <span class="nav-text">git branch   分支默认master</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#git-pull-origin-master-分支-从远程库拉取同步到本地"><span class="nav-number">7.</span> <span class="nav-text">git pull origin master (分支)   //从远程库拉取同步到本地</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#git-push-origin-master-分支-从本地同步到远程库"><span class="nav-number">8.</span> <span class="nav-text">git push origin master (分支)   //从本地同步到远程库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#git-clone-git-github-com-username-仓库名-git-克隆改仓库到本地"><span class="nav-number">9.</span> <span class="nav-text">git clone git@github.com:username/仓库名.git     //克隆改仓库到本地</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简单数据"><span class="nav-number">1.</span> <span class="nav-text">简单数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#嵌套数组"><span class="nav-number">2.</span> <span class="nav-text">嵌套数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#复杂数据"><span class="nav-number">3.</span> <span class="nav-text">复杂数据</span></a></li></ol></div>
             
           </div>
         </section>
