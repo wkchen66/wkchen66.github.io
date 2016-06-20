@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="JavaScript,js笔记," />
+  <meta name="keywords" content="SQLite," />
 
 
 
@@ -84,24 +84,25 @@
 
 
 
-<meta name="description" content="This is a demo.这是一个测试Demo，并不是使用繁琐的document.write或者innerHTML来实现。这些古老的方式，要么在HTML文档中插入&amp;lt;script&amp;gt; 标签，要么无法对插入的内容进行处理。而DOM提供了更加强大更加精准的功能，在任何时候都能替代innerHTML。
-index.html&amp;lt;!DOCTYPE html&amp;gt;
-&amp;lt;html&amp;gt;">
+<meta name="description" content="这几天在做Demo的时候碰到了一些问题，记录一下。
+整体流程：通过本地数据库加载数据到listview中，如果当数据不存在”/data/data/包名/“下时，通过加载资源文件导入。
+public static String DB_NAME = &amp;quot;chinacity.db&amp;quot;;
+public static final String PACKAGE_NAME = &amp;quot;com">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JS学习笔记3_动态创建HTML内容Demo">
-<meta property="og:url" content="http://www.tipdev.xyz/2015/07/06/2015-07-06-JS学习笔记3_动态创建HTML内容Demo/index.html">
+<meta property="og:title" content="SQLite数据库本地读写笔记">
+<meta property="og:url" content="http://www.tipdev.xyz/2016/06/20/2016-06-20-SQLite数据库本地读写笔记/index.html">
 <meta property="og:site_name" content="DEVTIP">
-<meta property="og:description" content="This is a demo.这是一个测试Demo，并不是使用繁琐的document.write或者innerHTML来实现。这些古老的方式，要么在HTML文档中插入&amp;lt;script&amp;gt; 标签，要么无法对插入的内容进行处理。而DOM提供了更加强大更加精准的功能，在任何时候都能替代innerHTML。
-index.html&amp;lt;!DOCTYPE html&amp;gt;
-&amp;lt;html&amp;gt;">
-<meta property="og:image" content="http://wkchen66.github.io/assets/BlogImg/20150706JS_3-1.png">
-<meta property="og:updated_time" content="2015-09-03T06:10:40.000Z">
+<meta property="og:description" content="这几天在做Demo的时候碰到了一些问题，记录一下。
+整体流程：通过本地数据库加载数据到listview中，如果当数据不存在”/data/data/包名/“下时，通过加载资源文件导入。
+public static String DB_NAME = &amp;quot;chinacity.db&amp;quot;;
+public static final String PACKAGE_NAME = &amp;quot;com">
+<meta property="og:updated_time" content="2016-06-20T14:53:04.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JS学习笔记3_动态创建HTML内容Demo">
-<meta name="twitter:description" content="This is a demo.这是一个测试Demo，并不是使用繁琐的document.write或者innerHTML来实现。这些古老的方式，要么在HTML文档中插入&amp;lt;script&amp;gt; 标签，要么无法对插入的内容进行处理。而DOM提供了更加强大更加精准的功能，在任何时候都能替代innerHTML。
-index.html&amp;lt;!DOCTYPE html&amp;gt;
-&amp;lt;html&amp;gt;">
-<meta name="twitter:image" content="http://wkchen66.github.io/assets/BlogImg/20150706JS_3-1.png">
+<meta name="twitter:title" content="SQLite数据库本地读写笔记">
+<meta name="twitter:description" content="这几天在做Demo的时候碰到了一些问题，记录一下。
+整体流程：通过本地数据库加载数据到listview中，如果当数据不存在”/data/data/包名/“下时，通过加载资源文件导入。
+public static String DB_NAME = &amp;quot;chinacity.db&amp;quot;;
+public static final String PACKAGE_NAME = &amp;quot;com">
 
 
 
@@ -122,9 +123,9 @@ index.html&amp;lt;!DOCTYPE html&amp;gt;
 
 
 
-  <link rel="canonical" href="http://www.tipdev.xyz/2015/07/06/2015-07-06-JS学习笔记3_动态创建HTML内容Demo/"/>
+  <link rel="canonical" href="http://www.tipdev.xyz/2016/06/20/2016-06-20-SQLite数据库本地读写笔记/"/>
 
-  <title> JS学习笔记3_动态创建HTML内容Demo | DEVTIP </title>
+  <title> SQLite数据库本地读写笔记 | DEVTIP </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="">
@@ -244,7 +245,7 @@ index.html&amp;lt;!DOCTYPE html&amp;gt;
             
             
               
-                JS学习笔记3_动态创建HTML内容Demo
+                SQLite数据库本地读写笔记
               
             
           </h1>
@@ -256,8 +257,8 @@ index.html&amp;lt;!DOCTYPE html&amp;gt;
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Veröffentlicht am</span>
-            <time itemprop="dateCreated" datetime="2015-07-06T00:00:00+08:00" content="2015-07-06">
-              2015-07-06
+            <time itemprop="dateCreated" datetime="2016-06-20T00:00:00+08:00" content="2016-06-20">
+              2016-06-20
             </time>
           </span>
 
@@ -267,8 +268,8 @@ index.html&amp;lt;!DOCTYPE html&amp;gt;
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/07/06/2015-07-06-JS学习笔记3_动态创建HTML内容Demo/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/07/06/2015-07-06-JS学习笔记3_动态创建HTML内容Demo/" itemprop="commentsCount"></span>
+                <a href="/2016/06/20/2016-06-20-SQLite数据库本地读写笔记/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/20/2016-06-20-SQLite数据库本地读写笔记/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -291,107 +292,47 @@ index.html&amp;lt;!DOCTYPE html&amp;gt;
       
 
       
-        <h3 id="This-is-a-demo"><a href="#This-is-a-demo" class="headerlink" title="This is a demo."></a>This is a demo.</h3><p>这是一个测试Demo，并不是使用繁琐的<code>document.write</code>或者<code>innerHTML</code>来实现。这些古老的方式，要么在HTML文档中插入<code>&lt;script&gt;</code> 标签，要么无法对插入的内容进行处理。而DOM提供了更加强大更加精准的功能，在任何时候都能替代<code>innerHTML</code>。</p>
-<h5 id="index-html"><a href="#index-html" class="headerlink" title="index.html"></a>index.html</h5><pre><code>&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head&gt;
-   &lt;meta charset=&quot;utf-8&quot; /&gt;
-   &lt;title&gt;&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-   &lt;div id=&quot;txtdiv&quot;&gt;&lt;/div&gt;
-   &lt;script type=&quot;text/javascript&quot; src=&quot;js/myFunction.js&quot;&gt;&lt;/script&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre><a id="more"></a>
-<h5 id="myFunction-js"><a href="#myFunction-js" class="headerlink" title="myFunction.js"></a>myFunction.js</h5><pre><code>    window.onload = function(){
-    var pare = document.createElement(&quot;p&quot;);
-    var txtdiv = document.getElementById(&quot;txtdiv&quot;);
-    txtdiv.appendChild(pare);
-    var txt1 = document.createTextNode(&quot;this is&quot;);
-    pare.appendChild(txt1);
-    var em = document.createElement(&quot;em&quot;);
-    pare.appendChild(em);
-    var txt2 = document.createTextNode(&quot; my &quot;);
-    em.appendChild(txt2);
-    var txt3 = document.createTextNode(&quot;content .&quot;)
-    pare.appendChild(txt3);
-}
-</code></pre><p><img src="http://wkchen66.github.io/assets/BlogImg/20150706JS_3-1.png" alt="a"></p>
-<h3 id="This-is-a-example"><a href="#This-is-a-example" class="headerlink" title="This is a example."></a>This is a example.</h3><p>那么回到图片库操作，图片和文字部分仅仅是为showPic脚本服务。So，把它们从HTML中分离出来。按照上面学习的动态创建HTML内容，一下为代码展示：</p>
-<pre><code>   function showPic(whichpic){
-    if(!document.getElementById(&quot;img&quot;)){
-        return false;
-    }
-    var a = whichpic.getAttribute(&quot;href&quot;);
-    var b = document.getElementById(&quot;img&quot;);
-    if(b.nodeName != &quot;IMG&quot;){
-        return false;
-    }
-    b.setAttribute(&quot;src&quot;, a);
-    if(document.getElementById(&quot;title_p&quot;)){
-        if(whichpic.getAttribute(&quot;title&quot;)){
-            var c = whichpic.getAttribute(&quot;title&quot;);
-        }else{
-            var c = &quot;&quot;;
-        }
-        var d = document.getElementById(&quot;title_p&quot;);
-        if(d.firstChild.nodeType == 3){
-            d.firstChild.nodeValue=c;
-        }
-    }else{
-        return false;
-    }
-    return true;
-}
+        <p>这几天在做Demo的时候碰到了一些问题，记录一下。</p>
+<h3 id="整体流程："><a href="#整体流程：" class="headerlink" title="整体流程："></a>整体流程：</h3><p>通过本地数据库加载数据到listview中，如果当数据不存在”/data/data/包名/“下时，通过加载资源文件导入。</p>
+<pre><code>public static String DB_NAME = &quot;chinacity.db&quot;;
+public static final String PACKAGE_NAME = &quot;com.wkchen.watermelonweather&quot;;
+public static final String DB_PATH = &quot;/data&quot; +Environment.getDataDirectory().getAbsolutePath() + &quot;/&quot; +
+        PACKAGE_NAME;
 
-function Gallery(){
-    if(!document.getElementById){
-        return false;
-    }
-    if(!document.getElementsByTagName){
-        return false;
-    }
-    if(!document.getElementById(&quot;gallery&quot;)){
-        return false;
-    }
-    var gallery = document.getElementById(&quot;gallery&quot;);
-    var links = gallery.getElementsByTagName(&quot;a&quot;);
-    for (var i = 0; i &lt; links.length ; i++) {
-        links[i].onclick=function(){
-            return !showPic(this);
-        }
-    }
-}
+private SQLiteDatabase db;
 
-function placeholder(){
-    var img = document.createElement(&quot;img&quot;);
-    img.setAttribute(&quot;src&quot;,&quot;images/defaut.jpg&quot;);
-    img.setAttribute(&quot;id&quot;,&quot;img&quot;);
-    img.setAttribute(&quot;width&quot;,&quot;400px&quot;);
-    img.setAttribute(&quot;height&quot;,&quot;300px&quot;);
-    var pare = document.createElement(&quot;p&quot;);
-    pare.setAttribute(&quot;id&quot;, &quot;title_p&quot;);
-    var txt = document.createTextNode(&quot;defaut&quot;);
-    pare.appendChild(txt);
-    document.getElementsByTagName(&quot;body&quot;)[0].appendChild(img);
-    document.getElementsByTagName(&quot;body&quot;)[0].appendChild(pare);
-}
-
-function addLoadEvent(func){
-    var oldonload = window.onload;
-    if(typeof window.onload != &apos;function&apos;){
-        window.onload = func;
-    }else{
-        window.onload = function(){
-            oldonload();
-            func();
+private void openDatabase() {
+    try {
+        if (!(new File(DB_PATH+&quot;/&quot;+DB_NAME).exists())) {
+            InputStream is = getResources().openRawResource(R.raw.chinacity); //欲导入的数据库
+            FileOutputStream fos = new FileOutputStream(DB_PATH+&quot;/&quot;+DB_NAME);
+            byte[] buffer = new byte[1024];
+            int count = 0;
+            while ((count = is.read(buffer)) &gt; 0) {
+                fos.write(buffer, 0, count);
+            }
+            fos.close();
+            is.close();
         }
-    }    
+        db = SQLiteDatabase.openOrCreateDatabase(DB_PATH+&quot;/&quot;+DB_NAME, null);
+    } catch (FileNotFoundException e) {
+        e.printStackTrace();
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+    Cursor cursor = db.rawQuery(&quot;select * from china_provinces_code&quot;, null);
+    mList = new ArrayList&lt;String&gt;();
+    while (cursor.moveToNext()) {
+        mList.add(cursor.getString(cursor.getColumnIndex(&quot;name&quot;)));
+    }
+
+    MyAdapter adapter = new MyAdapter(getApplicationContext(), R.layout.layout_list_item, mList);
+    mList_city.setAdapter(adapter);
 }
-addLoadEvent(placeholder);
-addLoadEvent(Gallery);
-</code></pre>
+</code></pre><p>最后加上权限</p>
+<pre><code>&lt;uses-permission android:name=&quot;android.permission.WRITE_EXTERNAL_STORAGE&quot;/&gt;
+</code></pre><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>主要通过判断目标文件是否存在new File(DB_PATH+”/“+DB_NAME).exists()<br>如果存在直接打开，不存在则倒入文件（从raw文件下导入db文件）后打开<br>最后展示到listview中</p>
+
       
     </div>
 
@@ -412,9 +353,7 @@ addLoadEvent(Gallery);
       
         <div class="post-tags">
           
-            <a href="/tags/JavaScript/" rel="tag">#JavaScript</a>
-          
-            <a href="/tags/js笔记/" rel="tag">#js笔记</a>
+            <a href="/tags/SQLite/" rel="tag">#SQLite</a>
           
         </div>
       
@@ -423,17 +362,13 @@ addLoadEvent(Gallery);
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/07/05/2015-07-05-JS学习笔记2_图片库js代码优化/" rel="next" title="JS学习笔记2_图片库js代码优化">
-                <i class="fa fa-chevron-left"></i> JS学习笔记2_图片库js代码优化
+              <a href="/2016/06/17/2016-06-17-Gson使用笔记/" rel="next" title="Gson使用笔记">
+                <i class="fa fa-chevron-left"></i> Gson使用笔记
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2015/07/10/2015-07-10-JS学习笔记4_图片库二次优化/" rel="prev" title="JS学习笔记4_图片库二次优化">
-                JS学习笔记4_图片库二次优化 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -459,8 +394,8 @@ addLoadEvent(Gallery);
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2015/07/06/2015-07-06-JS学习笔记3_动态创建HTML内容Demo/"
-           data-title="JS学习笔记3_动态创建HTML内容Demo" data-url="http://www.tipdev.xyz/2015/07/06/2015-07-06-JS学习笔记3_动态创建HTML内容Demo/">
+      <div class="ds-thread" data-thread-key="2016/06/20/2016-06-20-SQLite数据库本地读写笔记/"
+           data-title="SQLite数据库本地读写笔记" data-url="http://www.tipdev.xyz/2016/06/20/2016-06-20-SQLite数据库本地读写笔记/">
       </div>
     
   </div>
@@ -544,7 +479,7 @@ addLoadEvent(Gallery);
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#This-is-a-demo"><span class="nav-number">1.</span> <span class="nav-text">This is a demo.</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#index-html"><span class="nav-number">1.0.1.</span> <span class="nav-text">index.html</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#myFunction-js"><span class="nav-number">1.0.2.</span> <span class="nav-text">myFunction.js</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#This-is-a-example"><span class="nav-number">2.</span> <span class="nav-text">This is a example.</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#整体流程："><span class="nav-number">1.</span> <span class="nav-text">整体流程：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">2.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
           </div>
         </section>
