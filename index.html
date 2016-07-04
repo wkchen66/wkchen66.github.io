@@ -238,6 +238,129 @@
             
               
                 
+                <a class="post-title-link" href="/2016/07/05/2016-07-05-关于自定义Toolbar左边出现空白间隙(记录)/" itemprop="url">
+                  关于自定义Toolbar左边出现16dp的空白间隙(记录)
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-07-05T00:00:00+08:00" content="2016-07-05">
+              2016-07-05
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/05/2016-07-05-关于自定义Toolbar左边出现空白间隙(记录)/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/05/2016-07-05-关于自定义Toolbar左边出现空白间隙(记录)/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>今天在给app自定义Toolbar的时候，发现左边出现空白间隔，反复查看布局也未发现问题，google查找相关资料，发现有不少朋友遇到这个问题，查看源码后发现问题出在contentInsetStart上，从字面上可以理解为从16dp处开始。做下笔记，记录一下。</p>
+<h4 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h4><pre><code>&lt;style name=&quot;Widget.Toolbar&quot;&gt;
+    &lt;item name=&quot;titleTextAppearance&quot;&gt;@style/TextAppearance.Widget.Toolbar.Title&lt;/item&gt;
+    &lt;item name=&quot;subtitleTextAppearance&quot;&gt;@style/TextAppearance.Widget.Toolbar.Subtitle&lt;/item&gt;
+    &lt;item name=&quot;minHeight&quot;&gt;?attr/actionBarSize&lt;/item&gt;
+    &lt;item name=&quot;titleMargins&quot;&gt;4dp&lt;/item&gt;
+    &lt;item name=&quot;maxButtonHeight&quot;&gt;56dp&lt;/item&gt;
+    &lt;item name=&quot;buttonGravity&quot;&gt;top&lt;/item&gt;
+    &lt;item name=&quot;navigationButtonStyle&quot;&gt;@style/Widget.Toolbar.Button.Navigation&lt;/item&gt;
+    &lt;item name=&quot;collapseIcon&quot;&gt;?attr/homeAsUpIndicator&lt;/item&gt;
+    &lt;item name=&quot;collapseContentDescription&quot;&gt;@string/toolbar_collapse_description&lt;/item&gt;
+    &lt;item name=&quot;contentInsetStart&quot;&gt;16dp&lt;/item&gt;
+    &lt;item name=&quot;touchscreenBlocksFocus&quot;&gt;true&lt;/item&gt;
+&lt;/style&gt;
+</code></pre><h4 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h4><p>在style.xml文件中添加如下代码：</p>
+<pre><code>&lt;style name=&quot;AppTheme&quot; parent=&quot;Theme.AppCompat.Light.NoActionBar&quot;&gt;
+    &lt;item name=&quot;toolbarStyle&quot;&gt;@style/ClubToolbar&lt;/item&gt;     
+&lt;/style&gt;
+</code></pre><hr>
+<pre><code>&lt;style name=&quot;ClubToolbar&quot; parent=&quot;Widget.AppCompat.Toolbar&quot;&gt;
+    &lt;item name=&quot;contentInsetStart&quot;&gt;0dp&lt;/item&gt;&lt;!--设置该属性解决空白部分--&gt;
+&lt;/style&gt;
+</code></pre><p>参考资料 <a href="http://my.oschina.net/yaly/blog/502471" target="_blank" rel="external">http://my.oschina.net/yaly/blog/502471</a> </p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/06/20/2016-06-20-SQLite数据库本地读写笔记/" itemprop="url">
                   SQLite数据库本地读写笔记
                 </a>
@@ -1288,118 +1411,6 @@ git checkout -b 分支名字   //创建并切换到该分支
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/06/28/2015-06-28-JS学习笔记1_图片库showPic()/" itemprop="url">
-                  JS学习笔记1_图片库showPic()
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
-            <time itemprop="dateCreated" datetime="2015-06-28T00:00:00+08:00" content="2015-06-28">
-              2015-06-28
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/06/28/2015-06-28-JS学习笔记1_图片库showPic()/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/06/28/2015-06-28-JS学习笔记1_图片库showPic()/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>最近在看JavaScript DOM编程艺术这本书，准备开始学习js。因为有Java和C基础，js上手还是比较快的</p>
-<p>平稳退化</p>
-<pre><code>&lt;li&gt;
-    &lt;a href=&quot;images/wallpaper_01.jpg&quot; title=&quot;wallpaper_01&quot; onclick = &quot;showPic(this); return false;&quot;&gt;one&lt;/a&gt;
-&lt;/li&gt;
-</code></pre><p>伪代码</p>
-<pre><code>&lt;li&gt;
-    &lt;a href=&quot;javascript:showPic(&quot;images/wallpaper_01.jpg&quot;); return false;&quot; title=&quot;wallpaper_01&quot; &gt;one&lt;/a&gt;
-&lt;/li&gt;
-</code></pre><p>如果浏览器禁用javascript，伪代码就会无法显示。<br>把href的值设为一个真实存在的值。就能做到平稳退化。<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/06/28/2015-06-28-JS学习笔记1_图片库showPic()/#more" rel="contents">
-              Weiterlesen &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1445,7 +1456,7 @@ git checkout -b 分支名字   //创建并切换到该分支
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">13</span>
+              <span class="site-state-item-count">14</span>
               <span class="site-state-item-name">Artikel</span>
             </a>
           </div>
@@ -1455,7 +1466,7 @@ git checkout -b 分支名字   //创建并切换到该分支
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-count">23</span>
                 <span class="site-state-item-name">Tags</span>
               </a>
             </div>
