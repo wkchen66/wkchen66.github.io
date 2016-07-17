@@ -238,6 +238,131 @@
             
               
                 
+                <a class="post-title-link" href="/2016/07/18/2016-07-18-RecycleView使用之仿多次单击误触(记录)/" itemprop="url">
+                  RecycleView使用之仿多次单击误触
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-07-18T00:00:00+08:00" content="2016-07-18">
+              2016-07-18
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/18/2016-07-18-RecycleView使用之仿多次单击误触(记录)/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/18/2016-07-18-RecycleView使用之仿多次单击误触(记录)/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>这一周在项目中碰到一些关于RecycleView点击事件的Bug。先说说上周，和同事代码合并，碰到了不少问题，之前没有这样的经历，这次合并代码，让我学到了很多，一方面学习了更多的git使用经验，另一方面让我学到了代码的合并过程。扯多了，来说说正题吧：Vecycleview Item点击事件的误操作，脑残操作，多次点击同一个item会打开多个activity。</p>
+<h4 id="解决思路"><a href="#解决思路" class="headerlink" title="解决思路"></a>解决思路</h4><p>通过判断当前点击事件触发的间隔，来作出判断是否误触发两次单击事件，打开两个页面。</p>
+<h4 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h4><p>创建工具类</p>
+<pre><code>public class NoDoubleClickUtils {
+    private static long lastClickTime;
+    private final static int SPACE_TIME = 500;
+
+    public static void initLastClickTime() {
+        lastClickTime = 0;
+    }
+
+    public synchronized static boolean isDoubleClick() {
+        long currentTime = System.currentTimeMillis();
+        boolean isClick2;
+        if (currentTime - lastClickTime &gt;
+                SPACE_TIME) {
+            isClick2 = false;
+        } else {
+            isClick2 = true;
+        }
+        lastClickTime = currentTime;
+        return isClick2;
+    }
+}
+</code></pre><p>在单击事件里判断 NoDoubleClickUtils.isDoubleClick()的值。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/07/05/2016-07-05-关于自定义Toolbar左边出现空白间隙(记录)/" itemprop="url">
                   关于自定义Toolbar左边出现16dp的空白间隙(记录)
                 </a>
@@ -1290,127 +1415,6 @@ git checkout -b 分支名字   //创建并切换到该分支
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/07/05/2015-07-05-JS学习笔记2_图片库js代码优化/" itemprop="url">
-                  JS学习笔记2_图片库js代码优化
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
-            <time itemprop="dateCreated" datetime="2015-07-05T00:00:00+08:00" content="2015-07-05">
-              2015-07-05
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/07/05/2015-07-05-JS学习笔记2_图片库js代码优化/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/07/05/2015-07-05-JS学习笔记2_图片库js代码优化/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>放暑假了，有时间瞎折腾了，要保持这种学习态度。这次是对上一次<a href="http://wkchen66.github.io/2015/06/28/2015-06-28-JS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B01_%E5%9B%BE%E7%89%87%E5%BA%93showPic%28%29/">JS学习笔记1_图片库showPic()</a> 内容的优化。</p>
-<pre><code>function showPic(whichpic){
-    if(!document.getElementById(&quot;img&quot;)){
-        return false;
-    }
-    var a = whichpic.getAttribute(&quot;href&quot;);
-    var b = document.getElementById(&quot;img&quot;);
-    if(b.nodeName != &quot;IMG&quot;){ //检查img元素是否存在
-        return false;
-    }
-    b.setAttribute(&quot;src&quot;, a);
-    if(document.getElementById(&quot;title_p&quot;)){
-        if(whichpic.getAttribute(&quot;title&quot;)){
-            var c = whichpic.getAttribute(&quot;title&quot;);
-        }else{
-            var c = &quot;&quot;;
-        }
-        var d = document.getElementById(&quot;title_p&quot;);
-</code></pre>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/07/05/2015-07-05-JS学习笔记2_图片库js代码优化/#more" rel="contents">
-              Weiterlesen &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1456,7 +1460,7 @@ git checkout -b 分支名字   //创建并切换到该分支
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">14</span>
+              <span class="site-state-item-count">15</span>
               <span class="site-state-item-name">Artikel</span>
             </a>
           </div>
@@ -1466,7 +1470,7 @@ git checkout -b 分支名字   //创建并切换到该分支
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-count">24</span>
                 <span class="site-state-item-name">Tags</span>
               </a>
             </div>

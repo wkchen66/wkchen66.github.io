@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="SAMSUNG S6 Edge,MEIZU,HUAWEI,Apple Watch," />
+  <meta name="keywords" content="android,recycleview," />
 
 
 
@@ -84,19 +84,19 @@
 
 
 
-<meta name="description" content="Welcome to Wkchen! This is my blog. If you have any problems tell me, You can use Weibo to contact me Weibo or you can ask me on GitHub.
-体验之行第一次体验店体验第一次去体验店体验还在上高中的时候，依稀记得，那时候国产手机刚刚崛起，国内还是三星称霸的时候。魅族凭借">
+<meta name="description" content="这一周在项目中碰到一些关于RecycleView点击事件的Bug。先说说上周，和同事代码合并，碰到了不少问题，之前没有这样的经历，这次合并代码，让我学到了很多，一方面学习了更多的git使用经验，另一方面让我学到了代码的合并过程。扯多了，来说说正题吧：Vecycleview Item点击事件的误操作，脑残操作，多次点击同一个item会打开多个activity。
+解决思路通过判断当前点击事件触发的间隔">
 <meta property="og:type" content="article">
-<meta property="og:title" content="走遍杭州体验店">
-<meta property="og:url" content="http://www.tipdev.xyz/2015/05/16/2015-05-16-体验之行/index.html">
+<meta property="og:title" content="RecycleView使用之仿多次单击误触">
+<meta property="og:url" content="http://www.tipdev.xyz/2016/07/18/2016-07-18-RecycleView使用之仿多次单击误触(记录)/index.html">
 <meta property="og:site_name" content="DEVTIP">
-<meta property="og:description" content="Welcome to Wkchen! This is my blog. If you have any problems tell me, You can use Weibo to contact me Weibo or you can ask me on GitHub.
-体验之行第一次体验店体验第一次去体验店体验还在上高中的时候，依稀记得，那时候国产手机刚刚崛起，国内还是三星称霸的时候。魅族凭借">
-<meta property="og:updated_time" content="2015-09-03T06:09:52.000Z">
+<meta property="og:description" content="这一周在项目中碰到一些关于RecycleView点击事件的Bug。先说说上周，和同事代码合并，碰到了不少问题，之前没有这样的经历，这次合并代码，让我学到了很多，一方面学习了更多的git使用经验，另一方面让我学到了代码的合并过程。扯多了，来说说正题吧：Vecycleview Item点击事件的误操作，脑残操作，多次点击同一个item会打开多个activity。
+解决思路通过判断当前点击事件触发的间隔">
+<meta property="og:updated_time" content="2016-07-17T17:02:44.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="走遍杭州体验店">
-<meta name="twitter:description" content="Welcome to Wkchen! This is my blog. If you have any problems tell me, You can use Weibo to contact me Weibo or you can ask me on GitHub.
-体验之行第一次体验店体验第一次去体验店体验还在上高中的时候，依稀记得，那时候国产手机刚刚崛起，国内还是三星称霸的时候。魅族凭借">
+<meta name="twitter:title" content="RecycleView使用之仿多次单击误触">
+<meta name="twitter:description" content="这一周在项目中碰到一些关于RecycleView点击事件的Bug。先说说上周，和同事代码合并，碰到了不少问题，之前没有这样的经历，这次合并代码，让我学到了很多，一方面学习了更多的git使用经验，另一方面让我学到了代码的合并过程。扯多了，来说说正题吧：Vecycleview Item点击事件的误操作，脑残操作，多次点击同一个item会打开多个activity。
+解决思路通过判断当前点击事件触发的间隔">
 
 
 
@@ -117,9 +117,9 @@
 
 
 
-  <link rel="canonical" href="http://www.tipdev.xyz/2015/05/16/2015-05-16-体验之行/"/>
+  <link rel="canonical" href="http://www.tipdev.xyz/2016/07/18/2016-07-18-RecycleView使用之仿多次单击误触(记录)/"/>
 
-  <title> 走遍杭州体验店 | DEVTIP </title>
+  <title> RecycleView使用之仿多次单击误触 | DEVTIP </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="">
@@ -239,7 +239,7 @@
             
             
               
-                走遍杭州体验店
+                RecycleView使用之仿多次单击误触
               
             
           </h1>
@@ -251,8 +251,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Veröffentlicht am</span>
-            <time itemprop="dateCreated" datetime="2015-05-16T00:00:00+08:00" content="2015-05-16">
-              2015-05-16
+            <time itemprop="dateCreated" datetime="2016-07-18T00:00:00+08:00" content="2016-07-18">
+              2016-07-18
             </time>
           </span>
 
@@ -262,8 +262,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/05/16/2015-05-16-体验之行/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/05/16/2015-05-16-体验之行/" itemprop="commentsCount"></span>
+                <a href="/2016/07/18/2016-07-18-RecycleView使用之仿多次单击误触(记录)/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/18/2016-07-18-RecycleView使用之仿多次单击误触(记录)/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -286,19 +286,31 @@
       
 
       
-        <p>Welcome to <a href="http://wkchen66.github.io/" target="_blank" rel="external">Wkchen</a>! This is my blog. If you have any problems tell me, You can use Weibo to contact me <a href="http://weibo.com/2293648374/" target="_blank" rel="external">Weibo</a> or you can ask me on <a href="https://github.com/wkchen66" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="体验之行"><a href="#体验之行" class="headerlink" title="体验之行"></a>体验之行</h2><h3 id="第一次体验店体验"><a href="#第一次体验店体验" class="headerlink" title="第一次体验店体验"></a>第一次体验店体验</h3><p>第一次去体验店体验还在上高中的时候，依稀记得，那时候国产手机刚刚崛起，国内还是三星称霸的时候。魅族凭借着MX2和MX3，足足火了一把，记得那时和小米竞争地非常激烈（还有红衣和雷布斯的撕逼，蹦出个360特供机）。嘉善迎来了第一家魅族体验店，朋友带着我去的，当时也是抱着去玩玩的心情，体验一下MX3，尽管网上对它的评价褒贬不一。特别害羞地进去摸了下真机，然后工作人员给我吹了各种逼。当时第一感觉，非常小清新，做工还行，体验还算不错的。后来我就给我朋友推荐了MX3，之后朋友告诉我她的使用感受的时候，我觉得我错了。当时网上也爆出魅族的售后、做工一些列问题，终究还是小企业。毕竟没有三星、曾经Nokia那样的产业链和售后服务。</p>
-<p><strong>总结: 在你不了解一个品牌它的尿性的情况下，你不要盲目的去推崇它。毕竟姜还是老的辣。</strong><br><a id="more"></a></p>
-<h3 id="此次（第二次）体验"><a href="#此次（第二次）体验" class="headerlink" title="此次（第二次）体验"></a>此次（第二次）体验</h3><p>本来今天约了朋友，然而朋友爽约了。之后我打算在寝室度过这一天，看完灰熊VS勇士之后，我刷了会微博，看到有人发了SAMSUNG S6 Edge 体验照，之后一下子按奈不住自己。想去摸一下真机，体验一下曲面屏。毅然踏上了这体验之行，目标延安路。</p>
-<h5 id="SAMSUNG体验店"><a href="#SAMSUNG体验店" class="headerlink" title="SAMSUNG体验店"></a>SAMSUNG体验店</h5><p>杭州最大的三星体验店，和我预想的有点差距。SAMSUNG S6/Edge发布之后网上好评一片。结果体验店唏嘘几个人而已，Edge就是冲它取得，进去没有工作人员上来，我这屌丝气质，想想也蛮正常。说一下拿到Edge的第一感觉，高大上，高科技产品，三星这次是真的花了血本了。曲面屏非常特别，手感很爽。之后又体验了S6，没有拿到Edge那种惊喜的感觉。试玩了S6黑色、金色和Edge的白色机子，对比了系统UI、相机等。</p>
-<p><strong>总结: S6两款机子不管是前面还是后面玻璃面板都比较容易沾染指纹，而Edge并没有这种现象，反而给我很干净的感觉。可能是颜色的缘故，黑色比较容易脏，反正建议购买白色款S6/Edge不会错。然后说一下相机，总体下来，S6相机表现更加出色，而Edge则是差那么一点；UI方面则没什么区别，整体下来S6适合商务人士，而Edge更加讨好年轻人，至少我是偏向Edge，使用感觉非常爽。</strong></p>
-<h5 id="MEIZU体验店"><a href="#MEIZU体验店" class="headerlink" title="MEIZU体验店"></a>MEIZU体验店</h5><p>这是第一次体验店体验魅族了,上次MX3，而这一次体验的对象是MX4 Pro，特点指纹解锁体验非常好，和Iphone 6 Touch ID体验不相上下，成功率100%，不管是手指方向怎么改变，都可以成功识别。缺点手势识别不是很灵敏，只能在屏幕中间，而且成功率不是很高，我预期在99%的样子，相比指纹解锁成功率，魅族还得继续优化，这应该是Flyme的问题，近年来Flyme也饱受争议，号称Bug狂魔。</p>
-<p><strong>总结: 指纹解锁体验很好，成功率高；Flyme体验不好，有待优化；后背简直丑到爆了。工作人员服务非常好，点赞！</strong></p>
-<h5 id="HUAWEI体验店"><a href="#HUAWEI体验店" class="headerlink" title="HUAWEI体验店"></a>HUAWEI体验店</h5><p>很多槽点，体验糟糕，愚蠢的是体验区的Mate7体验机居然边框上面全是磕痕，四周全是，我也是服了。再说新机P8，四四方方非常突兀，没有亮点，唯一能说的就是我用P8发了一条微博，结果它给我关注了四个华为的宣传号。当时我就纳闷了，为什么用这么老版本的微博，后来想想客户端被改过。然后我也就呵呵笑了。</p>
-<p><strong>总结: 华为手机真实超级轻，我是不习惯。用户体验差，绑架用户。想想出售的真的上也安装了这样的微博。华为还真是会打广告，呵呵，果然你家水军屌炸天。</strong></p>
-<p>#####APPLE体验店</p>
-<p>最后去了最大的西湖APPLE体验店，体验了6和New MacBook。体验Apple Watch人实在是太多，要预约体验，然后默默的回去了。。</p>
-<p><strong>总结: APPLE就是APPLE，火爆来形容，各种要预约。6和New MacBook都是目前最牛逼的，没有之一。</strong></p>
+        <p>这一周在项目中碰到一些关于RecycleView点击事件的Bug。先说说上周，和同事代码合并，碰到了不少问题，之前没有这样的经历，这次合并代码，让我学到了很多，一方面学习了更多的git使用经验，另一方面让我学到了代码的合并过程。扯多了，来说说正题吧：Vecycleview Item点击事件的误操作，脑残操作，多次点击同一个item会打开多个activity。</p>
+<h4 id="解决思路"><a href="#解决思路" class="headerlink" title="解决思路"></a>解决思路</h4><p>通过判断当前点击事件触发的间隔，来作出判断是否误触发两次单击事件，打开两个页面。</p>
+<h4 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h4><p>创建工具类</p>
+<pre><code>public class NoDoubleClickUtils {
+    private static long lastClickTime;
+    private final static int SPACE_TIME = 500;
+
+    public static void initLastClickTime() {
+        lastClickTime = 0;
+    }
+
+    public synchronized static boolean isDoubleClick() {
+        long currentTime = System.currentTimeMillis();
+        boolean isClick2;
+        if (currentTime - lastClickTime &gt;
+                SPACE_TIME) {
+            isClick2 = false;
+        } else {
+            isClick2 = true;
+        }
+        lastClickTime = currentTime;
+        return isClick2;
+    }
+}
+</code></pre><p>在单击事件里判断 NoDoubleClickUtils.isDoubleClick()的值。</p>
 
       
     </div>
@@ -320,13 +332,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/SAMSUNG-S6-Edge/" rel="tag">#SAMSUNG S6 Edge</a>
+            <a href="/tags/android/" rel="tag">#android</a>
           
-            <a href="/tags/MEIZU/" rel="tag">#MEIZU</a>
-          
-            <a href="/tags/HUAWEI/" rel="tag">#HUAWEI</a>
-          
-            <a href="/tags/Apple-Watch/" rel="tag">#Apple Watch</a>
+            <a href="/tags/recycleview/" rel="tag">#recycleview</a>
           
         </div>
       
@@ -335,17 +343,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/05/13/2015-05-13-My-first-blog-to-myself/" rel="next" title="我的第一篇blog,致自己。">
-                <i class="fa fa-chevron-left"></i> 我的第一篇blog,致自己。
+              <a href="/2016/07/05/2016-07-05-关于自定义Toolbar左边出现空白间隙(记录)/" rel="next" title="关于自定义Toolbar左边出现16dp的空白间隙(记录)">
+                <i class="fa fa-chevron-left"></i> 关于自定义Toolbar左边出现16dp的空白间隙(记录)
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2015/06/28/2015-06-28-JS学习笔记1_图片库showPic()/" rel="prev" title="JS学习笔记1_图片库showPic()">
-                JS学习笔记1_图片库showPic() <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -371,8 +375,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2015/05/16/2015-05-16-体验之行/"
-           data-title="走遍杭州体验店" data-url="http://www.tipdev.xyz/2015/05/16/2015-05-16-体验之行/">
+      <div class="ds-thread" data-thread-key="2016/07/18/2016-07-18-RecycleView使用之仿多次单击误触(记录)/"
+           data-title="RecycleView使用之仿多次单击误触" data-url="http://www.tipdev.xyz/2016/07/18/2016-07-18-RecycleView使用之仿多次单击误触(记录)/">
       </div>
     
   </div>
@@ -456,7 +460,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#体验之行"><span class="nav-number">1.</span> <span class="nav-text">体验之行</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一次体验店体验"><span class="nav-number">1.1.</span> <span class="nav-text">第一次体验店体验</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#此次（第二次）体验"><span class="nav-number">1.2.</span> <span class="nav-text">此次（第二次）体验</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#SAMSUNG体验店"><span class="nav-number">1.2.0.1.</span> <span class="nav-text">SAMSUNG体验店</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#MEIZU体验店"><span class="nav-number">1.2.0.2.</span> <span class="nav-text">MEIZU体验店</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#HUAWEI体验店"><span class="nav-number">1.2.0.3.</span> <span class="nav-text">HUAWEI体验店</span></a></li></ol></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#解决思路"><span class="nav-number">1.</span> <span class="nav-text">解决思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解决方法"><span class="nav-number">2.</span> <span class="nav-text">解决方法</span></a></li></ol></div>
             
           </div>
         </section>
