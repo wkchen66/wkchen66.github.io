@@ -175,7 +175,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            Home
           </a>
         </li>
       
@@ -185,7 +185,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            Archives
           </a>
         </li>
       
@@ -238,6 +238,113 @@
             
               
                 
+                <a class="post-title-link" href="/2016/07/26/2016-07-26-软键盘隐藏和显示(记录)/" itemprop="url">
+                  软键盘隐藏和显示
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-07-26T00:00:00+08:00" content="2016-07-26">
+              2016-07-26
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/26/2016-07-26-软键盘隐藏和显示(记录)/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/26/2016-07-26-软键盘隐藏和显示(记录)/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>很多时候我们都会遇到，点击空白处隐藏键盘，就像微信聊天界面等一样，或者我们想要自动弹出键盘。记录一下：</p>
+<h4 id="隐藏键盘"><a href="#隐藏键盘" class="headerlink" title="隐藏键盘"></a>隐藏键盘</h4><pre><code>private InputMethodManager manager = null;
+manager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);  //键盘
+manager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken()
+                        , InputMethodManager.HIDE_NOT_ALWAYS);
+</code></pre><h4 id="显示键盘"><a href="#显示键盘" class="headerlink" title="显示键盘"></a>显示键盘</h4><pre><code>manager.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
+</code></pre><p>对，就是那么简单，两行代码搞定。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/07/18/2016-07-18-RecycleView使用之仿多次单击误触(记录)/" itemprop="url">
                   RecycleView使用之仿多次单击误触
                 </a>
@@ -251,7 +358,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-07-18T00:00:00+08:00" content="2016-07-18">
               2016-07-18
             </time>
@@ -376,7 +483,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-07-05T00:00:00+08:00" content="2016-07-05">
               2016-07-05
             </time>
@@ -499,7 +606,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-06-20T00:00:00+08:00" content="2016-06-20">
               2016-06-20
             </time>
@@ -639,7 +746,7 @@ private void openDatabase() {
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-06-17T00:00:00+08:00" content="2016-06-17">
               2016-06-17
             </time>
@@ -701,7 +808,7 @@ City city ＝ new Gson().fromJson(response,City.class);
 </code></pre>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/06/17/2016-06-17-Gson使用笔记/#more" rel="contents">
-              Weiterlesen &raquo;
+              Read more &raquo;
             </a>
           </div>
         
@@ -764,7 +871,7 @@ City city ＝ new Gson().fromJson(response,City.class);
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-06-10T00:00:00+08:00" content="2016-06-10">
               2016-06-10
             </time>
@@ -870,7 +977,7 @@ git checkout -b 分支名字   //创建并切换到该分支
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2015-09-03T00:00:00+08:00" content="2015-09-03">
               2015-09-03
             </time>
@@ -1000,7 +1107,7 @@ git checkout -b 分支名字   //创建并切换到该分支
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2015-07-26T00:00:00+08:00" content="2015-07-26">
               2015-07-26
             </time>
@@ -1047,7 +1154,7 @@ git checkout -b 分支名字   //创建并切换到该分支
 <h4 id="安装archlinux教程"><a href="#安装archlinux教程" class="headerlink" title="安装archlinux教程"></a>安装archlinux教程</h4>
           <div class="post-more-link text-center">
             <a class="btn" href="/2015/07/26/2015-07-26-Archlinux备忘笔记1之安装教程/#more" rel="contents">
-              Weiterlesen &raquo;
+              Read more &raquo;
             </a>
           </div>
         
@@ -1110,7 +1217,7 @@ git checkout -b 分支名字   //创建并切换到该分支
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2015-07-11T00:00:00+08:00" content="2015-07-11">
               2015-07-11
             </time>
@@ -1154,7 +1261,7 @@ git checkout -b 分支名字   //创建并切换到该分支
 </code></pre>
           <div class="post-more-link text-center">
             <a class="btn" href="/2015/07/11/2015-07-11-实现外网Android SSH远程登录Linux/#more" rel="contents">
-              Weiterlesen &raquo;
+              Read more &raquo;
             </a>
           </div>
         
@@ -1217,7 +1324,7 @@ git checkout -b 分支名字   //创建并切换到该分支
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2015-07-10T00:00:00+08:00" content="2015-07-10">
               2015-07-10
             </time>
@@ -1271,122 +1378,7 @@ git checkout -b 分支名字   //创建并切换到该分支
 </code></pre>
           <div class="post-more-link text-center">
             <a class="btn" href="/2015/07/10/2015-07-10-JS学习笔记4_图片库二次优化/#more" rel="contents">
-              Weiterlesen &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/07/06/2015-07-06-JS学习笔记3_动态创建HTML内容Demo/" itemprop="url">
-                  JS学习笔记3_动态创建HTML内容Demo
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
-            <time itemprop="dateCreated" datetime="2015-07-06T00:00:00+08:00" content="2015-07-06">
-              2015-07-06
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/07/06/2015-07-06-JS学习笔记3_动态创建HTML内容Demo/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/07/06/2015-07-06-JS学习笔记3_动态创建HTML内容Demo/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="This-is-a-demo"><a href="#This-is-a-demo" class="headerlink" title="This is a demo."></a>This is a demo.</h3><p>这是一个测试Demo，并不是使用繁琐的<code>document.write</code>或者<code>innerHTML</code>来实现。这些古老的方式，要么在HTML文档中插入<code>&lt;script&gt;</code> 标签，要么无法对插入的内容进行处理。而DOM提供了更加强大更加精准的功能，在任何时候都能替代<code>innerHTML</code>。</p>
-<h5 id="index-html"><a href="#index-html" class="headerlink" title="index.html"></a>index.html</h5><pre><code>&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head&gt;
-   &lt;meta charset=&quot;utf-8&quot; /&gt;
-   &lt;title&gt;&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-   &lt;div id=&quot;txtdiv&quot;&gt;&lt;/div&gt;
-   &lt;script type=&quot;text/javascript&quot; src=&quot;js/myFunction.js&quot;&gt;&lt;/script&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/07/06/2015-07-06-JS学习笔记3_动态创建HTML内容Demo/#more" rel="contents">
-              Weiterlesen &raquo;
+              Read more &raquo;
             </a>
           </div>
         
@@ -1460,8 +1452,8 @@ git checkout -b 分支名字   //创建并切换到该分支
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">15</span>
-              <span class="site-state-item-name">Artikel</span>
+              <span class="site-state-item-count">16</span>
+              <span class="site-state-item-name">posts</span>
             </a>
           </div>
 
@@ -1470,8 +1462,8 @@ git checkout -b 分支名字   //创建并切换到该分支
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">24</span>
-                <span class="site-state-item-name">Tags</span>
+                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-name">tags</span>
               </a>
             </div>
           
@@ -1515,7 +1507,7 @@ git checkout -b 分支名字   //创建并切换到该分支
 </div>
 
 <div class="powered-by">
-  Erstellt mit  <a class="theme-link" href="http://hexo.io">Hexo</a>
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
