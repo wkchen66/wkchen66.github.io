@@ -175,7 +175,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            Home
           </a>
         </li>
       
@@ -185,7 +185,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            Archives
           </a>
         </li>
       
@@ -205,7 +205,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
-            Über
+            About
           </a>
         </li>
       
@@ -248,6 +248,113 @@
             
               
                 
+                <a class="post-title-link" href="/2015/07/11/2015-07-11-实现外网Android SSH远程登录Linux/" itemprop="url">
+                  实现外网Android SSH远程登录Linux
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2015-07-11T00:00:00+08:00" content="2015-07-11">
+              2015-07-11
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/07/11/2015-07-11-实现外网Android SSH远程登录Linux/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/07/11/2015-07-11-实现外网Android SSH远程登录Linux/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>这个想法已经有一整子了，一直内沉下心来去做，今天台风正好闲着没事做。其实原理很简单，通过路由器（TP-Link WR740N）转发设置DMZ主机，让局域网中的一台计算机完全暴露给广域网，接着用动态DNS解析到主机。在手机端使用SSH登入Linux，这里推荐使用JuiceSSH 。<br>以下介绍两款linux安装方法:</p>
+<h4 id="1-安装ssh-server"><a href="#1-安装ssh-server" class="headerlink" title="1.安装ssh server"></a>1.安装ssh server</h4><h5 id="ubuntu"><a href="#ubuntu" class="headerlink" title="ubuntu"></a>ubuntu</h5><pre><code>sudo apt-get install openssh-server
+</code></pre><h5 id="ArchLinux"><a href="#ArchLinux" class="headerlink" title="ArchLinux"></a>ArchLinux</h5><pre><code>sudo pacman -S openssh
+</code></pre><h4 id="2-查看ssh服务是否启动（一般情况下，安装完毕后自动启动）"><a href="#2-查看ssh服务是否启动（一般情况下，安装完毕后自动启动）" class="headerlink" title="2.查看ssh服务是否启动（一般情况下，安装完毕后自动启动）"></a>2.查看ssh服务是否启动（一般情况下，安装完毕后自动启动）</h4><pre><code>ps -ef | grep sshd
+</code></pre>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/07/11/2015-07-11-实现外网Android SSH远程登录Linux/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2015/07/10/2015-07-10-JS学习笔记4_图片库二次优化/" itemprop="url">
                   JS学习笔记4_图片库二次优化
                 </a>
@@ -261,7 +368,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2015-07-10T00:00:00+08:00" content="2015-07-10">
               2015-07-10
             </time>
@@ -315,7 +422,7 @@
 </code></pre>
           <div class="post-more-link text-center">
             <a class="btn" href="/2015/07/10/2015-07-10-JS学习笔记4_图片库二次优化/#more" rel="contents">
-              Weiterlesen &raquo;
+              Read more &raquo;
             </a>
           </div>
         
@@ -378,7 +485,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2015-07-06T00:00:00+08:00" content="2015-07-06">
               2015-07-06
             </time>
@@ -430,7 +537,7 @@
 </code></pre>
           <div class="post-more-link text-center">
             <a class="btn" href="/2015/07/06/2015-07-06-JS学习笔记3_动态创建HTML内容Demo/#more" rel="contents">
-              Weiterlesen &raquo;
+              Read more &raquo;
             </a>
           </div>
         
@@ -493,7 +600,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2015-07-05T00:00:00+08:00" content="2015-07-05">
               2015-07-05
             </time>
@@ -551,7 +658,7 @@
 </code></pre>
           <div class="post-more-link text-center">
             <a class="btn" href="/2015/07/05/2015-07-05-JS学习笔记2_图片库js代码优化/#more" rel="contents">
-              Weiterlesen &raquo;
+              Read more &raquo;
             </a>
           </div>
         
@@ -614,7 +721,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2015-06-28T00:00:00+08:00" content="2015-06-28">
               2015-06-28
             </time>
@@ -663,7 +770,7 @@
 </code></pre><p>如果浏览器禁用javascript，伪代码就会无法显示。<br>把href的值设为一个真实存在的值。就能做到平稳退化。<br>
           <div class="post-more-link text-center">
             <a class="btn" href="/2015/06/28/2015-06-28-JS学习笔记1_图片库showPic()/#more" rel="contents">
-              Weiterlesen &raquo;
+              Read more &raquo;
             </a>
           </div>
         
@@ -726,7 +833,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2015-05-16T00:00:00+08:00" content="2015-05-16">
               2015-05-16
             </time>
@@ -768,7 +875,7 @@
 <p><strong>总结: 在你不了解一个品牌它的尿性的情况下，你不要盲目的去推崇它。毕竟姜还是老的辣。</strong><br>
           <div class="post-more-link text-center">
             <a class="btn" href="/2015/05/16/2015-05-16-体验之行/#more" rel="contents">
-              Weiterlesen &raquo;
+              Read more &raquo;
             </a>
           </div>
         
@@ -831,7 +938,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2015-05-13T00:00:00+08:00" content="2015-05-13">
               2015-05-13
             </time>
@@ -874,7 +981,7 @@
 </ul>
           <div class="post-more-link text-center">
             <a class="btn" href="/2015/05/13/2015-05-13-My-first-blog-to-myself/#more" rel="contents">
-              Weiterlesen &raquo;
+              Read more &raquo;
             </a>
           </div>
         
@@ -937,7 +1044,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2015-05-12T00:00:00+08:00" content="2015-05-12">
               2015-05-12
             </time>
@@ -1050,8 +1157,8 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">17</span>
-              <span class="site-state-item-name">Artikel</span>
+              <span class="site-state-item-count">18</span>
+              <span class="site-state-item-name">posts</span>
             </a>
           </div>
 
@@ -1060,8 +1167,8 @@
           
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">26</span>
-                <span class="site-state-item-name">Tags</span>
+                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-name">tags</span>
               
             </div>
           
@@ -1105,7 +1212,7 @@
 </div>
 
 <div class="powered-by">
-  Erstellt mit  <a class="theme-link" href="http://hexo.io">Hexo</a>
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">

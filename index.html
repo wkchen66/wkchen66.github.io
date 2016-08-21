@@ -175,7 +175,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            Home
           </a>
         </li>
       
@@ -185,7 +185,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            Archives
           </a>
         </li>
       
@@ -205,7 +205,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
-            Über
+            About
           </a>
         </li>
       
@@ -261,7 +261,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-08-21T00:00:00+08:00" content="2016-08-21">
               2016-08-21
             </time>
@@ -476,6 +476,149 @@
             
               
                 
+                <a class="post-title-link" href="/2016/08/21/2016-08-21-键盘显示隐藏工具类(记录)/" itemprop="url">
+                  键盘显示隐藏工具类
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-08-21T00:00:00+08:00" content="2016-08-21">
+              2016-08-21
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/21/2016-08-21-键盘显示隐藏工具类(记录)/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/21/2016-08-21-键盘显示隐藏工具类(记录)/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>记录一下，键盘显示隐藏工具类</p>
+<pre><code>public class KeyboardUtils {
+
+    public KeyboardUtils() {
+    }
+
+    /**
+     * 隐藏软键盘
+     * @param activity
+     */
+    public static void hideSoftInput(Activity activity) {
+        View view = activity.getWindow().peekDecorView();
+        if (view != null) {
+            InputMethodManager inputmanger = (InputMethodManager) activity
+                    .getSystemService(Context.INPUT_METHOD_SERVICE);
+            inputmanger.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
+    }
+
+    /**
+     * 隐藏软键盘
+     * edittext失去焦点
+     */
+    public static void hideSoftInput(Context context, View view) {
+        view.clearFocus();
+        InputMethodManager inputmanger = (InputMethodManager) context
+                .getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputmanger.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
+
+    /**
+     * 动态显示软键盘
+     * edittext获得焦点
+     */
+    public static void showSoftInput(Context context, EditText editText) {
+        editText.setFocusable(true);
+        editText.setFocusableInTouchMode(true);
+        editText.requestFocus();
+        InputMethodManager inputmamger = (InputMethodManager) context
+                .getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputmamger.showSoftInput(editText,0);
+    }
+}
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/07/26/2016-07-26-软键盘隐藏和显示(记录)/" itemprop="url">
                   软键盘隐藏和显示
                 </a>
@@ -489,7 +632,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-07-26T00:00:00+08:00" content="2016-07-26">
               2016-07-26
             </time>
@@ -596,7 +739,7 @@ manager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken()
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-07-18T00:00:00+08:00" content="2016-07-18">
               2016-07-18
             </time>
@@ -721,7 +864,7 @@ manager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken()
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-07-05T00:00:00+08:00" content="2016-07-05">
               2016-07-05
             </time>
@@ -844,7 +987,7 @@ manager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken()
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-06-20T00:00:00+08:00" content="2016-06-20">
               2016-06-20
             </time>
@@ -984,7 +1127,7 @@ private void openDatabase() {
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-06-17T00:00:00+08:00" content="2016-06-17">
               2016-06-17
             </time>
@@ -1046,7 +1189,7 @@ City city ＝ new Gson().fromJson(response,City.class);
 </code></pre>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/06/17/2016-06-17-Gson使用笔记/#more" rel="contents">
-              Weiterlesen &raquo;
+              Read more &raquo;
             </a>
           </div>
         
@@ -1109,7 +1252,7 @@ City city ＝ new Gson().fromJson(response,City.class);
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-06-10T00:00:00+08:00" content="2016-06-10">
               2016-06-10
             </time>
@@ -1215,7 +1358,7 @@ git checkout -b 分支名字   //创建并切换到该分支
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2015-09-03T00:00:00+08:00" content="2015-09-03">
               2015-09-03
             </time>
@@ -1345,7 +1488,7 @@ git checkout -b 分支名字   //创建并切换到该分支
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2015-07-26T00:00:00+08:00" content="2015-07-26">
               2015-07-26
             </time>
@@ -1392,114 +1535,7 @@ git checkout -b 分支名字   //创建并切换到该分支
 <h4 id="安装archlinux教程"><a href="#安装archlinux教程" class="headerlink" title="安装archlinux教程"></a>安装archlinux教程</h4>
           <div class="post-more-link text-center">
             <a class="btn" href="/2015/07/26/2015-07-26-Archlinux备忘笔记1之安装教程/#more" rel="contents">
-              Weiterlesen &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/07/11/2015-07-11-实现外网Android SSH远程登录Linux/" itemprop="url">
-                  实现外网Android SSH远程登录Linux
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
-            <time itemprop="dateCreated" datetime="2015-07-11T00:00:00+08:00" content="2015-07-11">
-              2015-07-11
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/07/11/2015-07-11-实现外网Android SSH远程登录Linux/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/07/11/2015-07-11-实现外网Android SSH远程登录Linux/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>这个想法已经有一整子了，一直内沉下心来去做，今天台风正好闲着没事做。其实原理很简单，通过路由器（TP-Link WR740N）转发设置DMZ主机，让局域网中的一台计算机完全暴露给广域网，接着用动态DNS解析到主机。在手机端使用SSH登入Linux，这里推荐使用JuiceSSH 。<br>以下介绍两款linux安装方法:</p>
-<h4 id="1-安装ssh-server"><a href="#1-安装ssh-server" class="headerlink" title="1.安装ssh server"></a>1.安装ssh server</h4><h5 id="ubuntu"><a href="#ubuntu" class="headerlink" title="ubuntu"></a>ubuntu</h5><pre><code>sudo apt-get install openssh-server
-</code></pre><h5 id="ArchLinux"><a href="#ArchLinux" class="headerlink" title="ArchLinux"></a>ArchLinux</h5><pre><code>sudo pacman -S openssh
-</code></pre><h4 id="2-查看ssh服务是否启动（一般情况下，安装完毕后自动启动）"><a href="#2-查看ssh服务是否启动（一般情况下，安装完毕后自动启动）" class="headerlink" title="2.查看ssh服务是否启动（一般情况下，安装完毕后自动启动）"></a>2.查看ssh服务是否启动（一般情况下，安装完毕后自动启动）</h4><pre><code>ps -ef | grep sshd
-</code></pre>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/07/11/2015-07-11-实现外网Android SSH远程登录Linux/#more" rel="contents">
-              Weiterlesen &raquo;
+              Read more &raquo;
             </a>
           </div>
         
@@ -1573,8 +1609,8 @@ git checkout -b 分支名字   //创建并切换到该分支
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">17</span>
-              <span class="site-state-item-name">Artikel</span>
+              <span class="site-state-item-count">18</span>
+              <span class="site-state-item-name">posts</span>
             </a>
           </div>
 
@@ -1583,8 +1619,8 @@ git checkout -b 分支名字   //创建并切换到该分支
           
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">26</span>
-                <span class="site-state-item-name">Tags</span>
+                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-name">tags</span>
               
             </div>
           
@@ -1628,7 +1664,7 @@ git checkout -b 分支名字   //创建并切换到该分支
 </div>
 
 <div class="powered-by">
-  Erstellt mit  <a class="theme-link" href="http://hexo.io">Hexo</a>
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">

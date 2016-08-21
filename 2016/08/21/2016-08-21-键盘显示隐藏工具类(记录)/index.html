@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="android,keyboard," />
 
 
 
@@ -84,15 +84,49 @@
 
 
 
-<meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="wkchen's blog">
-<meta property="og:url" content="http://www.tipdev.xyz/tags/shadowsocks/index.html">
+<meta name="description" content="记录一下，键盘显示隐藏工具类
+public class KeyboardUtils {
+
+    public KeyboardUtils() {
+    }
+
+    /**
+     * 隐藏软键盘
+     * @param activity
+     */
+    public static void hideSoftInput(Activity activity) {
+        V">
+<meta property="og:type" content="article">
+<meta property="og:title" content="键盘显示隐藏工具类">
+<meta property="og:url" content="http://www.tipdev.xyz/2016/08/21/2016-08-21-键盘显示隐藏工具类(记录)/index.html">
 <meta property="og:site_name" content="wkchen's blog">
-<meta property="og:description">
+<meta property="og:description" content="记录一下，键盘显示隐藏工具类
+public class KeyboardUtils {
+
+    public KeyboardUtils() {
+    }
+
+    /**
+     * 隐藏软键盘
+     * @param activity
+     */
+    public static void hideSoftInput(Activity activity) {
+        V">
+<meta property="og:updated_time" content="2016-08-21T16:23:54.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="wkchen's blog">
-<meta name="twitter:description">
+<meta name="twitter:title" content="键盘显示隐藏工具类">
+<meta name="twitter:description" content="记录一下，键盘显示隐藏工具类
+public class KeyboardUtils {
+
+    public KeyboardUtils() {
+    }
+
+    /**
+     * 隐藏软键盘
+     * @param activity
+     */
+    public static void hideSoftInput(Activity activity) {
+        V">
 
 
 
@@ -113,9 +147,9 @@
 
 
 
-  <link rel="canonical" href="http://www.tipdev.xyz/tags/shadowsocks/"/>
+  <link rel="canonical" href="http://www.tipdev.xyz/2016/08/21/2016-08-21-键盘显示隐藏工具类(记录)/"/>
 
-  <title> Tag: shadowsocks | wkchen's blog </title>
+  <title> 键盘显示隐藏工具类 | wkchen's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
@@ -136,7 +170,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -224,46 +258,176 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        shadowsocks
-        <small>Tag</small>
-      </h2>
-    </div>
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
 
     
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                键盘显示隐藏工具类
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-08-21T00:00:00+08:00" content="2016-08-21">
+              2016-08-21
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/21/2016-08-21-键盘显示隐藏工具类(记录)/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/21/2016-08-21-键盘显示隐藏工具类(记录)/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
       
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+      
+        <p>记录一下，键盘显示隐藏工具类</p>
+<pre><code>public class KeyboardUtils {
 
-      <h1 class="post-title">
+    public KeyboardUtils() {
+    }
+
+    /**
+     * 隐藏软键盘
+     * @param activity
+     */
+    public static void hideSoftInput(Activity activity) {
+        View view = activity.getWindow().peekDecorView();
+        if (view != null) {
+            InputMethodManager inputmanger = (InputMethodManager) activity
+                    .getSystemService(Context.INPUT_METHOD_SERVICE);
+            inputmanger.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
+    }
+
+    /**
+     * 隐藏软键盘
+     * edittext失去焦点
+     */
+    public static void hideSoftInput(Context context, View view) {
+        view.clearFocus();
+        InputMethodManager inputmanger = (InputMethodManager) context
+                .getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputmanger.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
+
+    /**
+     * 动态显示软键盘
+     * edittext获得焦点
+     */
+    public static void showSoftInput(Context context, EditText editText) {
+        editText.setFocusable(true);
+        editText.setFocusableInTouchMode(true);
+        editText.requestFocus();
+        InputMethodManager inputmamger = (InputMethodManager) context
+                .getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputmamger.showSoftInput(editText,0);
+    }
+}
+</code></pre>
+      
+    </div>
+
+    <div>
+      
         
-            <a class="post-title-link" href="/2015/09/03/2015-09-03-VPS之shadowsocks 翻墙技术那加强/" itemprop="url">
-              
-                <span itemprop="name">VPS之shadowsocks 翻墙技术那加强</span>
-              
-            </a>
+      
+    </div>
+
+    <div>
+      
         
-      </h1>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2015-09-03T00:00:00+08:00"
-              content="2015-09-03" >
-          09-03
-        </time>
-      </div>
+      
+    </div>
 
-    </header>
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/android/" rel="tag">#android</a>
+          
+            <a href="/tags/keyboard/" rel="tag">#keyboard</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/26/2016-07-26-软键盘隐藏和显示(记录)/" rel="next" title="软键盘隐藏和显示">
+                <i class="fa fa-chevron-left"></i> 软键盘隐藏和显示
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/21/2016-08-21-时间戳转换工具类(记录)/" rel="prev" title="时间戳转换工具类">
+                时间戳转换工具类 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </article>
 
 
-    
-  </div>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -271,6 +435,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/08/21/2016-08-21-键盘显示隐藏工具类(记录)/"
+           data-title="键盘显示隐藏工具类" data-url="http://www.tipdev.xyz/2016/08/21/2016-08-21-键盘显示隐藏工具类(记录)/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -290,8 +462,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpg"
@@ -334,6 +515,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">This post does not have a Table of Contents</p>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -430,6 +622,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 
