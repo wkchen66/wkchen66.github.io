@@ -248,6 +248,267 @@
             
               
                 
+                <a class="post-title-link" href="/2016/11/12/2016-11-12-搭建git服务器(记录)/" itemprop="url">
+                  搭建git服务器
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-11-12T00:00:00+08:00" content="2016-11-12">
+              2016-11-12
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/11/12/2016-11-12-搭建git服务器(记录)/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/12/2016-11-12-搭建git服务器(记录)/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h4><p>1.一台电脑／VPS<br>2.安装linux（我用的ubuntu12.04）</p>
+<p>大学里用剩下来的电脑闲置很久了，之所以闲置是因为配置太落后了，不想碰2333。于是想想太浪费了，就打算装个ubuntu搭个git服务器，备份下自己的一些项目代码。早上醒来粗略的查了下资料，在ubuntu的基础上搭建还是很方便的。好吧，go on</p>
+<p>1.安装git</p>
+<pre><code>sudo apt-get install git
+</code></pre><p>2.创建git用户adduser（删除用户userdel）</p>
+<pre><code>sudo adduser wkgit
+</code></pre><p>3.把客户端公钥id_rsa.pub  导入 wkgit/.ssh/authorized_keys  文件中</p>
+<pre><code>cat id_rsa.pub &gt;&gt; authorized_keys
+</code></pre><p>4.初始化一个仓库，修改owner为git</p>
+<pre><code>sudo git init --bare test.git
+sudo chown -R wkgit:wkgit test.git
+</code></pre><p>5.禁用shell登录（一把都会禁用，出于安全）</p>
+<p>修改/etc/passwd文件中的</p>
+<pre><code>wkgit:x:1002:1002:wkchen,,,,:/home/wkgit:/bin/bash
+</code></pre><p>改为</p>
+<pre><code>wkgit:x:1002:1002:wkchen,,,,:/home/wkgit:/usr/bin/git-shell
+</code></pre><p>6.接着在客户机上试试git clone 等一系列操作吧！！</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/08/21/2016-08-21-键盘显示隐藏工具类(记录)/" itemprop="url">
+                  键盘显示隐藏工具类
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-08-21T00:00:00+08:00" content="2016-08-21">
+              2016-08-21
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/21/2016-08-21-键盘显示隐藏工具类(记录)/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/21/2016-08-21-键盘显示隐藏工具类(记录)/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>记录一下，键盘显示隐藏工具类</p>
+<pre><code>public class KeyboardUtils {
+
+    public KeyboardUtils() {
+    }
+
+    /**
+     * 隐藏软键盘
+     * @param activity
+     */
+    public static void hideSoftInput(Activity activity) {
+        View view = activity.getWindow().peekDecorView();
+        if (view != null) {
+            InputMethodManager inputmanger = (InputMethodManager) activity
+                    .getSystemService(Context.INPUT_METHOD_SERVICE);
+            inputmanger.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
+    }
+
+    /**
+     * 隐藏软键盘
+     * view失去焦点
+     * 通用view
+     */
+    public static void hideSoftInput(Context context, View view) {
+        view.clearFocus();
+        InputMethodManager inputmanger = (InputMethodManager) context
+                .getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputmanger.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
+
+    /**
+     * 动态显示软键盘
+     * editview获得焦点
+     */
+    public static void showSoftInput(Context context, EditText editText) {
+        editText.setFocusable(true);
+        editText.setFocusableInTouchMode(true);
+        editText.requestFocus();
+        InputMethodManager inputmamger = (InputMethodManager) context
+                .getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputmamger.showSoftInput(editText,0);
+    }
+}
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/08/21/2016-08-21-时间戳转换工具类(记录)/" itemprop="url">
                   时间戳转换工具类
                 </a>
@@ -426,150 +687,6 @@
         return System.currentTimeMillis();
     }
 
-}
-</code></pre>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/21/2016-08-21-键盘显示隐藏工具类(记录)/" itemprop="url">
-                  键盘显示隐藏工具类
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
-            <time itemprop="dateCreated" datetime="2016-08-21T00:00:00+08:00" content="2016-08-21">
-              2016-08-21
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/08/21/2016-08-21-键盘显示隐藏工具类(记录)/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/21/2016-08-21-键盘显示隐藏工具类(记录)/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>记录一下，键盘显示隐藏工具类</p>
-<pre><code>public class KeyboardUtils {
-
-    public KeyboardUtils() {
-    }
-
-    /**
-     * 隐藏软键盘
-     * @param activity
-     */
-    public static void hideSoftInput(Activity activity) {
-        View view = activity.getWindow().peekDecorView();
-        if (view != null) {
-            InputMethodManager inputmanger = (InputMethodManager) activity
-                    .getSystemService(Context.INPUT_METHOD_SERVICE);
-            inputmanger.hideSoftInputFromWindow(view.getWindowToken(), 0);
-        }
-    }
-
-    /**
-     * 隐藏软键盘
-     * view失去焦点
-     * 通用view
-     */
-    public static void hideSoftInput(Context context, View view) {
-        view.clearFocus();
-        InputMethodManager inputmanger = (InputMethodManager) context
-                .getSystemService(Context.INPUT_METHOD_SERVICE);
-        inputmanger.hideSoftInputFromWindow(view.getWindowToken(), 0);
-    }
-
-    /**
-     * 动态显示软键盘
-     * editview获得焦点
-     */
-    public static void showSoftInput(Context context, EditText editText) {
-        editText.setFocusable(true);
-        editText.setFocusableInTouchMode(true);
-        editText.requestFocus();
-        InputMethodManager inputmamger = (InputMethodManager) context
-                .getSystemService(Context.INPUT_METHOD_SERVICE);
-        inputmamger.showSoftInput(editText,0);
-    }
 }
 </code></pre>
           
@@ -1455,116 +1572,6 @@ git checkout -b 分支名字   //创建并切换到该分支
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/07/26/2015-07-26-Archlinux备忘笔记1之安装教程/" itemprop="url">
-                  Archlinux备忘笔记1之安装教程
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
-            <time itemprop="dateCreated" datetime="2015-07-26T00:00:00+08:00" content="2015-07-26">
-              2015-07-26
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/07/26/2015-07-26-Archlinux备忘笔记1之安装教程/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/07/26/2015-07-26-Archlinux备忘笔记1之安装教程/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>最近练车加有点私人事情，更新blog拖了很久。这些天只有晚上有点时间在真正做事，用了一段时间的Ubuntu后感觉这不是我要的那个。真尼马臃肿，我不喜欢这样，于是网上看了一些资料，没有一个比archlinux更符合我的要求。其实archlinux对我来说并不陌生，在大一刚刚起步的时候装来用过一次，记忆犹新，只因为对于当时菜鸟的我来说实在是寸步难行。这次我毅然装了回去，下面做一个archlinux备忘集合：</p>
-<h4 id="备忘集合"><a href="#备忘集合" class="headerlink" title="备忘集合"></a>备忘集合</h4><ul>
-<li>安装archlinux</li>
-<li>archlinux+xfce4</li>
-<li>配置archlinux(细节)</li>
-<li>yamcman/yaourt</li>
-</ul>
-<h4 id="安装archlinux教程"><a href="#安装archlinux教程" class="headerlink" title="安装archlinux教程"></a>安装archlinux教程</h4>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/07/26/2015-07-26-Archlinux备忘笔记1之安装教程/#more" rel="contents">
-              Weiterlesen &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1610,7 +1617,7 @@ git checkout -b 分支名字   //创建并切换到该分支
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">18</span>
+              <span class="site-state-item-count">19</span>
               <span class="site-state-item-name">Artikel</span>
             </a>
           </div>
@@ -1620,7 +1627,7 @@ git checkout -b 分支名字   //创建并切换到该分支
           
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-count">28</span>
                 <span class="site-state-item-name">Tags</span>
               
             </div>
