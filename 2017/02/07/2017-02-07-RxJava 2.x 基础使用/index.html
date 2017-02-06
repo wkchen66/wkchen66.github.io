@@ -1,0 +1,633 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="RxJava2.x," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="在开始之前，先说说 RxJava2.0 的变化，或者直接去看官方文档 What’s different in 2.0 。简单总结为以下几点。
+RxJava2.x 不再接受null
+背压（backpressure） Observable 不支持背压  全新的Flowable 支持背压
+新增onSubscribe(Disposable d) 回调 
+Consumer、BiConsumer替代 Acti">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RxJava 2.x 基础使用">
+<meta property="og:url" content="http://www.tipdev.xyz/2017/02/07/2017-02-07-RxJava 2.x 基础使用/index.html">
+<meta property="og:site_name" content="wkchen's blog">
+<meta property="og:description" content="在开始之前，先说说 RxJava2.0 的变化，或者直接去看官方文档 What’s different in 2.0 。简单总结为以下几点。
+RxJava2.x 不再接受null
+背压（backpressure） Observable 不支持背压  全新的Flowable 支持背压
+新增onSubscribe(Disposable d) 回调 
+Consumer、BiConsumer替代 Acti">
+<meta property="og:updated_time" content="2017-02-06T08:08:29.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="RxJava 2.x 基础使用">
+<meta name="twitter:description" content="在开始之前，先说说 RxJava2.0 的变化，或者直接去看官方文档 What’s different in 2.0 。简单总结为以下几点。
+RxJava2.x 不再接受null
+背压（backpressure） Observable 不支持背压  全新的Flowable 支持背压
+新增onSubscribe(Disposable d) 回调 
+Consumer、BiConsumer替代 Acti">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://www.tipdev.xyz/2017/02/07/2017-02-07-RxJava 2.x 基础使用/"/>
+
+  <title> RxJava 2.x 基础使用 | wkchen's blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">wkchen's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">日常笔记，每周一篇</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                RxJava 2.x 基础使用
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-07T00:00:00+08:00" content="2017-02-07">
+              2017-02-07
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/02/07/2017-02-07-RxJava 2.x 基础使用/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/07/2017-02-07-RxJava 2.x 基础使用/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h5 id="在开始之前，先说说-RxJava2-0-的变化，或者直接去看官方文档-What’s-different-in-2-0-。简单总结为以下几点。"><a href="#在开始之前，先说说-RxJava2-0-的变化，或者直接去看官方文档-What’s-different-in-2-0-。简单总结为以下几点。" class="headerlink" title="在开始之前，先说说 RxJava2.0 的变化，或者直接去看官方文档 What’s different in 2.0 。简单总结为以下几点。"></a><em>在开始之前，先说说 RxJava2.0 的变化，或者直接去看官方文档 <a href="https://github.com/ReactiveX/RxJava/wiki/What&#39;s-different-in-2.0" target="_blank" rel="external">What’s different in 2.0</a> 。简单总结为以下几点。</em></h5><ol>
+<li>RxJava2.x 不再接受null</li>
+<li>背压（backpressure） Observable 不支持背压  全新的Flowable 支持背压</li>
+<li>新增onSubscribe(Disposable d) 回调 </li>
+<li>Consumer、BiConsumer替代 Action1、Action2 等</li>
+<li>调整from() 为 fromArray、fromIterable、fromFuture</li>
+<li>Func1和Func2改为Function和BiFunction，Func3-9改为Function3-9</li>
+<li>修改Single、Completable为Reactive-Streams风格</li>
+<li>新增Maybe基本类…</li>
+</ol>
+<h3 id="Observable-和-Flowable"><a href="#Observable-和-Flowable" class="headerlink" title="Observable 和 Flowable"></a>Observable 和 Flowable</h3><ul>
+<li>Observablle：不支持背压；</li>
+<li>Flowable：RxJava2.x 新增，支持背压；</li>
+</ul>
+<p>那么问题来了什么是背压呢？</p>
+<p>我们系统资源有限，很多情况下我们处理数据的速度跟不上发送数据的速度，导致占用很大的资源，以至于内存泄漏等。背压就是用来解决这样的情况的，背压是一种告诉所有发送数据的组件减缓它们发送数据的速度的方法。</p>
+<h5 id="什么时候使用Observable"><a href="#什么时候使用Observable" class="headerlink" title="什么时候使用Observable"></a>什么时候使用Observable</h5><ul>
+<li>不超过1000条数据流，并且不存在内存溢出。</li>
+<li>GUI鼠标事件，如鼠标移动、触摸事件等，这种很少可以合理地背压</li>
+<li>处理的式同步流而你的Java平台又不支持Java Stream</li>
+</ul>
+<h5 id="什么时候使用Flowable"><a href="#什么时候使用Flowable" class="headerlink" title="什么时候使用Flowable"></a>什么时候使用Flowable</h5><ul>
+<li>处理1000+ 元素</li>
+<li>文件读写</li>
+<li>数据库操作</li>
+<li>网络IO操作</li>
+</ul>
+<p>一个简单的例子使用Observable</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Observable.create(<span class="keyword">new</span> ObservableOnSubscribe&lt;String&gt;() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">subscribe</span><span class="params">(ObservableEmitter&lt;String&gt; e)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">         <span class="comment">// ObservableEmitter ?  发射器，可以用来触发 onNext onError onComplete 事件</span></span><br><span class="line">         e.onNext(<span class="string">"A"</span>);</span><br><span class="line">         e.onNext(<span class="string">"B"</span>);</span><br><span class="line">         e.onNext(<span class="string">"C"</span>);</span><br><span class="line">         e.onComplete();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;).subscribeOn(Schedulers.io())</span><br><span class="line">  .observeOn(AndroidSchedulers.mainThread())</span><br><span class="line">  .subscribe(<span class="keyword">new</span> Observer&lt;String&gt;() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onSubscribe</span><span class="params">(Disposable d)</span> </span>&#123;</span><br><span class="line">                <span class="comment">// onSubscribe 是 RxJava 2.x 新增回调，一般用于取消订阅d.dispose()</span></span><br><span class="line">                <span class="comment">// Disposable 是 RxJava 1.x 中的 Subscription 改名  遵循Reactive-Streams规范</span></span><br><span class="line">                Log.d(TAG, <span class="string">"ObserableCreate onSubscribe: "</span> + d.isDisposed());</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onNext</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">                Log.d(TAG, <span class="string">"onNext: "</span> + s);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onError</span><span class="params">(Throwable e)</span> </span>&#123;</span><br><span class="line">                Log.d(TAG, <span class="string">"onError: "</span> + e.getMessage());</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onComplete</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                Log.d(TAG, <span class="string">"onComplete: "</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br></pre></td></tr></table></figure>
+<p>使用Flowable 是这样的</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Flowable.create(<span class="keyword">new</span> FlowableOnSubscribe&lt;String&gt;() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">subscribe</span><span class="params">(FlowableEmitter&lt;String&gt; e)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="comment">// ObservableEmitter ?  发射器，可以用来触发 onNext onError onComplete 事件</span></span><br><span class="line">        e.onNext(<span class="string">"A"</span>);</span><br><span class="line">        e.onNext(<span class="string">"B"</span>);</span><br><span class="line">        e.onNext(<span class="string">"C"</span>);</span><br><span class="line">        e.onComplete();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;, BackpressureStrategy.BUFFER)</span><br><span class="line">        .subscribeOn(Schedulers.io())</span><br><span class="line">        .observeOn(AndroidSchedulers.mainThread())</span><br><span class="line">        .subscribe(<span class="keyword">new</span> Subscriber&lt;String&gt;() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onSubscribe</span><span class="params">(Subscription s)</span> </span>&#123;</span><br><span class="line">                <span class="comment">// 初始化操作  (初始化需要再request前面)</span></span><br><span class="line">                <span class="comment">// 调用request()方法，会立即触发onNext()方法</span></span><br><span class="line">                Log.d(TAG, <span class="string">"FlowableCreate onSubscribe: "</span>);</span><br><span class="line">                s.request(Long.MAX_VALUE);   <span class="comment">// 必须</span></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onNext</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">                Log.d(TAG, <span class="string">"onNext: "</span> + s);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onError</span><span class="params">(Throwable e)</span> </span>&#123;</span><br><span class="line">                Log.d(TAG, <span class="string">"onError: "</span> + e.getMessage());</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onComplete</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                Log.d(TAG, <span class="string">"onComplete: "</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="onSubscribe-Disposable-d"><a href="#onSubscribe-Disposable-d" class="headerlink" title="onSubscribe(Disposable d)"></a>onSubscribe(Disposable d)</h3><p>传递参数为Disposable ，Disposable相当于RxJava1.x中的Subscription,用于解除订阅。那为什么不像RxJava1.x中订阅时返回Disposable，而是选择回调出来呢。官方说是为了设计成Reactive-Streams架构。</p>
+<h3 id="Consumer、BiConsumer等"><a href="#Consumer、BiConsumer等" class="headerlink" title="Consumer、BiConsumer等"></a>Consumer、BiConsumer等</h3><p>在2.x中使用Consumer来代替Action1，如果是两个参数，则用BiConsumer来代替Action2，而且在2.x中删除了Action3-9，如果是多个参数则用Custom代替ActionN。</p>
+<h3 id="fromArray、fromIterable、fromFuture"><a href="#fromArray、fromIterable、fromFuture" class="headerlink" title="fromArray、fromIterable、fromFuture"></a>fromArray、fromIterable、fromFuture</h3><p>在1.x中可以使用from()来发送数据，但是因为在使用java8编译时，javac不能够区分功能接口类型，所以它在2.x中被拆分为：fromArray,fromIterable,fromFuture</p>
+<h3 id="Function和BiFunction"><a href="#Function和BiFunction" class="headerlink" title="Function和BiFunction"></a>Function和BiFunction</h3><p>在2.x中将1.x的Func1和Func2改为Function和BiFunction，Func3-9改为Function3-9，多参数FuncN改为Function</p>
+<h3 id="Single"><a href="#Single" class="headerlink" title="Single"></a>Single</h3><p>它可以发出单个的onSuccess 或者 onError ，重新设计为Reactive-Streams架构。</p>
+<h3 id="Completable"><a href="#Completable" class="headerlink" title="Completable"></a>Completable</h3><p>Completable也被重新设计为Reactive-Streams架构，RxJava1.x的<code>CompletableSubscriber</code>改为<code>CompletableObserver</code></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">CompletableObserver</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">onSubscribe</span><span class="params">(Disposable d)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">onComplete</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">onError</span><span class="params">(Throwable error)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Maybe"><a href="#Maybe" class="headerlink" title="Maybe"></a>Maybe</h3><p>它是Single 和 Completable 的结合体，它可以发射0个或1个通知或错误的信号。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/RxJava2-x/" rel="tag">#RxJava2.x</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/01/23/2017-01-23-Android 6.0 运行时权限（笔记）/" rel="next" title="Android 6.0 运行时权限（笔记）">
+                <i class="fa fa-chevron-left"></i> Android 6.0 运行时权限（笔记）
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/02/07/2017-02-07-RxJava 2.x 基础使用/"
+           data-title="RxJava 2.x 基础使用" data-url="http://www.tipdev.xyz/2017/02/07/2017-02-07-RxJava 2.x 基础使用/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="wkchen" />
+          <p class="site-author-name" itemprop="name">wkchen</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">16</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#在开始之前，先说说-RxJava2-0-的变化，或者直接去看官方文档-What’s-different-in-2-0-。简单总结为以下几点。"><span class="nav-number">1.</span> <span class="nav-text">在开始之前，先说说 RxJava2.0 的变化，或者直接去看官方文档 What’s different in 2.0 。简单总结为以下几点。</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Observable-和-Flowable"><span class="nav-number"></span> <span class="nav-text">Observable 和 Flowable</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#什么时候使用Observable"><span class="nav-number">1.</span> <span class="nav-text">什么时候使用Observable</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#什么时候使用Flowable"><span class="nav-number">2.</span> <span class="nav-text">什么时候使用Flowable</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#onSubscribe-Disposable-d"><span class="nav-number"></span> <span class="nav-text">onSubscribe(Disposable d)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Consumer、BiConsumer等"><span class="nav-number"></span> <span class="nav-text">Consumer、BiConsumer等</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fromArray、fromIterable、fromFuture"><span class="nav-number"></span> <span class="nav-text">fromArray、fromIterable、fromFuture</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Function和BiFunction"><span class="nav-number"></span> <span class="nav-text">Function和BiFunction</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Single"><span class="nav-number"></span> <span class="nav-text">Single</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Completable"><span class="nav-number"></span> <span class="nav-text">Completable</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Maybe"><span class="nav-number"></span> <span class="nav-text">Maybe</span></a></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wkchen</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"tipdev"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
