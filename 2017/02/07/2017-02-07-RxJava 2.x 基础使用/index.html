@@ -98,7 +98,7 @@ RxJava2.x 不再接受null
 背压（backpressure） Observable 不支持背压  全新的Flowable 支持背压
 新增onSubscribe(Disposable d) 回调 
 Consumer、BiConsumer替代 Acti">
-<meta property="og:updated_time" content="2017-02-06T08:08:29.000Z">
+<meta property="og:updated_time" content="2017-02-06T08:12:29.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RxJava 2.x 基础使用">
 <meta name="twitter:description" content="在开始之前，先说说 RxJava2.0 的变化，或者直接去看官方文档 What’s different in 2.0 。简单总结为以下几点。
@@ -311,6 +311,7 @@ Consumer、BiConsumer替代 Acti">
 </ul>
 <p>那么问题来了什么是背压呢？</p>
 <p>我们系统资源有限，很多情况下我们处理数据的速度跟不上发送数据的速度，导致占用很大的资源，以至于内存泄漏等。背压就是用来解决这样的情况的，背压是一种告诉所有发送数据的组件减缓它们发送数据的速度的方法。</p>
+<a id="more"></a>
 <h5 id="什么时候使用Observable"><a href="#什么时候使用Observable" class="headerlink" title="什么时候使用Observable"></a>什么时候使用Observable</h5><ul>
 <li>不超过1000条数据流，并且不存在内存溢出。</li>
 <li>GUI鼠标事件，如鼠标移动、触摸事件等，这种很少可以合理地背压</li>
