@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="JavaScript,js笔记," />
+  <meta name="keywords" content="git,github," />
 
 
 
@@ -84,24 +84,22 @@
 
 
 
-<meta name="description" content="This is a demo.这是一个测试Demo，并不是使用繁琐的document.write或者innerHTML来实现。这些古老的方式，要么在HTML文档中插入&amp;lt;script&amp;gt; 标签，要么无法对插入的内容进行处理。而DOM提供了更加强大更加精准的功能，在任何时候都能替代innerHTML。
-index.html&amp;lt;!DOCTYPE html&amp;gt;
-&amp;lt;html&amp;gt;">
+<meta name="description" content="今天在项目中碰到一个问题，需要同时向两个仓库提交代码，然后又可以单独向某一个Git仓库提交/拉取代码。
+其实非常的简单，在GitHub／GitLab上我们新建一个仓库后，可以看到以下提示信息：
+…or push an existing repository from the command linegit remote add origin git@github.com:xxx/Smart.git">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JS学习笔记3_动态创建HTML内容Demo">
-<meta property="og:url" content="http://www.tipdev.xyz/2015/07/06/2015-07-06-JS学习笔记3_动态创建HTML内容Demo/index.html">
+<meta property="og:title" content="掌握 git 多仓库管理开发">
+<meta property="og:url" content="http://www.tipdev.xyz/2017/02/10/2017-02-10-git 多仓库管理开发技巧/index.html">
 <meta property="og:site_name" content="wkchen's blog">
-<meta property="og:description" content="This is a demo.这是一个测试Demo，并不是使用繁琐的document.write或者innerHTML来实现。这些古老的方式，要么在HTML文档中插入&amp;lt;script&amp;gt; 标签，要么无法对插入的内容进行处理。而DOM提供了更加强大更加精准的功能，在任何时候都能替代innerHTML。
-index.html&amp;lt;!DOCTYPE html&amp;gt;
-&amp;lt;html&amp;gt;">
-<meta property="og:image" content="http://wkchen66.github.io/assets/BlogImg/20150706JS_3-1.png">
-<meta property="og:updated_time" content="2015-09-03T06:10:40.000Z">
+<meta property="og:description" content="今天在项目中碰到一个问题，需要同时向两个仓库提交代码，然后又可以单独向某一个Git仓库提交/拉取代码。
+其实非常的简单，在GitHub／GitLab上我们新建一个仓库后，可以看到以下提示信息：
+…or push an existing repository from the command linegit remote add origin git@github.com:xxx/Smart.git">
+<meta property="og:updated_time" content="2017-02-10T05:52:04.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JS学习笔记3_动态创建HTML内容Demo">
-<meta name="twitter:description" content="This is a demo.这是一个测试Demo，并不是使用繁琐的document.write或者innerHTML来实现。这些古老的方式，要么在HTML文档中插入&amp;lt;script&amp;gt; 标签，要么无法对插入的内容进行处理。而DOM提供了更加强大更加精准的功能，在任何时候都能替代innerHTML。
-index.html&amp;lt;!DOCTYPE html&amp;gt;
-&amp;lt;html&amp;gt;">
-<meta name="twitter:image" content="http://wkchen66.github.io/assets/BlogImg/20150706JS_3-1.png">
+<meta name="twitter:title" content="掌握 git 多仓库管理开发">
+<meta name="twitter:description" content="今天在项目中碰到一个问题，需要同时向两个仓库提交代码，然后又可以单独向某一个Git仓库提交/拉取代码。
+其实非常的简单，在GitHub／GitLab上我们新建一个仓库后，可以看到以下提示信息：
+…or push an existing repository from the command linegit remote add origin git@github.com:xxx/Smart.git">
 
 
 
@@ -122,9 +120,9 @@ index.html&amp;lt;!DOCTYPE html&amp;gt;
 
 
 
-  <link rel="canonical" href="http://www.tipdev.xyz/2015/07/06/2015-07-06-JS学习笔记3_动态创建HTML内容Demo/"/>
+  <link rel="canonical" href="http://www.tipdev.xyz/2017/02/10/2017-02-10-git 多仓库管理开发技巧/"/>
 
-  <title> JS学习笔记3_动态创建HTML内容Demo | wkchen's blog </title>
+  <title> 掌握 git 多仓库管理开发 | wkchen's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -244,7 +242,7 @@ index.html&amp;lt;!DOCTYPE html&amp;gt;
             
             
               
-                JS学习笔记3_动态创建HTML内容Demo
+                掌握 git 多仓库管理开发
               
             
           </h1>
@@ -256,8 +254,8 @@ index.html&amp;lt;!DOCTYPE html&amp;gt;
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-07-06T00:00:00+08:00" content="2015-07-06">
-              2015-07-06
+            <time itemprop="dateCreated" datetime="2017-02-10T00:00:00+08:00" content="2017-02-10">
+              2017-02-10
             </time>
           </span>
 
@@ -267,8 +265,8 @@ index.html&amp;lt;!DOCTYPE html&amp;gt;
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/07/06/2015-07-06-JS学习笔记3_动态创建HTML内容Demo/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/07/06/2015-07-06-JS学习笔记3_动态创建HTML内容Demo/" itemprop="commentsCount"></span>
+                <a href="/2017/02/10/2017-02-10-git 多仓库管理开发技巧/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/10/2017-02-10-git 多仓库管理开发技巧/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -291,107 +289,35 @@ index.html&amp;lt;!DOCTYPE html&amp;gt;
       
 
       
-        <h3 id="This-is-a-demo"><a href="#This-is-a-demo" class="headerlink" title="This is a demo."></a>This is a demo.</h3><p>这是一个测试Demo，并不是使用繁琐的<code>document.write</code>或者<code>innerHTML</code>来实现。这些古老的方式，要么在HTML文档中插入<code>&lt;script&gt;</code> 标签，要么无法对插入的内容进行处理。而DOM提供了更加强大更加精准的功能，在任何时候都能替代<code>innerHTML</code>。</p>
-<h5 id="index-html"><a href="#index-html" class="headerlink" title="index.html"></a>index.html</h5><pre><code>&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head&gt;
-   &lt;meta charset=&quot;utf-8&quot; /&gt;
-   &lt;title&gt;&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-   &lt;div id=&quot;txtdiv&quot;&gt;&lt;/div&gt;
-   &lt;script type=&quot;text/javascript&quot; src=&quot;js/myFunction.js&quot;&gt;&lt;/script&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre><a id="more"></a>
-<h5 id="myFunction-js"><a href="#myFunction-js" class="headerlink" title="myFunction.js"></a>myFunction.js</h5><pre><code>    window.onload = function(){
-    var pare = document.createElement(&quot;p&quot;);
-    var txtdiv = document.getElementById(&quot;txtdiv&quot;);
-    txtdiv.appendChild(pare);
-    var txt1 = document.createTextNode(&quot;this is&quot;);
-    pare.appendChild(txt1);
-    var em = document.createElement(&quot;em&quot;);
-    pare.appendChild(em);
-    var txt2 = document.createTextNode(&quot; my &quot;);
-    em.appendChild(txt2);
-    var txt3 = document.createTextNode(&quot;content .&quot;)
-    pare.appendChild(txt3);
-}
-</code></pre><p><img src="http://wkchen66.github.io/assets/BlogImg/20150706JS_3-1.png" alt="a"></p>
-<h3 id="This-is-a-example"><a href="#This-is-a-example" class="headerlink" title="This is a example."></a>This is a example.</h3><p>那么回到图片库操作，图片和文字部分仅仅是为showPic脚本服务。So，把它们从HTML中分离出来。按照上面学习的动态创建HTML内容，一下为代码展示：</p>
-<pre><code>   function showPic(whichpic){
-    if(!document.getElementById(&quot;img&quot;)){
-        return false;
-    }
-    var a = whichpic.getAttribute(&quot;href&quot;);
-    var b = document.getElementById(&quot;img&quot;);
-    if(b.nodeName != &quot;IMG&quot;){
-        return false;
-    }
-    b.setAttribute(&quot;src&quot;, a);
-    if(document.getElementById(&quot;title_p&quot;)){
-        if(whichpic.getAttribute(&quot;title&quot;)){
-            var c = whichpic.getAttribute(&quot;title&quot;);
-        }else{
-            var c = &quot;&quot;;
-        }
-        var d = document.getElementById(&quot;title_p&quot;);
-        if(d.firstChild.nodeType == 3){
-            d.firstChild.nodeValue=c;
-        }
-    }else{
-        return false;
-    }
-    return true;
-}
+        <p>今天在项目中碰到一个问题，需要同时向两个仓库提交代码，然后又可以单独向某一个Git仓库提交/拉取代码。</p>
+<p>其实非常的简单，在GitHub／GitLab上我们新建一个仓库后，可以看到以下提示信息：</p>
+<h5 id="…or-push-an-existing-repository-from-the-command-line"><a href="#…or-push-an-existing-repository-from-the-command-line" class="headerlink" title="…or push an existing repository from the command line"></a>…or push an existing repository from the command line</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git remote add origin git@github.com:xxx/Smart.git</span><br><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
+<p>这表示向这个本地库添加一个远程仓库，并且起名为origin，其实按照这个再添加一个其他的远程仓库，换个名字不就好了！</p>
+<p>默认地址:</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 查看远程仓库地址 git remote -v</span></span><br><span class="line">origin	git<span class="meta">@github</span>.com:xxx/Smart.git (fetch)</span><br><span class="line">origin	git<span class="meta">@github</span>.com:xxx/Smart.git (push)</span><br></pre></td></tr></table></figure>
+<ol>
+<li><p>添加smart远程仓库</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">git remote add smart git@<span class="number">192.168</span>.11.111:Product/Smart.git  <span class="comment">// 推荐</span></span><br></pre></td></tr></table></figure>
+<p>或者 每个仓库都有一个.git/config  使用open config 打开，添加一下内容</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[remote &quot;名字&quot;]</span><br><span class="line">	url = git@192.168.11.111:Product/Smart.git</span><br><span class="line">	fetch = +refs/heads/*:refs/remotes/名字/*</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>单仓库提交／拉取</p>
+<p>默认</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git pull origin master</span><br><span class="line">git push origin master</span><br></pre></td></tr></table></figure>
+<p>以smart仓库 为例</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git pull smart master</span><br><span class="line">git push smart master</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol>
+<li><p>多仓库提交／拉取</p>
+<p>打开.git/config 添加以下内容</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[remote &quot;all&quot;] </span><br><span class="line">url = git@github.com:xxx/Smart.git</span><br><span class="line">url = git@192.168.11.111:Product/Smart.git</span><br></pre></td></tr></table></figure>
+<p>这样就可以同时提交／拉取两个仓库了</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git pull all master</span><br><span class="line">git push all master</span><br></pre></td></tr></table></figure>
+<p>三个、四个…..以此类推就好了。</p>
+</li>
+</ol>
 
-function Gallery(){
-    if(!document.getElementById){
-        return false;
-    }
-    if(!document.getElementsByTagName){
-        return false;
-    }
-    if(!document.getElementById(&quot;gallery&quot;)){
-        return false;
-    }
-    var gallery = document.getElementById(&quot;gallery&quot;);
-    var links = gallery.getElementsByTagName(&quot;a&quot;);
-    for (var i = 0; i &lt; links.length ; i++) {
-        links[i].onclick=function(){
-            return !showPic(this);
-        }
-    }
-}
-
-function placeholder(){
-    var img = document.createElement(&quot;img&quot;);
-    img.setAttribute(&quot;src&quot;,&quot;images/defaut.jpg&quot;);
-    img.setAttribute(&quot;id&quot;,&quot;img&quot;);
-    img.setAttribute(&quot;width&quot;,&quot;400px&quot;);
-    img.setAttribute(&quot;height&quot;,&quot;300px&quot;);
-    var pare = document.createElement(&quot;p&quot;);
-    pare.setAttribute(&quot;id&quot;, &quot;title_p&quot;);
-    var txt = document.createTextNode(&quot;defaut&quot;);
-    pare.appendChild(txt);
-    document.getElementsByTagName(&quot;body&quot;)[0].appendChild(img);
-    document.getElementsByTagName(&quot;body&quot;)[0].appendChild(pare);
-}
-
-function addLoadEvent(func){
-    var oldonload = window.onload;
-    if(typeof window.onload != &apos;function&apos;){
-        window.onload = func;
-    }else{
-        window.onload = function(){
-            oldonload();
-            func();
-        }
-    }    
-}
-addLoadEvent(placeholder);
-addLoadEvent(Gallery);
-</code></pre>
       
     </div>
 
@@ -412,9 +338,9 @@ addLoadEvent(Gallery);
       
         <div class="post-tags">
           
-            <a href="/tags/JavaScript/" rel="tag">#JavaScript</a>
+            <a href="/tags/git/" rel="tag">#git</a>
           
-            <a href="/tags/js笔记/" rel="tag">#js笔记</a>
+            <a href="/tags/github/" rel="tag">#github</a>
           
         </div>
       
@@ -423,17 +349,13 @@ addLoadEvent(Gallery);
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/07/05/2015-07-05-JS学习笔记2_图片库js代码优化/" rel="next" title="JS学习笔记2_图片库js代码优化">
-                <i class="fa fa-chevron-left"></i> JS学习笔记2_图片库js代码优化
+              <a href="/2017/02/10/2016-06-10-git 复习笔记（记录）/" rel="next" title="git 多仓库管理开发技巧">
+                <i class="fa fa-chevron-left"></i> git 多仓库管理开发技巧
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2015/07/10/2015-07-10-JS学习笔记4_图片库二次优化/" rel="prev" title="JS学习笔记4_图片库二次优化">
-                JS学习笔记4_图片库二次优化 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -459,8 +381,8 @@ addLoadEvent(Gallery);
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2015/07/06/2015-07-06-JS学习笔记3_动态创建HTML内容Demo/"
-           data-title="JS学习笔记3_动态创建HTML内容Demo" data-url="http://www.tipdev.xyz/2015/07/06/2015-07-06-JS学习笔记3_动态创建HTML内容Demo/">
+      <div class="ds-thread" data-thread-key="2017/02/10/2017-02-10-git 多仓库管理开发技巧/"
+           data-title="掌握 git 多仓库管理开发" data-url="http://www.tipdev.xyz/2017/02/10/2017-02-10-git 多仓库管理开发技巧/">
       </div>
     
   </div>
@@ -544,7 +466,7 @@ addLoadEvent(Gallery);
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#This-is-a-demo"><span class="nav-number">1.</span> <span class="nav-text">This is a demo.</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#index-html"><span class="nav-number">1.0.1.</span> <span class="nav-text">index.html</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#myFunction-js"><span class="nav-number">1.0.2.</span> <span class="nav-text">myFunction.js</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#This-is-a-example"><span class="nav-number">2.</span> <span class="nav-text">This is a example.</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#…or-push-an-existing-repository-from-the-command-line"><span class="nav-number">1.</span> <span class="nav-text">…or push an existing repository from the command line</span></a></li></ol></div>
             
           </div>
         </section>

@@ -238,6 +238,136 @@
             
               
                 
+                <a class="post-title-link" href="/2015/09/03/2015-09-03-VPS之shadowsocks 翻墙技术那加强/" itemprop="url">
+                  VPS之shadowsocks 翻墙技术那加强
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-09-03T00:00:00+08:00" content="2015-09-03">
+              2015-09-03
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/09/03/2015-09-03-VPS之shadowsocks 翻墙技术那加强/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/09/03/2015-09-03-VPS之shadowsocks 翻墙技术那加强/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h4><ul>
+<li>shadowsocks </li>
+<li>openWrt for Hiwifi</li>
+</ul>
+<h5 id="shadowsocks"><a href="#shadowsocks" class="headerlink" title="shadowsocks"></a>shadowsocks</h5><ul>
+<li>1 购买vps</li>
+</ul>
+<p>这里推荐有日本节点的vps延迟比较低，例如Linode 、Conoha(价格相对比较贵)</p>
+<ul>
+<li><p>2 安装shadowsocks 以及相关依赖（python版）</p>
+<p> wget –no-check-certificate <a href="https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks.sh" target="_blank" rel="external">https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks.sh</a><br> chmod +x shadowsocks.sh<br> ./shadowsocks.sh 2&gt;&amp;1 | tee shadowsocks.log</p>
+</li>
+<li><p>3 配置shadowsocks服务</p>
+</li>
+</ul>
+<p>修改vim /etc/shadowsocks.json 文件</p>
+<p>如下:</p>
+<p>   {<br>   “server”:”0.0.0.0”,<br>   “server_port”:8989,<br>   “local_address”:”127.0.0.1”,<br>   “local_port”:1080,<br>   “password”:”password”,<br>   “timeout”:300,<br>   “method”:”aes-256-cfb”,<br>   “fast_open”: false<br>   }<br>多用户如下：</p>
+<p>   {<br>   “server”:”0.0.0.0”,<br>   “local_address”:”127.0.0.1”,<br>   “local_port”:1080,<br>   “port_password”:{<br>      “8989”:”password0”,<br>      “9001”:”password1”,<br>      “9002”:”password2”,<br>      “9003”:”password3”,<br>      “9004”:”password4”<br>   },<br>   “timeout”:300,<br>   “method”:”aes-256-cfb”,<br>   “fast_open”: false<br>   }</p>
+<ul>
+<li><p>4 启用服务</p>
+<p> /etc/init.d/shadowsocks start //启动<br> /etc/init.d/shadowsocks stop //停止</p>
+</li>
+<li><p>5 客户端</p>
+<p>  Windows版 <a href="https://github.com/shadowsocks/shadowsocks-windows/releases" target="_blank" rel="external">DOWNLOAD</a></p>
+<p>  ISO版 <a href="https://github.com/shadowsocks/shadowsocks-iOS/releases" target="_blank" rel="external">DOWNLOAD</a></p>
+<p>  Android版 <a href="https://github.com/shadowsocks/shadowsocks-android/releases" target="_blank" rel="external">DOWNLOAD</a></p>
+<p>  下载安装即可。</p>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2015/07/26/2015-07-26-Archlinux备忘笔记1之安装教程/" itemprop="url">
                   Archlinux备忘笔记1之安装教程
                 </a>
@@ -1049,7 +1179,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">17</span>
+              <span class="site-state-item-count">18</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1059,7 +1189,7 @@
           
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-count">25</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>

@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="git,github,hexo," />
+  <meta name="keywords" content="git,github," />
 
 
 
@@ -84,16 +84,16 @@
 
 
 
-<meta name="description" content="认识git已经一年多了，但一直没有正真的弄懂它。第一接触到时当时想要搭建博客，很幸运遇到了hexo（基于node.js的静态博客），其中涉及到了一些基本的命令，虽然在android和java开发的时候偶尔会去提交一些代码到github上（其实就三句git add、git commit、git push其他的都忘了），但是说真的压根不理解这玩意。直到最近github对我越来越重要，于此同时又是hex">
+<meta name="description" content="今天在项目中碰到一个问题，Git同时向两个">
 <meta property="og:type" content="article">
-<meta property="og:title" content="git 复习笔记（记录）">
-<meta property="og:url" content="http://www.tipdev.xyz/2016/06/10/2016-06-10-git 复习笔记（记录）/index.html">
+<meta property="og:title" content="git 多仓库管理开发技巧">
+<meta property="og:url" content="http://www.tipdev.xyz/2017/02/10/2016-06-10-git 复习笔记（记录）/index.html">
 <meta property="og:site_name" content="wkchen's blog">
-<meta property="og:description" content="认识git已经一年多了，但一直没有正真的弄懂它。第一接触到时当时想要搭建博客，很幸运遇到了hexo（基于node.js的静态博客），其中涉及到了一些基本的命令，虽然在android和java开发的时候偶尔会去提交一些代码到github上（其实就三句git add、git commit、git push其他的都忘了），但是说真的压根不理解这玩意。直到最近github对我越来越重要，于此同时又是hex">
-<meta property="og:updated_time" content="2016-06-10T08:12:22.000Z">
+<meta property="og:description" content="今天在项目中碰到一个问题，Git同时向两个">
+<meta property="og:updated_time" content="2017-02-10T03:43:13.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="git 复习笔记（记录）">
-<meta name="twitter:description" content="认识git已经一年多了，但一直没有正真的弄懂它。第一接触到时当时想要搭建博客，很幸运遇到了hexo（基于node.js的静态博客），其中涉及到了一些基本的命令，虽然在android和java开发的时候偶尔会去提交一些代码到github上（其实就三句git add、git commit、git push其他的都忘了），但是说真的压根不理解这玩意。直到最近github对我越来越重要，于此同时又是hex">
+<meta name="twitter:title" content="git 多仓库管理开发技巧">
+<meta name="twitter:description" content="今天在项目中碰到一个问题，Git同时向两个">
 
 
 
@@ -114,9 +114,9 @@
 
 
 
-  <link rel="canonical" href="http://www.tipdev.xyz/2016/06/10/2016-06-10-git 复习笔记（记录）/"/>
+  <link rel="canonical" href="http://www.tipdev.xyz/2017/02/10/2016-06-10-git 复习笔记（记录）/"/>
 
-  <title> git 复习笔记（记录） | wkchen's blog </title>
+  <title> git 多仓库管理开发技巧 | wkchen's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -236,7 +236,7 @@
             
             
               
-                git 复习笔记（记录）
+                git 多仓库管理开发技巧
               
             
           </h1>
@@ -248,8 +248,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-06-10T00:00:00+08:00" content="2016-06-10">
-              2016-06-10
+            <time itemprop="dateCreated" datetime="2017-02-10T00:00:00+08:00" content="2017-02-10">
+              2017-02-10
             </time>
           </span>
 
@@ -259,8 +259,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/06/10/2016-06-10-git 复习笔记（记录）/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/10/2016-06-10-git 复习笔记（记录）/" itemprop="commentsCount"></span>
+                <a href="/2017/02/10/2016-06-10-git 复习笔记（记录）/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/10/2016-06-10-git 复习笔记（记录）/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -283,13 +283,8 @@
       
 
       
-        <p>认识git已经一年多了，但一直没有正真的弄懂它。第一接触到时当时想要搭建博客，很幸运遇到了hexo（基于node.js的静态博客），其中涉及到了一些基本的命令，虽然在android和java开发的时候偶尔会去提交一些代码到github上（其实就三句git add、git commit、git push其他的都忘了），但是说真的压根不理解这玩意。直到最近github对我越来越重要，于此同时又是hexo,博客更新停止了有一段时间了，最近又打算开启每天写博客的习惯了，自学android差不多快一年了，但是进展让我不够满意，所以我打算每天写博客记录我的学习过程，也提醒自己坚持下去。本文配套github做的记录。</p>
-<h4 id="git-init-初始化仓库"><a href="#git-init-初始化仓库" class="headerlink" title="git init  //初始化仓库"></a>git init  //初始化仓库</h4><h4 id="git-status-查看git状态"><a href="#git-status-查看git状态" class="headerlink" title="git status   //查看git状态"></a>git status   //查看git状态</h4><h4 id="git-add-添加文件到本地库"><a href="#git-add-添加文件到本地库" class="headerlink" title="git add   //添加文件到本地库"></a>git add   //添加文件到本地库</h4><pre><code>git add .  //添加该文件夹下的所有文件
-</code></pre><h4 id="git-commit-m-提交信息"><a href="#git-commit-m-提交信息" class="headerlink" title="git commit -m    //提交信息"></a>git commit -m    //提交信息</h4><h4 id="git-log-查看git-log日志"><a href="#git-log-查看git-log日志" class="headerlink" title="git log    //查看git log日志"></a>git log    //查看git log日志</h4><h4 id="git-branch-分支默认master"><a href="#git-branch-分支默认master" class="headerlink" title="git branch   分支默认master"></a>git branch   分支默认master</h4><pre><code>git branch   //查看当前的所有分支
-git branch 分支名字   //创建该分支
-git checkout 分支名字   //切换到该分支
-git checkout -b 分支名字   //创建并切换到该分支
-</code></pre><h4 id="git-pull-origin-master-分支-从远程库拉取同步到本地"><a href="#git-pull-origin-master-分支-从远程库拉取同步到本地" class="headerlink" title="git pull origin master (分支)   //从远程库拉取同步到本地"></a>git pull origin master (分支)   //从远程库拉取同步到本地</h4><h4 id="git-push-origin-master-分支-从本地同步到远程库"><a href="#git-push-origin-master-分支-从本地同步到远程库" class="headerlink" title="git push origin master (分支)   //从本地同步到远程库"></a>git push origin master (分支)   //从本地同步到远程库</h4><h4 id="git-clone-git-github-com-username-仓库名-git-克隆改仓库到本地"><a href="#git-clone-git-github-com-username-仓库名-git-克隆改仓库到本地" class="headerlink" title="git clone git@github.com:username/仓库名.git     //克隆改仓库到本地"></a>git clone git@github.com:username/仓库名.git     //克隆改仓库到本地</h4>
+        <p>今天在项目中碰到一个问题，Git同时向两个</p>
+
       
     </div>
 
@@ -314,8 +309,6 @@ git checkout -b 分支名字   //创建并切换到该分支
           
             <a href="/tags/github/" rel="tag">#github</a>
           
-            <a href="/tags/hexo/" rel="tag">#hexo</a>
-          
         </div>
       
 
@@ -323,16 +316,16 @@ git checkout -b 分支名字   //创建并切换到该分支
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/09/03/2015-09-03-VPS之shadowsocks 翻墙技术那加强/" rel="next" title="VPS之shadowsocks 翻墙技术那加强">
-                <i class="fa fa-chevron-left"></i> VPS之shadowsocks 翻墙技术那加强
+              <a href="/2017/02/07/2017-02-07-Android命名规范/" rel="next" title="Android 命名规范">
+                <i class="fa fa-chevron-left"></i> Android 命名规范
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/06/17/2016-06-17-Gson使用笔记/" rel="prev" title="Gson使用笔记">
-                Gson使用笔记 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/02/10/2017-02-10-git 多仓库管理开发技巧/" rel="prev" title="掌握 git 多仓库管理开发">
+                掌握 git 多仓库管理开发 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -359,8 +352,8 @@ git checkout -b 分支名字   //创建并切换到该分支
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/06/10/2016-06-10-git 复习笔记（记录）/"
-           data-title="git 复习笔记（记录）" data-url="http://www.tipdev.xyz/2016/06/10/2016-06-10-git 复习笔记（记录）/">
+      <div class="ds-thread" data-thread-key="2017/02/10/2016-06-10-git 复习笔记（记录）/"
+           data-title="git 多仓库管理开发技巧" data-url="http://www.tipdev.xyz/2017/02/10/2016-06-10-git 复习笔记（记录）/">
       </div>
     
   </div>
@@ -405,7 +398,7 @@ git checkout -b 分支名字   //创建并切换到该分支
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">17</span>
+              <span class="site-state-item-count">18</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -415,7 +408,7 @@ git checkout -b 分支名字   //创建并切换到该分支
           
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-count">25</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>
@@ -444,7 +437,7 @@ git checkout -b 分支名字   //创建并切换到该分支
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#git-init-初始化仓库"><span class="nav-number">1.</span> <span class="nav-text">git init  //初始化仓库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#git-status-查看git状态"><span class="nav-number">2.</span> <span class="nav-text">git status   //查看git状态</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#git-add-添加文件到本地库"><span class="nav-number">3.</span> <span class="nav-text">git add   //添加文件到本地库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#git-commit-m-提交信息"><span class="nav-number">4.</span> <span class="nav-text">git commit -m    //提交信息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#git-log-查看git-log日志"><span class="nav-number">5.</span> <span class="nav-text">git log    //查看git log日志</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#git-branch-分支默认master"><span class="nav-number">6.</span> <span class="nav-text">git branch   分支默认master</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#git-pull-origin-master-分支-从远程库拉取同步到本地"><span class="nav-number">7.</span> <span class="nav-text">git pull origin master (分支)   //从远程库拉取同步到本地</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#git-push-origin-master-分支-从本地同步到远程库"><span class="nav-number">8.</span> <span class="nav-text">git push origin master (分支)   //从本地同步到远程库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#git-clone-git-github-com-username-仓库名-git-克隆改仓库到本地"><span class="nav-number">9.</span> <span class="nav-text">git clone git@github.com:username/仓库名.git     //克隆改仓库到本地</span></a></li></ol></div>
+              <p class="post-toc-empty">此文章未包含目录</p>
             
           </div>
         </section>
