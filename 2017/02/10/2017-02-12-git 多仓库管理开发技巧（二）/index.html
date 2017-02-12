@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="JavaScript,js笔记," />
+  <meta name="keywords" content="git,github," />
 
 
 
@@ -84,24 +84,22 @@
 
 
 
-<meta name="description" content="This is a demo.这是一个测试Demo，并不是使用繁琐的document.write或者innerHTML来实现。这些古老的方式，要么在HTML文档中插入&amp;lt;script&amp;gt; 标签，要么无法对插入的内容进行处理。而DOM提供了更加强大更加精准的功能，在任何时候都能替代innerHTML。
-index.html&amp;lt;!DOCTYPE html&amp;gt;
-&amp;lt;html&amp;gt;">
+<meta name="description" content="接着上次的多仓库管理开发(一)，在很多情况下我们会涉及到不同的仓库使用不同的用户名和email，比如：在公司开发的时候一般都是使用自己真实名字和公司邮箱；在github时候一般不会暴露自己真实的姓名。这个时候多仓库设置不同用户名就非常有必要了。
+在多说一遍，在每个git仓库下，都有一个.git/ 文件夹，使用vim或者其他工具，打开.git/config 文件，添加一下内容：
+[user]">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JS学习笔记3_动态创建HTML内容Demo">
-<meta property="og:url" content="http://www.tipdev.xyz/2015/07/06/2015-07-06-JS学习笔记3_动态创建HTML内容Demo/index.html">
+<meta property="og:title" content="掌握 git 多仓库管理开发（二）">
+<meta property="og:url" content="http://www.tipdev.xyz/2017/02/10/2017-02-12-git 多仓库管理开发技巧（二）/index.html">
 <meta property="og:site_name" content="wkchen's blog">
-<meta property="og:description" content="This is a demo.这是一个测试Demo，并不是使用繁琐的document.write或者innerHTML来实现。这些古老的方式，要么在HTML文档中插入&amp;lt;script&amp;gt; 标签，要么无法对插入的内容进行处理。而DOM提供了更加强大更加精准的功能，在任何时候都能替代innerHTML。
-index.html&amp;lt;!DOCTYPE html&amp;gt;
-&amp;lt;html&amp;gt;">
-<meta property="og:image" content="http://wkchen66.github.io/assets/BlogImg/20150706JS_3-1.png">
-<meta property="og:updated_time" content="2015-09-03T06:10:40.000Z">
+<meta property="og:description" content="接着上次的多仓库管理开发(一)，在很多情况下我们会涉及到不同的仓库使用不同的用户名和email，比如：在公司开发的时候一般都是使用自己真实名字和公司邮箱；在github时候一般不会暴露自己真实的姓名。这个时候多仓库设置不同用户名就非常有必要了。
+在多说一遍，在每个git仓库下，都有一个.git/ 文件夹，使用vim或者其他工具，打开.git/config 文件，添加一下内容：
+[user]">
+<meta property="og:updated_time" content="2017-02-12T06:46:10.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JS学习笔记3_动态创建HTML内容Demo">
-<meta name="twitter:description" content="This is a demo.这是一个测试Demo，并不是使用繁琐的document.write或者innerHTML来实现。这些古老的方式，要么在HTML文档中插入&amp;lt;script&amp;gt; 标签，要么无法对插入的内容进行处理。而DOM提供了更加强大更加精准的功能，在任何时候都能替代innerHTML。
-index.html&amp;lt;!DOCTYPE html&amp;gt;
-&amp;lt;html&amp;gt;">
-<meta name="twitter:image" content="http://wkchen66.github.io/assets/BlogImg/20150706JS_3-1.png">
+<meta name="twitter:title" content="掌握 git 多仓库管理开发（二）">
+<meta name="twitter:description" content="接着上次的多仓库管理开发(一)，在很多情况下我们会涉及到不同的仓库使用不同的用户名和email，比如：在公司开发的时候一般都是使用自己真实名字和公司邮箱；在github时候一般不会暴露自己真实的姓名。这个时候多仓库设置不同用户名就非常有必要了。
+在多说一遍，在每个git仓库下，都有一个.git/ 文件夹，使用vim或者其他工具，打开.git/config 文件，添加一下内容：
+[user]">
 
 
 
@@ -122,9 +120,9 @@ index.html&amp;lt;!DOCTYPE html&amp;gt;
 
 
 
-  <link rel="canonical" href="http://www.tipdev.xyz/2015/07/06/2015-07-06-JS学习笔记3_动态创建HTML内容Demo/"/>
+  <link rel="canonical" href="http://www.tipdev.xyz/2017/02/10/2017-02-12-git 多仓库管理开发技巧（二）/"/>
 
-  <title> JS学习笔记3_动态创建HTML内容Demo | wkchen's blog </title>
+  <title> 掌握 git 多仓库管理开发（二） | wkchen's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -244,7 +242,7 @@ index.html&amp;lt;!DOCTYPE html&amp;gt;
             
             
               
-                JS学习笔记3_动态创建HTML内容Demo
+                掌握 git 多仓库管理开发（二）
               
             
           </h1>
@@ -256,8 +254,8 @@ index.html&amp;lt;!DOCTYPE html&amp;gt;
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-07-06T00:00:00+08:00" content="2015-07-06">
-              2015-07-06
+            <time itemprop="dateCreated" datetime="2017-02-10T00:00:00+08:00" content="2017-02-10">
+              2017-02-10
             </time>
           </span>
 
@@ -267,8 +265,8 @@ index.html&amp;lt;!DOCTYPE html&amp;gt;
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/07/06/2015-07-06-JS学习笔记3_动态创建HTML内容Demo/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/07/06/2015-07-06-JS学习笔记3_动态创建HTML内容Demo/" itemprop="commentsCount"></span>
+                <a href="/2017/02/10/2017-02-12-git 多仓库管理开发技巧（二）/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/10/2017-02-12-git 多仓库管理开发技巧（二）/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -291,107 +289,16 @@ index.html&amp;lt;!DOCTYPE html&amp;gt;
       
 
       
-        <h3 id="This-is-a-demo"><a href="#This-is-a-demo" class="headerlink" title="This is a demo."></a>This is a demo.</h3><p>这是一个测试Demo，并不是使用繁琐的<code>document.write</code>或者<code>innerHTML</code>来实现。这些古老的方式，要么在HTML文档中插入<code>&lt;script&gt;</code> 标签，要么无法对插入的内容进行处理。而DOM提供了更加强大更加精准的功能，在任何时候都能替代<code>innerHTML</code>。</p>
-<h5 id="index-html"><a href="#index-html" class="headerlink" title="index.html"></a>index.html</h5><pre><code>&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head&gt;
-   &lt;meta charset=&quot;utf-8&quot; /&gt;
-   &lt;title&gt;&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-   &lt;div id=&quot;txtdiv&quot;&gt;&lt;/div&gt;
-   &lt;script type=&quot;text/javascript&quot; src=&quot;js/myFunction.js&quot;&gt;&lt;/script&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre><a id="more"></a>
-<h5 id="myFunction-js"><a href="#myFunction-js" class="headerlink" title="myFunction.js"></a>myFunction.js</h5><pre><code>    window.onload = function(){
-    var pare = document.createElement(&quot;p&quot;);
-    var txtdiv = document.getElementById(&quot;txtdiv&quot;);
-    txtdiv.appendChild(pare);
-    var txt1 = document.createTextNode(&quot;this is&quot;);
-    pare.appendChild(txt1);
-    var em = document.createElement(&quot;em&quot;);
-    pare.appendChild(em);
-    var txt2 = document.createTextNode(&quot; my &quot;);
-    em.appendChild(txt2);
-    var txt3 = document.createTextNode(&quot;content .&quot;)
-    pare.appendChild(txt3);
-}
-</code></pre><p><img src="http://wkchen66.github.io/assets/BlogImg/20150706JS_3-1.png" alt="a"></p>
-<h3 id="This-is-a-example"><a href="#This-is-a-example" class="headerlink" title="This is a example."></a>This is a example.</h3><p>那么回到图片库操作，图片和文字部分仅仅是为showPic脚本服务。So，把它们从HTML中分离出来。按照上面学习的动态创建HTML内容，一下为代码展示：</p>
-<pre><code>   function showPic(whichpic){
-    if(!document.getElementById(&quot;img&quot;)){
-        return false;
-    }
-    var a = whichpic.getAttribute(&quot;href&quot;);
-    var b = document.getElementById(&quot;img&quot;);
-    if(b.nodeName != &quot;IMG&quot;){
-        return false;
-    }
-    b.setAttribute(&quot;src&quot;, a);
-    if(document.getElementById(&quot;title_p&quot;)){
-        if(whichpic.getAttribute(&quot;title&quot;)){
-            var c = whichpic.getAttribute(&quot;title&quot;);
-        }else{
-            var c = &quot;&quot;;
-        }
-        var d = document.getElementById(&quot;title_p&quot;);
-        if(d.firstChild.nodeType == 3){
-            d.firstChild.nodeValue=c;
-        }
-    }else{
-        return false;
-    }
-    return true;
-}
+        <p>接着上次的<a href="http://tipdev.xyz/2017/02/10/2017-02-10-git%20%E5%A4%9A%E4%BB%93%E5%BA%93%E7%AE%A1%E7%90%86%E5%BC%80%E5%8F%91%E6%8A%80%E5%B7%A7%EF%BC%88%E4%B8%80%EF%BC%89/" target="_blank" rel="external">多仓库管理开发(一)</a>，在很多情况下我们会涉及到不同的仓库使用不同的用户名和email，比如：在公司开发的时候一般都是使用自己真实名字和公司邮箱；在github时候一般不会暴露自己真实的姓名。这个时候多仓库设置不同用户名就非常有必要了。</p>
+<p>在多说一遍，在每个git仓库下，都有一个.git/ 文件夹，使用vim或者其他工具，打开.git/config 文件，添加一下内容：</p>
+<pre><code>[user]
+    name = 用户名
+    email = 邮箱地址
+</code></pre><p>这样就解决问题了，当然你也可以使用命名行的形式指定用户名：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git config user.name &quot;用户名&quot;</span><br><span class="line">git config user.email 邮件</span><br></pre></td></tr></table></figure>
+<p>加上 <code>—global</code>  表示设置全局的，对所有的项目都有效，去掉 <code>—global</code> 表示针对某个特定的项目。</p>
+<p><em>参考</em>  <a href="https://git-scm.com/book/zh/v1/%E8%B5%B7%E6%AD%A5-%E5%88%9D%E6%AC%A1%E8%BF%90%E8%A1%8C-Git-%E5%89%8D%E7%9A%84%E9%85%8D%E7%BD%AE" target="_blank" rel="external">Git官方教程</a></p>
 
-function Gallery(){
-    if(!document.getElementById){
-        return false;
-    }
-    if(!document.getElementsByTagName){
-        return false;
-    }
-    if(!document.getElementById(&quot;gallery&quot;)){
-        return false;
-    }
-    var gallery = document.getElementById(&quot;gallery&quot;);
-    var links = gallery.getElementsByTagName(&quot;a&quot;);
-    for (var i = 0; i &lt; links.length ; i++) {
-        links[i].onclick=function(){
-            return !showPic(this);
-        }
-    }
-}
-
-function placeholder(){
-    var img = document.createElement(&quot;img&quot;);
-    img.setAttribute(&quot;src&quot;,&quot;images/defaut.jpg&quot;);
-    img.setAttribute(&quot;id&quot;,&quot;img&quot;);
-    img.setAttribute(&quot;width&quot;,&quot;400px&quot;);
-    img.setAttribute(&quot;height&quot;,&quot;300px&quot;);
-    var pare = document.createElement(&quot;p&quot;);
-    pare.setAttribute(&quot;id&quot;, &quot;title_p&quot;);
-    var txt = document.createTextNode(&quot;defaut&quot;);
-    pare.appendChild(txt);
-    document.getElementsByTagName(&quot;body&quot;)[0].appendChild(img);
-    document.getElementsByTagName(&quot;body&quot;)[0].appendChild(pare);
-}
-
-function addLoadEvent(func){
-    var oldonload = window.onload;
-    if(typeof window.onload != &apos;function&apos;){
-        window.onload = func;
-    }else{
-        window.onload = function(){
-            oldonload();
-            func();
-        }
-    }    
-}
-addLoadEvent(placeholder);
-addLoadEvent(Gallery);
-</code></pre>
       
     </div>
 
@@ -412,9 +319,9 @@ addLoadEvent(Gallery);
       
         <div class="post-tags">
           
-            <a href="/tags/JavaScript/" rel="tag">#JavaScript</a>
+            <a href="/tags/git/" rel="tag">#git</a>
           
-            <a href="/tags/js笔记/" rel="tag">#js笔记</a>
+            <a href="/tags/github/" rel="tag">#github</a>
           
         </div>
       
@@ -423,16 +330,16 @@ addLoadEvent(Gallery);
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/07/05/2015-07-05-JS学习笔记2_图片库js代码优化/" rel="next" title="JS学习笔记2_图片库js代码优化">
-                <i class="fa fa-chevron-left"></i> JS学习笔记2_图片库js代码优化
+              <a href="/2017/02/07/2017-02-07-Android命名规范/" rel="next" title="Android 命名规范">
+                <i class="fa fa-chevron-left"></i> Android 命名规范
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/07/10/2015-07-10-JS学习笔记4_图片库二次优化/" rel="prev" title="JS学习笔记4_图片库二次优化">
-                JS学习笔记4_图片库二次优化 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/02/10/2017-02-10-git 多仓库管理开发技巧（一）/" rel="prev" title="掌握 git 多仓库管理开发（一）">
+                掌握 git 多仓库管理开发（一） <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -459,8 +366,8 @@ addLoadEvent(Gallery);
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2015/07/06/2015-07-06-JS学习笔记3_动态创建HTML内容Demo/"
-           data-title="JS学习笔记3_动态创建HTML内容Demo" data-url="http://www.tipdev.xyz/2015/07/06/2015-07-06-JS学习笔记3_动态创建HTML内容Demo/">
+      <div class="ds-thread" data-thread-key="2017/02/10/2017-02-12-git 多仓库管理开发技巧（二）/"
+           data-title="掌握 git 多仓库管理开发（二）" data-url="http://www.tipdev.xyz/2017/02/10/2017-02-12-git 多仓库管理开发技巧（二）/">
       </div>
     
   </div>
@@ -544,7 +451,7 @@ addLoadEvent(Gallery);
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#This-is-a-demo"><span class="nav-number">1.</span> <span class="nav-text">This is a demo.</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#index-html"><span class="nav-number">1.0.1.</span> <span class="nav-text">index.html</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#myFunction-js"><span class="nav-number">1.0.2.</span> <span class="nav-text">myFunction.js</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#This-is-a-example"><span class="nav-number">2.</span> <span class="nav-text">This is a example.</span></a></li></ol></div>
+              <p class="post-toc-empty">此文章未包含目录</p>
             
           </div>
         </section>
