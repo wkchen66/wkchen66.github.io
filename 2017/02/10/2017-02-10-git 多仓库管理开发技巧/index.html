@@ -94,7 +94,7 @@
 <meta property="og:description" content="今天在项目中碰到一个问题，需要同时向两个仓库提交代码，然后又可以单独向某一个Git仓库提交/拉取代码。
 其实非常的简单，在GitHub／GitLab上我们新建一个仓库后，可以看到以下提示信息：
 …or push an existing repository from the command linegit remote add origin git@github.com:xxx/Smart.git">
-<meta property="og:updated_time" content="2017-02-10T06:19:04.000Z">
+<meta property="og:updated_time" content="2017-02-12T06:20:36.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="掌握 git 多仓库管理开发">
 <meta name="twitter:description" content="今天在项目中碰到一个问题，需要同时向两个仓库提交代码，然后又可以单独向某一个Git仓库提交/拉取代码。
@@ -295,12 +295,15 @@
 <p>这表示向这个本地库添加一个远程仓库，并且起名为origin，其实按照这个再添加一个其他的远程仓库，换个名字不就好了！</p>
 <p>默认地址:</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 查看远程仓库地址 git remote -v</span></span><br><span class="line">origin	git<span class="meta">@github</span>.com:xxx/Smart.git (fetch)</span><br><span class="line">origin	git<span class="meta">@github</span>.com:xxx/Smart.git (push)</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 <ol>
 <li><p>添加smart远程仓库</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">git remote add smart git@<span class="number">192.168</span>.11.111:Product/Smart.git  <span class="comment">// 推荐</span></span><br></pre></td></tr></table></figure>
 <p>或者 每个仓库都有一个.git/config  使用open config 打开，添加一下内容</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[remote &quot;名字&quot;]</span><br><span class="line">	url = git@192.168.11.111:Product/Smart.git</span><br><span class="line">	fetch = +refs/heads/*:refs/remotes/名字/*</span><br></pre></td></tr></table></figure>
 </li>
+</ol>
+<ol>
 <li><p>单仓库提交／拉取</p>
 <p>默认</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git pull origin master</span><br><span class="line">git push origin master</span><br></pre></td></tr></table></figure>
@@ -349,8 +352,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/02/10/2016-06-10-git 复习笔记（记录）/" rel="next" title="git 多仓库管理开发技巧">
-                <i class="fa fa-chevron-left"></i> git 多仓库管理开发技巧
+              <a href="/2017/02/07/2017-02-07-Android命名规范/" rel="next" title="Android 命名规范">
+                <i class="fa fa-chevron-left"></i> Android 命名规范
               </a>
             
           </div>
@@ -427,7 +430,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">18</span>
+              <span class="site-state-item-count">17</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
