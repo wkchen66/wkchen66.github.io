@@ -84,22 +84,22 @@
 
 
 
-<meta name="description" content="今天在项目中碰到一个问题，需要同时向两个仓库提交代码，然后又可以单独向某一个Git仓库提交/拉取代码。
-其实非常的简单，在GitHub／GitLab上我们新建一个仓库后，可以看到以下提示信息：
-…or push an existing repository from the command linegit remote add origin git@github.com:xxx/Smart.git">
+<meta name="description" content="接着上次的多仓库管理开发(一)，在很多情况下我们会涉及到不同的仓库使用不同的用户名和email，比如：在公司开发的时候一般都是使用自己真实名字和公司邮箱；在github时候一般不会暴露自己真实的姓名。这个时候多仓库设置不同用户名就非常有必要了。
+在多说一遍，在每个git仓库下，都有一个.git/ 文件夹，使用vim或者其他工具，打开.git/config 文件，添加一下内容：
+[user]">
 <meta property="og:type" content="article">
-<meta property="og:title" content="掌握 git 多仓库管理开发（一）">
-<meta property="og:url" content="http://www.tipdev.xyz/2017/02/10/2017-02-10-git 多仓库管理开发技巧（一）/index.html">
+<meta property="og:title" content="掌握 git 多仓库管理开发（二）">
+<meta property="og:url" content="http://www.tipdev.xyz/2017/02/12/2017-02-12-git 多仓库管理开发技巧（二）/index.html">
 <meta property="og:site_name" content="wkchen's blog">
-<meta property="og:description" content="今天在项目中碰到一个问题，需要同时向两个仓库提交代码，然后又可以单独向某一个Git仓库提交/拉取代码。
-其实非常的简单，在GitHub／GitLab上我们新建一个仓库后，可以看到以下提示信息：
-…or push an existing repository from the command linegit remote add origin git@github.com:xxx/Smart.git">
-<meta property="og:updated_time" content="2017-02-12T06:24:31.000Z">
+<meta property="og:description" content="接着上次的多仓库管理开发(一)，在很多情况下我们会涉及到不同的仓库使用不同的用户名和email，比如：在公司开发的时候一般都是使用自己真实名字和公司邮箱；在github时候一般不会暴露自己真实的姓名。这个时候多仓库设置不同用户名就非常有必要了。
+在多说一遍，在每个git仓库下，都有一个.git/ 文件夹，使用vim或者其他工具，打开.git/config 文件，添加一下内容：
+[user]">
+<meta property="og:updated_time" content="2017-02-12T06:47:07.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="掌握 git 多仓库管理开发（一）">
-<meta name="twitter:description" content="今天在项目中碰到一个问题，需要同时向两个仓库提交代码，然后又可以单独向某一个Git仓库提交/拉取代码。
-其实非常的简单，在GitHub／GitLab上我们新建一个仓库后，可以看到以下提示信息：
-…or push an existing repository from the command linegit remote add origin git@github.com:xxx/Smart.git">
+<meta name="twitter:title" content="掌握 git 多仓库管理开发（二）">
+<meta name="twitter:description" content="接着上次的多仓库管理开发(一)，在很多情况下我们会涉及到不同的仓库使用不同的用户名和email，比如：在公司开发的时候一般都是使用自己真实名字和公司邮箱；在github时候一般不会暴露自己真实的姓名。这个时候多仓库设置不同用户名就非常有必要了。
+在多说一遍，在每个git仓库下，都有一个.git/ 文件夹，使用vim或者其他工具，打开.git/config 文件，添加一下内容：
+[user]">
 
 
 
@@ -120,9 +120,9 @@
 
 
 
-  <link rel="canonical" href="http://www.tipdev.xyz/2017/02/10/2017-02-10-git 多仓库管理开发技巧（一）/"/>
+  <link rel="canonical" href="http://www.tipdev.xyz/2017/02/12/2017-02-12-git 多仓库管理开发技巧（二）/"/>
 
-  <title> 掌握 git 多仓库管理开发（一） | wkchen's blog </title>
+  <title> 掌握 git 多仓库管理开发（二） | wkchen's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -242,7 +242,7 @@
             
             
               
-                掌握 git 多仓库管理开发（一）
+                掌握 git 多仓库管理开发（二）
               
             
           </h1>
@@ -254,8 +254,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-10T00:00:00+08:00" content="2017-02-10">
-              2017-02-10
+            <time itemprop="dateCreated" datetime="2017-02-12T00:00:00+08:00" content="2017-02-12">
+              2017-02-12
             </time>
           </span>
 
@@ -265,8 +265,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2017/02/10/2017-02-10-git 多仓库管理开发技巧（一）/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/10/2017-02-10-git 多仓库管理开发技巧（一）/" itemprop="commentsCount"></span>
+                <a href="/2017/02/12/2017-02-12-git 多仓库管理开发技巧（二）/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/12/2017-02-12-git 多仓库管理开发技巧（二）/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -289,37 +289,15 @@
       
 
       
-        <p>今天在项目中碰到一个问题，需要同时向两个仓库提交代码，然后又可以单独向某一个Git仓库提交/拉取代码。</p>
-<p>其实非常的简单，在GitHub／GitLab上我们新建一个仓库后，可以看到以下提示信息：</p>
-<h5 id="…or-push-an-existing-repository-from-the-command-line"><a href="#…or-push-an-existing-repository-from-the-command-line" class="headerlink" title="…or push an existing repository from the command line"></a>…or push an existing repository from the command line</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git remote add origin git@github.com:xxx/Smart.git</span><br><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
-<p>这表示向这个本地库添加一个远程仓库，并且起名为origin，其实按照这个再添加一个其他的远程仓库，换个名字不就好了！</p>
-<p>默认地址:</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 查看远程仓库地址 git remote -v</span></span><br><span class="line">origin	git<span class="meta">@github</span>.com:xxx/Smart.git (fetch)</span><br><span class="line">origin	git<span class="meta">@github</span>.com:xxx/Smart.git (push)</span><br></pre></td></tr></table></figure>
-<a id="more"></a>
-<ol>
-<li><p>添加smart远程仓库</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">git remote add smart git@<span class="number">192.168</span>.11.111:Product/Smart.git  <span class="comment">// 推荐</span></span><br></pre></td></tr></table></figure>
-<p>或者 每个仓库都有一个.git/config  使用open config 打开，添加一下内容</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[remote &quot;名字&quot;]</span><br><span class="line">	url = git@192.168.11.111:Product/Smart.git</span><br><span class="line">	fetch = +refs/heads/*:refs/remotes/名字/*</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<ol>
-<li><p>单仓库提交／拉取</p>
-<p>默认</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git pull origin master</span><br><span class="line">git push origin master</span><br></pre></td></tr></table></figure>
-<p>以smart仓库 为例</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git pull smart master</span><br><span class="line">git push smart master</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<ol>
-<li><p>多仓库提交／拉取</p>
-<p>打开.git/config 添加以下内容</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[remote &quot;all&quot;] </span><br><span class="line">url = git@github.com:xxx/Smart.git</span><br><span class="line">url = git@192.168.11.111:Product/Smart.git</span><br></pre></td></tr></table></figure>
-<p>这样就可以同时提交／拉取两个仓库了</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git pull all master</span><br><span class="line">git push all master</span><br></pre></td></tr></table></figure>
-<p>三个、四个…..以此类推就好了。</p>
-</li>
-</ol>
+        <p>接着上次的<a href="http://tipdev.xyz/2017/02/10/2017-02-10-git%20%E5%A4%9A%E4%BB%93%E5%BA%93%E7%AE%A1%E7%90%86%E5%BC%80%E5%8F%91%E6%8A%80%E5%B7%A7%EF%BC%88%E4%B8%80%EF%BC%89/" target="_blank" rel="external">多仓库管理开发(一)</a>，在很多情况下我们会涉及到不同的仓库使用不同的用户名和email，比如：在公司开发的时候一般都是使用自己真实名字和公司邮箱；在github时候一般不会暴露自己真实的姓名。这个时候多仓库设置不同用户名就非常有必要了。</p>
+<p>在多说一遍，在每个git仓库下，都有一个.git/ 文件夹，使用vim或者其他工具，打开.git/config 文件，添加一下内容：</p>
+<pre><code>[user]
+    name = 用户名
+    email = 邮箱地址
+</code></pre><p>这样就解决问题了，当然你也可以使用命名行的形式指定用户名：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git config user.name &quot;用户名&quot;</span><br><span class="line">git config user.email 邮件</span><br></pre></td></tr></table></figure>
+<p>加上 <code>—global</code>  表示设置全局的，对所有的项目都有效，去掉 <code>—global</code> 表示针对某个特定的项目。</p>
+<p><em>参考</em>  <a href="https://git-scm.com/book/zh/v1/%E8%B5%B7%E6%AD%A5-%E5%88%9D%E6%AC%A1%E8%BF%90%E8%A1%8C-Git-%E5%89%8D%E7%9A%84%E9%85%8D%E7%BD%AE" target="_blank" rel="external">Git官方教程</a></p>
 
       
     </div>
@@ -352,17 +330,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/02/07/2017-02-07-RxJava 2.x 基础使用/" rel="next" title="RxJava 2.x 基础使用">
-                <i class="fa fa-chevron-left"></i> RxJava 2.x 基础使用
+              <a href="/2017/02/10/2017-02-10-git 多仓库管理开发技巧（一）/" rel="next" title="掌握 git 多仓库管理开发（一）">
+                <i class="fa fa-chevron-left"></i> 掌握 git 多仓库管理开发（一）
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/02/12/2017-02-12-git 多仓库管理开发技巧（二）/" rel="prev" title="掌握 git 多仓库管理开发（二）">
-                掌握 git 多仓库管理开发（二） <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -388,8 +362,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/02/10/2017-02-10-git 多仓库管理开发技巧（一）/"
-           data-title="掌握 git 多仓库管理开发（一）" data-url="http://www.tipdev.xyz/2017/02/10/2017-02-10-git 多仓库管理开发技巧（一）/">
+      <div class="ds-thread" data-thread-key="2017/02/12/2017-02-12-git 多仓库管理开发技巧（二）/"
+           data-title="掌握 git 多仓库管理开发（二）" data-url="http://www.tipdev.xyz/2017/02/12/2017-02-12-git 多仓库管理开发技巧（二）/">
       </div>
     
   </div>
@@ -473,7 +447,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#…or-push-an-existing-repository-from-the-command-line"><span class="nav-number">1.</span> <span class="nav-text">…or push an existing repository from the command line</span></a></li></ol></div>
+              <p class="post-toc-empty">此文章未包含目录</p>
             
           </div>
         </section>
