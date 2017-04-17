@@ -84,22 +84,28 @@
 
 
 
-<meta name="description" content="今天在项目中碰到一个问题，需要同时向两个仓库提交代码，然后又可以单独向某一个Git仓库提交/拉取代码。
-其实非常的简单，在GitHub／GitLab上我们新建一个仓库后，可以看到以下提示信息：
-…or push an existing repository from the command linegit remote add origin git@github.com:xxx/Smart.git">
+<meta name="description" content="今天在项目中碰到一个问题，需要同时向两个仓库提交代码，然后又可以单独向某一个Git仓库提交/拉取代码。其实非常的简单，在GitHub／GitLab上我们新建一个仓库后，可以看到以下提示信息：
+
+…or push an existing repository from the command line
+
+git remote add origin git@github.com:xxx/Smart.g">
 <meta property="og:type" content="article">
-<meta property="og:title" content="掌握 git 多仓库管理开发（一）">
+<meta property="og:title" content="进阶 git 多仓库管理开发（一）">
 <meta property="og:url" content="http://www.tipdev.xyz/2017/02/10/2017-02-10-git 多仓库管理开发技巧（一）/index.html">
 <meta property="og:site_name" content="wkchen's blog">
-<meta property="og:description" content="今天在项目中碰到一个问题，需要同时向两个仓库提交代码，然后又可以单独向某一个Git仓库提交/拉取代码。
-其实非常的简单，在GitHub／GitLab上我们新建一个仓库后，可以看到以下提示信息：
-…or push an existing repository from the command linegit remote add origin git@github.com:xxx/Smart.git">
-<meta property="og:updated_time" content="2017-02-12T06:24:31.000Z">
+<meta property="og:description" content="今天在项目中碰到一个问题，需要同时向两个仓库提交代码，然后又可以单独向某一个Git仓库提交/拉取代码。其实非常的简单，在GitHub／GitLab上我们新建一个仓库后，可以看到以下提示信息：
+
+…or push an existing repository from the command line
+
+git remote add origin git@github.com:xxx/Smart.g">
+<meta property="og:updated_time" content="2017-02-12T06:53:14.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="掌握 git 多仓库管理开发（一）">
-<meta name="twitter:description" content="今天在项目中碰到一个问题，需要同时向两个仓库提交代码，然后又可以单独向某一个Git仓库提交/拉取代码。
-其实非常的简单，在GitHub／GitLab上我们新建一个仓库后，可以看到以下提示信息：
-…or push an existing repository from the command linegit remote add origin git@github.com:xxx/Smart.git">
+<meta name="twitter:title" content="进阶 git 多仓库管理开发（一）">
+<meta name="twitter:description" content="今天在项目中碰到一个问题，需要同时向两个仓库提交代码，然后又可以单独向某一个Git仓库提交/拉取代码。其实非常的简单，在GitHub／GitLab上我们新建一个仓库后，可以看到以下提示信息：
+
+…or push an existing repository from the command line
+
+git remote add origin git@github.com:xxx/Smart.g">
 
 
 
@@ -122,7 +128,7 @@
 
   <link rel="canonical" href="http://www.tipdev.xyz/2017/02/10/2017-02-10-git 多仓库管理开发技巧（一）/"/>
 
-  <title> 掌握 git 多仓库管理开发（一） | wkchen's blog </title>
+  <title> 进阶 git 多仓库管理开发（一） | wkchen's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -242,7 +248,7 @@
             
             
               
-                掌握 git 多仓库管理开发（一）
+                进阶 git 多仓库管理开发（一）
               
             
           </h1>
@@ -289,9 +295,11 @@
       
 
       
-        <p>今天在项目中碰到一个问题，需要同时向两个仓库提交代码，然后又可以单独向某一个Git仓库提交/拉取代码。</p>
-<p>其实非常的简单，在GitHub／GitLab上我们新建一个仓库后，可以看到以下提示信息：</p>
-<h5 id="…or-push-an-existing-repository-from-the-command-line"><a href="#…or-push-an-existing-repository-from-the-command-line" class="headerlink" title="…or push an existing repository from the command line"></a>…or push an existing repository from the command line</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git remote add origin git@github.com:xxx/Smart.git</span><br><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
+        <p>今天在项目中碰到一个问题，需要同时向两个仓库提交代码，然后又可以单独向某一个Git仓库提交/拉取代码。<br>其实非常的简单，在GitHub／GitLab上我们新建一个仓库后，可以看到以下提示信息：</p>
+<blockquote>
+<p>…or push an existing repository from the command line</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git remote add origin git@github.com:xxx/Smart.git</span><br><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
 <p>这表示向这个本地库添加一个远程仓库，并且起名为origin，其实按照这个再添加一个其他的远程仓库，换个名字不就好了！</p>
 <p>默认地址:</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 查看远程仓库地址 git remote -v</span></span><br><span class="line">origin	git<span class="meta">@github</span>.com:xxx/Smart.git (fetch)</span><br><span class="line">origin	git<span class="meta">@github</span>.com:xxx/Smart.git (push)</span><br></pre></td></tr></table></figure>
@@ -302,16 +310,12 @@
 <p>或者 每个仓库都有一个.git/config  使用open config 打开，添加一下内容</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[remote &quot;名字&quot;]</span><br><span class="line">	url = git@192.168.11.111:Product/Smart.git</span><br><span class="line">	fetch = +refs/heads/*:refs/remotes/名字/*</span><br></pre></td></tr></table></figure>
 </li>
-</ol>
-<ol>
 <li><p>单仓库提交／拉取</p>
 <p>默认</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git pull origin master</span><br><span class="line">git push origin master</span><br></pre></td></tr></table></figure>
 <p>以smart仓库 为例</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git pull smart master</span><br><span class="line">git push smart master</span><br></pre></td></tr></table></figure>
 </li>
-</ol>
-<ol>
 <li><p>多仓库提交／拉取</p>
 <p>打开.git/config 添加以下内容</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[remote &quot;all&quot;] </span><br><span class="line">url = git@github.com:xxx/Smart.git</span><br><span class="line">url = git@192.168.11.111:Product/Smart.git</span><br></pre></td></tr></table></figure>
@@ -360,8 +364,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/02/12/2017-02-12-git 多仓库管理开发技巧（二）/" rel="prev" title="掌握 git 多仓库管理开发（二）">
-                掌握 git 多仓库管理开发（二） <i class="fa fa-chevron-right"></i>
+              <a href="/2017/02/12/2017-02-12-git 多仓库管理开发技巧（二）/" rel="prev" title="进阶 git 多仓库管理开发（二）">
+                进阶 git 多仓库管理开发（二） <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -389,7 +393,7 @@
   <div class="comments" id="comments">
     
       <div class="ds-thread" data-thread-key="2017/02/10/2017-02-10-git 多仓库管理开发技巧（一）/"
-           data-title="掌握 git 多仓库管理开发（一）" data-url="http://www.tipdev.xyz/2017/02/10/2017-02-10-git 多仓库管理开发技巧（一）/">
+           data-title="进阶 git 多仓库管理开发（一）" data-url="http://www.tipdev.xyz/2017/02/10/2017-02-10-git 多仓库管理开发技巧（一）/">
       </div>
     
   </div>
@@ -434,7 +438,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">18</span>
+              <span class="site-state-item-count">20</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -444,7 +448,7 @@
           
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-count">28</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>
@@ -473,7 +477,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#…or-push-an-existing-repository-from-the-command-line"><span class="nav-number">1.</span> <span class="nav-text">…or push an existing repository from the command line</span></a></li></ol></div>
+              <p class="post-toc-empty">此文章未包含目录</p>
             
           </div>
         </section>

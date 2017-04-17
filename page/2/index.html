@@ -238,6 +238,271 @@
             
               
                 
+                <a class="post-title-link" href="/2016/06/20/2016-06-20-SQLite数据库本地读写笔记/" itemprop="url">
+                  SQLite数据库本地读写笔记
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-06-20T00:00:00+08:00" content="2016-06-20">
+              2016-06-20
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/06/20/2016-06-20-SQLite数据库本地读写笔记/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/20/2016-06-20-SQLite数据库本地读写笔记/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>这几天在做Demo的时候碰到了一些问题，记录一下。</p>
+<h3 id="整体流程："><a href="#整体流程：" class="headerlink" title="整体流程："></a>整体流程：</h3><p>通过本地数据库加载数据到listview中，如果当数据不存在”/data/data/包名/“下时，通过加载资源文件导入。</p>
+<pre><code>public static String DB_NAME = &quot;chinacity.db&quot;;
+public static final String PACKAGE_NAME = &quot;com.wkchen.watermelonweather&quot;;
+public static final String DB_PATH = &quot;/data&quot; +Environment.getDataDirectory().getAbsolutePath() + &quot;/&quot; +
+        PACKAGE_NAME;
+
+private SQLiteDatabase db;
+
+private void openDatabase() {
+    try {
+        if (!(new File(DB_PATH+&quot;/&quot;+DB_NAME).exists())) {
+            InputStream is = getResources().openRawResource(R.raw.chinacity); //欲导入的数据库
+            FileOutputStream fos = new FileOutputStream(DB_PATH+&quot;/&quot;+DB_NAME);
+            byte[] buffer = new byte[1024];
+            int count = 0;
+            while ((count = is.read(buffer)) &gt; 0) {
+                fos.write(buffer, 0, count);
+            }
+            fos.close();
+            is.close();
+        }
+        db = SQLiteDatabase.openOrCreateDatabase(DB_PATH+&quot;/&quot;+DB_NAME, null);
+    } catch (FileNotFoundException e) {
+        e.printStackTrace();
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+    Cursor cursor = db.rawQuery(&quot;select * from china_provinces_code&quot;, null);
+    mList = new ArrayList&lt;String&gt;();
+    while (cursor.moveToNext()) {
+        mList.add(cursor.getString(cursor.getColumnIndex(&quot;name&quot;)));
+    }
+
+    MyAdapter adapter = new MyAdapter(getApplicationContext(), R.layout.layout_list_item, mList);
+    mList_city.setAdapter(adapter);
+}
+</code></pre><p>最后加上权限</p>
+<pre><code>&lt;uses-permission android:name=&quot;android.permission.WRITE_EXTERNAL_STORAGE&quot;/&gt;
+</code></pre><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>主要通过判断目标文件是否存在new File(DB_PATH+”/“+DB_NAME).exists()<br>如果存在直接打开，不存在则倒入文件（从raw文件下导入db文件）后打开<br>最后展示到listview中</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/06/17/2016-06-17-Gson使用笔记/" itemprop="url">
+                  Gson使用笔记
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-06-17T00:00:00+08:00" content="2016-06-17">
+              2016-06-17
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/06/17/2016-06-17-Gson使用笔记/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/17/2016-06-17-Gson使用笔记/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>关于Gson，只需要知道它是google推出的一个Json解析库。特点：快、官方、简单。</p>
+<h2 id="简单数据"><a href="#简单数据" class="headerlink" title="简单数据"></a>简单数据</h2><p>假设json数据如下：</p>
+<pre><code>{
+    city: &quot;南子岛&quot;,
+    cnty: &quot;中国&quot;,
+    id: &quot;CN101310230&quot;,
+    lat: &quot;11.26&quot;,
+    lon: &quot;114.20&quot;,
+    prov: &quot;海南&quot;
+}
+</code></pre><p>定义一个实体类</p>
+<pre><code>public class City{
+    public String city;
+    public String cnty;
+    public String id;
+    public String lat;
+    public String lon;
+    public String prov;
+}
+</code></pre><p>使用Gson解析（先导入Jar包）</p>
+<pre><code>//response:json数据
+City city ＝ new Gson().fromJson(response,City.class);
+</code></pre>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/06/17/2016-06-17-Gson使用笔记/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2015/09/03/2015-09-03-VPS之shadowsocks 翻墙技术那加强/" itemprop="url">
                   VPS之shadowsocks 翻墙技术那加强
                 </a>
@@ -1179,7 +1444,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">18</span>
+              <span class="site-state-item-count">20</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1189,7 +1454,7 @@
           
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-count">28</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>

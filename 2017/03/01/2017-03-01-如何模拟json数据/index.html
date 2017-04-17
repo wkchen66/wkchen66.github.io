@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="git,github," />
+  <meta name="keywords" content="android," />
 
 
 
@@ -84,22 +84,48 @@
 
 
 
-<meta name="description" content="接着上次的多仓库管理开发(一)，在很多情况下我们会涉及到不同的仓库使用不同的用户名和email，比如：在公司开发的时候一般都是使用自己真实名字和公司邮箱；在github时候一般不会暴露自己真实的姓名。这个时候多仓库设置不同用户名就非常有必要了。
-在多说一遍，在每个git仓库下，都有一个.git/ 文件夹，使用vim或者其他工具，打开.git/config 文件，添加一下内容：
-[user]">
+<meta name="description" content="最近新项目，后台人手不够，招了一个星期，才招到人，但人再厉害也需要时间先去熟悉项目吧。这样我们移动端或者前端的就被牵着鼻子走，然后项目进度跟不上就甩锅给后端，“接口那边太慢，导致我这进度也受到影响”等等。就这样我找到了以下两种方法解决这个问题。
+
+1、Charles 拦截 + mock 模拟数据
+2、json-server 模拟数据
+
+一、Charles 拦截
+下载Charles 
+
+通过mock">
 <meta property="og:type" content="article">
-<meta property="og:title" content="掌握 git 多仓库管理开发（二）">
-<meta property="og:url" content="http://www.tipdev.xyz/2017/02/10/2017-02-12-git 多仓库管理开发技巧（二）/index.html">
+<meta property="og:title" content="如何模拟json数据">
+<meta property="og:url" content="http://www.tipdev.xyz/2017/03/01/2017-03-01-如何模拟json数据/index.html">
 <meta property="og:site_name" content="wkchen's blog">
-<meta property="og:description" content="接着上次的多仓库管理开发(一)，在很多情况下我们会涉及到不同的仓库使用不同的用户名和email，比如：在公司开发的时候一般都是使用自己真实名字和公司邮箱；在github时候一般不会暴露自己真实的姓名。这个时候多仓库设置不同用户名就非常有必要了。
-在多说一遍，在每个git仓库下，都有一个.git/ 文件夹，使用vim或者其他工具，打开.git/config 文件，添加一下内容：
-[user]">
-<meta property="og:updated_time" content="2017-02-12T06:46:10.000Z">
+<meta property="og:description" content="最近新项目，后台人手不够，招了一个星期，才招到人，但人再厉害也需要时间先去熟悉项目吧。这样我们移动端或者前端的就被牵着鼻子走，然后项目进度跟不上就甩锅给后端，“接口那边太慢，导致我这进度也受到影响”等等。就这样我找到了以下两种方法解决这个问题。
+
+1、Charles 拦截 + mock 模拟数据
+2、json-server 模拟数据
+
+一、Charles 拦截
+下载Charles 
+
+通过mock">
+<meta property="og:image" content="http://wx1.sinaimg.cn/mw690/88b64bf6gy1fd7kaaqtx3j215m0kk0zi.jpg">
+<meta property="og:image" content="http://wx1.sinaimg.cn/mw690/88b64bf6gy1fd7kbrt2kkj215o0kktce.jpg">
+<meta property="og:image" content="http://wx1.sinaimg.cn/mw690/88b64bf6gy1fd7ked6xc0j215o0ib150.jpg">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/88b64bf6gy1fd7kpj9rd4j215o0mfjvh.jpg">
+<meta property="og:image" content="http://wx4.sinaimg.cn/mw690/88b64bf6gy1fd7lec3dgxj20a00hs3zw.jpg">
+<meta property="og:image" content="http://wx4.sinaimg.cn/mw690/88b64bf6gy1fd7lecgozpj20a00hsmxv.jpg">
+<meta property="og:image" content="http://wx4.sinaimg.cn/mw690/88b64bf6gy1fd7lkgmx6gj215o0s47k7.jpg">
+<meta property="og:updated_time" content="2017-03-01T12:20:06.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="掌握 git 多仓库管理开发（二）">
-<meta name="twitter:description" content="接着上次的多仓库管理开发(一)，在很多情况下我们会涉及到不同的仓库使用不同的用户名和email，比如：在公司开发的时候一般都是使用自己真实名字和公司邮箱；在github时候一般不会暴露自己真实的姓名。这个时候多仓库设置不同用户名就非常有必要了。
-在多说一遍，在每个git仓库下，都有一个.git/ 文件夹，使用vim或者其他工具，打开.git/config 文件，添加一下内容：
-[user]">
+<meta name="twitter:title" content="如何模拟json数据">
+<meta name="twitter:description" content="最近新项目，后台人手不够，招了一个星期，才招到人，但人再厉害也需要时间先去熟悉项目吧。这样我们移动端或者前端的就被牵着鼻子走，然后项目进度跟不上就甩锅给后端，“接口那边太慢，导致我这进度也受到影响”等等。就这样我找到了以下两种方法解决这个问题。
+
+1、Charles 拦截 + mock 模拟数据
+2、json-server 模拟数据
+
+一、Charles 拦截
+下载Charles 
+
+通过mock">
+<meta name="twitter:image" content="http://wx1.sinaimg.cn/mw690/88b64bf6gy1fd7kaaqtx3j215m0kk0zi.jpg">
 
 
 
@@ -120,9 +146,9 @@
 
 
 
-  <link rel="canonical" href="http://www.tipdev.xyz/2017/02/10/2017-02-12-git 多仓库管理开发技巧（二）/"/>
+  <link rel="canonical" href="http://www.tipdev.xyz/2017/03/01/2017-03-01-如何模拟json数据/"/>
 
-  <title> 掌握 git 多仓库管理开发（二） | wkchen's blog </title>
+  <title> 如何模拟json数据 | wkchen's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -242,7 +268,7 @@
             
             
               
-                掌握 git 多仓库管理开发（二）
+                如何模拟json数据
               
             
           </h1>
@@ -254,8 +280,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-10T00:00:00+08:00" content="2017-02-10">
-              2017-02-10
+            <time itemprop="dateCreated" datetime="2017-03-01T00:00:00+08:00" content="2017-03-01">
+              2017-03-01
             </time>
           </span>
 
@@ -265,8 +291,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2017/02/10/2017-02-12-git 多仓库管理开发技巧（二）/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/10/2017-02-12-git 多仓库管理开发技巧（二）/" itemprop="commentsCount"></span>
+                <a href="/2017/03/01/2017-03-01-如何模拟json数据/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/01/2017-03-01-如何模拟json数据/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -289,15 +315,53 @@
       
 
       
-        <p>接着上次的<a href="http://tipdev.xyz/2017/02/10/2017-02-10-git%20%E5%A4%9A%E4%BB%93%E5%BA%93%E7%AE%A1%E7%90%86%E5%BC%80%E5%8F%91%E6%8A%80%E5%B7%A7%EF%BC%88%E4%B8%80%EF%BC%89/" target="_blank" rel="external">多仓库管理开发(一)</a>，在很多情况下我们会涉及到不同的仓库使用不同的用户名和email，比如：在公司开发的时候一般都是使用自己真实名字和公司邮箱；在github时候一般不会暴露自己真实的姓名。这个时候多仓库设置不同用户名就非常有必要了。</p>
-<p>在多说一遍，在每个git仓库下，都有一个.git/ 文件夹，使用vim或者其他工具，打开.git/config 文件，添加一下内容：</p>
-<pre><code>[user]
-    name = 用户名
-    email = 邮箱地址
-</code></pre><p>这样就解决问题了，当然你也可以使用命名行的形式指定用户名：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git config user.name &quot;用户名&quot;</span><br><span class="line">git config user.email 邮件</span><br></pre></td></tr></table></figure>
-<p>加上 <code>—global</code>  表示设置全局的，对所有的项目都有效，去掉 <code>—global</code> 表示针对某个特定的项目。</p>
-<p><em>参考</em>  <a href="https://git-scm.com/book/zh/v1/%E8%B5%B7%E6%AD%A5-%E5%88%9D%E6%AC%A1%E8%BF%90%E8%A1%8C-Git-%E5%89%8D%E7%9A%84%E9%85%8D%E7%BD%AE" target="_blank" rel="external">Git官方教程</a></p>
+        <p>最近新项目，后台人手不够，招了一个星期，才招到人，但人再厉害也需要时间先去熟悉项目吧。这样我们移动端或者前端的就被牵着鼻子走，然后项目进度跟不上就甩锅给后端，“接口那边太慢，导致我这进度也受到影响”等等。就这样我找到了以下两种方法解决这个问题。</p>
+<ul>
+<li>1、Charles 拦截 + mock 模拟数据</li>
+<li>2、json-server 模拟数据</li>
+</ul>
+<h3 id="一、Charles-拦截"><a href="#一、Charles-拦截" class="headerlink" title="一、Charles 拦截"></a>一、Charles 拦截</h3><ol>
+<li><p>下载<a href="https://www.charlesproxy.com/download/" target="_blank" rel="external">Charles</a> </p>
+</li>
+<li><p>通过<a href="http://www.mocky.io" target="_blank" rel="external">mocky</a> 模拟json数据，最后会生成一个对应的url</p>
+</li>
+<li><p>设置Mac代理</p>
+<p><img src="http://wx1.sinaimg.cn/mw690/88b64bf6gy1fd7kaaqtx3j215m0kk0zi.jpg" alt="img"></p>
+</li>
+</ol>
+<a id="more"></a>
+<p>   开启Mac 代理</p>
+<p>   <img src="http://wx1.sinaimg.cn/mw690/88b64bf6gy1fd7kbrt2kkj215o0kktce.jpg" alt="img"></p>
+<ol>
+<li><p>安装证书</p>
+<p><img src="http://wx1.sinaimg.cn/mw690/88b64bf6gy1fd7ked6xc0j215o0ib150.jpg" alt="img"></p>
+<p>安装向导</p>
+<p><img src="http://wx2.sinaimg.cn/mw690/88b64bf6gy1fd7kpj9rd4j215o0mfjvh.jpg" alt="img"></p>
+</li>
+</ol>
+<p>​      接着就是手机安装证书</p>
+<p>​          <img src="http://wx4.sinaimg.cn/mw690/88b64bf6gy1fd7lec3dgxj20a00hs3zw.jpg" alt="img"> <img src="http://wx4.sinaimg.cn/mw690/88b64bf6gy1fd7lecgozpj20a00hsmxv.jpg" alt="img"></p>
+<p>​         最后设置拦截的url 到你模拟的mock url</p>
+<p><img src="http://wx4.sinaimg.cn/mw690/88b64bf6gy1fd7lkgmx6gj215o0s47k7.jpg" alt="img"></p>
+<h3 id="二、json-server-模拟数据"><a href="#二、json-server-模拟数据" class="headerlink" title="二、json-server 模拟数据"></a>二、json-server 模拟数据</h3><p>​    </p>
+<h3 id="三、各自优缺点"><a href="#三、各自优缺点" class="headerlink" title="三、各自优缺点"></a>三、各自优缺点</h3><p>Charles优点</p>
+<ul>
+<li>在项目中不用考虑接口地址</li>
+<li>实时观察网络请求情况</li>
+</ul>
+<p>Charles缺点</p>
+<ul>
+<li>依靠mock 模拟数据，多接口需要模拟多个</li>
+<li>需要每次拦截对应的请求URL，再跳转</li>
+</ul>
+<p>json-server优点</p>
+<ul>
+<li>操作简单，修改简单</li>
+</ul>
+<p>json-server缺点</p>
+<ul>
+<li>暂时没发现</li>
+</ul>
 
       
     </div>
@@ -319,9 +383,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/git/" rel="tag">#git</a>
-          
-            <a href="/tags/github/" rel="tag">#github</a>
+            <a href="/tags/android/" rel="tag">#android</a>
           
         </div>
       
@@ -330,16 +392,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/02/07/2017-02-07-Android命名规范/" rel="next" title="Android 命名规范">
-                <i class="fa fa-chevron-left"></i> Android 命名规范
+              <a href="/2017/02/12/2017-02-12-git 多仓库管理开发技巧（二）/" rel="next" title="进阶 git 多仓库管理开发（二）">
+                <i class="fa fa-chevron-left"></i> 进阶 git 多仓库管理开发（二）
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/02/10/2017-02-10-git 多仓库管理开发技巧（一）/" rel="prev" title="掌握 git 多仓库管理开发（一）">
-                掌握 git 多仓库管理开发（一） <i class="fa fa-chevron-right"></i>
+              <a href="/2017/04/17/2017-04-17-JAVA错误 No default constructor for entity/" rel="prev" title="JAVA错误 No default constructor for entity ...">
+                JAVA错误 No default constructor for entity ... <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -366,8 +428,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/02/10/2017-02-12-git 多仓库管理开发技巧（二）/"
-           data-title="掌握 git 多仓库管理开发（二）" data-url="http://www.tipdev.xyz/2017/02/10/2017-02-12-git 多仓库管理开发技巧（二）/">
+      <div class="ds-thread" data-thread-key="2017/03/01/2017-03-01-如何模拟json数据/"
+           data-title="如何模拟json数据" data-url="http://www.tipdev.xyz/2017/03/01/2017-03-01-如何模拟json数据/">
       </div>
     
   </div>
@@ -412,7 +474,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">18</span>
+              <span class="site-state-item-count">20</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -422,7 +484,7 @@
           
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-count">28</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>
@@ -451,7 +513,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、Charles-拦截"><span class="nav-number">1.</span> <span class="nav-text">一、Charles 拦截</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、json-server-模拟数据"><span class="nav-number">2.</span> <span class="nav-text">二、json-server 模拟数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、各自优缺点"><span class="nav-number">3.</span> <span class="nav-text">三、各自优缺点</span></a></li></ol></div>
             
           </div>
         </section>
