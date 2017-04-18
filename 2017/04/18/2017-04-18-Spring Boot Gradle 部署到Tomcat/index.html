@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="recycleview,android," />
+  <meta name="keywords" content="Spring Boot,Gradle,Tomcat," />
 
 
 
@@ -84,19 +84,22 @@
 
 
 
-<meta name="description" content="这一周在项目中碰到一些关于RecycleView点击事件的Bug。先说说上周，和同事代码合并，碰到了不少问题，之前没有这样的经历，这次合并代码，让我学到了很多，一方面学习了更多的git使用经验，另一方面让我学到了代码的合并过程。扯多了，来说说正题吧：Vecycleview Item点击事件的误操作，脑残操作，多次点击同一个item会打开多个activity。
-解决思路通过判断当前点击事件触发的间隔">
+<meta name="description" content="最近在学习Spring Boot ，自己搭的小型项目服务端开发的差不多了，，准备部署项目到服务器上跑一下，发现网上都是一些关于Maven的方法，提及到Gradle的也都讲的不太清楚，记录一下自己的心得。
+一、配置Application首先修改程序入口Application 中，如下
+@SpringBootApplicationpublic class WkServerApplication ext">
 <meta property="og:type" content="article">
-<meta property="og:title" content="RecycleView使用之仿多次单击误触">
-<meta property="og:url" content="http://www.tipdev.xyz/2016/07/18/2016-07-18-RecycleView使用之仿多次单击误触(记录)/index.html">
+<meta property="og:title" content="Spring Boot Gradle 部署到Tomcat">
+<meta property="og:url" content="http://www.tipdev.xyz/2017/04/18/2017-04-18-Spring Boot Gradle 部署到Tomcat/index.html">
 <meta property="og:site_name" content="wkchen's blog">
-<meta property="og:description" content="这一周在项目中碰到一些关于RecycleView点击事件的Bug。先说说上周，和同事代码合并，碰到了不少问题，之前没有这样的经历，这次合并代码，让我学到了很多，一方面学习了更多的git使用经验，另一方面让我学到了代码的合并过程。扯多了，来说说正题吧：Vecycleview Item点击事件的误操作，脑残操作，多次点击同一个item会打开多个activity。
-解决思路通过判断当前点击事件触发的间隔">
-<meta property="og:updated_time" content="2016-07-17T17:02:44.000Z">
+<meta property="og:description" content="最近在学习Spring Boot ，自己搭的小型项目服务端开发的差不多了，，准备部署项目到服务器上跑一下，发现网上都是一些关于Maven的方法，提及到Gradle的也都讲的不太清楚，记录一下自己的心得。
+一、配置Application首先修改程序入口Application 中，如下
+@SpringBootApplicationpublic class WkServerApplication ext">
+<meta property="og:updated_time" content="2017-04-18T03:38:40.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="RecycleView使用之仿多次单击误触">
-<meta name="twitter:description" content="这一周在项目中碰到一些关于RecycleView点击事件的Bug。先说说上周，和同事代码合并，碰到了不少问题，之前没有这样的经历，这次合并代码，让我学到了很多，一方面学习了更多的git使用经验，另一方面让我学到了代码的合并过程。扯多了，来说说正题吧：Vecycleview Item点击事件的误操作，脑残操作，多次点击同一个item会打开多个activity。
-解决思路通过判断当前点击事件触发的间隔">
+<meta name="twitter:title" content="Spring Boot Gradle 部署到Tomcat">
+<meta name="twitter:description" content="最近在学习Spring Boot ，自己搭的小型项目服务端开发的差不多了，，准备部署项目到服务器上跑一下，发现网上都是一些关于Maven的方法，提及到Gradle的也都讲的不太清楚，记录一下自己的心得。
+一、配置Application首先修改程序入口Application 中，如下
+@SpringBootApplicationpublic class WkServerApplication ext">
 
 
 
@@ -117,9 +120,9 @@
 
 
 
-  <link rel="canonical" href="http://www.tipdev.xyz/2016/07/18/2016-07-18-RecycleView使用之仿多次单击误触(记录)/"/>
+  <link rel="canonical" href="http://www.tipdev.xyz/2017/04/18/2017-04-18-Spring Boot Gradle 部署到Tomcat/"/>
 
-  <title> RecycleView使用之仿多次单击误触 | wkchen's blog </title>
+  <title> Spring Boot Gradle 部署到Tomcat | wkchen's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -239,7 +242,7 @@
             
             
               
-                RecycleView使用之仿多次单击误触
+                Spring Boot Gradle 部署到Tomcat
               
             
           </h1>
@@ -251,8 +254,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-18T00:00:00+08:00" content="2016-07-18">
-              2016-07-18
+            <time itemprop="dateCreated" datetime="2017-04-18T00:00:00+08:00" content="2017-04-18">
+              2017-04-18
             </time>
           </span>
 
@@ -262,8 +265,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/07/18/2016-07-18-RecycleView使用之仿多次单击误触(记录)/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/18/2016-07-18-RecycleView使用之仿多次单击误触(记录)/" itemprop="commentsCount"></span>
+                <a href="/2017/04/18/2017-04-18-Spring Boot Gradle 部署到Tomcat/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/04/18/2017-04-18-Spring Boot Gradle 部署到Tomcat/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -286,31 +289,17 @@
       
 
       
-        <p>这一周在项目中碰到一些关于RecycleView点击事件的Bug。先说说上周，和同事代码合并，碰到了不少问题，之前没有这样的经历，这次合并代码，让我学到了很多，一方面学习了更多的git使用经验，另一方面让我学到了代码的合并过程。扯多了，来说说正题吧：Vecycleview Item点击事件的误操作，脑残操作，多次点击同一个item会打开多个activity。</p>
-<h4 id="解决思路"><a href="#解决思路" class="headerlink" title="解决思路"></a>解决思路</h4><p>通过判断当前点击事件触发的间隔，来作出判断是否误触发两次单击事件，打开两个页面。</p>
-<h4 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h4><p>创建工具类</p>
-<pre><code>public class NoDoubleClickUtils {
-    private static long lastClickTime;
-    private final static int SPACE_TIME = 500;
-
-    public static void initLastClickTime() {
-        lastClickTime = 0;
-    }
-
-    public synchronized static boolean isDoubleClick() {
-        long currentTime = System.currentTimeMillis();
-        boolean isClick2;
-        if (currentTime - lastClickTime &gt;
-                SPACE_TIME) {
-            isClick2 = false;
-        } else {
-            isClick2 = true;
-        }
-        lastClickTime = currentTime;
-        return isClick2;
-    }
-}
-</code></pre><p>在单击事件里判断 NoDoubleClickUtils.isDoubleClick()的值。</p>
+        <p>最近在学习Spring Boot ，自己搭的小型项目服务端开发的差不多了，，准备部署项目到服务器上跑一下，发现网上都是一些关于Maven的方法，提及到Gradle的也都讲的不太清楚，记录一下自己的心得。</p>
+<h4 id="一、配置Application"><a href="#一、配置Application" class="headerlink" title="一、配置Application"></a>一、配置Application</h4><p>首先修改程序入口Application 中，如下</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WkServerApplication</span> <span class="keyword">extends</span> <span class="title">SpringBootServletInitializer</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// run with war</span></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">protected</span> SpringApplicationBuilder <span class="title">configure</span><span class="params">(SpringApplicationBuilder application)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> application.sources(WkServerApplication.class);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// run with jar</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">		SpringApplication.run(WkServerApplication.class, args);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>继承SpringBootServletInitializer，并且覆写configure方法。</p>
+<a id="more"></a>
+<h4 id="二、配置build-gradle"><a href="#二、配置build-gradle" class="headerlink" title="二、配置build.gradle"></a>二、配置build.gradle</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">apply plugin: <span class="string">'war'</span>      <span class="comment">// 添加war插件</span></span><br><span class="line">apply plugin: <span class="string">'java'</span></span><br><span class="line">apply plugin: <span class="string">'org.springframework.boot'</span>  <span class="comment">// spring boot 插件</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 设置war包的名字，由baseName+version组成</span></span><br><span class="line">war &#123;</span><br><span class="line">	baseName = <span class="string">'WK-SERVER'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">version = <span class="string">'0.0.1-SNAPSHOT'</span></span><br><span class="line">sourceCompatibility = <span class="number">1.8</span></span><br><span class="line"></span><br><span class="line">dependencies &#123;</span><br><span class="line">	compile(<span class="string">"org.springframework.boot:spring-boot-starter-web"</span>)</span><br><span class="line">      </span><br><span class="line">    <span class="comment">// 添加provide tomcat，因为spring boot集成了tomcat，为了确保不受servlet干扰</span></span><br><span class="line">	providedRuntime <span class="string">'org.springframework.boot:spring-boot-starter-tomcat'</span></span><br><span class="line">      ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="三、生成War包"><a href="#三、生成War包" class="headerlink" title="三、生成War包"></a>三、生成War包</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">./gradlew war   <span class="comment">// 在项目的根目录执行，生成文件路径 /build/libs/wk.war</span></span><br></pre></td></tr></table></figure>
+<p>或者 在IDEA中 工具栏Build-Build artifacts</p>
+<h4 id="四、部署到Tomcat"><a href="#四、部署到Tomcat" class="headerlink" title="四、部署到Tomcat"></a>四、部署到Tomcat</h4><p>这里Tomcat的安装就不说了，我们把生成的war包 复制到 tomcat/webapp/下</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">./startup.sh</span><br></pre></td></tr></table></figure>
+<p>注意：要在原来url端口号后加上war包名，就像 <a href="http://127.0.0.1:8080/wk/news" target="_blank" rel="external">http://127.0.0.1:8080/wk/news</a></p>
 
       
     </div>
@@ -332,9 +321,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/recycleview/" rel="tag">#recycleview</a>
+            <a href="/tags/Spring-Boot/" rel="tag">#Spring Boot</a>
           
-            <a href="/tags/android/" rel="tag">#android</a>
+            <a href="/tags/Gradle/" rel="tag">#Gradle</a>
+          
+            <a href="/tags/Tomcat/" rel="tag">#Tomcat</a>
           
         </div>
       
@@ -343,17 +334,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/07/05/2016-07-05-关于自定义Toolbar左边出现空白间隙(记录)/" rel="next" title="关于自定义Toolbar左边出现16dp的空白间隙(记录)">
-                <i class="fa fa-chevron-left"></i> 关于自定义Toolbar左边出现16dp的空白间隙(记录)
+              <a href="/2017/04/17/2017-04-17-JAVA错误 No default constructor for entity/" rel="next" title="JAVA错误 No default constructor for entity ...">
+                <i class="fa fa-chevron-left"></i> JAVA错误 No default constructor for entity ...
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/11/12/2016-11-12-搭建git服务器(记录)/" rel="prev" title="搭建git服务器">
-                搭建git服务器 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -379,8 +366,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/07/18/2016-07-18-RecycleView使用之仿多次单击误触(记录)/"
-           data-title="RecycleView使用之仿多次单击误触" data-url="http://www.tipdev.xyz/2016/07/18/2016-07-18-RecycleView使用之仿多次单击误触(记录)/">
+      <div class="ds-thread" data-thread-key="2017/04/18/2017-04-18-Spring Boot Gradle 部署到Tomcat/"
+           data-title="Spring Boot Gradle 部署到Tomcat" data-url="http://www.tipdev.xyz/2017/04/18/2017-04-18-Spring Boot Gradle 部署到Tomcat/">
       </div>
     
   </div>
@@ -464,7 +451,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#解决思路"><span class="nav-number">1.</span> <span class="nav-text">解决思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解决方法"><span class="nav-number">2.</span> <span class="nav-text">解决方法</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#一、配置Application"><span class="nav-number">1.</span> <span class="nav-text">一、配置Application</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二、配置build-gradle"><span class="nav-number">2.</span> <span class="nav-text">二、配置build.gradle</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三、生成War包"><span class="nav-number">3.</span> <span class="nav-text">三、生成War包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#四、部署到Tomcat"><span class="nav-number">4.</span> <span class="nav-text">四、部署到Tomcat</span></a></li></ol></div>
             
           </div>
         </section>
