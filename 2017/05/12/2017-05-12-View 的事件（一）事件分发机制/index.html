@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="JavaScript,js笔记," />
+  <meta name="keywords" content="Android,View," />
 
 
 
@@ -84,31 +84,30 @@
 
 
 
-<meta name="description" content="放暑假了，有时间瞎折腾了，要保持这种学习态度。这次是对上一次JS学习笔记1_图片库showPic() 内容的优化。
-function showPic(whichpic){
-    if(!document.getElementById(&amp;quot;img&amp;quot;)){
-        return false;
-    }
-    var a = whichpic.getAttribute(&amp;">
+<meta name="description" content="简单介绍一下View的事件分发机制，这也算是View的一个核心知识点，经常在面试过程中被问到。同样在开发过程中自定义View、解决事件冲突等，都需要掌握View的事件分发机制。
+View事件分发过程
+事件分发  dispatchTouchEvent
+事件拦截 onInterceptTouchEvent
+处理事件 onTouchEvent">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JS学习笔记2_图片库js代码优化">
-<meta property="og:url" content="http://www.tipdev.xyz/2015/07/05/2015-07-05-JS学习笔记2_图片库js代码优化/index.html">
+<meta property="og:title" content="View 的事件（一）事件分发机制">
+<meta property="og:url" content="http://www.tipdev.xyz/2017/05/12/2017-05-12-View 的事件（一）事件分发机制/index.html">
 <meta property="og:site_name" content="wkchen's blog">
-<meta property="og:description" content="放暑假了，有时间瞎折腾了，要保持这种学习态度。这次是对上一次JS学习笔记1_图片库showPic() 内容的优化。
-function showPic(whichpic){
-    if(!document.getElementById(&amp;quot;img&amp;quot;)){
-        return false;
-    }
-    var a = whichpic.getAttribute(&amp;">
-<meta property="og:updated_time" content="2015-09-01T12:40:08.000Z">
+<meta property="og:description" content="简单介绍一下View的事件分发机制，这也算是View的一个核心知识点，经常在面试过程中被问到。同样在开发过程中自定义View、解决事件冲突等，都需要掌握View的事件分发机制。
+View事件分发过程
+事件分发  dispatchTouchEvent
+事件拦截 onInterceptTouchEvent
+处理事件 onTouchEvent">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/88b64bf6ly1ffizxniqf2j219y1giwiz.jpg">
+<meta property="og:updated_time" content="2017-05-12T15:33:26.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JS学习笔记2_图片库js代码优化">
-<meta name="twitter:description" content="放暑假了，有时间瞎折腾了，要保持这种学习态度。这次是对上一次JS学习笔记1_图片库showPic() 内容的优化。
-function showPic(whichpic){
-    if(!document.getElementById(&amp;quot;img&amp;quot;)){
-        return false;
-    }
-    var a = whichpic.getAttribute(&amp;">
+<meta name="twitter:title" content="View 的事件（一）事件分发机制">
+<meta name="twitter:description" content="简单介绍一下View的事件分发机制，这也算是View的一个核心知识点，经常在面试过程中被问到。同样在开发过程中自定义View、解决事件冲突等，都需要掌握View的事件分发机制。
+View事件分发过程
+事件分发  dispatchTouchEvent
+事件拦截 onInterceptTouchEvent
+处理事件 onTouchEvent">
+<meta name="twitter:image" content="http://wx2.sinaimg.cn/mw690/88b64bf6ly1ffizxniqf2j219y1giwiz.jpg">
 
 
 
@@ -129,9 +128,9 @@ function showPic(whichpic){
 
 
 
-  <link rel="canonical" href="http://www.tipdev.xyz/2015/07/05/2015-07-05-JS学习笔记2_图片库js代码优化/"/>
+  <link rel="canonical" href="http://www.tipdev.xyz/2017/05/12/2017-05-12-View 的事件（一）事件分发机制/"/>
 
-  <title> JS学习笔记2_图片库js代码优化 | wkchen's blog </title>
+  <title> View 的事件（一）事件分发机制 | wkchen's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -251,7 +250,7 @@ function showPic(whichpic){
             
             
               
-                JS学习笔记2_图片库js代码优化
+                View 的事件（一）事件分发机制
               
             
           </h1>
@@ -263,8 +262,8 @@ function showPic(whichpic){
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-07-05T00:00:00+08:00" content="2015-07-05">
-              2015-07-05
+            <time itemprop="dateCreated" datetime="2017-05-12T00:00:00+08:00" content="2017-05-12">
+              2017-05-12
             </time>
           </span>
 
@@ -274,8 +273,8 @@ function showPic(whichpic){
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/07/05/2015-07-05-JS学习笔记2_图片库js代码优化/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/07/05/2015-07-05-JS学习笔记2_图片库js代码优化/" itemprop="commentsCount"></span>
+                <a href="/2017/05/12/2017-05-12-View 的事件（一）事件分发机制/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/05/12/2017-05-12-View 的事件（一）事件分发机制/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -298,81 +297,24 @@ function showPic(whichpic){
       
 
       
-        <p>放暑假了，有时间瞎折腾了，要保持这种学习态度。这次是对上一次<a href="http://wkchen66.github.io/2015/06/28/2015-06-28-JS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B01_%E5%9B%BE%E7%89%87%E5%BA%93showPic%28%29/" target="_blank" rel="external">JS学习笔记1_图片库showPic()</a> 内容的优化。</p>
-<pre><code>function showPic(whichpic){
-    if(!document.getElementById(&quot;img&quot;)){
-        return false;
-    }
-    var a = whichpic.getAttribute(&quot;href&quot;);
-    var b = document.getElementById(&quot;img&quot;);
-    if(b.nodeName != &quot;IMG&quot;){ //检查img元素是否存在
-        return false;
-    }
-    b.setAttribute(&quot;src&quot;, a);
-    if(document.getElementById(&quot;title_p&quot;)){
-        if(whichpic.getAttribute(&quot;title&quot;)){
-            var c = whichpic.getAttribute(&quot;title&quot;);
-        }else{
-            var c = &quot;&quot;;
-        }
-        var d = document.getElementById(&quot;title_p&quot;);
-</code></pre><a id="more"></a>
-<pre><code>        if(d.firstChild.nodeType == 3){  //检查d元素是否是文本节点，这里nodeType 3 代表文本节点。
-            d.firstChild.nodeValue=c;
-        }
-    }else{
-        return false;
-    }
-    return true;
-}
-
-function Gallery(){
-    if(!document.getElementById){
-        return false;
-    }
-    if(!document.getElementsByTagName){
-        return false;
-    }
-    if(!document.getElementById(&quot;gallery&quot;)){
-        return false;
-    }
-    var gallery = document.getElementById(&quot;gallery&quot;);
-    var links = gallery.getElementsByTagName(&quot;a&quot;);
-    for (var i = 0; i &lt; links.length ; i++) {
-        links[i].onclick=function(){
-            return !showPic(this);
-        }
-    }
-}
-
-function addLoadEvent(func){
-    var oldonload = window.onload;
-    if(typeof window.onload != &apos;function&apos;){
-        window.onload = func;
-    }else{
-        window.onload = function(){
-            oldonload();
-            func();
-        }
-    }    
-}
-
-addLoadEvent(Gallery);
-</code></pre><p>除了以上注释内容的优化，还解决了一个问题：如果img图片不存在，实现平稳退化，不影响正常浏览。</p>
-<table>
-<thead>
-<tr>
-<th>old</th>
-<th>new</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>for (var i = 0; i &lt; links.length ; i++) {<br>         &nbsp;&nbsp;&nbsp;&nbsp;links[i].onclick=function(){<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;showPic(this);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return false;<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br>}</td>
-<td>for (var i = 0; i &lt; links.length ; i++) {<br>         &nbsp;&nbsp;&nbsp;&nbsp;links[i].onclick=function(){<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return !showPic(this);<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br>}</td>
-</tr>
-</tbody>
-</table>
+        <p>简单介绍一下View的事件分发机制，这也算是View的一个核心知识点，经常在面试过程中被问到。同样在开发过程中自定义View、解决事件冲突等，都需要掌握View的事件分发机制。</p>
+<h3 id="View事件分发过程"><a href="#View事件分发过程" class="headerlink" title="View事件分发过程"></a>View事件分发过程</h3><ul>
+<li>事件分发  dispatchTouchEvent</li>
+<li>事件拦截 onInterceptTouchEvent</li>
+<li>处理事件 onTouchEvent</li>
+</ul>
+<a id="more"></a>
+<h3 id="事件传递流程"><a href="#事件传递流程" class="headerlink" title="事件传递流程"></a>事件传递流程</h3><p><img src="http://wx2.sinaimg.cn/mw690/88b64bf6ly1ffizxniqf2j219y1giwiz.jpg" alt="未标题-1"><br>当ViiewGroup接收到事件的时候，首先它的dispatchTouchEvent方法被触发，接着到ViewGroup的onInterceptTouchEvent方法中，如果返回true，就说明ViewGroup要拦截消费该事件，传递到ViewGroup的onTouchEvent方法中；如果返回的是false，就说明ViewGroup不拦截该事件，这样就传递到子View的dispatchTouchEvent方法中。</p>
+<p>上述三个方法的传递过程，用如下伪代码表示非常好理解：<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">diapatchTouchEvent</span><span class="params">(MotionEvent ev)</span></span>&#123;</span><br><span class="line">  <span class="keyword">boolean</span> consume = <span class="keyword">false</span>;</span><br><span class="line">  <span class="keyword">if</span>(onInterceptTouchEvent(ev))&#123;</span><br><span class="line">    consume = onTouchEvent(ev);</span><br><span class="line">  &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    consume = child.dispatchTouchEvent(ev);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> consume;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>注意：</p>
+<ol>
+<li><p>dispatchTouchEvent的返回值取决于onTouchEvent方法和子view的dispatchTouchEvent方法。</p>
+<p>比如：onInterceptTouchEvent到达的是当前View的onTouchEvent方法的时候，onTouchEvent没有消费事件，那么当前View的dispatchTouchEvent方法返回的就是false；反之到达的是子 View的dispatchTouchEvent方法，返回false，那么上级View的dispatchTouchEvent方法返回的也是false。</p>
+</li>
+<li><p>当View 的onTouchEvent方法，返回的是false时，它的父类的onTouchEvent方法就会被触发，以此类推，如果最后都没有处理该事件的话，会回到Activity onTouchEvent方法中。</p>
+<p>比如：老板和项目经理说我们要开发一个淘宝—经理和项目负责人说做个淘宝— 项目负责人和开发人员说搞个淘宝出来— 开发人员搞了半天没搞出来，报告项目负责人说，做不出来— 项目负责人和经理说做不了这个— 经理报告老板说整个我们真做不了—最后老板只好，哦…</p>
+</li>
+</ol>
 
       
     </div>
@@ -394,9 +336,9 @@ addLoadEvent(Gallery);
       
         <div class="post-tags">
           
-            <a href="/tags/JavaScript/" rel="tag">#JavaScript</a>
+            <a href="/tags/Android/" rel="tag">#Android</a>
           
-            <a href="/tags/js笔记/" rel="tag">#js笔记</a>
+            <a href="/tags/View/" rel="tag">#View</a>
           
         </div>
       
@@ -405,17 +347,13 @@ addLoadEvent(Gallery);
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/06/28/2015-06-28-JS学习笔记1_图片库showPic()/" rel="next" title="JS学习笔记1_图片库showPic()">
-                <i class="fa fa-chevron-left"></i> JS学习笔记1_图片库showPic()
+              <a href="/2017/04/18/2017-04-18-Spring Boot Gradle 部署到Tomcat/" rel="next" title="Spring Boot Gradle 部署到Tomcat">
+                <i class="fa fa-chevron-left"></i> Spring Boot Gradle 部署到Tomcat
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2015/07/06/2015-07-06-JS学习笔记3_动态创建HTML内容Demo/" rel="prev" title="JS学习笔记3_动态创建HTML内容Demo">
-                JS学习笔记3_动态创建HTML内容Demo <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -441,8 +379,8 @@ addLoadEvent(Gallery);
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2015/07/05/2015-07-05-JS学习笔记2_图片库js代码优化/"
-           data-title="JS学习笔记2_图片库js代码优化" data-url="http://www.tipdev.xyz/2015/07/05/2015-07-05-JS学习笔记2_图片库js代码优化/">
+      <div class="ds-thread" data-thread-key="2017/05/12/2017-05-12-View 的事件（一）事件分发机制/"
+           data-title="View 的事件（一）事件分发机制" data-url="http://www.tipdev.xyz/2017/05/12/2017-05-12-View 的事件（一）事件分发机制/">
       </div>
     
   </div>
@@ -526,7 +464,7 @@ addLoadEvent(Gallery);
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#View事件分发过程"><span class="nav-number">1.</span> <span class="nav-text">View事件分发过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事件传递流程"><span class="nav-number">2.</span> <span class="nav-text">事件传递流程</span></a></li></ol></div>
             
           </div>
         </section>

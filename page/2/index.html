@@ -238,6 +238,131 @@
             
               
                 
+                <a class="post-title-link" href="/2016/07/18/2016-07-18-RecycleView使用之仿多次单击误触(记录)/" itemprop="url">
+                  RecycleView使用之仿多次单击误触
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-18T00:00:00+08:00" content="2016-07-18">
+              2016-07-18
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/18/2016-07-18-RecycleView使用之仿多次单击误触(记录)/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/18/2016-07-18-RecycleView使用之仿多次单击误触(记录)/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>这一周在项目中碰到一些关于RecycleView点击事件的Bug。先说说上周，和同事代码合并，碰到了不少问题，之前没有这样的经历，这次合并代码，让我学到了很多，一方面学习了更多的git使用经验，另一方面让我学到了代码的合并过程。扯多了，来说说正题吧：Vecycleview Item点击事件的误操作，脑残操作，多次点击同一个item会打开多个activity。</p>
+<h4 id="解决思路"><a href="#解决思路" class="headerlink" title="解决思路"></a>解决思路</h4><p>通过判断当前点击事件触发的间隔，来作出判断是否误触发两次单击事件，打开两个页面。</p>
+<h4 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h4><p>创建工具类</p>
+<pre><code>public class NoDoubleClickUtils {
+    private static long lastClickTime;
+    private final static int SPACE_TIME = 500;
+
+    public static void initLastClickTime() {
+        lastClickTime = 0;
+    }
+
+    public synchronized static boolean isDoubleClick() {
+        long currentTime = System.currentTimeMillis();
+        boolean isClick2;
+        if (currentTime - lastClickTime &gt;
+                SPACE_TIME) {
+            isClick2 = false;
+        } else {
+            isClick2 = true;
+        }
+        lastClickTime = currentTime;
+        return isClick2;
+    }
+}
+</code></pre><p>在单击事件里判断 NoDoubleClickUtils.isDoubleClick()的值。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/07/05/2016-07-05-关于自定义Toolbar左边出现空白间隙(记录)/" itemprop="url">
                   关于自定义Toolbar左边出现16dp的空白间隙(记录)
                 </a>
@@ -1305,118 +1430,6 @@ City city ＝ new Gson().fromJson(response,City.class);
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/06/28/2015-06-28-JS学习笔记1_图片库showPic()/" itemprop="url">
-                  JS学习笔记1_图片库showPic()
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-06-28T00:00:00+08:00" content="2015-06-28">
-              2015-06-28
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/06/28/2015-06-28-JS学习笔记1_图片库showPic()/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/06/28/2015-06-28-JS学习笔记1_图片库showPic()/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>最近在看JavaScript DOM编程艺术这本书，准备开始学习js。因为有Java和C基础，js上手还是比较快的</p>
-<p>平稳退化</p>
-<pre><code>&lt;li&gt;
-    &lt;a href=&quot;images/wallpaper_01.jpg&quot; title=&quot;wallpaper_01&quot; onclick = &quot;showPic(this); return false;&quot;&gt;one&lt;/a&gt;
-&lt;/li&gt;
-</code></pre><p>伪代码</p>
-<pre><code>&lt;li&gt;
-    &lt;a href=&quot;javascript:showPic(&quot;images/wallpaper_01.jpg&quot;); return false;&quot; title=&quot;wallpaper_01&quot; &gt;one&lt;/a&gt;
-&lt;/li&gt;
-</code></pre><p>如果浏览器禁用javascript，伪代码就会无法显示。<br>把href的值设为一个真实存在的值。就能做到平稳退化。<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/06/28/2015-06-28-JS学习笔记1_图片库showPic()/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1462,7 +1475,7 @@ City city ＝ new Gson().fromJson(response,City.class);
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">21</span>
+              <span class="site-state-item-count">22</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1472,7 +1485,7 @@ City city ＝ new Gson().fromJson(response,City.class);
           
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">32</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>
