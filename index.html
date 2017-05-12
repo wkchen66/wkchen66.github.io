@@ -893,6 +893,124 @@
             
               
                 
+                <a class="post-title-link" href="/2017/02/07/2017-02-07-RxJava 2.x 基础使用/" itemprop="url">
+                  RxJava 2.x 基础使用
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-07T00:00:00+08:00" content="2017-02-07">
+              2017-02-07
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/02/07/2017-02-07-RxJava 2.x 基础使用/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/07/2017-02-07-RxJava 2.x 基础使用/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h5 id="在开始之前，先说说-RxJava2-0-的变化，或者直接去看官方文档-What’s-different-in-2-0-。简单总结为以下几点。"><a href="#在开始之前，先说说-RxJava2-0-的变化，或者直接去看官方文档-What’s-different-in-2-0-。简单总结为以下几点。" class="headerlink" title="在开始之前，先说说 RxJava2.0 的变化，或者直接去看官方文档 What’s different in 2.0 。简单总结为以下几点。"></a><em>在开始之前，先说说 RxJava2.0 的变化，或者直接去看官方文档 <a href="https://github.com/ReactiveX/RxJava/wiki/What&#39;s-different-in-2.0">What’s different in 2.0</a> 。简单总结为以下几点。</em></h5><ol>
+<li>RxJava2.x 不再接受null</li>
+<li>背压（backpressure） Observable 不支持背压  全新的Flowable 支持背压</li>
+<li>新增onSubscribe(Disposable d) 回调 </li>
+<li>Consumer、BiConsumer替代 Action1、Action2 等</li>
+<li>调整from() 为 fromArray、fromIterable、fromFuture</li>
+<li>Func1和Func2改为Function和BiFunction，Func3-9改为Function3-9</li>
+<li>修改Single、Completable为Reactive-Streams风格</li>
+<li>新增Maybe基本类…</li>
+</ol>
+<h3 id="Observable-和-Flowable"><a href="#Observable-和-Flowable" class="headerlink" title="Observable 和 Flowable"></a>Observable 和 Flowable</h3><ul>
+<li>Observablle：不支持背压；</li>
+<li>Flowable：RxJava2.x 新增，支持背压；</li>
+</ul>
+<p>那么问题来了什么是背压呢？</p>
+<p>我们系统资源有限，很多情况下我们处理数据的速度跟不上发送数据的速度，导致占用很大的资源，以至于内存泄漏等。背压就是用来解决这样的情况的，背压是一种告诉所有发送数据的组件减缓它们发送数据的速度的方法。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2017/02/07/2017-02-07-RxJava 2.x 基础使用/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/02/07/2017-02-07-Android命名规范/" itemprop="url">
                   Android 命名规范
                 </a>
@@ -999,124 +1117,6 @@
 </table>
           <div class="post-more-link text-center">
             <a class="btn" href="/2017/02/07/2017-02-07-Android命名规范/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/02/07/2017-02-07-RxJava 2.x 基础使用/" itemprop="url">
-                  RxJava 2.x 基础使用
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-07T00:00:00+08:00" content="2017-02-07">
-              2017-02-07
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2017/02/07/2017-02-07-RxJava 2.x 基础使用/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/07/2017-02-07-RxJava 2.x 基础使用/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h5 id="在开始之前，先说说-RxJava2-0-的变化，或者直接去看官方文档-What’s-different-in-2-0-。简单总结为以下几点。"><a href="#在开始之前，先说说-RxJava2-0-的变化，或者直接去看官方文档-What’s-different-in-2-0-。简单总结为以下几点。" class="headerlink" title="在开始之前，先说说 RxJava2.0 的变化，或者直接去看官方文档 What’s different in 2.0 。简单总结为以下几点。"></a><em>在开始之前，先说说 RxJava2.0 的变化，或者直接去看官方文档 <a href="https://github.com/ReactiveX/RxJava/wiki/What&#39;s-different-in-2.0">What’s different in 2.0</a> 。简单总结为以下几点。</em></h5><ol>
-<li>RxJava2.x 不再接受null</li>
-<li>背压（backpressure） Observable 不支持背压  全新的Flowable 支持背压</li>
-<li>新增onSubscribe(Disposable d) 回调 </li>
-<li>Consumer、BiConsumer替代 Action1、Action2 等</li>
-<li>调整from() 为 fromArray、fromIterable、fromFuture</li>
-<li>Func1和Func2改为Function和BiFunction，Func3-9改为Function3-9</li>
-<li>修改Single、Completable为Reactive-Streams风格</li>
-<li>新增Maybe基本类…</li>
-</ol>
-<h3 id="Observable-和-Flowable"><a href="#Observable-和-Flowable" class="headerlink" title="Observable 和 Flowable"></a>Observable 和 Flowable</h3><ul>
-<li>Observablle：不支持背压；</li>
-<li>Flowable：RxJava2.x 新增，支持背压；</li>
-</ul>
-<p>那么问题来了什么是背压呢？</p>
-<p>我们系统资源有限，很多情况下我们处理数据的速度跟不上发送数据的速度，导致占用很大的资源，以至于内存泄漏等。背压就是用来解决这样的情况的，背压是一种告诉所有发送数据的组件减缓它们发送数据的速度的方法。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/02/07/2017-02-07-RxJava 2.x 基础使用/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
