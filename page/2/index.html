@@ -238,6 +238,123 @@
             
               
                 
+                <a class="post-title-link" href="/2016/11/12/2016-11-12-搭建git服务器(记录)/" itemprop="url">
+                  搭建git服务器
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-12T00:00:00+08:00" content="2016-11-12">
+              2016-11-12
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/11/12/2016-11-12-搭建git服务器(记录)/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/12/2016-11-12-搭建git服务器(记录)/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h4><p>1.一台电脑／VPS<br>2.安装linux（我用的ubuntu12.04）</p>
+<p>大学里用剩下来的电脑闲置很久了，之所以闲置是因为配置太落后了，不想碰2333。于是想想太浪费了，就打算装个ubuntu搭个git服务器，备份下自己的一些项目代码。早上醒来粗略的查了下资料，在ubuntu的基础上搭建还是很方便的。好吧，go on</p>
+<p>1.安装git</p>
+<pre><code>sudo apt-get install git
+</code></pre><p>2.创建git用户adduser（删除用户userdel）</p>
+<pre><code>sudo adduser wkgit
+</code></pre><p>3.把客户端公钥id_rsa.pub  导入 wkgit/.ssh/authorized_keys  文件中</p>
+<pre><code>cat id_rsa.pub &gt;&gt; authorized_keys
+</code></pre><p>4.初始化一个仓库，修改owner为git</p>
+<pre><code>sudo git init --bare test.git
+sudo chown -R wkgit:wkgit test.git
+</code></pre><p>5.禁用shell登录（一把都会禁用，出于安全）</p>
+<p>修改/etc/passwd文件中的</p>
+<pre><code>wkgit:x:1002:1002:wkchen,,,,:/home/wkgit:/bin/bash
+</code></pre><p>改为</p>
+<pre><code>wkgit:x:1002:1002:wkchen,,,,:/home/wkgit:/usr/bin/git-shell
+</code></pre><p>6.接着在客户机上试试git clone 等一系列操作吧！！</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/07/18/2016-07-18-RecycleView使用之仿多次单击误触(记录)/" itemprop="url">
                   RecycleView使用之仿多次单击误触
                 </a>
@@ -1309,127 +1426,6 @@ City city ＝ new Gson().fromJson(response,City.class);
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/07/05/2015-07-05-JS学习笔记2_图片库js代码优化/" itemprop="url">
-                  JS学习笔记2_图片库js代码优化
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-07-05T00:00:00+08:00" content="2015-07-05">
-              2015-07-05
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/07/05/2015-07-05-JS学习笔记2_图片库js代码优化/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/07/05/2015-07-05-JS学习笔记2_图片库js代码优化/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>放暑假了，有时间瞎折腾了，要保持这种学习态度。这次是对上一次<a href="http://wkchen66.github.io/2015/06/28/2015-06-28-JS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B01_%E5%9B%BE%E7%89%87%E5%BA%93showPic%28%29/">JS学习笔记1_图片库showPic()</a> 内容的优化。</p>
-<pre><code>function showPic(whichpic){
-    if(!document.getElementById(&quot;img&quot;)){
-        return false;
-    }
-    var a = whichpic.getAttribute(&quot;href&quot;);
-    var b = document.getElementById(&quot;img&quot;);
-    if(b.nodeName != &quot;IMG&quot;){ //检查img元素是否存在
-        return false;
-    }
-    b.setAttribute(&quot;src&quot;, a);
-    if(document.getElementById(&quot;title_p&quot;)){
-        if(whichpic.getAttribute(&quot;title&quot;)){
-            var c = whichpic.getAttribute(&quot;title&quot;);
-        }else{
-            var c = &quot;&quot;;
-        }
-        var d = document.getElementById(&quot;title_p&quot;);
-</code></pre>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/07/05/2015-07-05-JS学习笔记2_图片库js代码优化/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1475,7 +1471,7 @@ City city ＝ new Gson().fromJson(response,City.class);
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">22</span>
+              <span class="site-state-item-count">23</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

@@ -238,6 +238,148 @@
             
               
                 
+                <a class="post-title-link" href="/2017/05/22/2017-05-22-Android玩转View（一） 掌握View的基础知识/" itemprop="url">
+                  Android玩转View（一） 掌握View的基础知识
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-05-22T00:00:00+08:00" content="2017-05-22">
+              2017-05-22
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/05/22/2017-05-22-Android玩转View（一） 掌握View的基础知识/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/05/22/2017-05-22-Android玩转View（一） 掌握View的基础知识/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><a href="http//:www.baidu.com">Android玩转View（一） 掌握View的基础知识</a><br>Android玩转View（二） 搞懂View的滑动原理<br>Android玩转View（三） 搞懂View的弹性滑动<br>Android玩转View（四） 搞懂View的事件分发机制<br>Android玩转View（五） 搞懂View的工作原理（measure、layout和draw）<br>Android玩转View（六） Dome演示</p>
+<h3 id="什么是View"><a href="#什么是View" class="headerlink" title="什么是View"></a>什么是View</h3><p>   View是Android所有控件的基类，View是一种界面层的控件的抽象，它代表了一个控件。<br>   View可以是单个控件或者多个控件组成组成一个控件。 </p>
+<h3 id="View的位置参数"><a href="#View的位置参数" class="headerlink" title="View的位置参数"></a>View的位置参数</h3><p>   View的位置由它的四个顶点坐标来决定，分别对应属性left、right、top、bottom<br><img src="http://wx4.sinaimg.cn/large/88b64bf6ly1ffukyg2697j211m0vqdij.jpg" alt="img"></p>
+<ol>
+<li><p>获取View的宽度和高度</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">width = right - left</span><br><span class="line">height = bottom – top </span><br><span class="line">  </span><br><span class="line"> <span class="comment">// 获取方法</span></span><br><span class="line">right = getRight()</span><br><span class="line">left = getLeft()</span><br><span class="line">top = getTop()</span><br><span class="line">bottom =getBottom()</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol>
+<li><p>其他</p>
+<p>参数x，y，translationX，translationY，其中x、y表示View的左上角相对于父容器的坐标，translationX、translationY表示View左上角相对于父容器的偏移量。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">x = left + translationX</span><br><span class="line">y = top +translationY</span><br></pre></td></tr></table></figure>
+<p> ​</p>
+</li>
+</ol>
+<h3 id="MotionEvent和TouchSlop"><a href="#MotionEvent和TouchSlop" class="headerlink" title="MotionEvent和TouchSlop"></a>MotionEvent和TouchSlop</h3><ol>
+<li>MotionEvent<br>手指接触屏幕出发的一系列事件</li>
+</ol>
+<ul>
+<li>ACTION_DOWN          手指按下</li>
+<li>ACTION_MOVE          手指移动</li>
+<li><p>ACTION_UP            手指抬起</p>
+<p>获得点击事件的坐标点：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">getX/getY              相对于当前View</span><br><span class="line">getRawX/getRawY        相对于手机屏幕</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ol>
+<li><p>TouchSlop<br>系统能识别出来的最小滑动距离，意思就是滑动距离小于这个常量，系统就不认为你是在滑动。<br>获取最小滑动距离常量：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">ViewConfiguration.get(getContext()).getScaledTouchSlop();</span><br></pre></td></tr></table></figure>
+<p>​</p>
+<h3 id="VelocityTracker、GestureDetector和Scroller"><a href="#VelocityTracker、GestureDetector和Scroller" class="headerlink" title="VelocityTracker、GestureDetector和Scroller"></a>VelocityTracker、GestureDetector和Scroller</h3></li>
+<li><p>Velocitytracker<br>速度追踪，用于计算手指滑动过程中的速度。<br>速度 = （终点位置 – 起点位置）／时间段</p>
+</li>
+<li><p>GestureDetector<br>手势检测，用于辅助检测用户的单机、滑动、长按、双击等行为。</p>
+</li>
+<li><p>Scroller<br>弹性滑动对象，用于实现View的弹性滑动。</p>
+</li>
+</ol>
+<p>相关资料</p>
+<ul>
+<li><a href="http://item.jd.com/11760209.html" target="_blank" rel="external">Android 开发艺术探索</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/05/12/2017-05-12-View 的事件（一）事件分发机制/" itemprop="url">
                   View 的事件（一）事件分发机制
                 </a>
@@ -1254,123 +1396,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/11/12/2016-11-12-搭建git服务器(记录)/" itemprop="url">
-                  搭建git服务器
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-12T00:00:00+08:00" content="2016-11-12">
-              2016-11-12
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/11/12/2016-11-12-搭建git服务器(记录)/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/12/2016-11-12-搭建git服务器(记录)/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h4><p>1.一台电脑／VPS<br>2.安装linux（我用的ubuntu12.04）</p>
-<p>大学里用剩下来的电脑闲置很久了，之所以闲置是因为配置太落后了，不想碰2333。于是想想太浪费了，就打算装个ubuntu搭个git服务器，备份下自己的一些项目代码。早上醒来粗略的查了下资料，在ubuntu的基础上搭建还是很方便的。好吧，go on</p>
-<p>1.安装git</p>
-<pre><code>sudo apt-get install git
-</code></pre><p>2.创建git用户adduser（删除用户userdel）</p>
-<pre><code>sudo adduser wkgit
-</code></pre><p>3.把客户端公钥id_rsa.pub  导入 wkgit/.ssh/authorized_keys  文件中</p>
-<pre><code>cat id_rsa.pub &gt;&gt; authorized_keys
-</code></pre><p>4.初始化一个仓库，修改owner为git</p>
-<pre><code>sudo git init --bare test.git
-sudo chown -R wkgit:wkgit test.git
-</code></pre><p>5.禁用shell登录（一把都会禁用，出于安全）</p>
-<p>修改/etc/passwd文件中的</p>
-<pre><code>wkgit:x:1002:1002:wkchen,,,,:/home/wkgit:/bin/bash
-</code></pre><p>改为</p>
-<pre><code>wkgit:x:1002:1002:wkchen,,,,:/home/wkgit:/usr/bin/git-shell
-</code></pre><p>6.接着在客户机上试试git clone 等一系列操作吧！！</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1416,7 +1441,7 @@ sudo chown -R wkgit:wkgit test.git
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">22</span>
+              <span class="site-state-item-count">23</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
