@@ -63,9 +63,9 @@
     <link href="http://www.tipdev.xyz/2017/05/22/2017-05-22-Android%E7%8E%A9%E8%BD%ACView%EF%BC%88%E4%B8%80%EF%BC%89%20%E6%8E%8C%E6%8F%A1View%E7%9A%84%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
     <id>http://www.tipdev.xyz/2017/05/22/2017-05-22-Android玩转View（一） 掌握View的基础知识/</id>
     <published>2017-05-21T16:00:00.000Z</published>
-    <updated>2017-05-23T16:13:57.000Z</updated>
+    <updated>2017-05-23T16:19:56.000Z</updated>
     
-    <content type="html"><![CDATA[<p><a href="http://tipdev.xyz/2017/05/22/2017-05-22-Android%E7%8E%A9%E8%BD%ACView%EF%BC%88%E4%B8%80%EF%BC%89%20%E6%8E%8C%E6%8F%A1View%E7%9A%84%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" target="_blank" rel="external">Android玩转View（一） 掌握View的基础知识</a><br>Android玩转View（二） 搞懂View的滑动原理<br>Android玩转View（三） 搞懂View的弹性滑动<br>Android玩转View（四） 搞懂View的事件分发机制<br>Android玩转View（五） 搞懂View的工作原理（measure、layout和draw）<br>Android玩转View（六） Dome演示</p>
+    <content type="html"><![CDATA[<p><a href="http://tipdev.xyz/2017/05/22/2017-05-22-Android%E7%8E%A9%E8%BD%ACView%EF%BC%88%E4%B8%80%EF%BC%89%20%E6%8E%8C%E6%8F%A1View%E7%9A%84%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" target="_blank" rel="external">Android玩转View（一） 掌握View的基础知识</a><br><a href="http://tipdev.xyz/2017/05/23/2017-05-23-Android玩转View（二）搞懂View的滑动原理/" target="_blank" rel="external">Android玩转View（二） 搞懂View的滑动原理</a><br>Android玩转View（三） 搞懂View的弹性滑动<br>Android玩转View（四） 搞懂View的事件分发机制<br>Android玩转View（五） 搞懂View的工作原理（measure、layout和draw）<br>Android玩转View（六） Dome演示</p>
 <h3 id="什么是View"><a href="#什么是View" class="headerlink" title="什么是View"></a>什么是View</h3><p>   View是Android所有控件的基类，View是一种界面层的控件的抽象，它代表了一个控件。<br>   View可以是单个控件或者多个控件组成组成一个控件。 </p>
 <h3 id="View的位置参数"><a href="#View的位置参数" class="headerlink" title="View的位置参数"></a>View的位置参数</h3><p>   View的位置由它的四个顶点坐标来决定，分别对应属性left、right、top、bottom<br><img src="http://wx4.sinaimg.cn/large/88b64bf6ly1ffukyg2697j211m0vqdij.jpg" alt="img"></p>
 <ol>
