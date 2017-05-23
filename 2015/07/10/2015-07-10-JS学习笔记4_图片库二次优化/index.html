@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh-Hans"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> JS学习笔记4_图片库二次优化 · wkchen's blog</title><meta name="description" content="JS学习笔记4_图片库二次优化 - wkchen"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.tipdev.xyz/atom.xml" title="wkchen's blog"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="http://weibo.com/sunchongsheng" target="_blank" class="nav-list-link">WEIBO</a></li><li class="nav-list-item"><a href="https://github.com/pinggod" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">JS学习笔记4_图片库二次优化</h1><div class="post-info">Jul 10, 2015</div><div class="post-content"><h4 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h4><ul>
+<!DOCTYPE html><html lang="zh-Hans"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> JS学习笔记4_图片库二次优化 · wkchen's blog</title><meta name="description" content="JS学习笔记4_图片库二次优化 - wkchen"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.tipdev.xyz/atom.xml" title="wkchen's blog"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="http://weibo.com/sunchongsheng" target="_blank" class="nav-list-link">WEIBO</a></li><li class="nav-list-item"><a href="https://github.com/pinggod" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">JS学习笔记4_图片库二次优化</h1><div class="post-info">Jul 10, 2015</div><div class="post-content"><h3 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h3><ul>
 <li>insertAfter函数</li>
 <li>addLoadEvent函数</li>
 <li>showPic函数</li>
@@ -7,16 +7,15 @@
 <p>每个函数都有合理的用处，insertAfter 和 addLoadEvent函数，是通用型函数（常用）。showPic函数，主要负责图片的切换，核心。Gallery函数，主要负责事件的处理，遍历每一个图片清单，为其添加onclick事件，和调用showPic()函数。placeholder函数，主要负责创建img、p标签，和添加其内容，把整个新创建的函数插入到节点树里去。</p>
 </li>
 </ul>
-<h5 id="insertAfter函数"><a href="#insertAfter函数" class="headerlink" title="insertAfter函数"></a>insertAfter函数</h5><pre><code>function insertAfter(newElement,targetElement){
+<h4 id="insertAfter函数"><a href="#insertAfter函数" class="headerlink" title="insertAfter函数"></a>insertAfter函数</h4><pre><code>function insertAfter(newElement,targetElement){
     var parent = targetElement.parentNode;
     if(parent.lastChild == targetElement){
         parent.appendChild(newElement);
     }else{
-</code></pre><a id="more"></a>
-<pre><code>        parent.insertBefore(newElement,targetElement.nextSibling);
+        parent.insertBefore(newElement,targetElement.nextSibling);
     }
 }
-</code></pre><h5 id="addLoadEvent函数"><a href="#addLoadEvent函数" class="headerlink" title="addLoadEvent函数"></a>addLoadEvent函数</h5><pre><code>function addLoadEvent(func){
+</code></pre><h4 id="addLoadEvent函数"><a href="#addLoadEvent函数" class="headerlink" title="addLoadEvent函数"></a>addLoadEvent函数</h4><pre><code>function addLoadEvent(func){
     var oldonload = window.onload;
     if(typeof window.onload != &apos;function&apos;){
         window.onload = func;
@@ -27,7 +26,7 @@
         }
     }    
 }
-</code></pre><h5 id="showPic函数"><a href="#showPic函数" class="headerlink" title="showPic函数"></a>showPic函数</h5><pre><code>function showPic(whichpic){
+</code></pre><h4 id="showPic函数"><a href="#showPic函数" class="headerlink" title="showPic函数"></a>showPic函数</h4><pre><code>function showPic(whichpic){
     if(!document.getElementById(&quot;img&quot;)){
         return false;
     }
@@ -52,7 +51,7 @@
     }
     return true;
 }
-</code></pre><h5 id="Gallery函数"><a href="#Gallery函数" class="headerlink" title="Gallery函数"></a>Gallery函数</h5><pre><code>function Gallery(){
+</code></pre><h4 id="Gallery函数"><a href="#Gallery函数" class="headerlink" title="Gallery函数"></a>Gallery函数</h4><pre><code>function Gallery(){
     if(!document.getElementById){
         return false;
     }
@@ -70,7 +69,7 @@
         }
     }
 }
-</code></pre><h5 id="placeholder函数"><a href="#placeholder函数" class="headerlink" title="placeholder函数"></a>placeholder函数</h5><pre><code>function placeholder(){
+</code></pre><h4 id="placeholder函数"><a href="#placeholder函数" class="headerlink" title="placeholder函数"></a>placeholder函数</h4><pre><code>function placeholder(){
     if(!document.createElement) return false;
     if(!document.createTextNode) return false;
     if(!document.getElementById) return false;
@@ -96,9 +95,9 @@
     insertAfter(img,gallery);
 
 }
-</code></pre><h5 id="添加函数"><a href="#添加函数" class="headerlink" title="添加函数"></a>添加函数</h5><pre><code>addLoadEvent(placeholder);
+</code></pre><h4 id="添加函数"><a href="#添加函数" class="headerlink" title="添加函数"></a>添加函数</h4><pre><code>addLoadEvent(placeholder);
 addLoadEvent(Gallery);
-</code></pre><h5 id="HTML文档（此时，相应标记减少了，index-html文档只包含js脚本和css样式挂钩）"><a href="#HTML文档（此时，相应标记减少了，index-html文档只包含js脚本和css样式挂钩）" class="headerlink" title="HTML文档（此时，相应标记减少了，index.html文档只包含js脚本和css样式挂钩）"></a>HTML文档（此时，相应标记减少了，index.html文档只包含js脚本和css样式挂钩）</h5><pre><code>&lt;!DOCTYPE html&gt;
+</code></pre><h4 id="HTML文档（此时，相应标记减少了，index-html文档只包含js脚本和css样式挂钩）"><a href="#HTML文档（此时，相应标记减少了，index-html文档只包含js脚本和css样式挂钩）" class="headerlink" title="HTML文档（此时，相应标记减少了，index.html文档只包含js脚本和css样式挂钩）"></a>HTML文档（此时，相应标记减少了，index.html文档只包含js脚本和css样式挂钩）</h4><pre><code>&lt;!DOCTYPE html&gt;
 &lt;html&gt;
     &lt;head&gt;
         &lt;meta charset=&quot;utf-8&quot; /&gt;

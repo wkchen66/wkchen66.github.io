@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.tipdev.xyz/"/>
-  <updated>2017-05-23T16:11:54.000Z</updated>
+  <updated>2017-05-23T16:13:51.000Z</updated>
   <id>http://www.tipdev.xyz/</id>
   
   <author>
@@ -20,11 +20,10 @@
     <link href="http://www.tipdev.xyz/2017/05/23/2017-05-23-Android%E7%8E%A9%E8%BD%ACView%EF%BC%88%E4%BA%8C%EF%BC%89%E6%90%9E%E6%87%82View%E7%9A%84%E6%BB%91%E5%8A%A8%E5%8E%9F%E7%90%86/"/>
     <id>http://www.tipdev.xyz/2017/05/23/2017-05-23-Android玩转View（二）搞懂View的滑动原理/</id>
     <published>2017-05-22T16:00:00.000Z</published>
-    <updated>2017-05-23T16:11:54.000Z</updated>
+    <updated>2017-05-23T16:13:51.000Z</updated>
     
     <content type="html"><![CDATA[<p><a href="http://tipdev.xyz/2017/05/22/2017-05-22-Android%E7%8E%A9%E8%BD%ACView%EF%BC%88%E4%B8%80%EF%BC%89%20%E6%8E%8C%E6%8F%A1View%E7%9A%84%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" target="_blank" rel="external">Android玩转View（一） 掌握View的基础知识</a><br><a href="http://tipdev.xyz/2017/05/23/2017-05-23-Android玩转View（二）搞懂View的滑动原理/" target="_blank" rel="external">Android玩转View（二） 搞懂View的滑动原理</a><br>Android玩转View（三） 搞懂View的弹性滑动<br>Android玩转View（四） 搞懂View的事件分发机制<br>Android玩转View（五） 搞懂View的工作原理（measure、layout和draw）<br>Android玩转View（六） Dome演示</p>
 <h3 id="滑动原理"><a href="#滑动原理" class="headerlink" title="滑动原理"></a>滑动原理</h3><p>实质上是改变View的上下左右边距，或则给View增加动画，达到的平移过程。无论是多么绚丽的滑动，归根结底就是通过滑动再加上一些绚丽的特效组成的。</p>
-<a id="more"></a>
 <h3 id="滑动方式"><a href="#滑动方式" class="headerlink" title="滑动方式"></a>滑动方式</h3><ol>
 <li><p>使用scrollTo/scrollBy<br>scrollBy内部实际上也是调用了scrollTo方法，他实现了基于当前View的相对滑动。<br>scrollTo实现了基于所传递参数的绝对滑动。<br>scrollTo/scrollBy只能改变View内容的位置而不能改变View在布局中的位置。</p>
 <p>​</p>
@@ -48,8 +47,7 @@
     
     <summary type="html">
     
-      &lt;p&gt;&lt;a href=&quot;http://tipdev.xyz/2017/05/22/2017-05-22-Android%E7%8E%A9%E8%BD%ACView%EF%BC%88%E4%B8%80%EF%BC%89%20%E6%8E%8C%E6%8F%A1View%E7%9A%84%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/&quot;&gt;Android玩转View（一） 掌握View的基础知识&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;http://tipdev.xyz/2017/05/23/2017-05-23-Android玩转View（二）搞懂View的滑动原理/&quot;&gt;Android玩转View（二） 搞懂View的滑动原理&lt;/a&gt;&lt;br&gt;Android玩转View（三） 搞懂View的弹性滑动&lt;br&gt;Android玩转View（四） 搞懂View的事件分发机制&lt;br&gt;Android玩转View（五） 搞懂View的工作原理（measure、layout和draw）&lt;br&gt;Android玩转View（六） Dome演示&lt;/p&gt;
-&lt;h3 id=&quot;滑动原理&quot;&gt;&lt;a href=&quot;#滑动原理&quot; class=&quot;headerlink&quot; title=&quot;滑动原理&quot;&gt;&lt;/a&gt;滑动原理&lt;/h3&gt;&lt;p&gt;实质上是改变View的上下左右边距，或则给View增加动画，达到的平移过程。无论是多么绚丽的滑动，归根结底就是通过滑动再加上一些绚丽的特效组成的。&lt;/p&gt;
+      &lt;p&gt;&lt;a href=&quot;http://tipdev.xyz/2017/05/22/2017-05-22-Android%E7%8E%A9%E8%BD%ACView%EF%BC%88%E4%B8%80%EF%BC%89%20%E6%8E%8C%E6%8F%A1View%E7%9A%
     
     </summary>
     
@@ -65,11 +63,10 @@
     <link href="http://www.tipdev.xyz/2017/05/22/2017-05-22-Android%E7%8E%A9%E8%BD%ACView%EF%BC%88%E4%B8%80%EF%BC%89%20%E6%8E%8C%E6%8F%A1View%E7%9A%84%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
     <id>http://www.tipdev.xyz/2017/05/22/2017-05-22-Android玩转View（一） 掌握View的基础知识/</id>
     <published>2017-05-21T16:00:00.000Z</published>
-    <updated>2017-05-23T16:11:52.000Z</updated>
+    <updated>2017-05-23T16:13:57.000Z</updated>
     
     <content type="html"><![CDATA[<p><a href="http://tipdev.xyz/2017/05/22/2017-05-22-Android%E7%8E%A9%E8%BD%ACView%EF%BC%88%E4%B8%80%EF%BC%89%20%E6%8E%8C%E6%8F%A1View%E7%9A%84%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" target="_blank" rel="external">Android玩转View（一） 掌握View的基础知识</a><br>Android玩转View（二） 搞懂View的滑动原理<br>Android玩转View（三） 搞懂View的弹性滑动<br>Android玩转View（四） 搞懂View的事件分发机制<br>Android玩转View（五） 搞懂View的工作原理（measure、layout和draw）<br>Android玩转View（六） Dome演示</p>
 <h3 id="什么是View"><a href="#什么是View" class="headerlink" title="什么是View"></a>什么是View</h3><p>   View是Android所有控件的基类，View是一种界面层的控件的抽象，它代表了一个控件。<br>   View可以是单个控件或者多个控件组成组成一个控件。 </p>
-<a id="more"></a>
 <h3 id="View的位置参数"><a href="#View的位置参数" class="headerlink" title="View的位置参数"></a>View的位置参数</h3><p>   View的位置由它的四个顶点坐标来决定，分别对应属性left、right、top、bottom<br><img src="http://wx4.sinaimg.cn/large/88b64bf6ly1ffukyg2697j211m0vqdij.jpg" alt="img"></p>
 <ol>
 <li><p>获取View的宽度和高度</p>
@@ -115,8 +112,7 @@
     
     <summary type="html">
     
-      &lt;p&gt;&lt;a href=&quot;http://tipdev.xyz/2017/05/22/2017-05-22-Android%E7%8E%A9%E8%BD%ACView%EF%BC%88%E4%B8%80%EF%BC%89%20%E6%8E%8C%E6%8F%A1View%E7%9A%84%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/&quot;&gt;Android玩转View（一） 掌握View的基础知识&lt;/a&gt;&lt;br&gt;Android玩转View（二） 搞懂View的滑动原理&lt;br&gt;Android玩转View（三） 搞懂View的弹性滑动&lt;br&gt;Android玩转View（四） 搞懂View的事件分发机制&lt;br&gt;Android玩转View（五） 搞懂View的工作原理（measure、layout和draw）&lt;br&gt;Android玩转View（六） Dome演示&lt;/p&gt;
-&lt;h3 id=&quot;什么是View&quot;&gt;&lt;a href=&quot;#什么是View&quot; class=&quot;headerlink&quot; title=&quot;什么是View&quot;&gt;&lt;/a&gt;什么是View&lt;/h3&gt;&lt;p&gt;   View是Android所有控件的基类，View是一种界面层的控件的抽象，它代表了一个控件。&lt;br&gt;   View可以是单个控件或者多个控件组成组成一个控件。 &lt;/p&gt;
+      &lt;p&gt;&lt;a href=&quot;http://tipdev.xyz/2017/05/22/2017-05-22-Android%E7%8E%A9%E8%BD%ACView%EF%BC%88%E4%B8%80%EF%BC%89%20%E6%8E%8C%E6%8F%A1View%E7%9A%
     
     </summary>
     
@@ -132,7 +128,7 @@
     <link href="http://www.tipdev.xyz/2017/05/12/2017-05-12-View%20%E7%9A%84%E4%BA%8B%E4%BB%B6%EF%BC%88%E4%B8%80%EF%BC%89%E4%BA%8B%E4%BB%B6%E5%88%86%E5%8F%91%E6%9C%BA%E5%88%B6/"/>
     <id>http://www.tipdev.xyz/2017/05/12/2017-05-12-View 的事件（一）事件分发机制/</id>
     <published>2017-05-11T16:00:00.000Z</published>
-    <updated>2017-05-23T16:11:51.000Z</updated>
+    <updated>2017-05-23T16:14:02.000Z</updated>
     
     <content type="html"><![CDATA[<p>简单介绍一下View的事件分发机制，这也算是View的一个核心知识点，经常在面试过程中被问到。同样在开发过程中自定义View、解决事件冲突等，都需要掌握View的事件分发机制。</p>
 <h3 id="View事件分发过程"><a href="#View事件分发过程" class="headerlink" title="View事件分发过程"></a>View事件分发过程</h3><ul>
@@ -140,7 +136,6 @@
 <li>事件拦截 onInterceptTouchEvent</li>
 <li>处理事件 onTouchEvent</li>
 </ul>
-<a id="more"></a>
 <h3 id="事件传递流程"><a href="#事件传递流程" class="headerlink" title="事件传递流程"></a>事件传递流程</h3><p><img src="http://wx2.sinaimg.cn/mw690/88b64bf6ly1ffizxniqf2j219y1giwiz.jpg" alt="未标题-1"><br>当ViiewGroup接收到事件的时候，首先它的dispatchTouchEvent方法被触发，接着到ViewGroup的onInterceptTouchEvent方法中，如果返回true，就说明ViewGroup要拦截消费该事件，传递到ViewGroup的onTouchEvent方法中；如果返回的是false，就说明ViewGroup不拦截该事件，这样就传递到子View的dispatchTouchEvent方法中。</p>
 <p>上述三个方法的传递过程，用如下伪代码表示非常好理解：<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">diapatchTouchEvent</span><span class="params">(MotionEvent ev)</span></span>&#123;</span><br><span class="line">  <span class="keyword">boolean</span> consume = <span class="keyword">false</span>;</span><br><span class="line">  <span class="keyword">if</span>(onInterceptTouchEvent(ev))&#123;</span><br><span class="line">    consume = onTouchEvent(ev);</span><br><span class="line">  &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    consume = child.dispatchTouchEvent(ev);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> consume;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>注意：</p>
@@ -161,11 +156,7 @@
     <summary type="html">
     
       &lt;p&gt;简单介绍一下View的事件分发机制，这也算是View的一个核心知识点，经常在面试过程中被问到。同样在开发过程中自定义View、解决事件冲突等，都需要掌握View的事件分发机制。&lt;/p&gt;
-&lt;h3 id=&quot;View事件分发过程&quot;&gt;&lt;a href=&quot;#View事件分发过程&quot; class=&quot;headerlink&quot; title=&quot;View事件分发过程&quot;&gt;&lt;/a&gt;View事件分发过程&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;事件分发  dispatchTouchEvent&lt;/li&gt;
-&lt;li&gt;事件拦截 onInterceptTouchEvent&lt;/li&gt;
-&lt;li&gt;处理事件 onTouchEvent&lt;/li&gt;
-&lt;/ul&gt;
+&lt;h3 id=&quot;View事件分发过程&quot;&gt;&lt;a href=&quot;#View事件分发过程&quot; cl
     
     </summary>
     
@@ -181,13 +172,12 @@
     <link href="http://www.tipdev.xyz/2017/04/18/2017-04-18-Spring%20Boot%20Gradle%20%E9%83%A8%E7%BD%B2%E5%88%B0Tomcat/"/>
     <id>http://www.tipdev.xyz/2017/04/18/2017-04-18-Spring Boot Gradle 部署到Tomcat/</id>
     <published>2017-04-17T16:00:00.000Z</published>
-    <updated>2017-04-18T03:38:40.000Z</updated>
+    <updated>2017-05-23T16:14:08.000Z</updated>
     
     <content type="html"><![CDATA[<p>最近在学习Spring Boot ，自己搭的小型项目服务端开发的差不多了，，准备部署项目到服务器上跑一下，发现网上都是一些关于Maven的方法，提及到Gradle的也都讲的不太清楚，记录一下自己的心得。</p>
 <h4 id="一、配置Application"><a href="#一、配置Application" class="headerlink" title="一、配置Application"></a>一、配置Application</h4><p>首先修改程序入口Application 中，如下</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WkServerApplication</span> <span class="keyword">extends</span> <span class="title">SpringBootServletInitializer</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// run with war</span></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">protected</span> SpringApplicationBuilder <span class="title">configure</span><span class="params">(SpringApplicationBuilder application)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> application.sources(WkServerApplication.class);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// run with jar</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">		SpringApplication.run(WkServerApplication.class, args);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>继承SpringBootServletInitializer，并且覆写configure方法。</p>
-<a id="more"></a>
 <h4 id="二、配置build-gradle"><a href="#二、配置build-gradle" class="headerlink" title="二、配置build.gradle"></a>二、配置build.gradle</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">apply plugin: <span class="string">'war'</span>      <span class="comment">// 添加war插件</span></span><br><span class="line">apply plugin: <span class="string">'java'</span></span><br><span class="line">apply plugin: <span class="string">'org.springframework.boot'</span>  <span class="comment">// spring boot 插件</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 设置war包的名字，由baseName+version组成</span></span><br><span class="line">war &#123;</span><br><span class="line">	baseName = <span class="string">'WK-SERVER'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">version = <span class="string">'0.0.1-SNAPSHOT'</span></span><br><span class="line">sourceCompatibility = <span class="number">1.8</span></span><br><span class="line"></span><br><span class="line">dependencies &#123;</span><br><span class="line">	compile(<span class="string">"org.springframework.boot:spring-boot-starter-web"</span>)</span><br><span class="line">      </span><br><span class="line">    <span class="comment">// 添加provide tomcat，因为spring boot集成了tomcat，为了确保不受servlet干扰</span></span><br><span class="line">	providedRuntime <span class="string">'org.springframework.boot:spring-boot-starter-tomcat'</span></span><br><span class="line">      ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="三、生成War包"><a href="#三、生成War包" class="headerlink" title="三、生成War包"></a>三、生成War包</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">./gradlew war   <span class="comment">// 在项目的根目录执行，生成文件路径 /build/libs/wk.war</span></span><br></pre></td></tr></table></figure>
 <p>或者 在IDEA中 工具栏Build-Build artifacts</p>
@@ -199,9 +189,7 @@
     <summary type="html">
     
       &lt;p&gt;最近在学习Spring Boot ，自己搭的小型项目服务端开发的差不多了，，准备部署项目到服务器上跑一下，发现网上都是一些关于Maven的方法，提及到Gradle的也都讲的不太清楚，记录一下自己的心得。&lt;/p&gt;
-&lt;h4 id=&quot;一、配置Application&quot;&gt;&lt;a href=&quot;#一、配置Application&quot; class=&quot;headerlink&quot; title=&quot;一、配置Application&quot;&gt;&lt;/a&gt;一、配置Application&lt;/h4&gt;&lt;p&gt;首先修改程序入口Application 中，如下&lt;/p&gt;
-&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;@SpringBootApplication&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;WkServerApplication&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;SpringBootServletInitializer&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;comment&quot;&gt;// run with war&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;meta&quot;&gt;@Override&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;protected&lt;/span&gt; SpringApplicationBuilder &lt;span class=&quot;title&quot;&gt;configure&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(SpringApplicationBuilder application)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; application.sources(WkServerApplication.class);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;comment&quot;&gt;// run with jar&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(String[] args)&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;throws&lt;/span&gt; Exception &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		SpringApplication.run(WkServerApplication.class, args);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;继承SpringBootServletInitializer，并且覆写configure方法。&lt;/p&gt;
+&lt;h4 id=&quot;一、配置Application&quot;&gt;&lt;a hre
     
     </summary>
     
@@ -219,12 +207,11 @@
     <link href="http://www.tipdev.xyz/2017/04/17/2017-04-17-JAVA%E9%94%99%E8%AF%AF%20No%20default%20constructor%20for%20entity/"/>
     <id>http://www.tipdev.xyz/2017/04/17/2017-04-17-JAVA错误 No default constructor for entity/</id>
     <published>2017-04-16T16:00:00.000Z</published>
-    <updated>2017-05-23T16:11:46.000Z</updated>
+    <updated>2017-05-23T16:14:15.000Z</updated>
     
     <content type="html"><![CDATA[<p>今天在使用JPA的时候，发现以下错误：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">org.hibernate.InstantiationException: No default constructor for entity:  : com.cz1.domain.Image</span><br></pre></td></tr></table></figure>
 <p>原因:缺少无参构造，Hibernate必须要使用Java反射机制来实例化对象。</p>
-<a id="more"></a>
 <p>解决方法：</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Image</span><span class="params">()</span></span>&#123;&#125;   <span class="comment">// 加上无参构造</span></span><br></pre></td></tr></table></figure>
 <p>解决了，记录一下！</p>
@@ -233,8 +220,7 @@
     <summary type="html">
     
       &lt;p&gt;今天在使用JPA的时候，发现以下错误：&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;org.hibernate.InstantiationException: No default constructor for entity:  : com.cz1.domain.Image&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;原因:缺少无参构造，Hibernate必须要使用Java反射机制来实例化对象。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;org.hibernate.InstantiationEx
     
     </summary>
     
@@ -252,7 +238,7 @@
     <link href="http://www.tipdev.xyz/2017/03/01/2017-03-01-%E5%A6%82%E4%BD%95%E6%A8%A1%E6%8B%9Fjson%E6%95%B0%E6%8D%AE/"/>
     <id>http://www.tipdev.xyz/2017/03/01/2017-03-01-如何模拟json数据/</id>
     <published>2017-02-28T16:00:00.000Z</published>
-    <updated>2017-03-01T12:20:06.000Z</updated>
+    <updated>2017-05-23T16:14:20.000Z</updated>
     
     <content type="html"><![CDATA[<p>最近新项目，后台人手不够，招了一个星期，才招到人，但人再厉害也需要时间先去熟悉项目吧。这样我们移动端或者前端的就被牵着鼻子走，然后项目进度跟不上就甩锅给后端，“接口那边太慢，导致我这进度也受到影响”等等。就这样我找到了以下两种方法解决这个问题。</p>
 <ul>
@@ -268,7 +254,6 @@
 <p><img src="http://wx1.sinaimg.cn/mw690/88b64bf6gy1fd7kaaqtx3j215m0kk0zi.jpg" alt="img"></p>
 </li>
 </ol>
-<a id="more"></a>
 <p>   开启Mac 代理</p>
 <p>   <img src="http://wx1.sinaimg.cn/mw690/88b64bf6gy1fd7kbrt2kkj215o0kktce.jpg" alt="img"></p>
 <ol>
@@ -307,18 +292,7 @@
     
       &lt;p&gt;最近新项目，后台人手不够，招了一个星期，才招到人，但人再厉害也需要时间先去熟悉项目吧。这样我们移动端或者前端的就被牵着鼻子走，然后项目进度跟不上就甩锅给后端，“接口那边太慢，导致我这进度也受到影响”等等。就这样我找到了以下两种方法解决这个问题。&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;1、Charles 拦截 + mock 模拟数据&lt;/li&gt;
-&lt;li&gt;2、json-server 模拟数据&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;一、Charles-拦截&quot;&gt;&lt;a href=&quot;#一、Charles-拦截&quot; class=&quot;headerlink&quot; title=&quot;一、Charles 拦截&quot;&gt;&lt;/a&gt;一、Charles 拦截&lt;/h3&gt;&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;下载&lt;a href=&quot;https://www.charlesproxy.com/download/&quot;&gt;Charles&lt;/a&gt; &lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;通过&lt;a href=&quot;http://www.mocky.io&quot;&gt;mocky&lt;/a&gt; 模拟json数据，最后会生成一个对应的url&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;设置Mac代理&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://wx1.sinaimg.cn/mw690/88b64bf6gy1fd7kaaqtx3j215m0kk0zi.jpg&quot; alt=&quot;img&quot;&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
+&lt;li&gt;1
     
     </summary>
     
@@ -332,7 +306,7 @@
     <link href="http://www.tipdev.xyz/2017/02/12/2017-02-12-git%20%E5%A4%9A%E4%BB%93%E5%BA%93%E7%AE%A1%E7%90%86%E5%BC%80%E5%8F%91%E6%8A%80%E5%B7%A7%EF%BC%88%E4%BA%8C%EF%BC%89/"/>
     <id>http://www.tipdev.xyz/2017/02/12/2017-02-12-git 多仓库管理开发技巧（二）/</id>
     <published>2017-02-11T16:00:00.000Z</published>
-    <updated>2017-05-23T16:12:23.000Z</updated>
+    <updated>2017-05-23T16:14:26.000Z</updated>
     
     <content type="html"><![CDATA[<p>接着上次的<a href="http://tipdev.xyz/2017/02/10/2017-02-10-git%20%E5%A4%9A%E4%BB%93%E5%BA%93%E7%AE%A1%E7%90%86%E5%BC%80%E5%8F%91%E6%8A%80%E5%B7%A7%EF%BC%88%E4%B8%80%EF%BC%89/" target="_blank" rel="external">多仓库管理开发(一)</a>，在很多情况下我们会涉及到不同的仓库使用不同的用户名和email，比如：在公司开发的时候一般都是使用自己真实名字和公司邮箱；在github时候一般不会暴露自己真实的姓名。这个时候多仓库设置不同用户名就非常有必要了。</p>
 <p>在多说一遍，在每个git仓库下，都有一个.git/ 文件夹，使用vim或者其他工具，打开.git/config 文件，添加一下内容：</p>
@@ -340,7 +314,6 @@
     name = 用户名
     email = 邮箱地址
 </code></pre><p>这样就解决问题了，当然你也可以使用命名行的形式指定用户名：</p>
-<a id="more"></a>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git config user.name &quot;用户名&quot;</span><br><span class="line">git config user.email 邮件</span><br></pre></td></tr></table></figure>
 <p>加上 <code>—global</code>  表示设置全局的，对所有的项目都有效，去掉 <code>—global</code> 表示针对某个特定的项目。</p>
 <p><em>参考</em>  <a href="https://git-scm.com/book/zh/v1/%E8%B5%B7%E6%AD%A5-%E5%88%9D%E6%AC%A1%E8%BF%90%E8%A1%8C-Git-%E5%89%8D%E7%9A%84%E9%85%8D%E7%BD%AE" target="_blank" rel="external">Git官方教程</a></p>
@@ -348,12 +321,7 @@
     
     <summary type="html">
     
-      &lt;p&gt;接着上次的&lt;a href=&quot;http://tipdev.xyz/2017/02/10/2017-02-10-git%20%E5%A4%9A%E4%BB%93%E5%BA%93%E7%AE%A1%E7%90%86%E5%BC%80%E5%8F%91%E6%8A%80%E5%B7%A7%EF%BC%88%E4%B8%80%EF%BC%89/&quot;&gt;多仓库管理开发(一)&lt;/a&gt;，在很多情况下我们会涉及到不同的仓库使用不同的用户名和email，比如：在公司开发的时候一般都是使用自己真实名字和公司邮箱；在github时候一般不会暴露自己真实的姓名。这个时候多仓库设置不同用户名就非常有必要了。&lt;/p&gt;
-&lt;p&gt;在多说一遍，在每个git仓库下，都有一个.git/ 文件夹，使用vim或者其他工具，打开.git/config 文件，添加一下内容：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;[user]
-    name = 用户名
-    email = 邮箱地址
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;这样就解决问题了，当然你也可以使用命名行的形式指定用户名：&lt;/p&gt;
+      &lt;p&gt;接着上次的&lt;a href=&quot;http://tipdev.xyz/2017/02/10/2017-02-10-git%20%E5%A4%9A%E4%BB%93%E5%BA%93%E7%AE%A1%E7%90%86%E5%BC%80%E5%8F%91%E6%8A%80%E5%B
     
     </summary>
     
@@ -369,7 +337,7 @@
     <link href="http://www.tipdev.xyz/2017/02/10/2017-02-10-git%20%E5%A4%9A%E4%BB%93%E5%BA%93%E7%AE%A1%E7%90%86%E5%BC%80%E5%8F%91%E6%8A%80%E5%B7%A7%EF%BC%88%E4%B8%80%EF%BC%89/"/>
     <id>http://www.tipdev.xyz/2017/02/10/2017-02-10-git 多仓库管理开发技巧（一）/</id>
     <published>2017-02-09T16:00:00.000Z</published>
-    <updated>2017-02-12T06:53:14.000Z</updated>
+    <updated>2017-05-23T16:14:31.000Z</updated>
     
     <content type="html"><![CDATA[<p>今天在项目中碰到一个问题，需要同时向两个仓库提交代码，然后又可以单独向某一个Git仓库提交/拉取代码。<br>其实非常的简单，在GitHub／GitLab上我们新建一个仓库后，可以看到以下提示信息：</p>
 <blockquote>
@@ -379,7 +347,6 @@
 <p>这表示向这个本地库添加一个远程仓库，并且起名为origin，其实按照这个再添加一个其他的远程仓库，换个名字不就好了！</p>
 <p>默认地址:</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 查看远程仓库地址 git remote -v</span></span><br><span class="line">origin	git<span class="meta">@github</span>.com:xxx/Smart.git (fetch)</span><br><span class="line">origin	git<span class="meta">@github</span>.com:xxx/Smart.git (push)</span><br></pre></td></tr></table></figure>
-<a id="more"></a>
 <ol>
 <li><p>添加smart远程仓库</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">git remote add smart git@<span class="number">192.168</span>.11.111:Product/Smart.git  <span class="comment">// 推荐</span></span><br></pre></td></tr></table></figure>
@@ -406,12 +373,7 @@
     
       &lt;p&gt;今天在项目中碰到一个问题，需要同时向两个仓库提交代码，然后又可以单独向某一个Git仓库提交/拉取代码。&lt;br&gt;其实非常的简单，在GitHub／GitLab上我们新建一个仓库后，可以看到以下提示信息：&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;…or push an existing repository from the command line&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;git remote add origin git@github.com:xxx/Smart.git&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;git push -u origin master&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;这表示向这个本地库添加一个远程仓库，并且起名为origin，其实按照这个再添加一个其他的远程仓库，换个名字不就好了！&lt;/p&gt;
-&lt;p&gt;默认地址:&lt;/p&gt;
-&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// 查看远程仓库地址 git remote -v&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;origin	git&lt;span class=&quot;meta&quot;&gt;@github&lt;/span&gt;.com:xxx/Smart.git (fetch)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;origin	git&lt;span class=&quot;meta&quot;&gt;@github&lt;/span&gt;.com:xxx/Smart.git (push)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;…or push an exist
     
     </summary>
     
@@ -423,11 +385,70 @@
   </entry>
   
   <entry>
+    <title>RxJava 2.x 基础使用</title>
+    <link href="http://www.tipdev.xyz/2017/02/07/2017-02-07-RxJava%202.x%20%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8/"/>
+    <id>http://www.tipdev.xyz/2017/02/07/2017-02-07-RxJava 2.x 基础使用/</id>
+    <published>2017-02-06T16:00:00.000Z</published>
+    <updated>2017-05-23T16:14:37.000Z</updated>
+    
+    <content type="html"><![CDATA[<h5 id="在开始之前，先说说-RxJava2-0-的变化，或者直接去看官方文档-What’s-different-in-2-0-。简单总结为以下几点。"><a href="#在开始之前，先说说-RxJava2-0-的变化，或者直接去看官方文档-What’s-different-in-2-0-。简单总结为以下几点。" class="headerlink" title="在开始之前，先说说 RxJava2.0 的变化，或者直接去看官方文档 What’s different in 2.0 。简单总结为以下几点。"></a><em>在开始之前，先说说 RxJava2.0 的变化，或者直接去看官方文档 <a href="https://github.com/ReactiveX/RxJava/wiki/What&#39;s-different-in-2.0" target="_blank" rel="external">What’s different in 2.0</a> 。简单总结为以下几点。</em></h5><ol>
+<li>RxJava2.x 不再接受null</li>
+<li>背压（backpressure） Observable 不支持背压  全新的Flowable 支持背压</li>
+<li>新增onSubscribe(Disposable d) 回调 </li>
+<li>Consumer、BiConsumer替代 Action1、Action2 等</li>
+<li>调整from() 为 fromArray、fromIterable、fromFuture</li>
+<li>Func1和Func2改为Function和BiFunction，Func3-9改为Function3-9</li>
+<li>修改Single、Completable为Reactive-Streams风格</li>
+<li>新增Maybe基本类…</li>
+</ol>
+<h3 id="Observable-和-Flowable"><a href="#Observable-和-Flowable" class="headerlink" title="Observable 和 Flowable"></a>Observable 和 Flowable</h3><ul>
+<li>Observablle：不支持背压；</li>
+<li>Flowable：RxJava2.x 新增，支持背压；</li>
+</ul>
+<p>那么问题来了什么是背压呢？</p>
+<p>我们系统资源有限，很多情况下我们处理数据的速度跟不上发送数据的速度，导致占用很大的资源，以至于内存泄漏等。背压就是用来解决这样的情况的，背压是一种告诉所有发送数据的组件减缓它们发送数据的速度的方法。</p>
+<h5 id="什么时候使用Observable"><a href="#什么时候使用Observable" class="headerlink" title="什么时候使用Observable"></a>什么时候使用Observable</h5><ul>
+<li>不超过1000条数据流，并且不存在内存溢出。</li>
+<li>GUI鼠标事件，如鼠标移动、触摸事件等，这种很少可以合理地背压</li>
+<li>处理的式同步流而你的Java平台又不支持Java Stream</li>
+</ul>
+<h5 id="什么时候使用Flowable"><a href="#什么时候使用Flowable" class="headerlink" title="什么时候使用Flowable"></a>什么时候使用Flowable</h5><ul>
+<li>处理1000+ 元素</li>
+<li>文件读写</li>
+<li>数据库操作</li>
+<li>网络IO操作</li>
+</ul>
+<p>一个简单的例子使用Observable</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Observable.create(<span class="keyword">new</span> ObservableOnSubscribe&lt;String&gt;() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">subscribe</span><span class="params">(ObservableEmitter&lt;String&gt; e)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">         <span class="comment">// ObservableEmitter ?  发射器，可以用来触发 onNext onError onComplete 事件</span></span><br><span class="line">         e.onNext(<span class="string">"A"</span>);</span><br><span class="line">         e.onNext(<span class="string">"B"</span>);</span><br><span class="line">         e.onNext(<span class="string">"C"</span>);</span><br><span class="line">         e.onComplete();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;).subscribeOn(Schedulers.io())</span><br><span class="line">  .observeOn(AndroidSchedulers.mainThread())</span><br><span class="line">  .subscribe(<span class="keyword">new</span> Observer&lt;String&gt;() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onSubscribe</span><span class="params">(Disposable d)</span> </span>&#123;</span><br><span class="line">                <span class="comment">// onSubscribe 是 RxJava 2.x 新增回调，一般用于取消订阅d.dispose()</span></span><br><span class="line">                <span class="comment">// Disposable 是 RxJava 1.x 中的 Subscription 改名  遵循Reactive-Streams规范</span></span><br><span class="line">                Log.d(TAG, <span class="string">"ObserableCreate onSubscribe: "</span> + d.isDisposed());</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onNext</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">                Log.d(TAG, <span class="string">"onNext: "</span> + s);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onError</span><span class="params">(Throwable e)</span> </span>&#123;</span><br><span class="line">                Log.d(TAG, <span class="string">"onError: "</span> + e.getMessage());</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onComplete</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                Log.d(TAG, <span class="string">"onComplete: "</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br></pre></td></tr></table></figure>
+<p>使用Flowable 是这样的</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Flowable.create(<span class="keyword">new</span> FlowableOnSubscribe&lt;String&gt;() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">subscribe</span><span class="params">(FlowableEmitter&lt;String&gt; e)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="comment">// ObservableEmitter ?  发射器，可以用来触发 onNext onError onComplete 事件</span></span><br><span class="line">        e.onNext(<span class="string">"A"</span>);</span><br><span class="line">        e.onNext(<span class="string">"B"</span>);</span><br><span class="line">        e.onNext(<span class="string">"C"</span>);</span><br><span class="line">        e.onComplete();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;, BackpressureStrategy.BUFFER)</span><br><span class="line">        .subscribeOn(Schedulers.io())</span><br><span class="line">        .observeOn(AndroidSchedulers.mainThread())</span><br><span class="line">        .subscribe(<span class="keyword">new</span> Subscriber&lt;String&gt;() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onSubscribe</span><span class="params">(Subscription s)</span> </span>&#123;</span><br><span class="line">                <span class="comment">// 初始化操作  (初始化需要再request前面)</span></span><br><span class="line">                <span class="comment">// 调用request()方法，会立即触发onNext()方法</span></span><br><span class="line">                Log.d(TAG, <span class="string">"FlowableCreate onSubscribe: "</span>);</span><br><span class="line">                s.request(Long.MAX_VALUE);   <span class="comment">// 必须</span></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onNext</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">                Log.d(TAG, <span class="string">"onNext: "</span> + s);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onError</span><span class="params">(Throwable e)</span> </span>&#123;</span><br><span class="line">                Log.d(TAG, <span class="string">"onError: "</span> + e.getMessage());</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onComplete</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                Log.d(TAG, <span class="string">"onComplete: "</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="onSubscribe-Disposable-d"><a href="#onSubscribe-Disposable-d" class="headerlink" title="onSubscribe(Disposable d)"></a>onSubscribe(Disposable d)</h3><p>传递参数为Disposable ，Disposable相当于RxJava1.x中的Subscription,用于解除订阅。那为什么不像RxJava1.x中订阅时返回Disposable，而是选择回调出来呢。官方说是为了设计成Reactive-Streams架构。</p>
+<h3 id="Consumer、BiConsumer等"><a href="#Consumer、BiConsumer等" class="headerlink" title="Consumer、BiConsumer等"></a>Consumer、BiConsumer等</h3><p>在2.x中使用Consumer来代替Action1，如果是两个参数，则用BiConsumer来代替Action2，而且在2.x中删除了Action3-9，如果是多个参数则用Custom代替ActionN。</p>
+<h3 id="fromArray、fromIterable、fromFuture"><a href="#fromArray、fromIterable、fromFuture" class="headerlink" title="fromArray、fromIterable、fromFuture"></a>fromArray、fromIterable、fromFuture</h3><p>在1.x中可以使用from()来发送数据，但是因为在使用java8编译时，javac不能够区分功能接口类型，所以它在2.x中被拆分为：fromArray,fromIterable,fromFuture</p>
+<h3 id="Function和BiFunction"><a href="#Function和BiFunction" class="headerlink" title="Function和BiFunction"></a>Function和BiFunction</h3><p>在2.x中将1.x的Func1和Func2改为Function和BiFunction，Func3-9改为Function3-9，多参数FuncN改为Function</p>
+<h3 id="Single"><a href="#Single" class="headerlink" title="Single"></a>Single</h3><p>它可以发出单个的onSuccess 或者 onError ，重新设计为Reactive-Streams架构。</p>
+<h3 id="Completable"><a href="#Completable" class="headerlink" title="Completable"></a>Completable</h3><p>Completable也被重新设计为Reactive-Streams架构，RxJava1.x的<code>CompletableSubscriber</code>改为<code>CompletableObserver</code></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">CompletableObserver</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">onSubscribe</span><span class="params">(Disposable d)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">onComplete</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">onError</span><span class="params">(Throwable error)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Maybe"><a href="#Maybe" class="headerlink" title="Maybe"></a>Maybe</h3><p>它是Single 和 Completable 的结合体，它可以发射0个或1个通知或错误的信号。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h5 id=&quot;在开始之前，先说说-RxJava2-0-的变化，或者直接去看官方文档-What’s-different-in-2-0-。简单总结为以下几点。&quot;&gt;&lt;a href=&quot;#在开始之前，先说说-RxJava2-0-的变化，或者直接去看官方文档-What’s-differen
+    
+    </summary>
+    
+    
+      <category term="RxJava2.x" scheme="http://www.tipdev.xyz/tags/RxJava2-x/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Android 命名规范</title>
     <link href="http://www.tipdev.xyz/2017/02/07/2017-02-07-Android%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83/"/>
     <id>http://www.tipdev.xyz/2017/02/07/2017-02-07-Android命名规范/</id>
     <published>2017-02-06T16:00:00.000Z</published>
-    <updated>2017-02-06T08:30:42.000Z</updated>
+    <updated>2017-05-23T16:14:43.000Z</updated>
     
     <content type="html"><![CDATA[<h5 id="说明：android开发中，常用的命名方式主要有大驼峰式（帕斯卡）、小驼峰式（驼峰）、下划线命名法。"><a href="#说明：android开发中，常用的命名方式主要有大驼峰式（帕斯卡）、小驼峰式（驼峰）、下划线命名法。" class="headerlink" title="说明：android开发中，常用的命名方式主要有大驼峰式（帕斯卡）、小驼峰式（驼峰）、下划线命名法。"></a><em>说明：android开发中，常用的命名方式主要有大驼峰式（帕斯卡）、小驼峰式（驼峰）、下划线命名法。</em></h5><ol>
 <li>驼峰命名法:又称小驼峰命名法，除首单词外，其余所有单词的第一个字母大写。例如：<code>onCreate()</code></li>
@@ -483,7 +504,6 @@
 </tr>
 </tbody>
 </table>
-<a id="more"></a>
 <h2 id="接口命名"><a href="#接口命名" class="headerlink" title="接口命名"></a>接口命名</h2><p>采用大驼峰式，首字母大写。</p>
 <p>例： interface OnClickListener;</p>
 <h2 id="方法命名"><a href="#方法命名" class="headerlink" title="方法命名"></a>方法命名</h2><p>采用小驼峰式，首字母小写，方法名一般采用动词。</p>
@@ -832,138 +852,10 @@
     
     <summary type="html">
     
-      &lt;h5 id=&quot;说明：android开发中，常用的命名方式主要有大驼峰式（帕斯卡）、小驼峰式（驼峰）、下划线命名法。&quot;&gt;&lt;a href=&quot;#说明：android开发中，常用的命名方式主要有大驼峰式（帕斯卡）、小驼峰式（驼峰）、下划线命名法。&quot; class=&quot;headerlink&quot; title=&quot;说明：android开发中，常用的命名方式主要有大驼峰式（帕斯卡）、小驼峰式（驼峰）、下划线命名法。&quot;&gt;&lt;/a&gt;&lt;em&gt;说明：android开发中，常用的命名方式主要有大驼峰式（帕斯卡）、小驼峰式（驼峰）、下划线命名法。&lt;/em&gt;&lt;/h5&gt;&lt;ol&gt;
-&lt;li&gt;驼峰命名法:又称小驼峰命名法，除首单词外，其余所有单词的第一个字母大写。例如：&lt;code&gt;onCreate()&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;帕斯卡命名法:又称大驼峰命名法，所有单词的第一个字母大写。例如：&lt;code&gt;Foo()&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;下划线命名法:单词与单词间用下划线做间隔。例如：activity_main.xml&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&quot;项目包名命名&quot;&gt;&lt;a href=&quot;#项目包名命名&quot; class=&quot;headerlink&quot; title=&quot;项目包名命名&quot;&gt;&lt;/a&gt;项目包名命名&lt;/h2&gt;&lt;p&gt;采用反向命名规则，全部使用小写字母，一级包名为顶级域名，二级包名为公司、部门或者个人名，三级包名为项目名。例如：xyz.tipdev.parking&lt;/p&gt;
-&lt;h2 id=&quot;类命名&quot;&gt;&lt;a href=&quot;#类命名&quot; class=&quot;headerlink&quot; title=&quot;类命名&quot;&gt;&lt;/a&gt;类命名&lt;/h2&gt;&lt;p&gt;采用大驼峰式命名，首字母大写，尽量避免缩写。&lt;/p&gt;
-&lt;p&gt;例：&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;类&lt;/th&gt;
-&lt;th&gt;命名规则&lt;/th&gt;
-&lt;th&gt;示例&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;Activity&lt;/td&gt;
-&lt;td&gt;XXX功能+Activity&lt;/td&gt;
-&lt;td&gt;MainActivity&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;Service&lt;/td&gt;
-&lt;td&gt;XXX功能+Service&lt;/td&gt;
-&lt;td&gt;PollService&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;Fragment&lt;/td&gt;
-&lt;td&gt;XXX功能+Fragment&lt;/td&gt;
-&lt;td&gt;PayFragment&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;Adapter&lt;/td&gt;
-&lt;td&gt;XXX功能+Adapter&lt;/td&gt;
-&lt;td&gt;OrderAdapter&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;Utils&lt;/td&gt;
-&lt;td&gt;XXX功能+Utils&lt;/td&gt;
-&lt;td&gt;FileUtils&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;Bean&lt;/td&gt;
-&lt;td&gt;XXX功能+Bean&lt;/td&gt;
-&lt;td&gt;UserBean&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;共享基础类&lt;/td&gt;
-&lt;td&gt;以Base开头&lt;/td&gt;
-&lt;td&gt;BaseActivity/BaseFragment&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
+      &lt;h5 id=&quot;说明：android开发中，常用的命名方式主要有大驼峰式（帕斯卡）、小驼峰式（驼峰）、下划线命名法。&quot;&gt;&lt;a href=&quot;#说明：android开发中，常用的命名方式主要有大驼峰式（帕斯卡）、小驼峰式（驼峰）、下划线命名法。&quot; class=&quot;headerlink&quot;
     
     </summary>
     
-    
-  </entry>
-  
-  <entry>
-    <title>RxJava 2.x 基础使用</title>
-    <link href="http://www.tipdev.xyz/2017/02/07/2017-02-07-RxJava%202.x%20%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8/"/>
-    <id>http://www.tipdev.xyz/2017/02/07/2017-02-07-RxJava 2.x 基础使用/</id>
-    <published>2017-02-06T16:00:00.000Z</published>
-    <updated>2017-02-12T06:53:41.000Z</updated>
-    
-    <content type="html"><![CDATA[<h5 id="在开始之前，先说说-RxJava2-0-的变化，或者直接去看官方文档-What’s-different-in-2-0-。简单总结为以下几点。"><a href="#在开始之前，先说说-RxJava2-0-的变化，或者直接去看官方文档-What’s-different-in-2-0-。简单总结为以下几点。" class="headerlink" title="在开始之前，先说说 RxJava2.0 的变化，或者直接去看官方文档 What’s different in 2.0 。简单总结为以下几点。"></a><em>在开始之前，先说说 RxJava2.0 的变化，或者直接去看官方文档 <a href="https://github.com/ReactiveX/RxJava/wiki/What&#39;s-different-in-2.0" target="_blank" rel="external">What’s different in 2.0</a> 。简单总结为以下几点。</em></h5><ol>
-<li>RxJava2.x 不再接受null</li>
-<li>背压（backpressure） Observable 不支持背压  全新的Flowable 支持背压</li>
-<li>新增onSubscribe(Disposable d) 回调 </li>
-<li>Consumer、BiConsumer替代 Action1、Action2 等</li>
-<li>调整from() 为 fromArray、fromIterable、fromFuture</li>
-<li>Func1和Func2改为Function和BiFunction，Func3-9改为Function3-9</li>
-<li>修改Single、Completable为Reactive-Streams风格</li>
-<li>新增Maybe基本类…</li>
-</ol>
-<h3 id="Observable-和-Flowable"><a href="#Observable-和-Flowable" class="headerlink" title="Observable 和 Flowable"></a>Observable 和 Flowable</h3><ul>
-<li>Observablle：不支持背压；</li>
-<li>Flowable：RxJava2.x 新增，支持背压；</li>
-</ul>
-<p>那么问题来了什么是背压呢？</p>
-<p>我们系统资源有限，很多情况下我们处理数据的速度跟不上发送数据的速度，导致占用很大的资源，以至于内存泄漏等。背压就是用来解决这样的情况的，背压是一种告诉所有发送数据的组件减缓它们发送数据的速度的方法。</p>
-<a id="more"></a>
-<h5 id="什么时候使用Observable"><a href="#什么时候使用Observable" class="headerlink" title="什么时候使用Observable"></a>什么时候使用Observable</h5><ul>
-<li>不超过1000条数据流，并且不存在内存溢出。</li>
-<li>GUI鼠标事件，如鼠标移动、触摸事件等，这种很少可以合理地背压</li>
-<li>处理的式同步流而你的Java平台又不支持Java Stream</li>
-</ul>
-<h5 id="什么时候使用Flowable"><a href="#什么时候使用Flowable" class="headerlink" title="什么时候使用Flowable"></a>什么时候使用Flowable</h5><ul>
-<li>处理1000+ 元素</li>
-<li>文件读写</li>
-<li>数据库操作</li>
-<li>网络IO操作</li>
-</ul>
-<p>一个简单的例子使用Observable</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Observable.create(<span class="keyword">new</span> ObservableOnSubscribe&lt;String&gt;() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">subscribe</span><span class="params">(ObservableEmitter&lt;String&gt; e)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">         <span class="comment">// ObservableEmitter ?  发射器，可以用来触发 onNext onError onComplete 事件</span></span><br><span class="line">         e.onNext(<span class="string">"A"</span>);</span><br><span class="line">         e.onNext(<span class="string">"B"</span>);</span><br><span class="line">         e.onNext(<span class="string">"C"</span>);</span><br><span class="line">         e.onComplete();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;).subscribeOn(Schedulers.io())</span><br><span class="line">  .observeOn(AndroidSchedulers.mainThread())</span><br><span class="line">  .subscribe(<span class="keyword">new</span> Observer&lt;String&gt;() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onSubscribe</span><span class="params">(Disposable d)</span> </span>&#123;</span><br><span class="line">                <span class="comment">// onSubscribe 是 RxJava 2.x 新增回调，一般用于取消订阅d.dispose()</span></span><br><span class="line">                <span class="comment">// Disposable 是 RxJava 1.x 中的 Subscription 改名  遵循Reactive-Streams规范</span></span><br><span class="line">                Log.d(TAG, <span class="string">"ObserableCreate onSubscribe: "</span> + d.isDisposed());</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onNext</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">                Log.d(TAG, <span class="string">"onNext: "</span> + s);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onError</span><span class="params">(Throwable e)</span> </span>&#123;</span><br><span class="line">                Log.d(TAG, <span class="string">"onError: "</span> + e.getMessage());</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onComplete</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                Log.d(TAG, <span class="string">"onComplete: "</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br></pre></td></tr></table></figure>
-<p>使用Flowable 是这样的</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Flowable.create(<span class="keyword">new</span> FlowableOnSubscribe&lt;String&gt;() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">subscribe</span><span class="params">(FlowableEmitter&lt;String&gt; e)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="comment">// ObservableEmitter ?  发射器，可以用来触发 onNext onError onComplete 事件</span></span><br><span class="line">        e.onNext(<span class="string">"A"</span>);</span><br><span class="line">        e.onNext(<span class="string">"B"</span>);</span><br><span class="line">        e.onNext(<span class="string">"C"</span>);</span><br><span class="line">        e.onComplete();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;, BackpressureStrategy.BUFFER)</span><br><span class="line">        .subscribeOn(Schedulers.io())</span><br><span class="line">        .observeOn(AndroidSchedulers.mainThread())</span><br><span class="line">        .subscribe(<span class="keyword">new</span> Subscriber&lt;String&gt;() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onSubscribe</span><span class="params">(Subscription s)</span> </span>&#123;</span><br><span class="line">                <span class="comment">// 初始化操作  (初始化需要再request前面)</span></span><br><span class="line">                <span class="comment">// 调用request()方法，会立即触发onNext()方法</span></span><br><span class="line">                Log.d(TAG, <span class="string">"FlowableCreate onSubscribe: "</span>);</span><br><span class="line">                s.request(Long.MAX_VALUE);   <span class="comment">// 必须</span></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onNext</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">                Log.d(TAG, <span class="string">"onNext: "</span> + s);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onError</span><span class="params">(Throwable e)</span> </span>&#123;</span><br><span class="line">                Log.d(TAG, <span class="string">"onError: "</span> + e.getMessage());</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onComplete</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                Log.d(TAG, <span class="string">"onComplete: "</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br></pre></td></tr></table></figure>
-<h3 id="onSubscribe-Disposable-d"><a href="#onSubscribe-Disposable-d" class="headerlink" title="onSubscribe(Disposable d)"></a>onSubscribe(Disposable d)</h3><p>传递参数为Disposable ，Disposable相当于RxJava1.x中的Subscription,用于解除订阅。那为什么不像RxJava1.x中订阅时返回Disposable，而是选择回调出来呢。官方说是为了设计成Reactive-Streams架构。</p>
-<h3 id="Consumer、BiConsumer等"><a href="#Consumer、BiConsumer等" class="headerlink" title="Consumer、BiConsumer等"></a>Consumer、BiConsumer等</h3><p>在2.x中使用Consumer来代替Action1，如果是两个参数，则用BiConsumer来代替Action2，而且在2.x中删除了Action3-9，如果是多个参数则用Custom代替ActionN。</p>
-<h3 id="fromArray、fromIterable、fromFuture"><a href="#fromArray、fromIterable、fromFuture" class="headerlink" title="fromArray、fromIterable、fromFuture"></a>fromArray、fromIterable、fromFuture</h3><p>在1.x中可以使用from()来发送数据，但是因为在使用java8编译时，javac不能够区分功能接口类型，所以它在2.x中被拆分为：fromArray,fromIterable,fromFuture</p>
-<h3 id="Function和BiFunction"><a href="#Function和BiFunction" class="headerlink" title="Function和BiFunction"></a>Function和BiFunction</h3><p>在2.x中将1.x的Func1和Func2改为Function和BiFunction，Func3-9改为Function3-9，多参数FuncN改为Function</p>
-<h3 id="Single"><a href="#Single" class="headerlink" title="Single"></a>Single</h3><p>它可以发出单个的onSuccess 或者 onError ，重新设计为Reactive-Streams架构。</p>
-<h3 id="Completable"><a href="#Completable" class="headerlink" title="Completable"></a>Completable</h3><p>Completable也被重新设计为Reactive-Streams架构，RxJava1.x的<code>CompletableSubscriber</code>改为<code>CompletableObserver</code></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">CompletableObserver</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">onSubscribe</span><span class="params">(Disposable d)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">onComplete</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">onError</span><span class="params">(Throwable error)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="Maybe"><a href="#Maybe" class="headerlink" title="Maybe"></a>Maybe</h3><p>它是Single 和 Completable 的结合体，它可以发射0个或1个通知或错误的信号。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h5 id=&quot;在开始之前，先说说-RxJava2-0-的变化，或者直接去看官方文档-What’s-different-in-2-0-。简单总结为以下几点。&quot;&gt;&lt;a href=&quot;#在开始之前，先说说-RxJava2-0-的变化，或者直接去看官方文档-What’s-different-in-2-0-。简单总结为以下几点。&quot; class=&quot;headerlink&quot; title=&quot;在开始之前，先说说 RxJava2.0 的变化，或者直接去看官方文档 What’s different in 2.0 。简单总结为以下几点。&quot;&gt;&lt;/a&gt;&lt;em&gt;在开始之前，先说说 RxJava2.0 的变化，或者直接去看官方文档 &lt;a href=&quot;https://github.com/ReactiveX/RxJava/wiki/What&amp;#39;s-different-in-2.0&quot;&gt;What’s different in 2.0&lt;/a&gt; 。简单总结为以下几点。&lt;/em&gt;&lt;/h5&gt;&lt;ol&gt;
-&lt;li&gt;RxJava2.x 不再接受null&lt;/li&gt;
-&lt;li&gt;背压（backpressure） Observable 不支持背压  全新的Flowable 支持背压&lt;/li&gt;
-&lt;li&gt;新增onSubscribe(Disposable d) 回调 &lt;/li&gt;
-&lt;li&gt;Consumer、BiConsumer替代 Action1、Action2 等&lt;/li&gt;
-&lt;li&gt;调整from() 为 fromArray、fromIterable、fromFuture&lt;/li&gt;
-&lt;li&gt;Func1和Func2改为Function和BiFunction，Func3-9改为Function3-9&lt;/li&gt;
-&lt;li&gt;修改Single、Completable为Reactive-Streams风格&lt;/li&gt;
-&lt;li&gt;新增Maybe基本类…&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3 id=&quot;Observable-和-Flowable&quot;&gt;&lt;a href=&quot;#Observable-和-Flowable&quot; class=&quot;headerlink&quot; title=&quot;Observable 和 Flowable&quot;&gt;&lt;/a&gt;Observable 和 Flowable&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;Observablle：不支持背压；&lt;/li&gt;
-&lt;li&gt;Flowable：RxJava2.x 新增，支持背压；&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;那么问题来了什么是背压呢？&lt;/p&gt;
-&lt;p&gt;我们系统资源有限，很多情况下我们处理数据的速度跟不上发送数据的速度，导致占用很大的资源，以至于内存泄漏等。背压就是用来解决这样的情况的，背压是一种告诉所有发送数据的组件减缓它们发送数据的速度的方法。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="RxJava2.x" scheme="http://www.tipdev.xyz/tags/RxJava2-x/"/>
     
   </entry>
   
@@ -972,7 +864,7 @@
     <link href="http://www.tipdev.xyz/2017/01/23/2017-01-23-Android%206.0%20%E8%BF%90%E8%A1%8C%E6%97%B6%E6%9D%83%E9%99%90%EF%BC%88%E7%AC%94%E8%AE%B0%EF%BC%89/"/>
     <id>http://www.tipdev.xyz/2017/01/23/2017-01-23-Android 6.0 运行时权限（笔记）/</id>
     <published>2017-01-22T16:00:00.000Z</published>
-    <updated>2017-01-23T10:44:44.000Z</updated>
+    <updated>2017-05-23T16:14:48.000Z</updated>
     
     <content type="html"><![CDATA[<p>记得上次看了郭神的6.0权限封装直播后，最近正好打算整理下项目代码，挺适合现在的项目的，一并记录下。</p>
 <h4 id="申请权限流程"><a href="#申请权限流程" class="headerlink" title="申请权限流程"></a>申请权限流程</h4><p>1.在AndroidManifest文件中添加需要的权限</p>
@@ -980,7 +872,6 @@
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 判断某个权限是否已经授权 </span></span><br><span class="line"><span class="keyword">if</span> (ContextCompat.checkSelfPermission(<span class="keyword">this</span>, Manifest.permission.READ_CONTACTS)</span><br><span class="line">        != PackageManager.PERMISSION_GRANTED) &#123;</span><br><span class="line">    <span class="comment">// 未授权</span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// 授权</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>3.申请权限</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 申请权限</span></span><br><span class="line">ActivityCompat.requestPermissions(<span class="keyword">this</span>,<span class="keyword">new</span> String[]&#123;</span><br><span class="line">        Manifest.permission.READ_CONTACTS&#125;, <span class="number">1</span>);</span><br></pre></td></tr></table></figure>
-<a id="more"></a>
 <p>4.处理权限申请回调</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * 申请权限回调</span><br><span class="line"> * <span class="doctag">@param</span> requestCode</span><br><span class="line"> * <span class="doctag">@param</span> permissions</span><br><span class="line"> * <span class="doctag">@param</span> grantResults</span><br><span class="line"> */</span></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onRequestPermissionsResult</span><span class="params">(<span class="keyword">int</span> requestCode, @NonNull String[] permissions, @NonNull <span class="keyword">int</span>[] grantResults)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">super</span>.onRequestPermissionsResult(requestCode, permissions, grantResults);</span><br><span class="line">    <span class="keyword">switch</span> (requestCode) &#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="权限封装"><a href="#权限封装" class="headerlink" title="权限封装"></a>权限封装</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BaseActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> PERMISSION_REQUESTCODE  = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    PermissionListener permissionListener;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> AppComponent <span class="title">getAppComponent</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> ((App) getApplication()).getAppComponent();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(@Nullable Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span><br><span class="line">     * 1.申请权限</span><br><span class="line">     * <span class="doctag">@param</span> permissions  权限</span><br><span class="line">     * <span class="doctag">@param</span> listener     回调接口</span><br><span class="line">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">requestRunTimePermission</span><span class="params">(String[] permissions, PermissionListener listener)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.permissionListener = listener;</span><br><span class="line"></span><br><span class="line">        List&lt;String&gt; permissionList = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="comment">// 遍历检查所有权限</span></span><br><span class="line">        <span class="keyword">for</span> (String permission : permissions) &#123;</span><br><span class="line">            <span class="comment">// 判断是否已经获得权限</span></span><br><span class="line">            <span class="keyword">if</span> (ContextCompat.checkSelfPermission(<span class="keyword">this</span>, permission) != PackageManager.PERMISSION_GRANTED) &#123;</span><br><span class="line">                <span class="comment">// 添加到待获取权限列表</span></span><br><span class="line">                permissionList.add(permission);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 判断待获取的权限列表是否未空</span></span><br><span class="line">        <span class="keyword">if</span> (!permissionList.isEmpty()) &#123;</span><br><span class="line">            <span class="comment">// 授权</span></span><br><span class="line">            ActivityCompat.requestPermissions(<span class="keyword">this</span>, permissionList.toArray(</span><br><span class="line">                    <span class="keyword">new</span> String[permissionList.size()]), PERMISSION_REQUESTCODE);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// 已经全部获得权限</span></span><br><span class="line">            listener.Granted();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span><br><span class="line">     * 2.申请权限回调</span><br><span class="line">     * <span class="doctag">@param</span> requestCode</span><br><span class="line">     * <span class="doctag">@param</span> permissions</span><br><span class="line">     * <span class="doctag">@param</span> grantResults</span><br><span class="line">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onRequestPermissionsResult</span><span class="params">(<span class="keyword">int</span> requestCode, @NonNull String[] permissions, @NonNull <span class="keyword">int</span>[] grantResults)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onRequestPermissionsResult(requestCode, permissions, grantResults);</span><br><span class="line">        <span class="keyword">switch</span> (requestCode) &#123;</span><br><span class="line">            <span class="keyword">case</span> PERMISSION_REQUESTCODE:</span><br><span class="line">                <span class="keyword">if</span> (grantResults.length &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                    <span class="comment">// 授权成功列表</span></span><br><span class="line">                    List&lt;String&gt; grantPermission = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">                    <span class="comment">// 授权失败列表</span></span><br><span class="line">                    List&lt;String&gt; deinePermission = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">                    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; permissions.length; i++) &#123;</span><br><span class="line">                        <span class="keyword">int</span> grantResult = grantResults[i];</span><br><span class="line">                        <span class="comment">// 判断权限授权情况</span></span><br><span class="line">                        <span class="keyword">if</span> (grantResult != PackageManager.PERMISSION_GRANTED) &#123;</span><br><span class="line">                            <span class="comment">// 授权失败权限</span></span><br><span class="line">                            String permission = permissions[i];</span><br><span class="line">                            deinePermission.add(permission);</span><br><span class="line">                        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                            <span class="comment">// 授权成功权限</span></span><br><span class="line">                            String permission = permissions[i];</span><br><span class="line">                            grantPermission.add(permission);</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line"></span><br><span class="line">                    <span class="comment">// 判断授权失败列表 是否为空</span></span><br><span class="line">                    <span class="keyword">if</span> (deinePermission.isEmpty()) &#123;</span><br><span class="line">                        permissionListener.Granted();</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        permissionListener.onDenierPermission(deinePermission);</span><br><span class="line">                        permissionListener.onGranterPermission(grantPermission);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -991,11 +882,7 @@
     <summary type="html">
     
       &lt;p&gt;记得上次看了郭神的6.0权限封装直播后，最近正好打算整理下项目代码，挺适合现在的项目的，一并记录下。&lt;/p&gt;
-&lt;h4 id=&quot;申请权限流程&quot;&gt;&lt;a href=&quot;#申请权限流程&quot; class=&quot;headerlink&quot; title=&quot;申请权限流程&quot;&gt;&lt;/a&gt;申请权限流程&lt;/h4&gt;&lt;p&gt;1.在AndroidManifest文件中添加需要的权限&lt;/p&gt;
-&lt;p&gt;2.检查权限&lt;/p&gt;
-&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// 判断某个权限是否已经授权 &lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (ContextCompat.checkSelfPermission(&lt;span class=&quot;keyword&quot;&gt;this&lt;/span&gt;, Manifest.permission.READ_CONTACTS)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        != PackageManager.PERMISSION_GRANTED) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;// 未授权&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125; &lt;span class=&quot;keyword&quot;&gt;else&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;// 授权&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;3.申请权限&lt;/p&gt;
-&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// 申请权限&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;ActivityCompat.requestPermissions(&lt;span class=&quot;keyword&quot;&gt;this&lt;/span&gt;,&lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; String[]&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        Manifest.permission.READ_CONTACTS&amp;#125;, &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h4 id=&quot;申请权限流程&quot;&gt;&lt;a href=&quot;#申请权限流程&quot; class=&quot;headerlink&quot; title=&quot;申请权限流程&quot;&gt;&lt;/a&gt;申请权限流程&lt;/h4
     
     </summary>
     
@@ -1098,10 +985,10 @@ sudo chown -R wkgit:wkgit test.git
     <link href="http://www.tipdev.xyz/2016/07/05/2016-07-05-%E5%85%B3%E4%BA%8E%E8%87%AA%E5%AE%9A%E4%B9%89Toolbar%E5%B7%A6%E8%BE%B9%E5%87%BA%E7%8E%B0%E7%A9%BA%E7%99%BD%E9%97%B4%E9%9A%99(%E8%AE%B0%E5%BD%95)/"/>
     <id>http://www.tipdev.xyz/2016/07/05/2016-07-05-关于自定义Toolbar左边出现空白间隙(记录)/</id>
     <published>2016-07-04T16:00:00.000Z</published>
-    <updated>2016-07-04T17:02:33.000Z</updated>
+    <updated>2017-05-23T16:15:16.000Z</updated>
     
     <content type="html"><![CDATA[<p>今天在给app自定义Toolbar的时候，发现左边出现空白间隔，反复查看布局也未发现问题，google查找相关资料，发现有不少朋友遇到这个问题，查看源码后发现问题出在contentInsetStart上，从字面上可以理解为从16dp处开始，导致现在空白间隙的问题。做下笔记，记录一下。</p>
-<h4 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h4><pre><code>&lt;style name=&quot;Widget.Toolbar&quot;&gt;
+<h3 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h3><pre><code>&lt;style name=&quot;Widget.Toolbar&quot;&gt;
     &lt;item name=&quot;titleTextAppearance&quot;&gt;@style/TextAppearance.Widget.Toolbar.Title&lt;/item&gt;
     &lt;item name=&quot;subtitleTextAppearance&quot;&gt;@style/TextAppearance.Widget.Toolbar.Subtitle&lt;/item&gt;
     &lt;item name=&quot;minHeight&quot;&gt;?attr/actionBarSize&lt;/item&gt;
@@ -1114,7 +1001,7 @@ sudo chown -R wkgit:wkgit test.git
     &lt;item name=&quot;contentInsetStart&quot;&gt;16dp&lt;/item&gt;
     &lt;item name=&quot;touchscreenBlocksFocus&quot;&gt;true&lt;/item&gt;
 &lt;/style&gt;
-</code></pre><h4 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h4><p>在style.xml文件中添加如下代码：</p>
+</code></pre><h3 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h3><p>在style.xml文件中添加如下代码：</p>
 <pre><code>&lt;style name=&quot;AppTheme&quot; parent=&quot;Theme.AppCompat.Light.NoActionBar&quot;&gt;
     &lt;item name=&quot;toolbarStyle&quot;&gt;@style/ClubToolbar&lt;/item&gt;     
 &lt;/style&gt;
@@ -1204,10 +1091,10 @@ private void openDatabase() {
     <link href="http://www.tipdev.xyz/2016/06/17/2016-06-17-Gson%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/"/>
     <id>http://www.tipdev.xyz/2016/06/17/2016-06-17-Gson使用笔记/</id>
     <published>2016-06-16T16:00:00.000Z</published>
-    <updated>2016-06-18T08:16:11.000Z</updated>
+    <updated>2017-05-23T16:15:40.000Z</updated>
     
     <content type="html"><![CDATA[<p>关于Gson，只需要知道它是google推出的一个Json解析库。特点：快、官方、简单。</p>
-<h2 id="简单数据"><a href="#简单数据" class="headerlink" title="简单数据"></a>简单数据</h2><p>假设json数据如下：</p>
+<h3 id="简单数据"><a href="#简单数据" class="headerlink" title="简单数据"></a>简单数据</h3><p>假设json数据如下：</p>
 <pre><code>{
     city: &quot;南子岛&quot;,
     cnty: &quot;中国&quot;,
@@ -1228,8 +1115,7 @@ private void openDatabase() {
 </code></pre><p>使用Gson解析（先导入Jar包）</p>
 <pre><code>//response:json数据
 City city ＝ new Gson().fromJson(response,City.class);
-</code></pre><a id="more"></a>
-<h2 id="嵌套数组"><a href="#嵌套数组" class="headerlink" title="嵌套数组"></a>嵌套数组</h2><p>假设json数据如下：</p>
+</code></pre><h3 id="嵌套数组"><a href="#嵌套数组" class="headerlink" title="嵌套数组"></a>嵌套数组</h3><p>假设json数据如下：</p>
 <pre><code>city_info: [
 {
     city: &quot;南子岛&quot;,
@@ -1326,7 +1212,7 @@ ArrayList&lt;CityBean.CityInfoBean&gt; cityInfoBean = new Gson().fromJson(all.ge
     mList.add(cityBean.get(i).getCity());
 }
 </code></pre><p>创建adapter的时候把mList传递进去</p>
-<h2 id="复杂数据"><a href="#复杂数据" class="headerlink" title="复杂数据"></a>复杂数据</h2><p>假设json数据如下：</p>
+<h3 id="复杂数据"><a href="#复杂数据" class="headerlink" title="复杂数据"></a>复杂数据</h3><p>假设json数据如下：</p>
 <pre><code>{
     HeWeather data service 3.0: [
     {
@@ -1400,28 +1286,7 @@ for (int i = 0; i &lt; weatherCityBean.size(); i++) {
     <summary type="html">
     
       &lt;p&gt;关于Gson，只需要知道它是google推出的一个Json解析库。特点：快、官方、简单。&lt;/p&gt;
-&lt;h2 id=&quot;简单数据&quot;&gt;&lt;a href=&quot;#简单数据&quot; class=&quot;headerlink&quot; title=&quot;简单数据&quot;&gt;&lt;/a&gt;简单数据&lt;/h2&gt;&lt;p&gt;假设json数据如下：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;{
-    city: &amp;quot;南子岛&amp;quot;,
-    cnty: &amp;quot;中国&amp;quot;,
-    id: &amp;quot;CN101310230&amp;quot;,
-    lat: &amp;quot;11.26&amp;quot;,
-    lon: &amp;quot;114.20&amp;quot;,
-    prov: &amp;quot;海南&amp;quot;
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;定义一个实体类&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;public class City{
-    public String city;
-    public String cnty;
-    public String id;
-    public String lat;
-    public String lon;
-    public String prov;
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;使用Gson解析（先导入Jar包）&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;//response:json数据
-City city ＝ new Gson().fromJson(response,City.class);
-&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&quot;简单数据&quot;&gt;&lt;a href=&quot;#简单数据&quot; class=&quot;headerlink&quot; title=&quot;简单数据&quot;&gt;&lt;/a&gt;简单数据&lt;/h3&gt;&lt;p&gt;假设json数据如下
     
     </summary>
     
@@ -1439,13 +1304,13 @@ City city ＝ new Gson().fromJson(response,City.class);
     <link href="http://www.tipdev.xyz/2015/09/03/2015-09-03-VPS%E4%B9%8Bshadowsocks%20%E7%BF%BB%E5%A2%99%E6%8A%80%E6%9C%AF%E9%82%A3%E5%8A%A0%E5%BC%BA/"/>
     <id>http://www.tipdev.xyz/2015/09/03/2015-09-03-VPS之shadowsocks 翻墙技术那加强/</id>
     <published>2015-09-02T16:00:00.000Z</published>
-    <updated>2015-09-03T06:46:22.000Z</updated>
+    <updated>2017-05-23T16:16:00.000Z</updated>
     
-    <content type="html"><![CDATA[<h4 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h4><ul>
+    <content type="html"><![CDATA[<h3 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h3><ul>
 <li>shadowsocks </li>
 <li>openWrt for Hiwifi</li>
 </ul>
-<h5 id="shadowsocks"><a href="#shadowsocks" class="headerlink" title="shadowsocks"></a>shadowsocks</h5><ul>
+<h4 id="shadowsocks"><a href="#shadowsocks" class="headerlink" title="shadowsocks"></a>shadowsocks</h4><ul>
 <li>1 购买vps</li>
 </ul>
 <p>这里推荐有日本节点的vps延迟比较低，例如Linode 、Conoha(价格相对比较贵)</p>
@@ -1475,11 +1340,11 @@ City city ＝ new Gson().fromJson(response,City.class);
     
     <summary type="html">
     
-      &lt;h4 id=&quot;目录&quot;&gt;&lt;a href=&quot;#目录&quot; class=&quot;headerlink&quot; title=&quot;目录&quot;&gt;&lt;/a&gt;目录&lt;/h4&gt;&lt;ul&gt;
+      &lt;h3 id=&quot;目录&quot;&gt;&lt;a href=&quot;#目录&quot; class=&quot;headerlink&quot; title=&quot;目录&quot;&gt;&lt;/a&gt;目录&lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;shadowsocks &lt;/li&gt;
 &lt;li&gt;openWrt for Hiwifi&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h5 id=&quot;shad
+&lt;h4 id=&quot;shad
     
     </summary>
     
@@ -1495,21 +1360,20 @@ City city ＝ new Gson().fromJson(response,City.class);
     <link href="http://www.tipdev.xyz/2015/07/26/2015-07-26-Archlinux%E5%A4%87%E5%BF%98%E7%AC%94%E8%AE%B01%E4%B9%8B%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/"/>
     <id>http://www.tipdev.xyz/2015/07/26/2015-07-26-Archlinux备忘笔记1之安装教程/</id>
     <published>2015-07-25T16:00:00.000Z</published>
-    <updated>2015-09-03T06:11:38.000Z</updated>
+    <updated>2017-05-23T16:16:40.000Z</updated>
     
     <content type="html"><![CDATA[<p>最近练车加有点私人事情，更新blog拖了很久。这些天只有晚上有点时间在真正做事，用了一段时间的Ubuntu后感觉这不是我要的那个。真尼马臃肿，我不喜欢这样，于是网上看了一些资料，没有一个比archlinux更符合我的要求。其实archlinux对我来说并不陌生，在大一刚刚起步的时候装来用过一次，记忆犹新，只因为对于当时菜鸟的我来说实在是寸步难行。这次我毅然装了回去，下面做一个archlinux备忘集合：</p>
-<h4 id="备忘集合"><a href="#备忘集合" class="headerlink" title="备忘集合"></a>备忘集合</h4><ul>
+<h3 id="备忘集合"><a href="#备忘集合" class="headerlink" title="备忘集合"></a>备忘集合</h3><ul>
 <li>安装archlinux</li>
 <li>archlinux+xfce4</li>
 <li>配置archlinux(细节)</li>
 <li>yamcman/yaourt</li>
 </ul>
-<h4 id="安装archlinux教程"><a href="#安装archlinux教程" class="headerlink" title="安装archlinux教程"></a>安装archlinux教程</h4><a id="more"></a>
-<h5 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h5><p>1.下载archlinux镜像（推荐163镜像）</p>
+<h3 id="安装archlinux教程"><a href="#安装archlinux教程" class="headerlink" title="安装archlinux教程"></a>安装archlinux教程</h3><h4 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h4><p>1.下载archlinux镜像（推荐163镜像）</p>
 <p>2.准备一个U盘（1G应该够了）用dd刻录到U盘</p>
 <pre><code>sudo dd if=xxx.iso of=/dev/sdb bs=2M
 (if=镜像路径，sdb是你U盘)
-</code></pre><h5 id="建立分区"><a href="#建立分区" class="headerlink" title="建立分区"></a>建立分区</h5><p>1.引导U盘启动，选择“Boot Arch Linux”</p>
+</code></pre><h4 id="建立分区"><a href="#建立分区" class="headerlink" title="建立分区"></a>建立分区</h4><p>1.引导U盘启动，选择“Boot Arch Linux”</p>
 <p>2.使用cfdisk对硬盘进行分区</p>
 <pre><code>root@archlinux~# cfdisk
 </code></pre><p>3.选择分区表类型为：dos</p>
@@ -1521,12 +1385,12 @@ City city ＝ new Gson().fromJson(response,City.class);
 root@archlinux~# mkdir /mnt/home
 </code></pre><p>7.启用交换分区</p>
 <pre><code>root@archlinux~# swapon /dev/sda5
-</code></pre><h5 id="设置安装镜像"><a href="#设置安装镜像" class="headerlink" title="设置安装镜像"></a>设置安装镜像</h5><p>8.清空镜像列表</p>
+</code></pre><h4 id="设置安装镜像"><a href="#设置安装镜像" class="headerlink" title="设置安装镜像"></a>设置安装镜像</h4><p>8.清空镜像列表</p>
 <pre><code>root@archlinux~# echo &gt; /etc/pacman.d/mirrorlist
 </code></pre><p>9.编辑镜像列表添加一下源（163和aliyun）</p>
 <pre><code>Server = http://mirrors.163.com/archlinux/$repo/os/$arch
 Server = http://mirrors.aliyun.com/archlinux/$repo/os/$arch
-</code></pre><h5 id="安装并配置"><a href="#安装并配置" class="headerlink" title="安装并配置"></a>安装并配置</h5><p>10.安装archlinux</p>
+</code></pre><h4 id="安装并配置"><a href="#安装并配置" class="headerlink" title="安装并配置"></a>安装并配置</h4><p>10.安装archlinux</p>
 <pre><code>root@archlinux~# pacstrap /mnt base base-devel
 </code></pre><p>11.生成fstab</p>
 <pre><code>root@archlinux~# genfstab -U -p /mnt &gt;&gt; /mnt/etc/fstab
@@ -1561,14 +1425,7 @@ umount /mnt &amp; reboot
     
     <summary type="html">
     
-      &lt;p&gt;最近练车加有点私人事情，更新blog拖了很久。这些天只有晚上有点时间在真正做事，用了一段时间的Ubuntu后感觉这不是我要的那个。真尼马臃肿，我不喜欢这样，于是网上看了一些资料，没有一个比archlinux更符合我的要求。其实archlinux对我来说并不陌生，在大一刚刚起步的时候装来用过一次，记忆犹新，只因为对于当时菜鸟的我来说实在是寸步难行。这次我毅然装了回去，下面做一个archlinux备忘集合：&lt;/p&gt;
-&lt;h4 id=&quot;备忘集合&quot;&gt;&lt;a href=&quot;#备忘集合&quot; class=&quot;headerlink&quot; title=&quot;备忘集合&quot;&gt;&lt;/a&gt;备忘集合&lt;/h4&gt;&lt;ul&gt;
-&lt;li&gt;安装archlinux&lt;/li&gt;
-&lt;li&gt;archlinux+xfce4&lt;/li&gt;
-&lt;li&gt;配置archlinux(细节)&lt;/li&gt;
-&lt;li&gt;yamcman/yaourt&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h4 id=&quot;安装archlinux教程&quot;&gt;&lt;a href=&quot;#安装archlinux教程&quot; class=&quot;headerlink&quot; title=&quot;安装archlinux教程&quot;&gt;&lt;/a&gt;安装archlinux教程&lt;/h4&gt;
+      &lt;p&gt;最近练车加有点私人事情，更新blog拖了很久。这些天只有晚上有点时间在真正做事，用了一段时间的Ubuntu后感觉这不是我要的那个。真尼马臃肿，我不喜欢这样，于是网上看了一些资料，没有一个比archlinux更符合我的要求。其实archlinux对我来说并不陌生，在大一刚刚起
     
     </summary>
     
@@ -1582,27 +1439,22 @@ umount /mnt &amp; reboot
     <link href="http://www.tipdev.xyz/2015/07/11/2015-07-11-%E5%AE%9E%E7%8E%B0%E5%A4%96%E7%BD%91Android%20SSH%E8%BF%9C%E7%A8%8B%E7%99%BB%E5%BD%95Linux/"/>
     <id>http://www.tipdev.xyz/2015/07/11/2015-07-11-实现外网Android SSH远程登录Linux/</id>
     <published>2015-07-10T16:00:00.000Z</published>
-    <updated>2016-06-10T07:39:47.000Z</updated>
+    <updated>2017-05-23T16:17:24.000Z</updated>
     
     <content type="html"><![CDATA[<p>这个想法已经有一整子了，一直内沉下心来去做，今天台风正好闲着没事做。其实原理很简单，通过路由器（TP-Link WR740N）转发设置DMZ主机，让局域网中的一台计算机完全暴露给广域网，接着用动态DNS解析到主机。在手机端使用SSH登入Linux，这里推荐使用JuiceSSH 。<br>以下介绍两款linux安装方法:</p>
-<h4 id="1-安装ssh-server"><a href="#1-安装ssh-server" class="headerlink" title="1.安装ssh server"></a>1.安装ssh server</h4><h5 id="ubuntu"><a href="#ubuntu" class="headerlink" title="ubuntu"></a>ubuntu</h5><pre><code>sudo apt-get install openssh-server
-</code></pre><h5 id="ArchLinux"><a href="#ArchLinux" class="headerlink" title="ArchLinux"></a>ArchLinux</h5><pre><code>sudo pacman -S openssh
-</code></pre><h4 id="2-查看ssh服务是否启动（一般情况下，安装完毕后自动启动）"><a href="#2-查看ssh服务是否启动（一般情况下，安装完毕后自动启动）" class="headerlink" title="2.查看ssh服务是否启动（一般情况下，安装完毕后自动启动）"></a>2.查看ssh服务是否启动（一般情况下，安装完毕后自动启动）</h4><pre><code>ps -ef | grep sshd
-</code></pre><a id="more"></a>
-<h4 id="3-如果发现无sshd这个进程，则需要手动启动"><a href="#3-如果发现无sshd这个进程，则需要手动启动" class="headerlink" title="3.如果发现无sshd这个进程，则需要手动启动"></a>3.如果发现无sshd这个进程，则需要手动启动</h4><h5 id="ubuntu-1"><a href="#ubuntu-1" class="headerlink" title="ubuntu"></a>ubuntu</h5><pre><code>sudo /etc/init.d/ssh start
-</code></pre><h5 id="ArchLinux-1"><a href="#ArchLinux-1" class="headerlink" title="ArchLinux"></a>ArchLinux</h5><pre><code>sudo /etc/rc.d/sshd start
-</code></pre><h4 id="4-仅供测试配置文件先不做修改，默认端口22"><a href="#4-仅供测试配置文件先不做修改，默认端口22" class="headerlink" title="4.仅供测试配置文件先不做修改，默认端口22"></a>4.仅供测试配置文件先不做修改，默认端口22</h4><p>Tip:提醒一下修改了配置文件，需要重启服务restart一下</p>
-<h4 id="5-设置路由器"><a href="#5-设置路由器" class="headerlink" title="5.设置路由器"></a>5.设置路由器</h4><p>开启DMZ状态，设置DMZ主机IP为从DHCP获得的主机IP地址。<br>注册花生壳帐号，勾选“启用DDNS”登入。这里记住你注册的域名。</p>
-<h4 id="6-测试登入"><a href="#6-测试登入" class="headerlink" title="6.测试登入"></a>6.测试登入</h4><p>在手机上测试ping 域名，看能否ping通。<br>尝试登入，ssh:域名 port:22 user:linux用户  passwd:linux用户密码<br>登入成功。</p>
+<h3 id="1-安装ssh-server"><a href="#1-安装ssh-server" class="headerlink" title="1.安装ssh server"></a>1.安装ssh server</h3><h4 id="ubuntu"><a href="#ubuntu" class="headerlink" title="ubuntu"></a>ubuntu</h4><pre><code>sudo apt-get install openssh-server
+</code></pre><h4 id="ArchLinux"><a href="#ArchLinux" class="headerlink" title="ArchLinux"></a>ArchLinux</h4><pre><code>sudo pacman -S openssh
+</code></pre><h3 id="2-查看ssh服务是否启动（一般情况下，安装完毕后自动启动）"><a href="#2-查看ssh服务是否启动（一般情况下，安装完毕后自动启动）" class="headerlink" title="2.查看ssh服务是否启动（一般情况下，安装完毕后自动启动）"></a>2.查看ssh服务是否启动（一般情况下，安装完毕后自动启动）</h3><pre><code>ps -ef | grep sshd
+</code></pre><h3 id="3-如果发现无sshd这个进程，则需要手动启动"><a href="#3-如果发现无sshd这个进程，则需要手动启动" class="headerlink" title="3.如果发现无sshd这个进程，则需要手动启动"></a>3.如果发现无sshd这个进程，则需要手动启动</h3><h4 id="ubuntu-1"><a href="#ubuntu-1" class="headerlink" title="ubuntu"></a>ubuntu</h4><pre><code>sudo /etc/init.d/ssh start
+</code></pre><h4 id="ArchLinux-1"><a href="#ArchLinux-1" class="headerlink" title="ArchLinux"></a>ArchLinux</h4><pre><code>sudo /etc/rc.d/sshd start
+</code></pre><h3 id="4-仅供测试配置文件先不做修改，默认端口22"><a href="#4-仅供测试配置文件先不做修改，默认端口22" class="headerlink" title="4.仅供测试配置文件先不做修改，默认端口22"></a>4.仅供测试配置文件先不做修改，默认端口22</h3><p>Tip:提醒一下修改了配置文件，需要重启服务restart一下</p>
+<h3 id="5-设置路由器"><a href="#5-设置路由器" class="headerlink" title="5.设置路由器"></a>5.设置路由器</h3><p>开启DMZ状态，设置DMZ主机IP为从DHCP获得的主机IP地址。<br>注册花生壳帐号，勾选“启用DDNS”登入。这里记住你注册的域名。</p>
+<h3 id="6-测试登入"><a href="#6-测试登入" class="headerlink" title="6.测试登入"></a>6.测试登入</h3><p>在手机上测试ping 域名，看能否ping通。<br>尝试登入，ssh:域名 port:22 user:linux用户  passwd:linux用户密码<br>登入成功。</p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;这个想法已经有一整子了，一直内沉下心来去做，今天台风正好闲着没事做。其实原理很简单，通过路由器（TP-Link WR740N）转发设置DMZ主机，让局域网中的一台计算机完全暴露给广域网，接着用动态DNS解析到主机。在手机端使用SSH登入Linux，这里推荐使用JuiceSSH 。&lt;br&gt;以下介绍两款linux安装方法:&lt;/p&gt;
-&lt;h4 id=&quot;1-安装ssh-server&quot;&gt;&lt;a href=&quot;#1-安装ssh-server&quot; class=&quot;headerlink&quot; title=&quot;1.安装ssh server&quot;&gt;&lt;/a&gt;1.安装ssh server&lt;/h4&gt;&lt;h5 id=&quot;ubuntu&quot;&gt;&lt;a href=&quot;#ubuntu&quot; class=&quot;headerlink&quot; title=&quot;ubuntu&quot;&gt;&lt;/a&gt;ubuntu&lt;/h5&gt;&lt;pre&gt;&lt;code&gt;sudo apt-get install openssh-server
-&lt;/code&gt;&lt;/pre&gt;&lt;h5 id=&quot;ArchLinux&quot;&gt;&lt;a href=&quot;#ArchLinux&quot; class=&quot;headerlink&quot; title=&quot;ArchLinux&quot;&gt;&lt;/a&gt;ArchLinux&lt;/h5&gt;&lt;pre&gt;&lt;code&gt;sudo pacman -S openssh
-&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&quot;2-查看ssh服务是否启动（一般情况下，安装完毕后自动启动）&quot;&gt;&lt;a href=&quot;#2-查看ssh服务是否启动（一般情况下，安装完毕后自动启动）&quot; class=&quot;headerlink&quot; title=&quot;2.查看ssh服务是否启动（一般情况下，安装完毕后自动启动）&quot;&gt;&lt;/a&gt;2.查看ssh服务是否启动（一般情况下，安装完毕后自动启动）&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;ps -ef | grep sshd
-&lt;/code&gt;&lt;/pre&gt;
+      &lt;p&gt;这个想法已经有一整子了，一直内沉下心来去做，今天台风正好闲着没事做。其实原理很简单，通过路由器（TP-Link WR740N）转发设置DMZ主机，让局域网中的一台计算机完全暴露给广域网，接着用动态DNS解析到主机。在手机端使用SSH登入Linux，这里推荐使用JuiceSS
     
     </summary>
     
@@ -1620,9 +1472,9 @@ umount /mnt &amp; reboot
     <link href="http://www.tipdev.xyz/2015/07/10/2015-07-10-JS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B04_%E5%9B%BE%E7%89%87%E5%BA%93%E4%BA%8C%E6%AC%A1%E4%BC%98%E5%8C%96/"/>
     <id>http://www.tipdev.xyz/2015/07/10/2015-07-10-JS学习笔记4_图片库二次优化/</id>
     <published>2015-07-09T16:00:00.000Z</published>
-    <updated>2015-09-03T06:10:58.000Z</updated>
+    <updated>2017-05-23T16:17:57.000Z</updated>
     
-    <content type="html"><![CDATA[<h4 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h4><ul>
+    <content type="html"><![CDATA[<h3 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h3><ul>
 <li>insertAfter函数</li>
 <li>addLoadEvent函数</li>
 <li>showPic函数</li>
@@ -1631,16 +1483,15 @@ umount /mnt &amp; reboot
 <p>每个函数都有合理的用处，insertAfter 和 addLoadEvent函数，是通用型函数（常用）。showPic函数，主要负责图片的切换，核心。Gallery函数，主要负责事件的处理，遍历每一个图片清单，为其添加onclick事件，和调用showPic()函数。placeholder函数，主要负责创建img、p标签，和添加其内容，把整个新创建的函数插入到节点树里去。</p>
 </li>
 </ul>
-<h5 id="insertAfter函数"><a href="#insertAfter函数" class="headerlink" title="insertAfter函数"></a>insertAfter函数</h5><pre><code>function insertAfter(newElement,targetElement){
+<h4 id="insertAfter函数"><a href="#insertAfter函数" class="headerlink" title="insertAfter函数"></a>insertAfter函数</h4><pre><code>function insertAfter(newElement,targetElement){
     var parent = targetElement.parentNode;
     if(parent.lastChild == targetElement){
         parent.appendChild(newElement);
     }else{
-</code></pre><a id="more"></a>
-<pre><code>        parent.insertBefore(newElement,targetElement.nextSibling);
+        parent.insertBefore(newElement,targetElement.nextSibling);
     }
 }
-</code></pre><h5 id="addLoadEvent函数"><a href="#addLoadEvent函数" class="headerlink" title="addLoadEvent函数"></a>addLoadEvent函数</h5><pre><code>function addLoadEvent(func){
+</code></pre><h4 id="addLoadEvent函数"><a href="#addLoadEvent函数" class="headerlink" title="addLoadEvent函数"></a>addLoadEvent函数</h4><pre><code>function addLoadEvent(func){
     var oldonload = window.onload;
     if(typeof window.onload != &apos;function&apos;){
         window.onload = func;
@@ -1651,7 +1502,7 @@ umount /mnt &amp; reboot
         }
     }    
 }
-</code></pre><h5 id="showPic函数"><a href="#showPic函数" class="headerlink" title="showPic函数"></a>showPic函数</h5><pre><code>function showPic(whichpic){
+</code></pre><h4 id="showPic函数"><a href="#showPic函数" class="headerlink" title="showPic函数"></a>showPic函数</h4><pre><code>function showPic(whichpic){
     if(!document.getElementById(&quot;img&quot;)){
         return false;
     }
@@ -1676,7 +1527,7 @@ umount /mnt &amp; reboot
     }
     return true;
 }
-</code></pre><h5 id="Gallery函数"><a href="#Gallery函数" class="headerlink" title="Gallery函数"></a>Gallery函数</h5><pre><code>function Gallery(){
+</code></pre><h4 id="Gallery函数"><a href="#Gallery函数" class="headerlink" title="Gallery函数"></a>Gallery函数</h4><pre><code>function Gallery(){
     if(!document.getElementById){
         return false;
     }
@@ -1694,7 +1545,7 @@ umount /mnt &amp; reboot
         }
     }
 }
-</code></pre><h5 id="placeholder函数"><a href="#placeholder函数" class="headerlink" title="placeholder函数"></a>placeholder函数</h5><pre><code>function placeholder(){
+</code></pre><h4 id="placeholder函数"><a href="#placeholder函数" class="headerlink" title="placeholder函数"></a>placeholder函数</h4><pre><code>function placeholder(){
     if(!document.createElement) return false;
     if(!document.createTextNode) return false;
     if(!document.getElementById) return false;
@@ -1720,9 +1571,9 @@ umount /mnt &amp; reboot
     insertAfter(img,gallery);
 
 }
-</code></pre><h5 id="添加函数"><a href="#添加函数" class="headerlink" title="添加函数"></a>添加函数</h5><pre><code>addLoadEvent(placeholder);
+</code></pre><h4 id="添加函数"><a href="#添加函数" class="headerlink" title="添加函数"></a>添加函数</h4><pre><code>addLoadEvent(placeholder);
 addLoadEvent(Gallery);
-</code></pre><h5 id="HTML文档（此时，相应标记减少了，index-html文档只包含js脚本和css样式挂钩）"><a href="#HTML文档（此时，相应标记减少了，index-html文档只包含js脚本和css样式挂钩）" class="headerlink" title="HTML文档（此时，相应标记减少了，index.html文档只包含js脚本和css样式挂钩）"></a>HTML文档（此时，相应标记减少了，index.html文档只包含js脚本和css样式挂钩）</h5><pre><code>&lt;!DOCTYPE html&gt;
+</code></pre><h4 id="HTML文档（此时，相应标记减少了，index-html文档只包含js脚本和css样式挂钩）"><a href="#HTML文档（此时，相应标记减少了，index-html文档只包含js脚本和css样式挂钩）" class="headerlink" title="HTML文档（此时，相应标记减少了，index.html文档只包含js脚本和css样式挂钩）"></a>HTML文档（此时，相应标记减少了，index.html文档只包含js脚本和css样式挂钩）</h4><pre><code>&lt;!DOCTYPE html&gt;
 &lt;html&gt;
     &lt;head&gt;
         &lt;meta charset=&quot;utf-8&quot; /&gt;
@@ -1752,21 +1603,11 @@ addLoadEvent(Gallery);
     
     <summary type="html">
     
-      &lt;h4 id=&quot;目录&quot;&gt;&lt;a href=&quot;#目录&quot; class=&quot;headerlink&quot; title=&quot;目录&quot;&gt;&lt;/a&gt;目录&lt;/h4&gt;&lt;ul&gt;
+      &lt;h3 id=&quot;目录&quot;&gt;&lt;a href=&quot;#目录&quot; class=&quot;headerlink&quot; title=&quot;目录&quot;&gt;&lt;/a&gt;目录&lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;insertAfter函数&lt;/li&gt;
 &lt;li&gt;addLoadEvent函数&lt;/li&gt;
 &lt;li&gt;showPic函数&lt;/li&gt;
-&lt;li&gt;Gallery函数&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;placeholder函数&lt;/p&gt;
-&lt;p&gt;每个函数都有合理的用处，insertAfter 和 addLoadEvent函数，是通用型函数（常用）。showPic函数，主要负责图片的切换，核心。Gallery函数，主要负责事件的处理，遍历每一个图片清单，为其添加onclick事件，和调用showPic()函数。placeholder函数，主要负责创建img、p标签，和添加其内容，把整个新创建的函数插入到节点树里去。&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h5 id=&quot;insertAfter函数&quot;&gt;&lt;a href=&quot;#insertAfter函数&quot; class=&quot;headerlink&quot; title=&quot;insertAfter函数&quot;&gt;&lt;/a&gt;insertAfter函数&lt;/h5&gt;&lt;pre&gt;&lt;code&gt;function insertAfter(newElement,targetElement){
-    var parent = targetElement.parentNode;
-    if(parent.lastChild == targetElement){
-        parent.appendChild(newElement);
-    }else{
-&lt;/code&gt;&lt;/pre&gt;
+&lt;l
     
     </summary>
     

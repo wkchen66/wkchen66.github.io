@@ -4,7 +4,6 @@
 <li>事件拦截 onInterceptTouchEvent</li>
 <li>处理事件 onTouchEvent</li>
 </ul>
-<a id="more"></a>
 <h3 id="事件传递流程"><a href="#事件传递流程" class="headerlink" title="事件传递流程"></a>事件传递流程</h3><p><img src="http://wx2.sinaimg.cn/mw690/88b64bf6ly1ffizxniqf2j219y1giwiz.jpg" alt="未标题-1"><br>当ViiewGroup接收到事件的时候，首先它的dispatchTouchEvent方法被触发，接着到ViewGroup的onInterceptTouchEvent方法中，如果返回true，就说明ViewGroup要拦截消费该事件，传递到ViewGroup的onTouchEvent方法中；如果返回的是false，就说明ViewGroup不拦截该事件，这样就传递到子View的dispatchTouchEvent方法中。</p>
 <p>上述三个方法的传递过程，用如下伪代码表示非常好理解：<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">diapatchTouchEvent</span><span class="params">(MotionEvent ev)</span></span>&#123;</span><br><span class="line">  <span class="keyword">boolean</span> consume = <span class="keyword">false</span>;</span><br><span class="line">  <span class="keyword">if</span>(onInterceptTouchEvent(ev))&#123;</span><br><span class="line">    consume = onTouchEvent(ev);</span><br><span class="line">  &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    consume = child.dispatchTouchEvent(ev);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> consume;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>注意：</p>

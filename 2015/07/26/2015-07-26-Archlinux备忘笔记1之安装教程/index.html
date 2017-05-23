@@ -1,16 +1,15 @@
 <!DOCTYPE html><html lang="zh-Hans"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> Archlinux备忘笔记1之安装教程 · wkchen's blog</title><meta name="description" content="Archlinux备忘笔记1之安装教程 - wkchen"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.tipdev.xyz/atom.xml" title="wkchen's blog"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="http://weibo.com/sunchongsheng" target="_blank" class="nav-list-link">WEIBO</a></li><li class="nav-list-item"><a href="https://github.com/pinggod" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">Archlinux备忘笔记1之安装教程</h1><div class="post-info">Jul 26, 2015</div><div class="post-content"><p>最近练车加有点私人事情，更新blog拖了很久。这些天只有晚上有点时间在真正做事，用了一段时间的Ubuntu后感觉这不是我要的那个。真尼马臃肿，我不喜欢这样，于是网上看了一些资料，没有一个比archlinux更符合我的要求。其实archlinux对我来说并不陌生，在大一刚刚起步的时候装来用过一次，记忆犹新，只因为对于当时菜鸟的我来说实在是寸步难行。这次我毅然装了回去，下面做一个archlinux备忘集合：</p>
-<h4 id="备忘集合"><a href="#备忘集合" class="headerlink" title="备忘集合"></a>备忘集合</h4><ul>
+<h3 id="备忘集合"><a href="#备忘集合" class="headerlink" title="备忘集合"></a>备忘集合</h3><ul>
 <li>安装archlinux</li>
 <li>archlinux+xfce4</li>
 <li>配置archlinux(细节)</li>
 <li>yamcman/yaourt</li>
 </ul>
-<h4 id="安装archlinux教程"><a href="#安装archlinux教程" class="headerlink" title="安装archlinux教程"></a>安装archlinux教程</h4><a id="more"></a>
-<h5 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h5><p>1.下载archlinux镜像（推荐163镜像）</p>
+<h3 id="安装archlinux教程"><a href="#安装archlinux教程" class="headerlink" title="安装archlinux教程"></a>安装archlinux教程</h3><h4 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h4><p>1.下载archlinux镜像（推荐163镜像）</p>
 <p>2.准备一个U盘（1G应该够了）用dd刻录到U盘</p>
 <pre><code>sudo dd if=xxx.iso of=/dev/sdb bs=2M
 (if=镜像路径，sdb是你U盘)
-</code></pre><h5 id="建立分区"><a href="#建立分区" class="headerlink" title="建立分区"></a>建立分区</h5><p>1.引导U盘启动，选择“Boot Arch Linux”</p>
+</code></pre><h4 id="建立分区"><a href="#建立分区" class="headerlink" title="建立分区"></a>建立分区</h4><p>1.引导U盘启动，选择“Boot Arch Linux”</p>
 <p>2.使用cfdisk对硬盘进行分区</p>
 <pre><code>root@archlinux~# cfdisk
 </code></pre><p>3.选择分区表类型为：dos</p>
@@ -22,12 +21,12 @@
 root@archlinux~# mkdir /mnt/home
 </code></pre><p>7.启用交换分区</p>
 <pre><code>root@archlinux~# swapon /dev/sda5
-</code></pre><h5 id="设置安装镜像"><a href="#设置安装镜像" class="headerlink" title="设置安装镜像"></a>设置安装镜像</h5><p>8.清空镜像列表</p>
+</code></pre><h4 id="设置安装镜像"><a href="#设置安装镜像" class="headerlink" title="设置安装镜像"></a>设置安装镜像</h4><p>8.清空镜像列表</p>
 <pre><code>root@archlinux~# echo &gt; /etc/pacman.d/mirrorlist
 </code></pre><p>9.编辑镜像列表添加一下源（163和aliyun）</p>
 <pre><code>Server = http://mirrors.163.com/archlinux/$repo/os/$arch
 Server = http://mirrors.aliyun.com/archlinux/$repo/os/$arch
-</code></pre><h5 id="安装并配置"><a href="#安装并配置" class="headerlink" title="安装并配置"></a>安装并配置</h5><p>10.安装archlinux</p>
+</code></pre><h4 id="安装并配置"><a href="#安装并配置" class="headerlink" title="安装并配置"></a>安装并配置</h4><p>10.安装archlinux</p>
 <pre><code>root@archlinux~# pacstrap /mnt base base-devel
 </code></pre><p>11.生成fstab</p>
 <pre><code>root@archlinux~# genfstab -U -p /mnt &gt;&gt; /mnt/etc/fstab

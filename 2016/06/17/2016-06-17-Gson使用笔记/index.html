@@ -1,5 +1,5 @@
 <!DOCTYPE html><html lang="zh-Hans"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> Gson使用笔记 · wkchen's blog</title><meta name="description" content="Gson使用笔记 - wkchen"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.tipdev.xyz/atom.xml" title="wkchen's blog"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="http://weibo.com/sunchongsheng" target="_blank" class="nav-list-link">WEIBO</a></li><li class="nav-list-item"><a href="https://github.com/pinggod" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">Gson使用笔记</h1><div class="post-info">Jun 17, 2016</div><div class="post-content"><p>关于Gson，只需要知道它是google推出的一个Json解析库。特点：快、官方、简单。</p>
-<h2 id="简单数据"><a href="#简单数据" class="headerlink" title="简单数据"></a>简单数据</h2><p>假设json数据如下：</p>
+<h3 id="简单数据"><a href="#简单数据" class="headerlink" title="简单数据"></a>简单数据</h3><p>假设json数据如下：</p>
 <pre><code>{
     city: &quot;南子岛&quot;,
     cnty: &quot;中国&quot;,
@@ -20,8 +20,7 @@
 </code></pre><p>使用Gson解析（先导入Jar包）</p>
 <pre><code>//response:json数据
 City city ＝ new Gson().fromJson(response,City.class);
-</code></pre><a id="more"></a>
-<h2 id="嵌套数组"><a href="#嵌套数组" class="headerlink" title="嵌套数组"></a>嵌套数组</h2><p>假设json数据如下：</p>
+</code></pre><h3 id="嵌套数组"><a href="#嵌套数组" class="headerlink" title="嵌套数组"></a>嵌套数组</h3><p>假设json数据如下：</p>
 <pre><code>city_info: [
 {
     city: &quot;南子岛&quot;,
@@ -118,7 +117,7 @@ ArrayList&lt;CityBean.CityInfoBean&gt; cityInfoBean = new Gson().fromJson(all.ge
     mList.add(cityBean.get(i).getCity());
 }
 </code></pre><p>创建adapter的时候把mList传递进去</p>
-<h2 id="复杂数据"><a href="#复杂数据" class="headerlink" title="复杂数据"></a>复杂数据</h2><p>假设json数据如下：</p>
+<h3 id="复杂数据"><a href="#复杂数据" class="headerlink" title="复杂数据"></a>复杂数据</h3><p>假设json数据如下：</p>
 <pre><code>{
     HeWeather data service 3.0: [
     {

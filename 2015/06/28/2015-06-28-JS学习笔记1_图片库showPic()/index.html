@@ -7,7 +7,7 @@
 <pre><code>&lt;li&gt;
     &lt;a href=&quot;javascript:showPic(&quot;images/wallpaper_01.jpg&quot;); return false;&quot; title=&quot;wallpaper_01&quot; &gt;one&lt;/a&gt;
 &lt;/li&gt;
-</code></pre><p>如果浏览器禁用javascript，伪代码就会无法显示。<br>把href的值设为一个真实存在的值。就能做到平稳退化。<br><a id="more"></a></p>
+</code></pre><p>如果浏览器禁用javascript，伪代码就会无法显示。<br>把href的值设为一个真实存在的值。就能做到平稳退化。</p>
 <h3 id="分离JavaScript和HTML"><a href="#分离JavaScript和HTML" class="headerlink" title="分离JavaScript和HTML"></a>分离JavaScript和HTML</h3><p>添加一个时间处理函数gallery</p>
 <pre><code>function gallery(){
     if(!document.getElementsByTagName) return false ;
