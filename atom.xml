@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.tipdev.xyz/"/>
-  <updated>2017-05-22T16:45:21.000Z</updated>
+  <updated>2017-05-23T16:08:51.000Z</updated>
   <id>http://www.tipdev.xyz/</id>
   
   <author>
@@ -14,6 +14,49 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Android玩转View（二）搞懂View的滑动原理</title>
+    <link href="http://www.tipdev.xyz/2017/05/23/2017-05-23-Android%E7%8E%A9%E8%BD%ACView%EF%BC%88%E4%BA%8C%EF%BC%89%E6%90%9E%E6%87%82View%E7%9A%84%E6%BB%91%E5%8A%A8%E5%8E%9F%E7%90%86/"/>
+    <id>http://www.tipdev.xyz/2017/05/23/2017-05-23-Android玩转View（二）搞懂View的滑动原理/</id>
+    <published>2017-05-22T16:00:00.000Z</published>
+    <updated>2017-05-23T16:08:51.000Z</updated>
+    
+    <content type="html"><![CDATA[<p><a href="http://tipdev.xyz/2017/05/22/2017-05-22-Android%E7%8E%A9%E8%BD%ACView%EF%BC%88%E4%B8%80%EF%BC%89%20%E6%8E%8C%E6%8F%A1View%E7%9A%84%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" target="_blank" rel="external">Android玩转View（一） 掌握View的基础知识</a><br><a href="http://tipdev.xyz/2017/05/23/2017-05-23-Android玩转View（二）搞懂View的滑动原理/" target="_blank" rel="external">Android玩转View（二） 搞懂View的滑动原理</a><br>Android玩转View（三） 搞懂View的弹性滑动<br>Android玩转View（四） 搞懂View的事件分发机制<br>Android玩转View（五） 搞懂View的工作原理（measure、layout和draw）<br>Android玩转View（六） Dome演示</p>
+<h3 id="滑动原理"><a href="#滑动原理" class="headerlink" title="滑动原理"></a>滑动原理</h3><p>实质上是改变View的上下左右边距，或则给View增加动画，达到的平移过程。无论是多么绚丽的滑动，归根结底就是通过滑动再加上一些绚丽的特效组成的。</p>
+<h3 id="滑动方式"><a href="#滑动方式" class="headerlink" title="滑动方式"></a>滑动方式</h3><ol>
+<li><p>使用scrollTo/scrollBy<br>scrollBy内部实际上也是调用了scrollTo方法，他实现了基于当前View的相对滑动。<br>scrollTo实现了基于所传递参数的绝对滑动。<br>scrollTo/scrollBy只能改变View内容的位置而不能改变View在布局中的位置。</p>
+<p>​</p>
+</li>
+<li><p>使用动画平移<br>使用动画来移动View，主要是操作View的translationX和translationY属性。</p>
+<p>View动画：View 动画是对View的影响做操作，并不能真正的改变View 的位置参数，如果希望保存动画后的状态就需要将fillAfter设置true。<br>属性动画：属性动画不存在View动画的问题，但Android3.0一下不兼容。</p>
+<p>​</p>
+</li>
+<li>LayoutParams改变布局参数<br>   改变LayoutParams里的margin值。比如向右平移100px，就设置marginLeft参数增加100px。向下平移100px，就设置marginTop参数增加100px。</li>
+</ol>
+<h3 id="滑动的区别"><a href="#滑动的区别" class="headerlink" title="滑动的区别"></a>滑动的区别</h3><ol>
+<li>scrollTo/scrollBy<br>优点：专门用于View的滑动，实现方便，不影响内部元素的单击事件。适合对View内容的滑动。<br>缺点：只能滑动View的内容，不能滑动View本身。</li>
+</ol>
+<ol>
+<li>动画<br>优点：操作简单，主要适用于没有交互的View和实现复杂的动画效果。<br>缺点：属性动画在Android3.0一下需要兼容库，不能改变View本身的属性。</li>
+</ol>
+<ol>
+<li>改变布局参数<br>优点：适合有交互的View。<br>缺点：操作复杂</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;a href=&quot;http://tipdev.xyz/2017/05/22/2017-05-22-Android%E7%8E%A9%E8%BD%ACView%EF%BC%88%E4%B8%80%EF%BC%89%20%E6%8E%8C%E6%8F%A1View%E7%9A%
+    
+    </summary>
+    
+    
+      <category term="Android" scheme="http://www.tipdev.xyz/tags/Android/"/>
+    
+      <category term="View" scheme="http://www.tipdev.xyz/tags/View/"/>
+    
+  </entry>
   
   <entry>
     <title>Android玩转View（一） 掌握View的基础知识</title>
@@ -364,6 +407,81 @@
       <category term="git" scheme="http://www.tipdev.xyz/tags/git/"/>
     
       <category term="github" scheme="http://www.tipdev.xyz/tags/github/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>RxJava 2.x 基础使用</title>
+    <link href="http://www.tipdev.xyz/2017/02/07/2017-02-07-RxJava%202.x%20%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8/"/>
+    <id>http://www.tipdev.xyz/2017/02/07/2017-02-07-RxJava 2.x 基础使用/</id>
+    <published>2017-02-06T16:00:00.000Z</published>
+    <updated>2017-02-12T06:53:41.000Z</updated>
+    
+    <content type="html"><![CDATA[<h5 id="在开始之前，先说说-RxJava2-0-的变化，或者直接去看官方文档-What’s-different-in-2-0-。简单总结为以下几点。"><a href="#在开始之前，先说说-RxJava2-0-的变化，或者直接去看官方文档-What’s-different-in-2-0-。简单总结为以下几点。" class="headerlink" title="在开始之前，先说说 RxJava2.0 的变化，或者直接去看官方文档 What’s different in 2.0 。简单总结为以下几点。"></a><em>在开始之前，先说说 RxJava2.0 的变化，或者直接去看官方文档 <a href="https://github.com/ReactiveX/RxJava/wiki/What&#39;s-different-in-2.0" target="_blank" rel="external">What’s different in 2.0</a> 。简单总结为以下几点。</em></h5><ol>
+<li>RxJava2.x 不再接受null</li>
+<li>背压（backpressure） Observable 不支持背压  全新的Flowable 支持背压</li>
+<li>新增onSubscribe(Disposable d) 回调 </li>
+<li>Consumer、BiConsumer替代 Action1、Action2 等</li>
+<li>调整from() 为 fromArray、fromIterable、fromFuture</li>
+<li>Func1和Func2改为Function和BiFunction，Func3-9改为Function3-9</li>
+<li>修改Single、Completable为Reactive-Streams风格</li>
+<li>新增Maybe基本类…</li>
+</ol>
+<h3 id="Observable-和-Flowable"><a href="#Observable-和-Flowable" class="headerlink" title="Observable 和 Flowable"></a>Observable 和 Flowable</h3><ul>
+<li>Observablle：不支持背压；</li>
+<li>Flowable：RxJava2.x 新增，支持背压；</li>
+</ul>
+<p>那么问题来了什么是背压呢？</p>
+<p>我们系统资源有限，很多情况下我们处理数据的速度跟不上发送数据的速度，导致占用很大的资源，以至于内存泄漏等。背压就是用来解决这样的情况的，背压是一种告诉所有发送数据的组件减缓它们发送数据的速度的方法。</p>
+<a id="more"></a>
+<h5 id="什么时候使用Observable"><a href="#什么时候使用Observable" class="headerlink" title="什么时候使用Observable"></a>什么时候使用Observable</h5><ul>
+<li>不超过1000条数据流，并且不存在内存溢出。</li>
+<li>GUI鼠标事件，如鼠标移动、触摸事件等，这种很少可以合理地背压</li>
+<li>处理的式同步流而你的Java平台又不支持Java Stream</li>
+</ul>
+<h5 id="什么时候使用Flowable"><a href="#什么时候使用Flowable" class="headerlink" title="什么时候使用Flowable"></a>什么时候使用Flowable</h5><ul>
+<li>处理1000+ 元素</li>
+<li>文件读写</li>
+<li>数据库操作</li>
+<li>网络IO操作</li>
+</ul>
+<p>一个简单的例子使用Observable</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Observable.create(<span class="keyword">new</span> ObservableOnSubscribe&lt;String&gt;() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">subscribe</span><span class="params">(ObservableEmitter&lt;String&gt; e)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">         <span class="comment">// ObservableEmitter ?  发射器，可以用来触发 onNext onError onComplete 事件</span></span><br><span class="line">         e.onNext(<span class="string">"A"</span>);</span><br><span class="line">         e.onNext(<span class="string">"B"</span>);</span><br><span class="line">         e.onNext(<span class="string">"C"</span>);</span><br><span class="line">         e.onComplete();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;).subscribeOn(Schedulers.io())</span><br><span class="line">  .observeOn(AndroidSchedulers.mainThread())</span><br><span class="line">  .subscribe(<span class="keyword">new</span> Observer&lt;String&gt;() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onSubscribe</span><span class="params">(Disposable d)</span> </span>&#123;</span><br><span class="line">                <span class="comment">// onSubscribe 是 RxJava 2.x 新增回调，一般用于取消订阅d.dispose()</span></span><br><span class="line">                <span class="comment">// Disposable 是 RxJava 1.x 中的 Subscription 改名  遵循Reactive-Streams规范</span></span><br><span class="line">                Log.d(TAG, <span class="string">"ObserableCreate onSubscribe: "</span> + d.isDisposed());</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onNext</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">                Log.d(TAG, <span class="string">"onNext: "</span> + s);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onError</span><span class="params">(Throwable e)</span> </span>&#123;</span><br><span class="line">                Log.d(TAG, <span class="string">"onError: "</span> + e.getMessage());</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onComplete</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                Log.d(TAG, <span class="string">"onComplete: "</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br></pre></td></tr></table></figure>
+<p>使用Flowable 是这样的</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Flowable.create(<span class="keyword">new</span> FlowableOnSubscribe&lt;String&gt;() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">subscribe</span><span class="params">(FlowableEmitter&lt;String&gt; e)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="comment">// ObservableEmitter ?  发射器，可以用来触发 onNext onError onComplete 事件</span></span><br><span class="line">        e.onNext(<span class="string">"A"</span>);</span><br><span class="line">        e.onNext(<span class="string">"B"</span>);</span><br><span class="line">        e.onNext(<span class="string">"C"</span>);</span><br><span class="line">        e.onComplete();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;, BackpressureStrategy.BUFFER)</span><br><span class="line">        .subscribeOn(Schedulers.io())</span><br><span class="line">        .observeOn(AndroidSchedulers.mainThread())</span><br><span class="line">        .subscribe(<span class="keyword">new</span> Subscriber&lt;String&gt;() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onSubscribe</span><span class="params">(Subscription s)</span> </span>&#123;</span><br><span class="line">                <span class="comment">// 初始化操作  (初始化需要再request前面)</span></span><br><span class="line">                <span class="comment">// 调用request()方法，会立即触发onNext()方法</span></span><br><span class="line">                Log.d(TAG, <span class="string">"FlowableCreate onSubscribe: "</span>);</span><br><span class="line">                s.request(Long.MAX_VALUE);   <span class="comment">// 必须</span></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onNext</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">                Log.d(TAG, <span class="string">"onNext: "</span> + s);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onError</span><span class="params">(Throwable e)</span> </span>&#123;</span><br><span class="line">                Log.d(TAG, <span class="string">"onError: "</span> + e.getMessage());</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onComplete</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                Log.d(TAG, <span class="string">"onComplete: "</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="onSubscribe-Disposable-d"><a href="#onSubscribe-Disposable-d" class="headerlink" title="onSubscribe(Disposable d)"></a>onSubscribe(Disposable d)</h3><p>传递参数为Disposable ，Disposable相当于RxJava1.x中的Subscription,用于解除订阅。那为什么不像RxJava1.x中订阅时返回Disposable，而是选择回调出来呢。官方说是为了设计成Reactive-Streams架构。</p>
+<h3 id="Consumer、BiConsumer等"><a href="#Consumer、BiConsumer等" class="headerlink" title="Consumer、BiConsumer等"></a>Consumer、BiConsumer等</h3><p>在2.x中使用Consumer来代替Action1，如果是两个参数，则用BiConsumer来代替Action2，而且在2.x中删除了Action3-9，如果是多个参数则用Custom代替ActionN。</p>
+<h3 id="fromArray、fromIterable、fromFuture"><a href="#fromArray、fromIterable、fromFuture" class="headerlink" title="fromArray、fromIterable、fromFuture"></a>fromArray、fromIterable、fromFuture</h3><p>在1.x中可以使用from()来发送数据，但是因为在使用java8编译时，javac不能够区分功能接口类型，所以它在2.x中被拆分为：fromArray,fromIterable,fromFuture</p>
+<h3 id="Function和BiFunction"><a href="#Function和BiFunction" class="headerlink" title="Function和BiFunction"></a>Function和BiFunction</h3><p>在2.x中将1.x的Func1和Func2改为Function和BiFunction，Func3-9改为Function3-9，多参数FuncN改为Function</p>
+<h3 id="Single"><a href="#Single" class="headerlink" title="Single"></a>Single</h3><p>它可以发出单个的onSuccess 或者 onError ，重新设计为Reactive-Streams架构。</p>
+<h3 id="Completable"><a href="#Completable" class="headerlink" title="Completable"></a>Completable</h3><p>Completable也被重新设计为Reactive-Streams架构，RxJava1.x的<code>CompletableSubscriber</code>改为<code>CompletableObserver</code></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">CompletableObserver</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">onSubscribe</span><span class="params">(Disposable d)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">onComplete</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">onError</span><span class="params">(Throwable error)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Maybe"><a href="#Maybe" class="headerlink" title="Maybe"></a>Maybe</h3><p>它是Single 和 Completable 的结合体，它可以发射0个或1个通知或错误的信号。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h5 id=&quot;在开始之前，先说说-RxJava2-0-的变化，或者直接去看官方文档-What’s-different-in-2-0-。简单总结为以下几点。&quot;&gt;&lt;a href=&quot;#在开始之前，先说说-RxJava2-0-的变化，或者直接去看官方文档-What’s-different-in-2-0-。简单总结为以下几点。&quot; class=&quot;headerlink&quot; title=&quot;在开始之前，先说说 RxJava2.0 的变化，或者直接去看官方文档 What’s different in 2.0 。简单总结为以下几点。&quot;&gt;&lt;/a&gt;&lt;em&gt;在开始之前，先说说 RxJava2.0 的变化，或者直接去看官方文档 &lt;a href=&quot;https://github.com/ReactiveX/RxJava/wiki/What&amp;#39;s-different-in-2.0&quot;&gt;What’s different in 2.0&lt;/a&gt; 。简单总结为以下几点。&lt;/em&gt;&lt;/h5&gt;&lt;ol&gt;
+&lt;li&gt;RxJava2.x 不再接受null&lt;/li&gt;
+&lt;li&gt;背压（backpressure） Observable 不支持背压  全新的Flowable 支持背压&lt;/li&gt;
+&lt;li&gt;新增onSubscribe(Disposable d) 回调 &lt;/li&gt;
+&lt;li&gt;Consumer、BiConsumer替代 Action1、Action2 等&lt;/li&gt;
+&lt;li&gt;调整from() 为 fromArray、fromIterable、fromFuture&lt;/li&gt;
+&lt;li&gt;Func1和Func2改为Function和BiFunction，Func3-9改为Function3-9&lt;/li&gt;
+&lt;li&gt;修改Single、Completable为Reactive-Streams风格&lt;/li&gt;
+&lt;li&gt;新增Maybe基本类…&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&quot;Observable-和-Flowable&quot;&gt;&lt;a href=&quot;#Observable-和-Flowable&quot; class=&quot;headerlink&quot; title=&quot;Observable 和 Flowable&quot;&gt;&lt;/a&gt;Observable 和 Flowable&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Observablle：不支持背压；&lt;/li&gt;
+&lt;li&gt;Flowable：RxJava2.x 新增，支持背压；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;那么问题来了什么是背压呢？&lt;/p&gt;
+&lt;p&gt;我们系统资源有限，很多情况下我们处理数据的速度跟不上发送数据的速度，导致占用很大的资源，以至于内存泄漏等。背压就是用来解决这样的情况的，背压是一种告诉所有发送数据的组件减缓它们发送数据的速度的方法。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="RxJava2.x" scheme="http://www.tipdev.xyz/tags/RxJava2-x/"/>
     
   </entry>
   
@@ -834,81 +952,6 @@
     
     </summary>
     
-    
-  </entry>
-  
-  <entry>
-    <title>RxJava 2.x 基础使用</title>
-    <link href="http://www.tipdev.xyz/2017/02/07/2017-02-07-RxJava%202.x%20%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8/"/>
-    <id>http://www.tipdev.xyz/2017/02/07/2017-02-07-RxJava 2.x 基础使用/</id>
-    <published>2017-02-06T16:00:00.000Z</published>
-    <updated>2017-02-12T06:53:41.000Z</updated>
-    
-    <content type="html"><![CDATA[<h5 id="在开始之前，先说说-RxJava2-0-的变化，或者直接去看官方文档-What’s-different-in-2-0-。简单总结为以下几点。"><a href="#在开始之前，先说说-RxJava2-0-的变化，或者直接去看官方文档-What’s-different-in-2-0-。简单总结为以下几点。" class="headerlink" title="在开始之前，先说说 RxJava2.0 的变化，或者直接去看官方文档 What’s different in 2.0 。简单总结为以下几点。"></a><em>在开始之前，先说说 RxJava2.0 的变化，或者直接去看官方文档 <a href="https://github.com/ReactiveX/RxJava/wiki/What&#39;s-different-in-2.0" target="_blank" rel="external">What’s different in 2.0</a> 。简单总结为以下几点。</em></h5><ol>
-<li>RxJava2.x 不再接受null</li>
-<li>背压（backpressure） Observable 不支持背压  全新的Flowable 支持背压</li>
-<li>新增onSubscribe(Disposable d) 回调 </li>
-<li>Consumer、BiConsumer替代 Action1、Action2 等</li>
-<li>调整from() 为 fromArray、fromIterable、fromFuture</li>
-<li>Func1和Func2改为Function和BiFunction，Func3-9改为Function3-9</li>
-<li>修改Single、Completable为Reactive-Streams风格</li>
-<li>新增Maybe基本类…</li>
-</ol>
-<h3 id="Observable-和-Flowable"><a href="#Observable-和-Flowable" class="headerlink" title="Observable 和 Flowable"></a>Observable 和 Flowable</h3><ul>
-<li>Observablle：不支持背压；</li>
-<li>Flowable：RxJava2.x 新增，支持背压；</li>
-</ul>
-<p>那么问题来了什么是背压呢？</p>
-<p>我们系统资源有限，很多情况下我们处理数据的速度跟不上发送数据的速度，导致占用很大的资源，以至于内存泄漏等。背压就是用来解决这样的情况的，背压是一种告诉所有发送数据的组件减缓它们发送数据的速度的方法。</p>
-<a id="more"></a>
-<h5 id="什么时候使用Observable"><a href="#什么时候使用Observable" class="headerlink" title="什么时候使用Observable"></a>什么时候使用Observable</h5><ul>
-<li>不超过1000条数据流，并且不存在内存溢出。</li>
-<li>GUI鼠标事件，如鼠标移动、触摸事件等，这种很少可以合理地背压</li>
-<li>处理的式同步流而你的Java平台又不支持Java Stream</li>
-</ul>
-<h5 id="什么时候使用Flowable"><a href="#什么时候使用Flowable" class="headerlink" title="什么时候使用Flowable"></a>什么时候使用Flowable</h5><ul>
-<li>处理1000+ 元素</li>
-<li>文件读写</li>
-<li>数据库操作</li>
-<li>网络IO操作</li>
-</ul>
-<p>一个简单的例子使用Observable</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Observable.create(<span class="keyword">new</span> ObservableOnSubscribe&lt;String&gt;() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">subscribe</span><span class="params">(ObservableEmitter&lt;String&gt; e)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">         <span class="comment">// ObservableEmitter ?  发射器，可以用来触发 onNext onError onComplete 事件</span></span><br><span class="line">         e.onNext(<span class="string">"A"</span>);</span><br><span class="line">         e.onNext(<span class="string">"B"</span>);</span><br><span class="line">         e.onNext(<span class="string">"C"</span>);</span><br><span class="line">         e.onComplete();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;).subscribeOn(Schedulers.io())</span><br><span class="line">  .observeOn(AndroidSchedulers.mainThread())</span><br><span class="line">  .subscribe(<span class="keyword">new</span> Observer&lt;String&gt;() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onSubscribe</span><span class="params">(Disposable d)</span> </span>&#123;</span><br><span class="line">                <span class="comment">// onSubscribe 是 RxJava 2.x 新增回调，一般用于取消订阅d.dispose()</span></span><br><span class="line">                <span class="comment">// Disposable 是 RxJava 1.x 中的 Subscription 改名  遵循Reactive-Streams规范</span></span><br><span class="line">                Log.d(TAG, <span class="string">"ObserableCreate onSubscribe: "</span> + d.isDisposed());</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onNext</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">                Log.d(TAG, <span class="string">"onNext: "</span> + s);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onError</span><span class="params">(Throwable e)</span> </span>&#123;</span><br><span class="line">                Log.d(TAG, <span class="string">"onError: "</span> + e.getMessage());</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onComplete</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                Log.d(TAG, <span class="string">"onComplete: "</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br></pre></td></tr></table></figure>
-<p>使用Flowable 是这样的</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Flowable.create(<span class="keyword">new</span> FlowableOnSubscribe&lt;String&gt;() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">subscribe</span><span class="params">(FlowableEmitter&lt;String&gt; e)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="comment">// ObservableEmitter ?  发射器，可以用来触发 onNext onError onComplete 事件</span></span><br><span class="line">        e.onNext(<span class="string">"A"</span>);</span><br><span class="line">        e.onNext(<span class="string">"B"</span>);</span><br><span class="line">        e.onNext(<span class="string">"C"</span>);</span><br><span class="line">        e.onComplete();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;, BackpressureStrategy.BUFFER)</span><br><span class="line">        .subscribeOn(Schedulers.io())</span><br><span class="line">        .observeOn(AndroidSchedulers.mainThread())</span><br><span class="line">        .subscribe(<span class="keyword">new</span> Subscriber&lt;String&gt;() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onSubscribe</span><span class="params">(Subscription s)</span> </span>&#123;</span><br><span class="line">                <span class="comment">// 初始化操作  (初始化需要再request前面)</span></span><br><span class="line">                <span class="comment">// 调用request()方法，会立即触发onNext()方法</span></span><br><span class="line">                Log.d(TAG, <span class="string">"FlowableCreate onSubscribe: "</span>);</span><br><span class="line">                s.request(Long.MAX_VALUE);   <span class="comment">// 必须</span></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onNext</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">                Log.d(TAG, <span class="string">"onNext: "</span> + s);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onError</span><span class="params">(Throwable e)</span> </span>&#123;</span><br><span class="line">                Log.d(TAG, <span class="string">"onError: "</span> + e.getMessage());</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onComplete</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                Log.d(TAG, <span class="string">"onComplete: "</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br></pre></td></tr></table></figure>
-<h3 id="onSubscribe-Disposable-d"><a href="#onSubscribe-Disposable-d" class="headerlink" title="onSubscribe(Disposable d)"></a>onSubscribe(Disposable d)</h3><p>传递参数为Disposable ，Disposable相当于RxJava1.x中的Subscription,用于解除订阅。那为什么不像RxJava1.x中订阅时返回Disposable，而是选择回调出来呢。官方说是为了设计成Reactive-Streams架构。</p>
-<h3 id="Consumer、BiConsumer等"><a href="#Consumer、BiConsumer等" class="headerlink" title="Consumer、BiConsumer等"></a>Consumer、BiConsumer等</h3><p>在2.x中使用Consumer来代替Action1，如果是两个参数，则用BiConsumer来代替Action2，而且在2.x中删除了Action3-9，如果是多个参数则用Custom代替ActionN。</p>
-<h3 id="fromArray、fromIterable、fromFuture"><a href="#fromArray、fromIterable、fromFuture" class="headerlink" title="fromArray、fromIterable、fromFuture"></a>fromArray、fromIterable、fromFuture</h3><p>在1.x中可以使用from()来发送数据，但是因为在使用java8编译时，javac不能够区分功能接口类型，所以它在2.x中被拆分为：fromArray,fromIterable,fromFuture</p>
-<h3 id="Function和BiFunction"><a href="#Function和BiFunction" class="headerlink" title="Function和BiFunction"></a>Function和BiFunction</h3><p>在2.x中将1.x的Func1和Func2改为Function和BiFunction，Func3-9改为Function3-9，多参数FuncN改为Function</p>
-<h3 id="Single"><a href="#Single" class="headerlink" title="Single"></a>Single</h3><p>它可以发出单个的onSuccess 或者 onError ，重新设计为Reactive-Streams架构。</p>
-<h3 id="Completable"><a href="#Completable" class="headerlink" title="Completable"></a>Completable</h3><p>Completable也被重新设计为Reactive-Streams架构，RxJava1.x的<code>CompletableSubscriber</code>改为<code>CompletableObserver</code></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">CompletableObserver</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">onSubscribe</span><span class="params">(Disposable d)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">onComplete</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">onError</span><span class="params">(Throwable error)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="Maybe"><a href="#Maybe" class="headerlink" title="Maybe"></a>Maybe</h3><p>它是Single 和 Completable 的结合体，它可以发射0个或1个通知或错误的信号。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h5 id=&quot;在开始之前，先说说-RxJava2-0-的变化，或者直接去看官方文档-What’s-different-in-2-0-。简单总结为以下几点。&quot;&gt;&lt;a href=&quot;#在开始之前，先说说-RxJava2-0-的变化，或者直接去看官方文档-What’s-different-in-2-0-。简单总结为以下几点。&quot; class=&quot;headerlink&quot; title=&quot;在开始之前，先说说 RxJava2.0 的变化，或者直接去看官方文档 What’s different in 2.0 。简单总结为以下几点。&quot;&gt;&lt;/a&gt;&lt;em&gt;在开始之前，先说说 RxJava2.0 的变化，或者直接去看官方文档 &lt;a href=&quot;https://github.com/ReactiveX/RxJava/wiki/What&amp;#39;s-different-in-2.0&quot;&gt;What’s different in 2.0&lt;/a&gt; 。简单总结为以下几点。&lt;/em&gt;&lt;/h5&gt;&lt;ol&gt;
-&lt;li&gt;RxJava2.x 不再接受null&lt;/li&gt;
-&lt;li&gt;背压（backpressure） Observable 不支持背压  全新的Flowable 支持背压&lt;/li&gt;
-&lt;li&gt;新增onSubscribe(Disposable d) 回调 &lt;/li&gt;
-&lt;li&gt;Consumer、BiConsumer替代 Action1、Action2 等&lt;/li&gt;
-&lt;li&gt;调整from() 为 fromArray、fromIterable、fromFuture&lt;/li&gt;
-&lt;li&gt;Func1和Func2改为Function和BiFunction，Func3-9改为Function3-9&lt;/li&gt;
-&lt;li&gt;修改Single、Completable为Reactive-Streams风格&lt;/li&gt;
-&lt;li&gt;新增Maybe基本类…&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3 id=&quot;Observable-和-Flowable&quot;&gt;&lt;a href=&quot;#Observable-和-Flowable&quot; class=&quot;headerlink&quot; title=&quot;Observable 和 Flowable&quot;&gt;&lt;/a&gt;Observable 和 Flowable&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;Observablle：不支持背压；&lt;/li&gt;
-&lt;li&gt;Flowable：RxJava2.x 新增，支持背压；&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;那么问题来了什么是背压呢？&lt;/p&gt;
-&lt;p&gt;我们系统资源有限，很多情况下我们处理数据的速度跟不上发送数据的速度，导致占用很大的资源，以至于内存泄漏等。背压就是用来解决这样的情况的，背压是一种告诉所有发送数据的组件减缓它们发送数据的速度的方法。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="RxJava2.x" scheme="http://www.tipdev.xyz/tags/RxJava2-x/"/>
     
   </entry>
   
@@ -1711,140 +1754,6 @@ addLoadEvent(Gallery);
     if(parent.lastChild == targetElement){
         parent.appendChild(newElement);
     }else{
-&lt;/code&gt;&lt;/pre&gt;
-    
-    </summary>
-    
-    
-      <category term="JavaScript" scheme="http://www.tipdev.xyz/tags/JavaScript/"/>
-    
-      <category term="js笔记" scheme="http://www.tipdev.xyz/tags/js%E7%AC%94%E8%AE%B0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JS学习笔记3_动态创建HTML内容Demo</title>
-    <link href="http://www.tipdev.xyz/2015/07/06/2015-07-06-JS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B03_%E5%8A%A8%E6%80%81%E5%88%9B%E5%BB%BAHTML%E5%86%85%E5%AE%B9Demo/"/>
-    <id>http://www.tipdev.xyz/2015/07/06/2015-07-06-JS学习笔记3_动态创建HTML内容Demo/</id>
-    <published>2015-07-05T16:00:00.000Z</published>
-    <updated>2015-09-03T06:10:40.000Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="This-is-a-demo"><a href="#This-is-a-demo" class="headerlink" title="This is a demo."></a>This is a demo.</h3><p>这是一个测试Demo，并不是使用繁琐的<code>document.write</code>或者<code>innerHTML</code>来实现。这些古老的方式，要么在HTML文档中插入<code>&lt;script&gt;</code> 标签，要么无法对插入的内容进行处理。而DOM提供了更加强大更加精准的功能，在任何时候都能替代<code>innerHTML</code>。</p>
-<h5 id="index-html"><a href="#index-html" class="headerlink" title="index.html"></a>index.html</h5><pre><code>&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head&gt;
-   &lt;meta charset=&quot;utf-8&quot; /&gt;
-   &lt;title&gt;&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-   &lt;div id=&quot;txtdiv&quot;&gt;&lt;/div&gt;
-   &lt;script type=&quot;text/javascript&quot; src=&quot;js/myFunction.js&quot;&gt;&lt;/script&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre><a id="more"></a>
-<h5 id="myFunction-js"><a href="#myFunction-js" class="headerlink" title="myFunction.js"></a>myFunction.js</h5><pre><code>    window.onload = function(){
-    var pare = document.createElement(&quot;p&quot;);
-    var txtdiv = document.getElementById(&quot;txtdiv&quot;);
-    txtdiv.appendChild(pare);
-    var txt1 = document.createTextNode(&quot;this is&quot;);
-    pare.appendChild(txt1);
-    var em = document.createElement(&quot;em&quot;);
-    pare.appendChild(em);
-    var txt2 = document.createTextNode(&quot; my &quot;);
-    em.appendChild(txt2);
-    var txt3 = document.createTextNode(&quot;content .&quot;)
-    pare.appendChild(txt3);
-}
-</code></pre><p><img src="http://wkchen66.github.io/assets/BlogImg/20150706JS_3-1.png" alt="a"></p>
-<h3 id="This-is-a-example"><a href="#This-is-a-example" class="headerlink" title="This is a example."></a>This is a example.</h3><p>那么回到图片库操作，图片和文字部分仅仅是为showPic脚本服务。So，把它们从HTML中分离出来。按照上面学习的动态创建HTML内容，一下为代码展示：</p>
-<pre><code>   function showPic(whichpic){
-    if(!document.getElementById(&quot;img&quot;)){
-        return false;
-    }
-    var a = whichpic.getAttribute(&quot;href&quot;);
-    var b = document.getElementById(&quot;img&quot;);
-    if(b.nodeName != &quot;IMG&quot;){
-        return false;
-    }
-    b.setAttribute(&quot;src&quot;, a);
-    if(document.getElementById(&quot;title_p&quot;)){
-        if(whichpic.getAttribute(&quot;title&quot;)){
-            var c = whichpic.getAttribute(&quot;title&quot;);
-        }else{
-            var c = &quot;&quot;;
-        }
-        var d = document.getElementById(&quot;title_p&quot;);
-        if(d.firstChild.nodeType == 3){
-            d.firstChild.nodeValue=c;
-        }
-    }else{
-        return false;
-    }
-    return true;
-}
-
-function Gallery(){
-    if(!document.getElementById){
-        return false;
-    }
-    if(!document.getElementsByTagName){
-        return false;
-    }
-    if(!document.getElementById(&quot;gallery&quot;)){
-        return false;
-    }
-    var gallery = document.getElementById(&quot;gallery&quot;);
-    var links = gallery.getElementsByTagName(&quot;a&quot;);
-    for (var i = 0; i &lt; links.length ; i++) {
-        links[i].onclick=function(){
-            return !showPic(this);
-        }
-    }
-}
-
-function placeholder(){
-    var img = document.createElement(&quot;img&quot;);
-    img.setAttribute(&quot;src&quot;,&quot;images/defaut.jpg&quot;);
-    img.setAttribute(&quot;id&quot;,&quot;img&quot;);
-    img.setAttribute(&quot;width&quot;,&quot;400px&quot;);
-    img.setAttribute(&quot;height&quot;,&quot;300px&quot;);
-    var pare = document.createElement(&quot;p&quot;);
-    pare.setAttribute(&quot;id&quot;, &quot;title_p&quot;);
-    var txt = document.createTextNode(&quot;defaut&quot;);
-    pare.appendChild(txt);
-    document.getElementsByTagName(&quot;body&quot;)[0].appendChild(img);
-    document.getElementsByTagName(&quot;body&quot;)[0].appendChild(pare);
-}
-
-function addLoadEvent(func){
-    var oldonload = window.onload;
-    if(typeof window.onload != &apos;function&apos;){
-        window.onload = func;
-    }else{
-        window.onload = function(){
-            oldonload();
-            func();
-        }
-    }    
-}
-addLoadEvent(placeholder);
-addLoadEvent(Gallery);
-</code></pre>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;This-is-a-demo&quot;&gt;&lt;a href=&quot;#This-is-a-demo&quot; class=&quot;headerlink&quot; title=&quot;This is a demo.&quot;&gt;&lt;/a&gt;This is a demo.&lt;/h3&gt;&lt;p&gt;这是一个测试Demo，并不是使用繁琐的&lt;code&gt;document.write&lt;/code&gt;或者&lt;code&gt;innerHTML&lt;/code&gt;来实现。这些古老的方式，要么在HTML文档中插入&lt;code&gt;&amp;lt;script&amp;gt;&lt;/code&gt; 标签，要么无法对插入的内容进行处理。而DOM提供了更加强大更加精准的功能，在任何时候都能替代&lt;code&gt;innerHTML&lt;/code&gt;。&lt;/p&gt;
-&lt;h5 id=&quot;index-html&quot;&gt;&lt;a href=&quot;#index-html&quot; class=&quot;headerlink&quot; title=&quot;index.html&quot;&gt;&lt;/a&gt;index.html&lt;/h5&gt;&lt;pre&gt;&lt;code&gt;&amp;lt;!DOCTYPE html&amp;gt;
-&amp;lt;html&amp;gt;
-&amp;lt;head&amp;gt;
-   &amp;lt;meta charset=&amp;quot;utf-8&amp;quot; /&amp;gt;
-   &amp;lt;title&amp;gt;&amp;lt;/title&amp;gt;
-&amp;lt;/head&amp;gt;
-&amp;lt;body&amp;gt;
-   &amp;lt;div id=&amp;quot;txtdiv&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
-   &amp;lt;script type=&amp;quot;text/javascript&amp;quot; src=&amp;quot;js/myFunction.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
-&amp;lt;/body&amp;gt;
-&amp;lt;/html&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
     
     </summary>
