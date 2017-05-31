@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.tipdev.xyz/"/>
-  <updated>2017-05-23T16:13:51.000Z</updated>
+  <updated>2017-05-31T13:15:56.000Z</updated>
   <id>http://www.tipdev.xyz/</id>
   
   <author>
@@ -14,6 +14,61 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>GitLab搭建记录</title>
+    <link href="http://www.tipdev.xyz/2017/05/31/2017-05-31-GitLab%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/"/>
+    <id>http://www.tipdev.xyz/2017/05/31/2017-05-31-GitLab搭建记录/</id>
+    <published>2017-05-30T16:00:00.000Z</published>
+    <updated>2017-05-31T13:15:56.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>​    居然花了半天时间搭建GitLab服务器，记得之前用自带的git建过服务器，几个人开发还能撑的过来，但是像公司这样几十个人同时开发的场景，就难以管理了。so，今天试了下GitLab的搭建。</p>
+<blockquote>
+<p>以下搭建环境：环境Centos 7</p>
+</blockquote>
+<h3 id="第一步：安装Git"><a href="#第一步：安装Git" class="headerlink" title="第一步：安装Git"></a>第一步：安装Git</h3><p>​    首先检查是否已经安装git</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">git --version</span><br><span class="line">git version 2.11.0 (Apple Git-81)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果未安装</span></span><br><span class="line">sudo yum install git</span><br></pre></td></tr></table></figure>
+<h3 id="第二步：安装依赖包"><a href="#第二步：安装依赖包" class="headerlink" title="第二步：安装依赖包"></a>第二步：安装依赖包</h3><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 安装依赖</span></span><br><span class="line">sudo yum install curl openssh-server openssh-clients postfix cronie</span><br><span class="line"><span class="comment"># 启动邮件服务</span></span><br><span class="line">sudo service postfix start</span><br><span class="line"><span class="comment"># 检查 postfix</span></span><br><span class="line">sudo chkconfig postfix on</span><br></pre></td></tr></table></figure>
+<h3 id="第三步：安装GitLab"><a href="#第三步：安装GitLab" class="headerlink" title="第三步：安装GitLab"></a>第三步：安装GitLab</h3><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 安装GitLab</span></span><br><span class="line">sudo yum install gitlab-ce</span><br><span class="line"><span class="comment"># 或</span></span><br><span class="line">sudo yum install gitlab-ce-8.5.7-ce.0.el6.x86_64(指定GitLab版本)</span><br><span class="line"><span class="comment"># 初始化GitLab</span></span><br><span class="line">sudo gitlab-ctl reconfigure</span><br></pre></td></tr></table></figure>
+<h3 id="第四部：配置"><a href="#第四部：配置" class="headerlink" title="第四部：配置"></a>第四部：配置</h3><p>修改 vim /etc/gitlab/gitlab.rb 文件</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 如果需要用域名访问，请在hosts文件中做映射</span></span><br><span class="line">external_url <span class="string">'http://localhost:8800'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># unicorn 默认端口为8080，如果被占用就会报错502</span></span><br><span class="line">unicorn[<span class="string">'listen'</span>] = <span class="string">'127.0.0.1'</span></span><br><span class="line">unicorn[<span class="string">'port'</span>] = 8801</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 配置生效</span></span><br><span class="line">sudo gitlab-ctl reconfigure</span><br></pre></td></tr></table></figure>
+<h3 id="第五步：汉化"><a href="#第五步：汉化" class="headerlink" title="第五步：汉化"></a>第五步：汉化</h3><ol>
+<li><p>检查GitLab版本</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">cat /opt/gitlab/embedded/service/gitlab-rails/VERSION</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>克隆汉化包</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://gitlab.com/larryli/gitlab.git</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>比对汉化补丁</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 注意汉化补丁要和GitLab版本对应，否则无法正常工作</span></span><br><span class="line"><span class="built_in">cd</span> gitlab/</span><br><span class="line">sudo git diff origin/8-5-stable  8-5-zh &gt; /tmp/8.5.diff</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>应用汉化补丁</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 先停止GitLab</span></span><br><span class="line">sudo gitlab-ctl stop</span><br><span class="line"><span class="comment"># 应用汉化补丁</span></span><br><span class="line"><span class="built_in">cd</span> /opt/gitlab/embedded/service/gitlab-rails</span><br><span class="line">git apply /tmp/8.5.diff  </span><br><span class="line"><span class="comment"># 启动GitLab</span></span><br><span class="line">sudo gitlab-ctl reconfigure</span><br><span class="line">sudo gitlab-ctl start</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>默认管理员账号</p>
+<blockquote>
+<p>账号：root</p>
+<p>密码： 5iveL!fe</p>
+</blockquote>
+<p>最后，在浏览器输入服务器ip地址，或者你做映射对应的域名。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;​    居然花了半天时间搭建GitLab服务器，记得之前用自带的git建过服务器，几个人开发还能撑的过来，但是像公司这样几十个人同时开发的场景，就难以管理了。so，今天试了下GitLab的搭建。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;以下搭建环境：环境Centos 7&lt;
+    
+    </summary>
+    
+    
+      <category term="GitLab" scheme="http://www.tipdev.xyz/tags/GitLab/"/>
+    
+      <category term="Git" scheme="http://www.tipdev.xyz/tags/Git/"/>
+    
+  </entry>
   
   <entry>
     <title>Android玩转View（二）搞懂View的滑动原理</title>
@@ -1464,157 +1519,6 @@ umount /mnt &amp; reboot
       <category term="SSH" scheme="http://www.tipdev.xyz/tags/SSH/"/>
     
       <category term="Android" scheme="http://www.tipdev.xyz/tags/Android/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JS学习笔记4_图片库二次优化</title>
-    <link href="http://www.tipdev.xyz/2015/07/10/2015-07-10-JS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B04_%E5%9B%BE%E7%89%87%E5%BA%93%E4%BA%8C%E6%AC%A1%E4%BC%98%E5%8C%96/"/>
-    <id>http://www.tipdev.xyz/2015/07/10/2015-07-10-JS学习笔记4_图片库二次优化/</id>
-    <published>2015-07-09T16:00:00.000Z</published>
-    <updated>2017-05-23T16:17:57.000Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h3><ul>
-<li>insertAfter函数</li>
-<li>addLoadEvent函数</li>
-<li>showPic函数</li>
-<li>Gallery函数</li>
-<li><p>placeholder函数</p>
-<p>每个函数都有合理的用处，insertAfter 和 addLoadEvent函数，是通用型函数（常用）。showPic函数，主要负责图片的切换，核心。Gallery函数，主要负责事件的处理，遍历每一个图片清单，为其添加onclick事件，和调用showPic()函数。placeholder函数，主要负责创建img、p标签，和添加其内容，把整个新创建的函数插入到节点树里去。</p>
-</li>
-</ul>
-<h4 id="insertAfter函数"><a href="#insertAfter函数" class="headerlink" title="insertAfter函数"></a>insertAfter函数</h4><pre><code>function insertAfter(newElement,targetElement){
-    var parent = targetElement.parentNode;
-    if(parent.lastChild == targetElement){
-        parent.appendChild(newElement);
-    }else{
-        parent.insertBefore(newElement,targetElement.nextSibling);
-    }
-}
-</code></pre><h4 id="addLoadEvent函数"><a href="#addLoadEvent函数" class="headerlink" title="addLoadEvent函数"></a>addLoadEvent函数</h4><pre><code>function addLoadEvent(func){
-    var oldonload = window.onload;
-    if(typeof window.onload != &apos;function&apos;){
-        window.onload = func;
-    }else{
-        window.onload = function(){
-            oldonload();
-            func();
-        }
-    }    
-}
-</code></pre><h4 id="showPic函数"><a href="#showPic函数" class="headerlink" title="showPic函数"></a>showPic函数</h4><pre><code>function showPic(whichpic){
-    if(!document.getElementById(&quot;img&quot;)){
-        return false;
-    }
-    var a = whichpic.getAttribute(&quot;href&quot;);
-    var b = document.getElementById(&quot;img&quot;);
-    if(b.nodeName != &quot;IMG&quot;){
-        return false;
-    }
-    b.setAttribute(&quot;src&quot;, a);
-    if(document.getElementById(&quot;title_p&quot;)){
-        if(whichpic.getAttribute(&quot;title&quot;)){
-            var c = whichpic.getAttribute(&quot;title&quot;);
-        }else{
-            var c = &quot;&quot;;
-        }
-        var d = document.getElementById(&quot;title_p&quot;);
-        if(d.firstChild.nodeType == 3){
-            d.firstChild.nodeValue=c;
-        }
-    }else{
-        return false;
-    }
-    return true;
-}
-</code></pre><h4 id="Gallery函数"><a href="#Gallery函数" class="headerlink" title="Gallery函数"></a>Gallery函数</h4><pre><code>function Gallery(){
-    if(!document.getElementById){
-        return false;
-    }
-    if(!document.getElementsByTagName){
-        return false;
-    }
-    if(!document.getElementById(&quot;gallery&quot;)){
-        return false;
-    }
-    var gallery = document.getElementById(&quot;gallery&quot;);
-    var links = gallery.getElementsByTagName(&quot;a&quot;);
-    for (var i = 0; i &lt; links.length ; i++) {
-        links[i].onclick=function(){
-            return !showPic(this);
-        }
-    }
-}
-</code></pre><h4 id="placeholder函数"><a href="#placeholder函数" class="headerlink" title="placeholder函数"></a>placeholder函数</h4><pre><code>function placeholder(){
-    if(!document.createElement) return false;
-    if(!document.createTextNode) return false;
-    if(!document.getElementById) return false;
-    if(!document.getElementById(&quot;gallery&quot;)) return false;
-    var img = document.createElement(&quot;img&quot;);
-    img.setAttribute(&quot;src&quot;,&quot;images/defaut.jpg&quot;);
-    img.setAttribute(&quot;id&quot;,&quot;img&quot;);
-    img.setAttribute(&quot;width&quot;,&quot;400px&quot;);
-    img.setAttribute(&quot;height&quot;,&quot;300px&quot;);
-    var pare = document.createElement(&quot;p&quot;);
-    pare.setAttribute(&quot;id&quot;, &quot;title_p&quot;);
-    var txt = document.createTextNode(&quot;defaut&quot;);
-    pare.appendChild(txt);
-    //
-    // document.getElementsByTagName(&quot;body&quot;)[0].appendChild(img);
-    // document.getElementsByTagName(&quot;body&quot;)[0].appendChild(pare);
-    var gallery = document.getElementById(&quot;gallery&quot;);
-    //
-    // gallery.parentNode.insertBefore(img, gallery);
-    // gallery.parentNode.insertBefore(pare,gallery);
-
-    insertAfter(pare,gallery);
-    insertAfter(img,gallery);
-
-}
-</code></pre><h4 id="添加函数"><a href="#添加函数" class="headerlink" title="添加函数"></a>添加函数</h4><pre><code>addLoadEvent(placeholder);
-addLoadEvent(Gallery);
-</code></pre><h4 id="HTML文档（此时，相应标记减少了，index-html文档只包含js脚本和css样式挂钩）"><a href="#HTML文档（此时，相应标记减少了，index-html文档只包含js脚本和css样式挂钩）" class="headerlink" title="HTML文档（此时，相应标记减少了，index.html文档只包含js脚本和css样式挂钩）"></a>HTML文档（此时，相应标记减少了，index.html文档只包含js脚本和css样式挂钩）</h4><pre><code>&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-    &lt;head&gt;
-        &lt;meta charset=&quot;utf-8&quot; /&gt;
-        &lt;title&gt;&lt;/title&gt;
-        &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;css/style.css&quot; /&gt;
-        &lt;script type=&quot;text/javascript&quot; src=&quot;js/showPic.js&quot;&gt;&lt;/script&gt;
-    &lt;/head&gt; 
-    &lt;body&gt;
-        &lt;ul id=&quot;gallery&quot;&gt;
-            &lt;li&gt;
-                &lt;a href=&quot;images/wallpaper_01.jpg&quot; title=&quot;wallpaper_01&quot; &gt;one&lt;/a&gt;
-            &lt;/li&gt;
-            &lt;li&gt;
-                &lt;a href=&quot;images/wallpaper_02.jpg&quot; title=&quot;wallpaper_02&quot;&gt;two&lt;/a&gt;
-            &lt;/li&gt;
-            &lt;li&gt;    
-                &lt;a href=&quot;images/wallpaper_03.jpg&quot; title=&quot;wallpaper_03&quot;&gt;three&lt;/a&gt;
-            &lt;/li&gt;
-            &lt;li&gt;
-                &lt;a href=&quot;images/wallpaper_04.jpg&quot; title=&quot;wallpaper_04&quot;&gt;four&lt;/a&gt;
-            &lt;/li&gt;
-        &lt;/ul&gt;    
-    &lt;/body&gt;
-&lt;/html&gt;
-</code></pre><p>这是对图片库的第二次优化。整合整个js和html。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;目录&quot;&gt;&lt;a href=&quot;#目录&quot; class=&quot;headerlink&quot; title=&quot;目录&quot;&gt;&lt;/a&gt;目录&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;insertAfter函数&lt;/li&gt;
-&lt;li&gt;addLoadEvent函数&lt;/li&gt;
-&lt;li&gt;showPic函数&lt;/li&gt;
-&lt;l
-    
-    </summary>
-    
-    
-      <category term="JavaScript" scheme="http://www.tipdev.xyz/tags/JavaScript/"/>
-    
-      <category term="js笔记" scheme="http://www.tipdev.xyz/tags/js%E7%AC%94%E8%AE%B0/"/>
     
   </entry>
   
