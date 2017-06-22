@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.tipdev.xyz/"/>
-  <updated>2017-05-31T13:15:56.000Z</updated>
+  <updated>2017-06-22T15:20:55.000Z</updated>
   <id>http://www.tipdev.xyz/</id>
   
   <author>
@@ -14,6 +14,38 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>服务端与客户端敏感数据通信的最佳实践</title>
+    <link href="http://www.tipdev.xyz/2017/06/22/2017-06-22-%E6%9C%8D%E5%8A%A1%E7%AB%AF%E4%B8%8E%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%95%8F%E6%84%9F%E6%95%B0%E6%8D%AE%E9%80%9A%E4%BF%A1%E7%9A%84%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/"/>
+    <id>http://www.tipdev.xyz/2017/06/22/2017-06-22-服务端与客户端敏感数据通信的最佳实践/</id>
+    <published>2017-06-21T16:00:00.000Z</published>
+    <updated>2017-06-22T15:20:55.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="对称加密方式（例如AES）"><a href="#对称加密方式（例如AES）" class="headerlink" title="对称加密方式（例如AES）"></a>对称加密方式（例如AES）</h3><p>对称加密方式通过密码（secret key）对敏感数据进行加密，比如考虑到用户登录时账号以及密码不利于暴露出来，可以通过对称加密的方式传递，客户端把敏感数据进行加密后发送给服务端，服务端使用相同的密码进行解密，这样即使在数据传输的时候被拦截了发送的数据，也不会完全的暴露出来，所以它不知道密码就无法进行解密数据。</p>
+<p>当然这种加密方式存在最致命的缺点，一旦密码（secret key）被暴露就相当于把敏感数据直接公布出来了。</p>
+<h3 id="非对称加密（例如：RSA）"><a href="#非对称加密（例如：RSA）" class="headerlink" title="非对称加密（例如：RSA）"></a>非对称加密（例如：RSA）</h3><p>非对称加密是生成一个私钥和一个公钥，公钥用于对敏感数据加密，私钥用于数据解密，并且只能使用私钥进行解密。这将意味着可以安全的在程序中运送公钥。</p>
+<p>优点：安全性高<br>缺点：一次只能加密非常小的数据文本（128个字节）</p>
+<h3 id="混合模式"><a href="#混合模式" class="headerlink" title="混合模式"></a>混合模式</h3><p>混合模式结合了对称模式和非对称模式的优点，我们首先在服务端使用RSA生成公钥和私钥；在客户端使用AES生成密码（secret key），使用密码对敏感数据进行加密，得到敏感数据密文（encrypted text），接着依然在客户端获取服务端生成的公钥，对AES密码（secret key）进行加密，得到AES密钥密文（encrypted secret key），然后把敏感信息密文（encrypted text） 和 AES密钥密文（encrypted secret key）  传递给服务器；最后回到服务端，使用私钥对AES密钥密文（encrypted secret key）进行解密，得到密码（secret key），最后使用密码（secret key）对敏感信息密文（encrypted text）进行解密，得到敏感数据。</p>
+<p>好吧，我知道有点绕，没关系，我总结了一下几点：</p>
+<ol>
+<li>服务端RSA生成【公钥】和【私钥】，私钥存储服务端。</li>
+<li>客户端使用【AES密码】对【敏感数据】加密，得到【RSA敏感数据密文】</li>
+<li>客户端使用【公钥】对【AES密码】进行加密，得到【AES密码密文】</li>
+<li>服务端使用【私钥】对【AES密码密文】解密，得到【AES密码】</li>
+<li>服务端使用【AES密码】对【RSA敏感数据密文】，得到【敏感数据】</li>
+</ol>
+<h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3><p>​    这样就有效的解决了客户端和服务端敏感数据传递存在的安全隐患，这不仅仅是一个解决方案，更应该是每个开发者遵循的一项责任。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;对称加密方式（例如AES）&quot;&gt;&lt;a href=&quot;#对称加密方式（例如AES）&quot; class=&quot;headerlink&quot; title=&quot;对称加密方式（例如AES）&quot;&gt;&lt;/a&gt;对称加密方式（例如AES）&lt;/h3&gt;&lt;p&gt;对称加密方式通过密码（secret key）对敏感数
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>GitLab搭建记录</title>
@@ -1486,39 +1518,6 @@ umount /mnt &amp; reboot
     
     
       <category term="Archlinux" scheme="http://www.tipdev.xyz/tags/Archlinux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>实现外网Android SSH远程登录Linux</title>
-    <link href="http://www.tipdev.xyz/2015/07/11/2015-07-11-%E5%AE%9E%E7%8E%B0%E5%A4%96%E7%BD%91Android%20SSH%E8%BF%9C%E7%A8%8B%E7%99%BB%E5%BD%95Linux/"/>
-    <id>http://www.tipdev.xyz/2015/07/11/2015-07-11-实现外网Android SSH远程登录Linux/</id>
-    <published>2015-07-10T16:00:00.000Z</published>
-    <updated>2017-05-23T16:17:24.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>这个想法已经有一整子了，一直内沉下心来去做，今天台风正好闲着没事做。其实原理很简单，通过路由器（TP-Link WR740N）转发设置DMZ主机，让局域网中的一台计算机完全暴露给广域网，接着用动态DNS解析到主机。在手机端使用SSH登入Linux，这里推荐使用JuiceSSH 。<br>以下介绍两款linux安装方法:</p>
-<h3 id="1-安装ssh-server"><a href="#1-安装ssh-server" class="headerlink" title="1.安装ssh server"></a>1.安装ssh server</h3><h4 id="ubuntu"><a href="#ubuntu" class="headerlink" title="ubuntu"></a>ubuntu</h4><pre><code>sudo apt-get install openssh-server
-</code></pre><h4 id="ArchLinux"><a href="#ArchLinux" class="headerlink" title="ArchLinux"></a>ArchLinux</h4><pre><code>sudo pacman -S openssh
-</code></pre><h3 id="2-查看ssh服务是否启动（一般情况下，安装完毕后自动启动）"><a href="#2-查看ssh服务是否启动（一般情况下，安装完毕后自动启动）" class="headerlink" title="2.查看ssh服务是否启动（一般情况下，安装完毕后自动启动）"></a>2.查看ssh服务是否启动（一般情况下，安装完毕后自动启动）</h3><pre><code>ps -ef | grep sshd
-</code></pre><h3 id="3-如果发现无sshd这个进程，则需要手动启动"><a href="#3-如果发现无sshd这个进程，则需要手动启动" class="headerlink" title="3.如果发现无sshd这个进程，则需要手动启动"></a>3.如果发现无sshd这个进程，则需要手动启动</h3><h4 id="ubuntu-1"><a href="#ubuntu-1" class="headerlink" title="ubuntu"></a>ubuntu</h4><pre><code>sudo /etc/init.d/ssh start
-</code></pre><h4 id="ArchLinux-1"><a href="#ArchLinux-1" class="headerlink" title="ArchLinux"></a>ArchLinux</h4><pre><code>sudo /etc/rc.d/sshd start
-</code></pre><h3 id="4-仅供测试配置文件先不做修改，默认端口22"><a href="#4-仅供测试配置文件先不做修改，默认端口22" class="headerlink" title="4.仅供测试配置文件先不做修改，默认端口22"></a>4.仅供测试配置文件先不做修改，默认端口22</h3><p>Tip:提醒一下修改了配置文件，需要重启服务restart一下</p>
-<h3 id="5-设置路由器"><a href="#5-设置路由器" class="headerlink" title="5.设置路由器"></a>5.设置路由器</h3><p>开启DMZ状态，设置DMZ主机IP为从DHCP获得的主机IP地址。<br>注册花生壳帐号，勾选“启用DDNS”登入。这里记住你注册的域名。</p>
-<h3 id="6-测试登入"><a href="#6-测试登入" class="headerlink" title="6.测试登入"></a>6.测试登入</h3><p>在手机上测试ping 域名，看能否ping通。<br>尝试登入，ssh:域名 port:22 user:linux用户  passwd:linux用户密码<br>登入成功。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;这个想法已经有一整子了，一直内沉下心来去做，今天台风正好闲着没事做。其实原理很简单，通过路由器（TP-Link WR740N）转发设置DMZ主机，让局域网中的一台计算机完全暴露给广域网，接着用动态DNS解析到主机。在手机端使用SSH登入Linux，这里推荐使用JuiceSS
-    
-    </summary>
-    
-    
-      <category term="Linux" scheme="http://www.tipdev.xyz/tags/Linux/"/>
-    
-      <category term="SSH" scheme="http://www.tipdev.xyz/tags/SSH/"/>
-    
-      <category term="Android" scheme="http://www.tipdev.xyz/tags/Android/"/>
     
   </entry>
   
