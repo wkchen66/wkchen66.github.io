@@ -1,8 +1,4 @@
-<!DOCTYPE html><html lang="zh-Hans"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> 如何模拟json数据 · wkchen's blog</title><meta name="description" content="如何模拟json数据 - wkchen"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.tipdev.xyz/atom.xml" title="wkchen's blog"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">TIMELINE</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">如何模拟json数据</h1><div class="post-info">Mar 1, 2017</div><div class="post-content"><p>最近新项目，后台人手不够，招了一个星期，才招到人，但人再厉害也需要时间先去熟悉项目吧。这样我们移动端或者前端的就被牵着鼻子走，然后项目进度跟不上就甩锅给后端，“接口那边太慢，导致我这进度也受到影响”等等。就这样我找到了以下两种方法解决这个问题。</p>
-<ul>
-<li>1、Charles 拦截 + mock 模拟数据</li>
-<li>2、json-server 模拟数据</li>
-</ul>
+<!DOCTYPE html><html lang="zh-Hans"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> 如何模拟json数据 · wkchen's blog</title><meta name="description" content="如何模拟json数据 - wkchen"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.tipdev.xyz/atom.xml" title="wkchen's blog"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">TIMELINE</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">如何模拟json数据</h1><div class="post-info">Mar 1, 2017</div><div class="post-content"><p>最近新项目，后台人手不够，招了一个星期，才招到人，但人再厉害也需要时间先去熟悉项目吧。这样我们移动端或者前端的就被牵着鼻子走，然后项目进度跟不上就甩锅给后端，“接口那边太慢，导致我这进度也受到影响”等等。</p>
 <h3 id="一、Charles-拦截"><a href="#一、Charles-拦截" class="headerlink" title="一、Charles 拦截"></a>一、Charles 拦截</h3><ol>
 <li><p>下载<a href="https://www.charlesproxy.com/download/" target="_blank" rel="external">Charles</a> </p>
 </li>
@@ -25,23 +21,4 @@
 <p>​          <img src="http://wx4.sinaimg.cn/mw690/88b64bf6gy1fd7lec3dgxj20a00hs3zw.jpg" alt="img"> <img src="http://wx4.sinaimg.cn/mw690/88b64bf6gy1fd7lecgozpj20a00hsmxv.jpg" alt="img"></p>
 <p>​         最后设置拦截的url 到你模拟的mock url</p>
 <p><img src="http://wx4.sinaimg.cn/mw690/88b64bf6gy1fd7lkgmx6gj215o0s47k7.jpg" alt="img"></p>
-<h3 id="二、json-server-模拟数据"><a href="#二、json-server-模拟数据" class="headerlink" title="二、json-server 模拟数据"></a>二、json-server 模拟数据</h3><p>​    </p>
-<h3 id="三、各自优缺点"><a href="#三、各自优缺点" class="headerlink" title="三、各自优缺点"></a>三、各自优缺点</h3><p>Charles优点</p>
-<ul>
-<li>在项目中不用考虑接口地址</li>
-<li>实时观察网络请求情况</li>
-</ul>
-<p>Charles缺点</p>
-<ul>
-<li>依靠mock 模拟数据，多接口需要模拟多个</li>
-<li>需要每次拦截对应的请求URL，再跳转</li>
-</ul>
-<p>json-server优点</p>
-<ul>
-<li>操作简单，修改简单</li>
-</ul>
-<p>json-server缺点</p>
-<ul>
-<li>暂时没发现</li>
-</ul>
 </div></article></div></main><footer><div class="paginator"><a href="/2017/04/17/2017-04-17-JAVA错误 No default constructor for entity/" class="prev">PREV</a><a href="/2017/02/12/2017-02-12-git 多仓库管理开发技巧（二）/" class="next">NEXT</a></div><div class="copyright"><p>© 2015 - 2017 <a href="http://www.tipdev.xyz">wkchen</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-65933410-1",'auto');ga('send','pageview');</script></body></html>
