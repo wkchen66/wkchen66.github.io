@@ -1,0 +1,50 @@
+<!DOCTYPE html><html lang="zh-Hans"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> Let's 炫酷终端 · wkchen's blog</title><meta name="description" content="Let's 炫酷终端 - wkchen"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.tipdev.xyz/atom.xml" title="wkchen's blog"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">TIMELINE</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">Let's 炫酷终端</h1><div class="post-info">Nov 7, 2017</div><div class="post-content"><ul>
+<li><p>炫酷的终端iTerm2</p>
+</li>
+<li><p>我的Vim<br>（基于Mac平台）</p>
+</li>
+</ul>
+<p>####一、炫酷的终端iTerm2+oh my zsh</p>
+<p>话不多说，先上效果图：</p>
+<p><img src="/image/let&#39;s_iterm2/let&#39;s_iterm2_1" alt="let&#39;s_iterm2_1"></p>
+<ol>
+<li>实现以上效果，你需要先安装iTerm2，<a href="https://www.iterm2.com/downloads.html" target="_blank" rel="external">传送门</a></li>
+<li>接着我们安装oh my zsh设置终端的主题， 什么是oh my zsh呢? <a href="http://ohmyz.sh/" target="_blank" rel="external">传送门</a></li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"># 安装oh my zsh</div><div class="line">$ sh -c &quot;$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)&quot;</div></pre></td></tr></table></figure>
+<p>到这里，能看到大致上已经完成了效果图的90%效果。</p>
+<ol>
+<li><p>开启iTerm2的Hotkey 功能，在使用的过程中让我屡试不爽的功能就是Hotkey功能，怎么开启呢？菜单栏iTerm2—&gt;Preferences—&gt;选择Keys标签—&gt; 勾选Hotkey 下的Show/hide all windows with a system-wide hotkey—&gt;Create a Dedicated Hotkey Window。然后切换到Profiles标签，就会发现在Profile Name下多了一个Hotkey Window</p>
+</li>
+<li><p>设置iTerm2配色</p>
+<p>我这是用的是一个第三方的配色主题space-vim-dark，你也可以选择自己喜欢的主题来使用。</p>
+</li>
+</ol>
+<h4 id="二、我的Vim配置"><a href="#二、我的Vim配置" class="headerlink" title="二、我的Vim配置"></a>二、我的Vim配置</h4><p>老规矩，先上效果图：事先说明下我使用Vim主要用来写Python</p>
+<p><img src="/image/let&#39;s_iterm2/let&#39;s_iterm2_2" alt="let&#39;s_iterm2_1"></p>
+<ol>
+<li><p>安装插件管理器Vundle</p>
+<p>首先下载Vundle源码</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><div class="line">$ git <span class="built_in">clone</span> https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim</div></pre></td></tr></table></figure>
+<p>在vim ~/.vimrc 中添加如下代码</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><div class="line"><span class="built_in">set</span> nocompatible</div><div class="line">filetype off</div><div class="line"><span class="built_in">set</span> rtp+=~/.vim/bundle/Vundle.vim</div><div class="line">call vundle<span class="comment">#begin()</span></div><div class="line">Plugin <span class="string">'VundleVim/Vundle.vim'</span></div><div class="line">call vundle<span class="comment">#end()</span></div><div class="line">filetype plugin indent on</div></pre></td></tr></table></figure>
+</li>
+<li><p>安装代码提示YouCompleteMe插件</p>
+<p>在 vim ~/.vimrc 文件中添加如下代码</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><div class="line">call vundle<span class="comment">#begin()</span></div><div class="line">Plugin <span class="string">'VundleVim/Vundle.vim'</span></div><div class="line"><span class="comment"># 添加</span></div><div class="line">Plugin <span class="string">'Valloric/YouCompleteMe'</span></div><div class="line">call vundle<span class="comment">#end()</span></div></pre></td></tr></table></figure>
+<p>执行:PluginInstall  这个过程可能会比较漫长</p>
+</li>
+<li><p>安装语法检查插件ale</p>
+<p>同样的在 vim ~/.vimrc 文件中添加如下代码</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><div class="line">call vundle<span class="comment">#begin()</span></div><div class="line">Plugin <span class="string">'VundleVim/Vundle.vim'</span></div><div class="line">Plugin <span class="string">'Valloric/YouCompleteMe'</span></div><div class="line"><span class="comment"># 添加</span></div><div class="line">Plugin <span class="string">'w0rp/ale'</span></div><div class="line">call vundle<span class="comment">#end()</span></div></pre></td></tr></table></figure>
+<p>执行:PluginInstall ，此时你只需要等待，直到控制器打出done! 即可</p>
+</li>
+<li><p>安装python语法检查工具flake8</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><div class="line">sudo pip install flake8</div></pre></td></tr></table></figure>
+<p>ale支持一下语言（具体安装方法请查看<a href="https://github.com/w0rp/ale#supported-languages" target="_blank" rel="external">ale repo</a>  <strong>Languages and Tools</strong>）</p>
+<p><img src="/image/let&#39;s_iterm2/let&#39;s_iterm2_3" alt="let&#39;s_iterm2_1"></p>
+</li>
+</ol>
+<p>最后贴出我的.vimrc 配置文件:</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><div class="line"><span class="built_in">set</span> nocompatible</div><div class="line">filetype off</div><div class="line"><span class="built_in">set</span> rtp+=~/.vim/bundle/Vundle.vim</div><div class="line">call vundle<span class="comment">#begin()</span></div><div class="line">Plugin <span class="string">'VundleVim/Vundle.vim'</span></div><div class="line">Plugin <span class="string">'Valloric/YouCompleteMe'</span></div><div class="line">Plugin <span class="string">'w0rp/ale'</span></div><div class="line">call vundle<span class="comment">#end()</span></div><div class="line">filetype plugin indent on</div><div class="line"></div><div class="line"></div><div class="line"><span class="string">" 语法高亮</span></div><div class="line"><span class="string">syntax on</span></div><div class="line"><span class="string">"</span> 用浅色高亮当前行</div><div class="line">autocmd InsertLeave * se nocul</div><div class="line">autocmd InsertEnter * se cul</div><div class="line"><span class="string">" 智能对齐</span></div><div class="line"><span class="string">set smartindent</span></div><div class="line"><span class="string">"</span> 自动对齐</div><div class="line"><span class="built_in">set</span> autoindent</div><div class="line"><span class="string">" tab键的宽度</span></div><div class="line"><span class="string">set tabstop=4</span></div><div class="line"><span class="string">"</span> 统一缩进为4</div><div class="line"><span class="built_in">set</span> softtabstop=4</div><div class="line"><span class="string">" 显示行号</span></div><div class="line"><span class="string">set number</span></div><div class="line"><span class="string">"</span> 历史记录数</div><div class="line"><span class="built_in">set</span> clipboard+=unnamed</div><div class="line"><span class="built_in">set</span> <span class="built_in">history</span>=50</div><div class="line"><span class="string">" 自动匹配括号</span></div><div class="line"><span class="string">inoremap ( ()&lt;LEFT&gt;</span></div><div class="line"><span class="string">inoremap [ []&lt;LEFT&gt;</span></div><div class="line"><span class="string">inoremap &#123; &#123;&#125;&lt;LEFT&gt;</span></div><div class="line"><span class="string">"</span> 关闭ycm的方法previw窗口</div><div class="line"><span class="built_in">set</span> completeopt-=preview</div><div class="line"><span class="string">" 设置主题</span></div><div class="line"><span class="string">colorscheme space-vim-dark</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">"</span> ale配置</div><div class="line"><span class="string">" 显示侧边栏</span></div><div class="line"><span class="string">let g:ale_sign_column_always = 1</span></div><div class="line"><span class="string">let g:ale_set_highlights = 0</span></div><div class="line"><span class="string">"</span> 自定义图标</div><div class="line"><span class="built_in">let</span> g:ale_sign_error = <span class="string">'✗'</span></div><div class="line"><span class="built_in">let</span> g:ale_sign_warning = <span class="string">'⚡'</span></div><div class="line"><span class="string">"普通模式下，sp前往上一个错误或警告，sn前往下一个错误或警告</span></div><div class="line"><span class="string">nmap sp &lt;Plug&gt;(ale_previous_wrap)</span></div><div class="line"><span class="string">nmap sn &lt;Plug&gt;(ale_next_wrap)</span></div><div class="line"><span class="string">"</span>&lt;Leader&gt;s触发/关闭语法检查</div><div class="line">nmap &lt;Leader&gt;s :ALEToggle&lt;CR&gt;</div><div class="line"><span class="string">"&lt;Leader&gt;d查看错误或警告的详细信息</span></div><div class="line"><span class="string">nmap &lt;Leader&gt;d :ALEDetail&lt;CR&gt;</span></div></pre></td></tr></table></figure>
+</div></article></div></main><footer><div class="paginator"><a href="/2017/08/24/2017-08-24-Use Dagger2.11 in MVP/" class="next">NEXT</a></div><div class="copyright"><p>© 2015 - 2017 <a href="http://www.tipdev.xyz">wkchen</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-65933410-1",'auto');ga('send','pageview');</script></body></html>
