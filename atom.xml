@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.tipdev.xyz/"/>
-  <updated>2017-11-14T04:43:04.815Z</updated>
+  <updated>2017-11-14T04:46:37.832Z</updated>
   <id>http://www.tipdev.xyz/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://www.tipdev.xyz/2017/11/14/2017-11-14-Centos%207%20%E4%B8%8B%E6%90%AD%E5%BB%BA%20LAMP%20%E6%9C%8D%E5%8A%A1%C2%B7%E5%8F%8A%20HTTPS/"/>
     <id>http://www.tipdev.xyz/2017/11/14/2017-11-14-Centos 7 下搭建 LAMP 服务·及 HTTPS/</id>
     <published>2017-11-13T16:00:00.000Z</published>
-    <updated>2017-11-14T04:43:04.815Z</updated>
+    <updated>2017-11-14T04:46:37.832Z</updated>
     
     <content type="html"><![CDATA[<p>LAMP 是指一组通常一起使用来运行动态网页或者服务器的自由软件名称缩写：</p>
 <ul>
@@ -75,15 +75,15 @@
 <p>Step5.重启 Apache</p>
 <figure class="highlight sh"><table><tr><td class="code"><pre><div class="line">systmectl restart httpd</div></pre></td></tr></table></figure>
 <p>打开浏览器，看看成果吧。</p>
-<h4 id="三、安装MySQL"><a href="#三、安装MySQL" class="headerlink" title="三、安装MySQL"></a>三、安装MySQL</h4><p>Step1.安装</p>
+<h4 id="三、安装-MySQL"><a href="#三、安装-MySQL" class="headerlink" title="三、安装 MySQL"></a>三、安装 MySQL</h4><p>Step1.安装</p>
 <figure class="highlight sh"><table><tr><td class="code"><pre><div class="line">yum -y install mysql mysql-server</div></pre></td></tr></table></figure>
-<p>Step2.启动MySQL</p>
+<p>Step2.启动 MySQL</p>
 <figure class="highlight sh"><table><tr><td class="code"><pre><div class="line">systemctl start mysql</div></pre></td></tr></table></figure>
-<p>Step3.登录MySQL</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><div class="line"><span class="comment"># 登录mysql</span></div><div class="line">mysql -u root -p</div><div class="line">use mysql;</div><div class="line"><span class="comment"># 重置root密码</span></div><div class="line">grant usage on *.* to <span class="string">'root'</span> identified by <span class="string">'password'</span>;</div><div class="line"><span class="comment"># 保存设置</span></div><div class="line">flush privileges;</div></pre></td></tr></table></figure>
-<h4 id="四、安装php"><a href="#四、安装php" class="headerlink" title="四、安装php"></a>四、安装php</h4><p>Step1.安装epel-release 扩展yum 软件源</p>
+<p>Step3.登录 MySQL</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><div class="line"><span class="comment"># 登录 mysql</span></div><div class="line">mysql -u root -p</div><div class="line">use mysql;</div><div class="line"><span class="comment"># 重置 root 密码</span></div><div class="line">grant usage on *.* to <span class="string">'root'</span> identified by <span class="string">'password'</span>;</div><div class="line"><span class="comment"># 保存设置</span></div><div class="line">flush privileges;</div></pre></td></tr></table></figure>
+<h4 id="四、安装-php"><a href="#四、安装-php" class="headerlink" title="四、安装 php"></a>四、安装 php</h4><p>Step1.安装 epel-release 扩展 yum 软件源</p>
 <figure class="highlight sh"><table><tr><td class="code"><pre><div class="line">yum install epel-release</div><div class="line">rpm -Uvh https://mirror.webtatic.com/yum/el7/webtatic-release.rpm</div></pre></td></tr></table></figure>
-<p>Step2.安装php7.9</p>
+<p>Step2.安装 php7.9</p>
 <figure class="highlight sh"><table><tr><td class="code"><pre><div class="line">yum install php70w</div></pre></td></tr></table></figure>]]></content>
     
     <summary type="html">
