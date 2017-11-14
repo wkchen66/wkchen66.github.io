@@ -1,0 +1,63 @@
+<!DOCTYPE html><html lang="zh-Hans"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> Centos 7 下搭建 LAMP 服务·及 HTTPS · wkchen's blog</title><meta name="description" content="Centos 7 下搭建 LAMP 服务·及 HTTPS - wkchen"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.tipdev.xyz/atom.xml" title="wkchen's blog"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">TIMELINE</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">Centos 7 下搭建 LAMP 服务·及 HTTPS</h1><div class="post-info">Nov 14, 2017</div><div class="post-content"><p>LAMP 是指一组通常一起使用来运行动态网页或者服务器的自由软件名称缩写：</p>
+<ul>
+<li>Linux</li>
+<li>Apache</li>
+<li>MySQL 或者 MariaDB</li>
+<li>PHP、Per 或者 Python</li>
+</ul>
+<p>接下来就讲讲我最近搭建这些服务的心得吧，虽然网上有很多 LAMP 的一键安装包，但这样就没有动手实践的意义了。</p>
+<h4 id="一、Apache服务搭建"><a href="#一、Apache服务搭建" class="headerlink" title="一、Apache服务搭建"></a>一、Apache服务搭建</h4><p>​早在2013就开始接触到了 Apache，我记得当时还是在 <a href="https://zh.wikipedia.org/wiki/Fedora" target="_blank" rel="external">Fedora</a> 环境下使用的，不过比起当时，现在已经对 Apache 的认识更加深入了。</p>
+<p>Step1.安装 httpd</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><div class="line">yum install -y httpd</div></pre></td></tr></table></figure>
+<p>Step2.配置 httpd.conf</p>
+<p>​    关于 apache 的配置，全部可以在这个文件夹中配置，包括绑定域名、监听端口、项目目录、apache 模块等等，都可以在这里设置。</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><div class="line"><span class="comment"># 设置监听端口</span></div><div class="line">Listen 80</div><div class="line"><span class="comment"># 项目目录</span></div><div class="line">DocumentRoot <span class="string">"/var/www/html"</span></div></pre></td></tr></table></figure>
+<h4 id="二、开启Https服务"><a href="#二、开启Https服务" class="headerlink" title="二、开启Https服务"></a>二、开启Https服务</h4><p>​https 又称超文本传输安全协议，是一种通过哦计算机网络进行安全通信的传输协议，Https 经由 Http 进行通信，但利用 SSL/TLS 来加密数据包。</p>
+<h5 id="自签名证书安装"><a href="#自签名证书安装" class="headerlink" title="# 自签名证书安装"></a># 自签名证书安装</h5><p>Step1.安装 apache ssl 模块和 openssl</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><div class="line">yum install mod_ssl openssl</div></pre></td></tr></table></figure>
+<p>Step2.生成 2048 签名文件</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><div class="line">openssl genrsa -out server.key 2048</div></pre></td></tr></table></figure>
+<p>Step3.对证书进行签名</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><div class="line">openssl req -new -key server.key -out server.csr</div></pre></td></tr></table></figure>
+<p>Step4.生成 X509 的自签名证书，有效期 3650 天</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><div class="line">openssl x509 -req -days 3650 -in server.csr -signkey server.key -out server.crt</div></pre></td></tr></table></figure>
+<p>Step5.复制签名文件到 /etc/pki/tls 对应目录</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><div class="line">cp server.crt /etc/pki/tls/certs/</div><div class="line">cp server.key /etc/pki/tls/private/        </div><div class="line">cp server.csr /etc/pki/tls/private/</div></pre></td></tr></table></figure>
+<p>Step6.修改 ssl.conf 配置文件</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><div class="line"><span class="comment"># vim /etc/httpd/conf.d/ssl.conf 修改一下内容</span></div><div class="line">&lt;VirtualHost _default_:443&gt;</div><div class="line">	DocumentRoot <span class="string">"/var/www/html"</span></div><div class="line">	ServerName xxx.xxx.com:443</div><div class="line">	SSLEngine on</div><div class="line">	SSLCertificateFile /etc/pki/tls/certs/server.crt</div><div class="line">	SSLCertificateKeyFile /etc/pki/tls/private/server.key</div><div class="line">&lt;/VirtualHost&gt;</div></pre></td></tr></table></figure>
+<p>Step7.重启 Apache</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><div class="line"><span class="comment"># 注意 记得开启443端口，如果已经开启，请忽略</span></div><div class="line">sudo iptables -I INPUT -p tcp -m tcp --dport 443 -j ACCEPT</div><div class="line"><span class="comment"># 查看端口情况</span></div><div class="line">netstat -ntl</div><div class="line"><span class="comment"># 重启 apache</span></div><div class="line">systemctl restart httpd</div></pre></td></tr></table></figure>
+<p>此时，在浏览器打开你在 Step6 设置的域名，例如：<a href="https://xxx.xxx.com" target="_blank" rel="external">https://xxx.xxx.com</a> 就能访问 https 网站了。</p>
+<p>注意：显示不安全属于正常情况，如果你不希望看到不安全，你可以使用下面这种方式。</p>
+<h5 id="免费-收费-SLL-证书"><a href="#免费-收费-SLL-证书" class="headerlink" title="#免费/收费 SLL 证书"></a>#免费/收费 SLL 证书</h5><p>SSL 证书分为以下几种：</p>
+<ul>
+<li><p>域名验证型 DV        一般用于个人网站</p>
+</li>
+<li><p>组织验证型 OV        中小型企业</p>
+</li>
+<li><p>扩展验证型 EV         大型企业</p>
+</li>
+</ul>
+<p>免费的 DV 提供商有很多，这里我使用的是 Let’s Encrypt ，缺点就是需要每隔三个月续期一次。后两者一般都是收费的。</p>
+<p>Setp1.下载letsencrypt</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><div class="line">git <span class="built_in">clone</span> https://github.com/letsencrypt/letsencrypt</div><div class="line"><span class="built_in">cd</span> letsencrypt</div></pre></td></tr></table></figure>
+<p>Step2.安装证书</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><div class="line"><span class="comment"># 注意先暂停 httpd</span></div><div class="line">systemctl stop httpd</div><div class="line"><span class="comment"># 执行以下命令，接着按照提示一步步进行</span></div><div class="line">./letsencrypt-auto certonly  --email xxx@email.com <span class="_">-d</span> xxx.xxx.com</div></pre></td></tr></table></figure>
+<p>在执行完成后，当你看到 Congratulations! 并且在 /etc/letsencrypt 目录下生成一个 live 文件夹的时候说明安装成功了。</p>
+<p>Step3.修改 ssl.conf 配置文件</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><div class="line"><span class="comment"># vim /etc/httpd/conf.d/ssl.conf </span></div><div class="line">SSLCertificateFile /etc/letsencrypt/live/xxx.xxx.com/fullchain.pem</div><div class="line">SSLCertificateKeyFile /etc/letsencrypt/live/xxx.xxx.com/privkey.pem</div></pre></td></tr></table></figure>
+<p>Step4.强制跳转 https</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><div class="line"><span class="comment"># vim /etc/httpd/conf/httpd.conf ,在 &lt;Directory&gt; 中添加</span></div><div class="line">RewriteEngine on</div><div class="line">RewriteCond %&#123;SERVER_PORT&#125; !^443$</div><div class="line">RewriteRule ^(.*)?$ https://%&#123;SERVER_NAME&#125;/ [L,R]</div></pre></td></tr></table></figure>
+<p>Step5.重启 Apache</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><div class="line">systmectl restart httpd</div></pre></td></tr></table></figure>
+<p>打开浏览器，看看成果吧。</p>
+<h4 id="三、安装MySQL"><a href="#三、安装MySQL" class="headerlink" title="三、安装MySQL"></a>三、安装MySQL</h4><p>Step1.安装</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><div class="line">yum -y install mysql mysql-server</div></pre></td></tr></table></figure>
+<p>Step2.启动MySQL</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><div class="line">systemctl start mysql</div></pre></td></tr></table></figure>
+<p>Step3.登录MySQL</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><div class="line"><span class="comment"># 登录mysql</span></div><div class="line">mysql -u root -p</div><div class="line">use mysql;</div><div class="line"><span class="comment"># 重置root密码</span></div><div class="line">grant usage on *.* to <span class="string">'root'</span> identified by <span class="string">'password'</span>;</div><div class="line"><span class="comment"># 保存设置</span></div><div class="line">flush privileges;</div></pre></td></tr></table></figure>
+<h4 id="四、安装php"><a href="#四、安装php" class="headerlink" title="四、安装php"></a>四、安装php</h4><p>Step1.安装epel-release 扩展yum 软件源</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><div class="line">yum install epel-release</div><div class="line">rpm -Uvh https://mirror.webtatic.com/yum/el7/webtatic-release.rpm</div></pre></td></tr></table></figure>
+<p>Step2.安装php7.9</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><div class="line">yum install php70w</div></pre></td></tr></table></figure></div></article></div></main><footer><div class="paginator"><a href="/2017/11/07/2017-11-07-Let's 炫酷终端/" class="next">NEXT</a></div><div class="copyright"><p>© 2015 - 2017 <a href="http://www.tipdev.xyz">wkchen</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-65933410-1",'auto');ga('send','pageview');</script></body></html>

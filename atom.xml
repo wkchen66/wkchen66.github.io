@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.tipdev.xyz/"/>
-  <updated>2017-11-07T03:50:49.719Z</updated>
+  <updated>2017-11-14T04:43:04.815Z</updated>
   <id>http://www.tipdev.xyz/</id>
   
   <author>
@@ -14,6 +14,93 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Centos 7 下搭建 LAMP 服务·及 HTTPS</title>
+    <link href="http://www.tipdev.xyz/2017/11/14/2017-11-14-Centos%207%20%E4%B8%8B%E6%90%AD%E5%BB%BA%20LAMP%20%E6%9C%8D%E5%8A%A1%C2%B7%E5%8F%8A%20HTTPS/"/>
+    <id>http://www.tipdev.xyz/2017/11/14/2017-11-14-Centos 7 下搭建 LAMP 服务·及 HTTPS/</id>
+    <published>2017-11-13T16:00:00.000Z</published>
+    <updated>2017-11-14T04:43:04.815Z</updated>
+    
+    <content type="html"><![CDATA[<p>LAMP 是指一组通常一起使用来运行动态网页或者服务器的自由软件名称缩写：</p>
+<ul>
+<li>Linux</li>
+<li>Apache</li>
+<li>MySQL 或者 MariaDB</li>
+<li>PHP、Per 或者 Python</li>
+</ul>
+<p>接下来就讲讲我最近搭建这些服务的心得吧，虽然网上有很多 LAMP 的一键安装包，但这样就没有动手实践的意义了。</p>
+<h4 id="一、Apache服务搭建"><a href="#一、Apache服务搭建" class="headerlink" title="一、Apache服务搭建"></a>一、Apache服务搭建</h4><p>​早在2013就开始接触到了 Apache，我记得当时还是在 <a href="https://zh.wikipedia.org/wiki/Fedora" target="_blank" rel="external">Fedora</a> 环境下使用的，不过比起当时，现在已经对 Apache 的认识更加深入了。</p>
+<p>Step1.安装 httpd</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><div class="line">yum install -y httpd</div></pre></td></tr></table></figure>
+<p>Step2.配置 httpd.conf</p>
+<p>​    关于 apache 的配置，全部可以在这个文件夹中配置，包括绑定域名、监听端口、项目目录、apache 模块等等，都可以在这里设置。</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><div class="line"><span class="comment"># 设置监听端口</span></div><div class="line">Listen 80</div><div class="line"><span class="comment"># 项目目录</span></div><div class="line">DocumentRoot <span class="string">"/var/www/html"</span></div></pre></td></tr></table></figure>
+<h4 id="二、开启Https服务"><a href="#二、开启Https服务" class="headerlink" title="二、开启Https服务"></a>二、开启Https服务</h4><p>​https 又称超文本传输安全协议，是一种通过哦计算机网络进行安全通信的传输协议，Https 经由 Http 进行通信，但利用 SSL/TLS 来加密数据包。</p>
+<h5 id="自签名证书安装"><a href="#自签名证书安装" class="headerlink" title="# 自签名证书安装"></a># 自签名证书安装</h5><p>Step1.安装 apache ssl 模块和 openssl</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><div class="line">yum install mod_ssl openssl</div></pre></td></tr></table></figure>
+<p>Step2.生成 2048 签名文件</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><div class="line">openssl genrsa -out server.key 2048</div></pre></td></tr></table></figure>
+<p>Step3.对证书进行签名</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><div class="line">openssl req -new -key server.key -out server.csr</div></pre></td></tr></table></figure>
+<p>Step4.生成 X509 的自签名证书，有效期 3650 天</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><div class="line">openssl x509 -req -days 3650 -in server.csr -signkey server.key -out server.crt</div></pre></td></tr></table></figure>
+<p>Step5.复制签名文件到 /etc/pki/tls 对应目录</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><div class="line">cp server.crt /etc/pki/tls/certs/</div><div class="line">cp server.key /etc/pki/tls/private/        </div><div class="line">cp server.csr /etc/pki/tls/private/</div></pre></td></tr></table></figure>
+<p>Step6.修改 ssl.conf 配置文件</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><div class="line"><span class="comment"># vim /etc/httpd/conf.d/ssl.conf 修改一下内容</span></div><div class="line">&lt;VirtualHost _default_:443&gt;</div><div class="line">	DocumentRoot <span class="string">"/var/www/html"</span></div><div class="line">	ServerName xxx.xxx.com:443</div><div class="line">	SSLEngine on</div><div class="line">	SSLCertificateFile /etc/pki/tls/certs/server.crt</div><div class="line">	SSLCertificateKeyFile /etc/pki/tls/private/server.key</div><div class="line">&lt;/VirtualHost&gt;</div></pre></td></tr></table></figure>
+<p>Step7.重启 Apache</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><div class="line"><span class="comment"># 注意 记得开启443端口，如果已经开启，请忽略</span></div><div class="line">sudo iptables -I INPUT -p tcp -m tcp --dport 443 -j ACCEPT</div><div class="line"><span class="comment"># 查看端口情况</span></div><div class="line">netstat -ntl</div><div class="line"><span class="comment"># 重启 apache</span></div><div class="line">systemctl restart httpd</div></pre></td></tr></table></figure>
+<p>此时，在浏览器打开你在 Step6 设置的域名，例如：<a href="https://xxx.xxx.com" target="_blank" rel="external">https://xxx.xxx.com</a> 就能访问 https 网站了。</p>
+<p>注意：显示不安全属于正常情况，如果你不希望看到不安全，你可以使用下面这种方式。</p>
+<h5 id="免费-收费-SLL-证书"><a href="#免费-收费-SLL-证书" class="headerlink" title="#免费/收费 SLL 证书"></a>#免费/收费 SLL 证书</h5><p>SSL 证书分为以下几种：</p>
+<ul>
+<li><p>域名验证型 DV        一般用于个人网站</p>
+</li>
+<li><p>组织验证型 OV        中小型企业</p>
+</li>
+<li><p>扩展验证型 EV         大型企业</p>
+</li>
+</ul>
+<p>免费的 DV 提供商有很多，这里我使用的是 Let’s Encrypt ，缺点就是需要每隔三个月续期一次。后两者一般都是收费的。</p>
+<p>Setp1.下载letsencrypt</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><div class="line">git <span class="built_in">clone</span> https://github.com/letsencrypt/letsencrypt</div><div class="line"><span class="built_in">cd</span> letsencrypt</div></pre></td></tr></table></figure>
+<p>Step2.安装证书</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><div class="line"><span class="comment"># 注意先暂停 httpd</span></div><div class="line">systemctl stop httpd</div><div class="line"><span class="comment"># 执行以下命令，接着按照提示一步步进行</span></div><div class="line">./letsencrypt-auto certonly  --email xxx@email.com <span class="_">-d</span> xxx.xxx.com</div></pre></td></tr></table></figure>
+<p>在执行完成后，当你看到 Congratulations! 并且在 /etc/letsencrypt 目录下生成一个 live 文件夹的时候说明安装成功了。</p>
+<p>Step3.修改 ssl.conf 配置文件</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><div class="line"><span class="comment"># vim /etc/httpd/conf.d/ssl.conf </span></div><div class="line">SSLCertificateFile /etc/letsencrypt/live/xxx.xxx.com/fullchain.pem</div><div class="line">SSLCertificateKeyFile /etc/letsencrypt/live/xxx.xxx.com/privkey.pem</div></pre></td></tr></table></figure>
+<p>Step4.强制跳转 https</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><div class="line"><span class="comment"># vim /etc/httpd/conf/httpd.conf ,在 &lt;Directory&gt; 中添加</span></div><div class="line">RewriteEngine on</div><div class="line">RewriteCond %&#123;SERVER_PORT&#125; !^443$</div><div class="line">RewriteRule ^(.*)?$ https://%&#123;SERVER_NAME&#125;/ [L,R]</div></pre></td></tr></table></figure>
+<p>Step5.重启 Apache</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><div class="line">systmectl restart httpd</div></pre></td></tr></table></figure>
+<p>打开浏览器，看看成果吧。</p>
+<h4 id="三、安装MySQL"><a href="#三、安装MySQL" class="headerlink" title="三、安装MySQL"></a>三、安装MySQL</h4><p>Step1.安装</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><div class="line">yum -y install mysql mysql-server</div></pre></td></tr></table></figure>
+<p>Step2.启动MySQL</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><div class="line">systemctl start mysql</div></pre></td></tr></table></figure>
+<p>Step3.登录MySQL</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><div class="line"><span class="comment"># 登录mysql</span></div><div class="line">mysql -u root -p</div><div class="line">use mysql;</div><div class="line"><span class="comment"># 重置root密码</span></div><div class="line">grant usage on *.* to <span class="string">'root'</span> identified by <span class="string">'password'</span>;</div><div class="line"><span class="comment"># 保存设置</span></div><div class="line">flush privileges;</div></pre></td></tr></table></figure>
+<h4 id="四、安装php"><a href="#四、安装php" class="headerlink" title="四、安装php"></a>四、安装php</h4><p>Step1.安装epel-release 扩展yum 软件源</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><div class="line">yum install epel-release</div><div class="line">rpm -Uvh https://mirror.webtatic.com/yum/el7/webtatic-release.rpm</div></pre></td></tr></table></figure>
+<p>Step2.安装php7.9</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><div class="line">yum install php70w</div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;LAMP 是指一组通常一起使用来运行动态网页或者服务器的自由软件名称缩写：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Linux&lt;/li&gt;
+&lt;li&gt;Apache&lt;/li&gt;
+&lt;li&gt;MySQL 或者 MariaDB&lt;/li&gt;
+&lt;li&gt;PHP、Per 或者 Python&lt;/li&gt;
+&lt;/ul&gt;
+
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>Let&#39;s 炫酷终端</title>
@@ -1281,219 +1368,6 @@ private void openDatabase() {
     
     
       <category term="SQLite" scheme="http://www.tipdev.xyz/tags/SQLite/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Gson使用笔记</title>
-    <link href="http://www.tipdev.xyz/2016/06/17/2016-06-17-Gson%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/"/>
-    <id>http://www.tipdev.xyz/2016/06/17/2016-06-17-Gson使用笔记/</id>
-    <published>2016-06-16T16:00:00.000Z</published>
-    <updated>2017-05-23T16:15:40.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>关于Gson，只需要知道它是google推出的一个Json解析库。特点：快、官方、简单。</p>
-<h3 id="简单数据"><a href="#简单数据" class="headerlink" title="简单数据"></a>简单数据</h3><p>假设json数据如下：</p>
-<pre><code>{
-    city: &quot;南子岛&quot;,
-    cnty: &quot;中国&quot;,
-    id: &quot;CN101310230&quot;,
-    lat: &quot;11.26&quot;,
-    lon: &quot;114.20&quot;,
-    prov: &quot;海南&quot;
-}
-</code></pre><p>定义一个实体类</p>
-<pre><code>public class City{
-    public String city;
-    public String cnty;
-    public String id;
-    public String lat;
-    public String lon;
-    public String prov;
-}
-</code></pre><p>使用Gson解析（先导入Jar包）</p>
-<pre><code>//response:json数据
-City city ＝ new Gson().fromJson(response,City.class);
-</code></pre><h3 id="嵌套数组"><a href="#嵌套数组" class="headerlink" title="嵌套数组"></a>嵌套数组</h3><p>假设json数据如下：</p>
-<pre><code>city_info: [
-{
-    city: &quot;南子岛&quot;,
-    cnty: &quot;中国&quot;,
-    id: &quot;CN101310230&quot;,
-    lat: &quot;11.26&quot;,
-    lon: &quot;114.20&quot;,
-    prov: &quot;海南&quot;
-    },
-    {
-    city: &quot;北京&quot;,
-    cnty: &quot;中国&quot;,
-    id: &quot;CN101010100&quot;,
-    lat: &quot;39.904000&quot;,
-    lon: &quot;116.391000&quot;,
-    prov: &quot;直辖市&quot;
-}］
-</code></pre><p>首先创建实体类（推荐使用GsonFormat－－android studio 插件，快捷键command+n，有了这个插件，就非常简单了，创建实体类以下就不写了）</p>
-<pre><code>public class CityBean {
-
-    private List&lt;CityInfoBean&gt; city_info;
-
-    public List&lt;CityInfoBean&gt; getCity_info() {
-        return city_info;
-    }
-
-    public void setCity_info(List&lt;CityInfoBean&gt; city_info) {
-        this.city_info = city_info;
-    }
-
-    public static class CityInfoBean {
-        private String city;
-        private String cnty;
-        private String id;
-        private String lat;
-        private String lon;
-        private String prov;
-
-        public String getCity() {
-            return city;
-        }
-
-        public void setCity(String city) {
-            this.city = city;
-        }
-
-        public String getCnty() {
-            return cnty;
-        }
-
-        public void setCnty(String cnty) {
-            this.cnty = cnty;
-        }
-
-        public String getId() {
-            return id;
-        }
-
-        public void setId(String id) {
-            this.id = id;
-        }
-
-        public String getLat() {
-            return lat;
-        }
-
-        public void setLat(String lat) {
-            this.lat = lat;
-        }
-
-        public String getLon() {
-            return lon;
-        }
-
-        public void setLon(String lon) {
-            this.lon = lon;
-        }
-
-        public String getProv() {
-            return prov;
-        }
-
-        public void setProv(String prov) {
-            this.prov = prov;
-        }
-    }
-}
-</code></pre><p>使用Gson解析</p>
-<pre><code>JsonObject all ＝ new JsonObject(response);
-Type listType = new TypeToken&lt;ArrayList&lt;CityBean.CityInfoBean&gt;&gt;(){}.getType;
-ArrayList&lt;CityBean.CityInfoBean&gt; cityInfoBean = new Gson().fromJson(all.getString(&quot;city_info&quot;),listType);
-</code></pre><p>如果解析全部城市到listview怎么办？</p>
-<pre><code>for (int i = 0; i &lt; cityInfoBean.size(); i++) {
-    mList.add(cityBean.get(i).getCity());
-}
-</code></pre><p>创建adapter的时候把mList传递进去</p>
-<h3 id="复杂数据"><a href="#复杂数据" class="headerlink" title="复杂数据"></a>复杂数据</h3><p>假设json数据如下：</p>
-<pre><code>{
-    HeWeather data service 3.0: [
-    {
-    aqi: {
-    city: {
-    aqi: &quot;60&quot;,
-    co: &quot;1&quot;,
-    no2: &quot;49&quot;,
-    o3: &quot;52&quot;,
-    pm10: &quot;60&quot;,
-    pm25: &quot;42&quot;,
-    qlty: &quot;良&quot;,
-    so2: &quot;2&quot;
-    }
-    },
-    basic: {
-    city: &quot;北京&quot;,
-    cnty: &quot;中国&quot;,
-    id: &quot;CN101010100&quot;,
-    lat: &quot;39.904000&quot;,
-    lon: &quot;116.391000&quot;,
-    update: {
-    loc: &quot;2016-06-17 19:51&quot;,
-    utc: &quot;2016-06-17 11:51&quot;
-    }
-    },
-    daily_forecast: [
-    {
-    astro: {
-    sr: &quot;04:45&quot;,
-    ss: &quot;19:45&quot;
-    },
-    cond: {
-    code_d: &quot;100&quot;,
-    code_n: &quot;302&quot;,
-    txt_d: &quot;晴&quot;,
-    txt_n: &quot;雷阵雨&quot;
-    },
-    date: &quot;2016-06-17&quot;,
-    hum: &quot;21&quot;,
-    pcpn: &quot;0.2&quot;,
-    pop: &quot;57&quot;,
-    pres: &quot;998&quot;,
-    tmp: {
-    max: &quot;32&quot;,
-    min: &quot;20&quot;
-    },
-    vis: &quot;10&quot;,
-    wind: {
-    deg: &quot;21&quot;,
-    dir: &quot;无持续风向&quot;,
-    sc: &quot;微风&quot;,
-    spd: &quot;4&quot;
-    }
-    },
-    ..........
-</code></pre><p>1.碰到这样的数据怎么解析（HeWeather data service 3.0）<br>第一种使用Gson提供的注释的方式</p>
-<pre><code>@SerializedName(&quot;HeWeather data service 3.0&quot;)
-private List&lt;HeWeatherdataserviceBean&gt; HeWeatherdataservice;
-</code></pre><p>第二种去掉非法字符和空格再做处理</p>
-<p>2.比如说我要获取七天的天气预报，也就是daily_forecast中的数据</p>
-<pre><code>JSONObject all = new JSONObject(rawJsonResponse);
-JSONObject data = all.getJSONArray(&quot;HeWeather data service 3.0&quot;).getJSONObject(0);
-ArrayList&lt;WeatherCityBean.HeWeatherdataserviceBean.DailyForecastBean&gt; weatherCityBean = new Gson().fromJson(data.getString(&quot;daily_forecast&quot;),new TypeToken&lt;ArrayList&lt;WeatherCityBean.HeWeatherdataserviceBean.DailyForecastBean&gt;&gt;(){}.getType());
-for (int i = 0; i &lt; weatherCityBean.size(); i++) {
-    list.add(weatherCityBean.get(i));
-}
-</code></pre><p>传递到adapter即可</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;关于Gson，只需要知道它是google推出的一个Json解析库。特点：快、官方、简单。&lt;/p&gt;
-&lt;h3 id=&quot;简单数据&quot;&gt;&lt;a href=&quot;#简单数据&quot; class=&quot;headerlink&quot; title=&quot;简单数据&quot;&gt;&lt;/a&gt;简单数据&lt;/h3&gt;&lt;p&gt;假设json数据如下
-    
-    </summary>
-    
-    
-      <category term="gson" scheme="http://www.tipdev.xyz/tags/gson/"/>
-    
-      <category term="volley" scheme="http://www.tipdev.xyz/tags/volley/"/>
-    
-      <category term="android-async-http" scheme="http://www.tipdev.xyz/tags/android-async-http/"/>
     
   </entry>
   
