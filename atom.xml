@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.tipdev.xyz/"/>
-  <updated>2017-11-14T04:46:37.832Z</updated>
+  <updated>2018-02-01T02:58:58.199Z</updated>
   <id>http://www.tipdev.xyz/</id>
   
   <author>
@@ -16,11 +16,56 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>解决Mac 下 Terminal 使用 Shadowsocks 科学上网</title>
+    <link href="http://www.tipdev.xyz/2018/02/01/2018-02-01-%E8%A7%A3%E5%86%B3Mac%20%E4%B8%8B%20Terminal%20%E4%BD%BF%E7%94%A8%20Shadowsocks%20%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/"/>
+    <id>http://www.tipdev.xyz/2018/02/01/2018-02-01-解决Mac 下 Terminal 使用 Shadowsocks 科学上网/</id>
+    <published>2018-01-31T16:00:00.000Z</published>
+    <updated>2018-02-01T02:58:58.199Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近在安装 vim-go 和 golang 依赖的过程中遇到了一些  “墙” 的问题。众所周知在 Terminal 中是不走Sock5 代理的，那么怎么才能在 Terminal 中科学上网呢？</p>
+<p>首先你得有 Shadowsocks 账号，这里就不赘述了，网上教程很多。</p>
+<h4 id="安装-polipo-工具"><a href="#安装-polipo-工具" class="headerlink" title="安装 polipo 工具"></a>安装 polipo 工具</h4><p>polipo 是一个简单的web代理工具，具体介绍👉 <a href="https://wiki.archlinux.org/index.php/Polipo_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87" target="_blank" rel="external">polipo</a>)</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">brew install polipo</div></pre></td></tr></table></figure>
+<h4 id="设置-Sock-代理"><a href="#设置-Sock-代理" class="headerlink" title="设置 Sock 代理"></a>设置 Sock 代理</h4><p>编辑 homebrew.mxcl.polipo.plist</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">vim /usr/local/opt/polipo/homebrew.mxcl.polipo.plist</div></pre></td></tr></table></figure>
+<p>修改如下代码：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</div><div class="line">&lt;!DOCTYPE plist PUBLIC &quot;-//Apple//DTD PLIST 1.0//EN&quot; &quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;&gt;</div><div class="line"> &lt;plist version=&quot;1.0&quot;&gt;</div><div class="line">   &lt;dict&gt;</div><div class="line">     &lt;key&gt;Label&lt;/key&gt;</div><div class="line">     &lt;string&gt;homebrew.mxcl.polipo&lt;/string&gt;</div><div class="line">     &lt;key&gt;RunAtLoad&lt;/key&gt;</div><div class="line">     &lt;true/&gt;</div><div class="line">     &lt;key&gt;KeepAlive&lt;/key&gt;</div><div class="line">     &lt;true/&gt;</div><div class="line">     &lt;key&gt;ProgramArguments&lt;/key&gt;</div><div class="line">     &lt;array&gt;</div><div class="line">       &lt;string&gt;/usr/local/opt/polipo/bin/polipo&lt;/string&gt;</div><div class="line">       &lt;string&gt;socksParentProxy=localhost:1080&lt;/string&gt;</div><div class="line">     &lt;/array&gt;</div><div class="line">     &lt;!-- Set `ulimit -n 65536`. The default macOS limit is 256, that&apos;s</div><div class="line">          not enough for Polipo (displays &apos;too many files open&apos; errors).</div><div class="line">          It seems like you have no reason to lower this limit</div><div class="line">          (and unlikely will want to raise it). --&gt;</div><div class="line">     &lt;key&gt;SoftResourceLimits&lt;/key&gt;</div><div class="line">     &lt;dict&gt;</div><div class="line">       &lt;key&gt;NumberOfFiles&lt;/key&gt;</div><div class="line">       &lt;integer&gt;65536&lt;/integer&gt;</div><div class="line">     &lt;/dict&gt;</div><div class="line">   &lt;/dict&gt;</div><div class="line"> &lt;/plist&gt;</div></pre></td></tr></table></figure>
+<h4 id="设置开机启动"><a href="#设置开机启动" class="headerlink" title="设置开机启动"></a>设置开机启动</h4><p>开启 polipo</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">ln -sfv /usr/local/opt/polipo/*.plist ~/Library/LaunchAgents</div><div class="line">launchctl load ~/Library/LaunchAgents/homebrew.mxcl.polipo.plist</div></pre></td></tr></table></figure>
+<p>关闭 polipo</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.polipo.plist</div></pre></td></tr></table></figure>
+<h4 id="设置别名"><a href="#设置别名" class="headerlink" title="设置别名"></a>设置别名</h4><p>在 ~/.bash_profile 或者 ~/.bashrc 添加一下代码：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">alias proxy=&quot;export http_proxy=http://localhost:8123;export https_proxy=http://localhost:8123&quot;  # 开启</div><div class="line">alias unproxy=&quot;unset http_proxy&quot;  # 关闭</div></pre></td></tr></table></figure>
+<p>如果你和我一样安装了 oh-my-zsh 请在 ~/.zshrc 中添加以上代码。</p>
+<p>保存配置</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">source 环境变量配置文件  # 比如 source .zshrc</div></pre></td></tr></table></figure>
+<h4 id="开启代理"><a href="#开启代理" class="headerlink" title="开启代理"></a>开启代理</h4><p>在终端中 执行 proxy 开启代理</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">proxy</div></pre></td></tr></table></figure>
+<p>使用 curl 进行测试 curl cip.cc</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">IP	: 35.194.198.57</div><div class="line">地址	: 美国  艾奥瓦州  Cloud</div><div class="line"></div><div class="line">数据二	: 美国 | Merit网络公司</div><div class="line"></div><div class="line">URL	: http://www.cip.cc/35.194.198.57</div></pre></td></tr></table></figure>
+<p>执行 unproxy 关闭代理</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">unproxy</div></pre></td></tr></table></figure>
+<p>使用 curl 进行测试 curl cip.cc</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">IP	: 125.121.15.42</div><div class="line">地址	: 中国  浙江  杭州</div><div class="line"></div><div class="line">数据二	: 浙江省杭州市 | 电信</div><div class="line"></div><div class="line">URL	: http://www.cip.cc/125.121.15.42</div></pre></td></tr></table></figure>
+<p>这样就可以在 Terminal 中愉快的科学上网了。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近在安装 vim-go 和 golang 依赖的过程中遇到了一些  “墙” 的问题。众所周知在 Terminal 中是不走Sock5 代理的，那么怎么才能在 Terminal 中科学上网呢？&lt;/p&gt;
+&lt;p&gt;首先你得有 Shadowsocks 账号，这里就不赘述了，网上教程
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
     <title>Centos 7 下搭建 LAMP 服务·及 HTTPS</title>
     <link href="http://www.tipdev.xyz/2017/11/14/2017-11-14-Centos%207%20%E4%B8%8B%E6%90%AD%E5%BB%BA%20LAMP%20%E6%9C%8D%E5%8A%A1%C2%B7%E5%8F%8A%20HTTPS/"/>
     <id>http://www.tipdev.xyz/2017/11/14/2017-11-14-Centos 7 下搭建 LAMP 服务·及 HTTPS/</id>
     <published>2017-11-13T16:00:00.000Z</published>
-    <updated>2017-11-14T04:46:37.832Z</updated>
+    <updated>2017-11-14T08:46:44.530Z</updated>
     
     <content type="html"><![CDATA[<p>LAMP 是指一组通常一起使用来运行动态网页或者服务器的自由软件名称缩写：</p>
 <ul>
@@ -36,7 +81,7 @@
 <p>Step2.配置 httpd.conf</p>
 <p>​    关于 apache 的配置，全部可以在这个文件夹中配置，包括绑定域名、监听端口、项目目录、apache 模块等等，都可以在这里设置。</p>
 <figure class="highlight sh"><table><tr><td class="code"><pre><div class="line"><span class="comment"># 设置监听端口</span></div><div class="line">Listen 80</div><div class="line"><span class="comment"># 项目目录</span></div><div class="line">DocumentRoot <span class="string">"/var/www/html"</span></div></pre></td></tr></table></figure>
-<h4 id="二、开启Https服务"><a href="#二、开启Https服务" class="headerlink" title="二、开启Https服务"></a>二、开启Https服务</h4><p>​https 又称超文本传输安全协议，是一种通过哦计算机网络进行安全通信的传输协议，Https 经由 Http 进行通信，但利用 SSL/TLS 来加密数据包。</p>
+<h4 id="二、开启-HTTPS-服务"><a href="#二、开启-HTTPS-服务" class="headerlink" title="二、开启 HTTPS 服务"></a>二、开启 HTTPS 服务</h4><p>HTTPS 又称超文本传输安全协议，是一种通过计算机网络进行安全通信的传输协议，HTTPS 经由 HTTP 进行通信，但利用 SSL/TLS 来加密数据包。HTTPS 开发的主要目的，是提供对网站服务器的身份认证，保护交换数据的隐私与完整性。</p>
 <h5 id="自签名证书安装"><a href="#自签名证书安装" class="headerlink" title="# 自签名证书安装"></a># 自签名证书安装</h5><p>Step1.安装 apache ssl 模块和 openssl</p>
 <figure class="highlight sh"><table><tr><td class="code"><pre><div class="line">yum install mod_ssl openssl</div></pre></td></tr></table></figure>
 <p>Step2.生成 2048 签名文件</p>
@@ -83,7 +128,7 @@
 <figure class="highlight sh"><table><tr><td class="code"><pre><div class="line"><span class="comment"># 登录 mysql</span></div><div class="line">mysql -u root -p</div><div class="line">use mysql;</div><div class="line"><span class="comment"># 重置 root 密码</span></div><div class="line">grant usage on *.* to <span class="string">'root'</span> identified by <span class="string">'password'</span>;</div><div class="line"><span class="comment"># 保存设置</span></div><div class="line">flush privileges;</div></pre></td></tr></table></figure>
 <h4 id="四、安装-php"><a href="#四、安装-php" class="headerlink" title="四、安装 php"></a>四、安装 php</h4><p>Step1.安装 epel-release 扩展 yum 软件源</p>
 <figure class="highlight sh"><table><tr><td class="code"><pre><div class="line">yum install epel-release</div><div class="line">rpm -Uvh https://mirror.webtatic.com/yum/el7/webtatic-release.rpm</div></pre></td></tr></table></figure>
-<p>Step2.安装 php7.9</p>
+<p>Step2.安装 php7.0</p>
 <figure class="highlight sh"><table><tr><td class="code"><pre><div class="line">yum install php70w</div></pre></td></tr></table></figure>]]></content>
     
     <summary type="html">
@@ -1259,9 +1304,9 @@ sudo chown -R wkgit:wkgit test.git
     </summary>
     
     
-      <category term="android" scheme="http://www.tipdev.xyz/tags/android/"/>
-    
       <category term="recycleview" scheme="http://www.tipdev.xyz/tags/recycleview/"/>
+    
+      <category term="android" scheme="http://www.tipdev.xyz/tags/android/"/>
     
   </entry>
   
@@ -1304,70 +1349,9 @@ sudo chown -R wkgit:wkgit test.git
     </summary>
     
     
-      <category term="toolbar" scheme="http://www.tipdev.xyz/tags/toolbar/"/>
-    
       <category term="android" scheme="http://www.tipdev.xyz/tags/android/"/>
     
-  </entry>
-  
-  <entry>
-    <title>SQLite数据库本地读写笔记</title>
-    <link href="http://www.tipdev.xyz/2016/06/20/2016-06-20-SQLite%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9C%AC%E5%9C%B0%E8%AF%BB%E5%86%99%E7%AC%94%E8%AE%B0/"/>
-    <id>http://www.tipdev.xyz/2016/06/20/2016-06-20-SQLite数据库本地读写笔记/</id>
-    <published>2016-06-19T16:00:00.000Z</published>
-    <updated>2016-06-20T14:53:04.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>这几天在做Demo的时候碰到了一些问题，记录一下。</p>
-<h3 id="整体流程："><a href="#整体流程：" class="headerlink" title="整体流程："></a>整体流程：</h3><p>通过本地数据库加载数据到listview中，如果当数据不存在”/data/data/包名/“下时，通过加载资源文件导入。</p>
-<pre><code>public static String DB_NAME = &quot;chinacity.db&quot;;
-public static final String PACKAGE_NAME = &quot;com.wkchen.watermelonweather&quot;;
-public static final String DB_PATH = &quot;/data&quot; +Environment.getDataDirectory().getAbsolutePath() + &quot;/&quot; +
-        PACKAGE_NAME;
-
-private SQLiteDatabase db;
-
-private void openDatabase() {
-    try {
-        if (!(new File(DB_PATH+&quot;/&quot;+DB_NAME).exists())) {
-            InputStream is = getResources().openRawResource(R.raw.chinacity); //欲导入的数据库
-            FileOutputStream fos = new FileOutputStream(DB_PATH+&quot;/&quot;+DB_NAME);
-            byte[] buffer = new byte[1024];
-            int count = 0;
-            while ((count = is.read(buffer)) &gt; 0) {
-                fos.write(buffer, 0, count);
-            }
-            fos.close();
-            is.close();
-        }
-        db = SQLiteDatabase.openOrCreateDatabase(DB_PATH+&quot;/&quot;+DB_NAME, null);
-    } catch (FileNotFoundException e) {
-        e.printStackTrace();
-    } catch (IOException e) {
-        e.printStackTrace();
-    }
-    Cursor cursor = db.rawQuery(&quot;select * from china_provinces_code&quot;, null);
-    mList = new ArrayList&lt;String&gt;();
-    while (cursor.moveToNext()) {
-        mList.add(cursor.getString(cursor.getColumnIndex(&quot;name&quot;)));
-    }
-
-    MyAdapter adapter = new MyAdapter(getApplicationContext(), R.layout.layout_list_item, mList);
-    mList_city.setAdapter(adapter);
-}
-</code></pre><p>最后加上权限</p>
-<pre><code>&lt;uses-permission android:name=&quot;android.permission.WRITE_EXTERNAL_STORAGE&quot;/&gt;
-</code></pre><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>主要通过判断目标文件是否存在new File(DB_PATH+”/“+DB_NAME).exists()<br>如果存在直接打开，不存在则倒入文件（从raw文件下导入db文件）后打开<br>最后展示到listview中</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;这几天在做Demo的时候碰到了一些问题，记录一下。&lt;/p&gt;
-&lt;h3 id=&quot;整体流程：&quot;&gt;&lt;a href=&quot;#整体流程：&quot; class=&quot;headerlink&quot; title=&quot;整体流程：&quot;&gt;&lt;/a&gt;整体流程：&lt;/h3&gt;&lt;p&gt;通过本地数据库加载数据到listview中，如果当
-    
-    </summary>
-    
-    
-      <category term="SQLite" scheme="http://www.tipdev.xyz/tags/SQLite/"/>
+      <category term="toolbar" scheme="http://www.tipdev.xyz/tags/toolbar/"/>
     
   </entry>
   
