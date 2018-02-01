@@ -1304,9 +1304,9 @@ sudo chown -R wkgit:wkgit test.git
     </summary>
     
     
-      <category term="recycleview" scheme="http://www.tipdev.xyz/tags/recycleview/"/>
-    
       <category term="android" scheme="http://www.tipdev.xyz/tags/android/"/>
+    
+      <category term="recycleview" scheme="http://www.tipdev.xyz/tags/recycleview/"/>
     
   </entry>
   
@@ -1349,9 +1349,9 @@ sudo chown -R wkgit:wkgit test.git
     </summary>
     
     
-      <category term="android" scheme="http://www.tipdev.xyz/tags/android/"/>
-    
       <category term="toolbar" scheme="http://www.tipdev.xyz/tags/toolbar/"/>
+    
+      <category term="android" scheme="http://www.tipdev.xyz/tags/android/"/>
     
   </entry>
   
