@@ -11,12 +11,12 @@
 <p>Step2. 编译源码</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">./all.bash</div></pre></td></tr></table></figure>
 <p>如果在这个时候遇到了 <code>$GOROOT_BOOTSTRAP to a working Go tree &gt;= Go 1.4</code>问题，请继续往下看。</p>
-<h4 id="解决编译依赖"><a href="#解决编译依赖" class="headerlink" title="解决编译依赖"></a>解决编译依赖</h4><p>出现这种情况是因为，go1.9.3 依赖于 go1.4 ，那么无任何解决呢？</p>
+<h4 id="解决编译依赖"><a href="#解决编译依赖" class="headerlink" title="解决编译依赖"></a>解决编译依赖</h4><p>出现这种情况是因为 go1.9.3 依赖于 go1.4 ，那么无任何解决呢？</p>
 <p>Step1. 下载 go 源码，切换到 1.4 分支</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">cd /usr/local/go1.4</div><div class="line">git checkout go1.4</div></pre></td></tr></table></figure>
 <p>Step2. 编译 go1.4 版本</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">cd /usr/local/go1.4/src</div><div class="line">./all.bash</div></pre></td></tr></table></figure>
-<p>此时在同级目录下，会创建一个bin文件夹，这就是编译后的文件。</p>
+<p>此时在同级目录下，会生成一个 bin 文件夹，这就是编译后的文件。</p>
 <p>Step3. 编译 go1.9 版本</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">cd /usr/local/go/src</div><div class="line">./all.bash</div></pre></td></tr></table></figure>
 <p>使用 <code>go --version</code>查看当前版本，如果找不到命令或者版本不对应，需要设置环境变量。</p>
@@ -30,4 +30,4 @@
 <li><code>/etc/profile</code>系统级别，对系统下的所有用户有效</li>
 <li><code>.bash_profile</code> 、<code>.bashrc</code>和<code>.zshrc</code>仅对当前登录用户有效</li>
 </ol>
-</div></article></div></main><footer><div class="paginator"><a href="/2018/02/01/2018-02-01-Android Native层静态数据安全加密/" class="next">NEXT</a></div><div class="copyright"><p>© 2015 - 2018 <a href="http://www.tipdev.xyz">wkchen</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-65933410-1",'auto');ga('send','pageview');</script></body></html>
+</div></article></div></main><footer><div class="paginator"><a href="/2018/02/27/2018-02-27-Android 密钥安全之 密钥库的使用/" class="prev">PREV</a><a href="/2018/02/01/2018-02-01-解决Mac 下 Terminal  Shadowsocks 科学上网/" class="next">NEXT</a></div><div class="copyright"><p>© 2015 - 2018 <a href="http://www.tipdev.xyz">wkchen</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-65933410-1",'auto');ga('send','pageview');</script></body></html>
