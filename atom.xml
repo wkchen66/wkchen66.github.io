@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.tipdev.xyz/"/>
-  <updated>2018-03-26T08:12:15.611Z</updated>
+  <updated>2018-04-17T10:06:28.906Z</updated>
   <id>http://www.tipdev.xyz/</id>
   
   <author>
@@ -14,6 +14,62 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Linux SSH 安全防范措施 </title>
+    <link href="http://www.tipdev.xyz/2018/04/17/2018-04-17-Linux%20SSH%20%E5%AE%89%E5%85%A8%E9%98%B2%E8%8C%83%E6%8E%AA%E6%96%BD%20%20%20/"/>
+    <id>http://www.tipdev.xyz/2018/04/17/2018-04-17-Linux SSH 安全防范措施   /</id>
+    <published>2018-04-16T16:00:00.000Z</published>
+    <updated>2018-04-17T10:06:28.906Z</updated>
+    
+    <content type="html"><![CDATA[<p>在日常服务器的管理中，安全隐患始终困扰着我们，例如：DDos攻击、ARP攻击等。如果你忽视了这些，那么你的重要信息就很容易被黑客拿到，夸张点来说小白用户都能攻破你的服务器。接下来分享下我关于SSH 安全防范的学习心得。</p>
+<p>SSH 是一种非对称加密的网络传输协议，方便于客户端与服务端的连接，通常用来远程执行服务端的命令。虽然它方便了我们与服务端的连接，但是存在不少隐患，一旦这一道安全锁被打开，就相当于把所有的信息公之于众。防范措施常见的有关闭 root 用户登录（避免超级权限滥用）、使用 RSA 密钥登录、IP 限制等。</p>
+<h3 id="限制-ROOT-用户登录"><a href="#限制-ROOT-用户登录" class="headerlink" title="限制 ROOT 用户登录"></a>限制 ROOT 用户登录</h3><p>为什么建议关闭 root 用户登录 ssh？</p>
+<ol>
+<li><p>被攻破的情况下尽可能得避免最大的损失，假设服务器被暴力破解了成功的用 root 登录了上去，此时它已经拿到了你的 root 密码，并且拥有超级权限，想怎么做就怎么做。</p>
+</li>
+<li><p>限制权限，在团队开发中，时长需要多人操作服务器，如果你把 root 账号告诉所有人是一种不负责任的表现，那些删数据库、删服务器跑路就这样来的吧。（ps：遇到过 rm -rf / 删服务器的，当然他不是故意的2333）</p>
+</li>
+<li><p>避免误操作，有些时候真的是自己的误操作，导致数据的丢失或服务器的异常。非 root 用执行一些重要的命令时需要使用 sudo 来获取权限，并且会提示输入密码，以防误操。</p>
+</li>
+</ol>
+<p>修改 ssh 配置</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">vim /etc/ssh/sshd_config</div></pre></td></tr></table></figure>
+<p>修改以下内容：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">// 禁用 root 用户登录</div><div class="line">PermitRootLogin yes</div></pre></td></tr></table></figure>
+<p>重启服务应用配置</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">// centos 7，7 以下 service sshd restart</div><div class="line">systemctl restart sshd</div></pre></td></tr></table></figure>
+<h3 id="SSH-RSA-密钥"><a href="#SSH-RSA-密钥" class="headerlink" title="SSH RSA 密钥"></a>SSH RSA 密钥</h3><p>在关闭 root 用户登录限制的同时，还可以配合 RSA 密钥，进一步增加破解的难度。RSA 密钥采用公钥和私钥验证的方式限制非法登录，在客户端生成公钥和私钥，在服务端增加生成的公钥，当 ssh 登录时，只有拥有与之匹配的私钥才能登录成功，其余一律拦截。</p>
+<p>Step1. 修改 ssh 配置</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">vim /etc/ssh/sshd_config</div></pre></td></tr></table></figure>
+<p>修改以下内容：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">// 开启 RSA 验证</div><div class="line">RSAAuthentication yes</div><div class="line">// 开启公钥验证</div><div class="line">PubkeyAuthentication yes</div><div class="line">// 设置公钥文件路径</div><div class="line">AuthorizedKeysFile  .ssh/authorized_keys</div></pre></td></tr></table></figure>
+<p>Step2. 在客户端生成 RSA 密钥</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">ssh-keygen -t rsa</div></pre></td></tr></table></figure>
+<p>一路回车，使用过git 的应该对这句命令不会陌生吧。</p>
+<p>Step3. 复制公钥到服务器 .ssh/authorized_keys</p>
+<p>在服务器登录用户主目录下，创建 .ssh/authorized_keys 文件，并把客户端id_rsa.pub 内容复制到authorized_keys 中。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">vim /home/[user]/.ssh/authorized_keys</div></pre></td></tr></table></figure>
+<p>Step4. 重启服务应用配置</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">// centos 7，7 以下 service sshd restart</div><div class="line">systemctl restart sshd</div></pre></td></tr></table></figure>
+<p>当我完成以上配置后，ssh 到服务器时，发现依然需要密码登录，并且发现 we did not send a packet, disable method 错误。</p>
+<p>打开debug 调试，指定 2222 端口看看具体错误是什么？</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">// 服务端</div><div class="line">sudo /usr/sbin/sshd -p 2222 -d</div><div class="line">// 客户端</div><div class="line">ssh test@xxx.cz1y.com -vv -p 2222</div></pre></td></tr></table></figure>
+<p>发现 debug1: Could not open authorized keys ‘/home/test/.ssh/authorized_keys’: Permission denied 权限不足问题。</p>
+<p>现在知道可原因：<img src="/images/linux_ssh/ll-a.png" alt="查看权限">我这里使用 root 用户在 /home/[user] 目录下手动创建了 .ssh 和authorized_keys 文件，导致拥有者和拥有组都是 root。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">// 把 .ssh 文件夹和 authorized_keys 文件修改成 [user]</div><div class="line">chown [user]:[user] .ssh .ssh/authorized_keys</div></pre></td></tr></table></figure>
+<p>这里的 .ssh 文件夹和 authorized_keys 文件的拥有者和拥有组必须是对应的当前用户。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在日常服务器的管理中，安全隐患始终困扰着我们，例如：DDos攻击、ARP攻击等。如果你忽视了这些，那么你的重要信息就很容易被黑客拿到，夸张点来说小白用户都能攻破你的服务器。接下来分享下我关于SSH 安全防范的学习心得。&lt;/p&gt;
+&lt;p&gt;SSH 是一种非对称加密的网络传输协议，
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>Android 源码分析 View 事件分发机制</title>
@@ -181,6 +237,37 @@
   </entry>
   
   <entry>
+    <title>Android Native层静态数据安全加密</title>
+    <link href="http://www.tipdev.xyz/2018/02/01/2018-02-01-Android%20Native%E5%B1%82%E9%9D%99%E6%80%81%E6%95%B0%E6%8D%AE%E5%AE%89%E5%85%A8%E5%8A%A0%E5%AF%86/"/>
+    <id>http://www.tipdev.xyz/2018/02/01/2018-02-01-Android Native层静态数据安全加密/</id>
+    <published>2018-01-31T16:00:00.000Z</published>
+    <updated>2018-02-01T03:39:02.968Z</updated>
+    
+    <content type="html"><![CDATA[<p>整体思路：so 文件在加载时会自动加载 JNI_OnLoad() ，在该方法中对应用签名进行比较，如果签名验证失败，直接在 JNI_OnLoad() 中返回失败。如果验证通过就可以通过 JNI 调用方法获取相应的值。这样可畏是既解决了通常的数据外泄，又解决了 so 文件被提取二次打包造成的重要数据外泄。</p>
+<h4 id="加载-so-文件入口"><a href="#加载-so-文件入口" class="headerlink" title="加载 so 文件入口"></a>加载 so 文件入口</h4><figure class="highlight c++"><table><tr><td class="code"><pre><div class="line">JNIEXPORT jint JNICALL</div><div class="line">JNI_OnLoad(JavaVM *vm, <span class="keyword">void</span> *reserved) &#123;</div><div class="line">    JNIEnv *env;</div><div class="line">    LOGI(<span class="string">"  JNI_OnLoad  "</span>);</div><div class="line">    <span class="keyword">if</span> (vm-&gt;GetEnv((<span class="keyword">void</span> **) (&amp;env), JNI_VERSION_1_6) != JNI_OK) &#123;</div><div class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</div><div class="line">    &#125;</div><div class="line">    LOGI(<span class="string">"start checkSignature"</span>);</div><div class="line">    <span class="comment">// 调用验证签名</span></div><div class="line">    <span class="keyword">if</span> (checkSignature(env) != JNI_TRUE) &#123;</div><div class="line">        LOGI(<span class="string">"checkSignature error"</span>);</div><div class="line">        <span class="comment">// 签名失败</span></div><div class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> JNI_VERSION_1_6;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>当签名失败的时候，表示 so 文件加载失败，无法执行后续操作，比如获取 token md5加密 key</p>
+<h4 id="通过-Java-反射获取-Context"><a href="#通过-Java-反射获取-Context" class="headerlink" title="通过 Java 反射获取 Context"></a>通过 Java 反射获取 Context</h4><figure class="highlight c++"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">static</span> jboolean <span class="title">checkSignature</span><span class="params">(JNIEnv *env)</span> </span>&#123;</div><div class="line">    <span class="comment">// 1.查找 App 的 ContextHolder 类</span></div><div class="line">    jclass classNativeContextHolder = env-&gt;FindClass(CLASS_NAME_NATIVECONTEXT);</div><div class="line">    <span class="comment">// 2.找到 getContext 静态方法</span></div><div class="line">    jmethodID midGetContext = env-&gt;GetStaticMethodID(classNativeContextHolder,</div><div class="line">                                                     METHOD_NAME_GET_CONTEXT,</div><div class="line">                                                     METHOD_SIGNATURE_GETCONTEXT);</div><div class="line">    <span class="comment">// 3.调用 getContext 方法获取 Context 对象</span></div><div class="line">    jobject appContext = env-&gt;CallStaticObjectMethod(classNativeContextHolder, midGetContext);</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (appContext != <span class="literal">NULL</span>) &#123;</div><div class="line">        jboolean signatureValid = Java_com_laipaiya_jni_MainActivity_checkSignature(</div><div class="line">                env, appContext);</div><div class="line">        <span class="keyword">return</span> signatureValid;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> JNI_FALSE;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>调用 Java_com_laipaiya_jni_MainActivity_checkSignature 方法比较签名是否想用。</p>
+<h4 id="比较当前签名和-release-签名"><a href="#比较当前签名和-release-签名" class="headerlink" title="比较当前签名和 release 签名"></a>比较当前签名和 release 签名</h4><figure class="highlight c++"><table><tr><td class="code"><pre><div class="line"><span class="keyword">extern</span> <span class="string">"C"</span> JNIEXPORT jboolean JNICALL</div><div class="line">Java_com_laipaiya_jni_MainActivity_checkSignature(</div><div class="line">        JNIEnv *env, jobject context) &#123;</div><div class="line">    jstring appSignature = loadSignature(env, context);          <span class="comment">// 获取当前签名</span></div><div class="line">    jstring releaseSignature = env-&gt;NewStringUTF(APP_SIGNATURE); <span class="comment">// release 版签名 </span></div><div class="line">    <span class="keyword">const</span> <span class="keyword">char</span> *charAppSignature = env-&gt;GetStringUTFChars(appSignature, <span class="literal">NULL</span>);</div><div class="line">    <span class="keyword">const</span> <span class="keyword">char</span> *charReleaseSignature = env-&gt;GetStringUTFChars(releaseSignature, <span class="literal">NULL</span>);</div><div class="line"></div><div class="line">    LOGI(<span class="string">"  start cmp  getSignature"</span>);</div><div class="line">    __android_log_print(ANDROID_LOG_INFO, LOG_TAG, charAppSignature);</div><div class="line">    LOGI(<span class="string">"  start cmp  getReleaseSignature"</span>);</div><div class="line">    __android_log_print(ANDROID_LOG_INFO, LOG_TAG, charAppSignature);</div><div class="line"></div><div class="line">    jboolean result = JNI_FALSE;</div><div class="line">    <span class="comment">// 判断比较是否相等</span></div><div class="line">    <span class="keyword">if</span> (charAppSignature != <span class="literal">NULL</span> &amp;&amp; charReleaseSignature != <span class="literal">NULL</span>) &#123;</div><div class="line">        <span class="keyword">if</span> (<span class="built_in">strcmp</span>(charAppSignature, charReleaseSignature) == <span class="number">0</span>) &#123;</div><div class="line">            result = JNI_TRUE;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    env-&gt;ReleaseStringUTFChars(appSignature, charAppSignature);</div><div class="line">    env-&gt;ReleaseStringUTFChars(releaseSignature, charReleaseSignature);</div><div class="line">    <span class="keyword">return</span> result;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="获取当前签名"><a href="#获取当前签名" class="headerlink" title="获取当前签名"></a>获取当前签名</h4><p>获取当前 App 签名，并调用 md5 方法 进行加密</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><div class="line"><span class="function">jstring <span class="title">loadSignature</span><span class="params">(JNIEnv *env, jobject context)</span> </span>&#123;</div><div class="line">    <span class="comment">// 获得Context类</span></div><div class="line">    jclass cls = env-&gt;GetObjectClass(context);</div><div class="line">    <span class="comment">// 得到getPackageManager方法的ID</span></div><div class="line">    jmethodID mid = env-&gt;GetMethodID(cls, <span class="string">"getPackageManager"</span>,</div><div class="line">                                     <span class="string">"()Landroid/content/pm/PackageManager;"</span>);</div><div class="line">    <span class="comment">// 获得应用包的管理器</span></div><div class="line">    jobject pm = env-&gt;CallObjectMethod(context, mid);</div><div class="line"></div><div class="line">    <span class="comment">// 得到getPackageName方法的ID</span></div><div class="line">    mid = env-&gt;GetMethodID(cls, <span class="string">"getPackageName"</span>, <span class="string">"()Ljava/lang/String;"</span>);</div><div class="line">    <span class="comment">// 获得当前应用包名</span></div><div class="line">    jstring packageName = (jstring) env-&gt;CallObjectMethod(context, mid);</div><div class="line">    <span class="comment">// 获得PackageManager类</span></div><div class="line">    cls = env-&gt;GetObjectClass(pm);</div><div class="line">    <span class="comment">// 得到getPackageInfo方法的ID</span></div><div class="line">    mid = env-&gt;GetMethodID(cls, <span class="string">"getPackageInfo"</span>,</div><div class="line">                           <span class="string">"(Ljava/lang/String;I)Landroid/content/pm/PackageInfo;"</span>);</div><div class="line">    <span class="comment">// 获得应用包的信息</span></div><div class="line">    jobject packageInfo = env-&gt;CallObjectMethod(pm, mid, packageName, <span class="number">0x40</span>);        </div><div class="line">    <span class="comment">// 获得PackageInfo 类</span></div><div class="line">    cls = env-&gt;GetObjectClass(packageInfo);</div><div class="line">    <span class="comment">// 获得签名数组属性的ID</span></div><div class="line">    jfieldID fid = env-&gt;GetFieldID(cls, <span class="string">"signatures"</span>, <span class="string">"[Landroid/content/pm/Signature;"</span>);</div><div class="line">    <span class="comment">// 得到签名数组</span></div><div class="line">    jobjectArray signatures = (jobjectArray) env-&gt;GetObjectField(packageInfo, fid);</div><div class="line">    <span class="comment">// 得到签名</span></div><div class="line">    jobject signature = env-&gt;GetObjectArrayElement(signatures, <span class="number">0</span>);</div><div class="line">    <span class="comment">// 获得Signature类</span></div><div class="line">    cls = env-&gt;GetObjectClass(signature);</div><div class="line">    <span class="comment">// 得到toCharsString方法的ID</span></div><div class="line">    mid = env-&gt;GetMethodID(cls, <span class="string">"toByteArray"</span>, <span class="string">"()[B"</span>);</div><div class="line">    <span class="comment">// 返回当前应用签名信息</span></div><div class="line">    jbyteArray signatureByteArray = (jbyteArray) env-&gt;CallObjectMethod(signature, mid);</div><div class="line">    <span class="keyword">return</span> ToMd5(env, signatureByteArray);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="MD5-对签名进行加密"><a href="#MD5-对签名进行加密" class="headerlink" title="MD5 对签名进行加密"></a>MD5 对签名进行加密</h4><figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="function">jstring <span class="title">ToMd5</span><span class="params">(JNIEnv *env, jbyteArray source)</span> </span>&#123;</div><div class="line">    <span class="comment">// MessageDigest类</span></div><div class="line">    jclass classMessageDigest = env-&gt;FindClass(<span class="string">"java/security/MessageDigest"</span>);</div><div class="line">    <span class="comment">// MessageDigest.getInstance()静态方法</span></div><div class="line">    jmethodID midGetInstance = env-&gt;GetStaticMethodID(classMessageDigest, <span class="string">"getInstance"</span>,</div><div class="line">                                                      <span class="string">"(Ljava/lang/String;)Ljava/security/MessageDigest;"</span>);</div><div class="line">    <span class="comment">// MessageDigest object</span></div><div class="line">    jobject objMessageDigest = env-&gt;CallStaticObjectMethod(classMessageDigest, midGetInstance,</div><div class="line">                                                           env-&gt;NewStringUTF(<span class="string">"md5"</span>));</div><div class="line"></div><div class="line">    <span class="comment">// update方法，这个函数的返回值是void，写V</span></div><div class="line">    jmethodID midUpdate = env-&gt;GetMethodID(classMessageDigest, <span class="string">"update"</span>, <span class="string">"([B)V"</span>);</div><div class="line">    env-&gt;CallVoidMethod(objMessageDigest, midUpdate, source);</div><div class="line">    <span class="comment">// digest方法</span></div><div class="line">    jmethodID midDigest = env-&gt;GetMethodID(classMessageDigest, <span class="string">"digest"</span>, <span class="string">"()[B"</span>);</div><div class="line">    jbyteArray objArraySign = (jbyteArray) env-&gt;CallObjectMethod(objMessageDigest, midDigest);</div><div class="line">    jsize intArrayLength = env-&gt;GetArrayLength(objArraySign);</div><div class="line">    jbyte *byte_array_elements = env-&gt;GetByteArrayElements(objArraySign, NULL);</div><div class="line">    size_t length = (size_t) intArrayLength * <span class="number">2</span> + <span class="number">1</span>;</div><div class="line">    <span class="keyword">char</span> *char_result = (<span class="keyword">char</span> *) malloc(length);</div><div class="line">    memset(char_result, <span class="number">0</span>, length);</div><div class="line"></div><div class="line">    <span class="comment">// 将byte数组转换成16进制字符串，发现这里不用强转，jbyte和unsigned char应该字节数是一样的</span></div><div class="line">    ByteToHexStr((<span class="keyword">const</span> <span class="keyword">char</span> *) byte_array_elements, char_result, intArrayLength);</div><div class="line">    <span class="comment">// 在末尾补\0</span></div><div class="line">    *(char_result + intArrayLength * <span class="number">2</span>) = <span class="string">'\0'</span>;</div><div class="line"></div><div class="line">    jstring stringResult = env-&gt;NewStringUTF(char_result);</div><div class="line">    <span class="comment">// release</span></div><div class="line">    env-&gt;ReleaseByteArrayElements(objArraySign, byte_array_elements, JNI_ABORT);</div><div class="line">    <span class="comment">// 释放指针使用free</span></div><div class="line">    free(char_result);</div><div class="line">    <span class="keyword">return</span> stringResult;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="byte数组转换成16进制字符串"><a href="#byte数组转换成16进制字符串" class="headerlink" title="byte数组转换成16进制字符串"></a>byte数组转换成16进制字符串</h4><figure class="highlight c++"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">ByteToHexStr</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *source, <span class="keyword">char</span> *dest, <span class="keyword">int</span> sourceLen)</span> </span>&#123;</div><div class="line">    <span class="keyword">short</span> i;</div><div class="line">    <span class="keyword">char</span> highByte, lowByte;</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; sourceLen; i++) &#123;</div><div class="line">        highByte = source[i] &gt;&gt; <span class="number">4</span>;</div><div class="line">        lowByte = source[i] &amp; <span class="number">0x0f</span>;</div><div class="line">        highByte += <span class="number">0x30</span>;</div><div class="line"></div><div class="line">        <span class="keyword">if</span> (highByte &gt; <span class="number">0x39</span>) &#123;</div><div class="line">            dest[i * <span class="number">2</span>] = highByte + <span class="number">0x07</span>;</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            dest[i * <span class="number">2</span>] = highByte;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        lowByte += <span class="number">0x30</span>;</div><div class="line">        <span class="keyword">if</span> (lowByte &gt; <span class="number">0x39</span>) &#123;</div><div class="line">            dest[i * <span class="number">2</span> + <span class="number">1</span>] = lowByte + <span class="number">0x07</span>;</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            dest[i * <span class="number">2</span> + <span class="number">1</span>] = lowByte;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="创建获取token-key-方法"><a href="#创建获取token-key-方法" class="headerlink" title="创建获取token key 方法"></a>创建获取token key 方法</h4><p>使用场景，很多情况下我们把用户登录后的 token 存储下来，以免下次重新登录。这个时候我们需要使用 token key 对服务端返回下来的 token 进行加密。</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><div class="line"><span class="keyword">extern</span> <span class="string">"C"</span> JNIEXPORT jstring JNICALL</div><div class="line">Java_com_laipaiya_jni_MainActivity_getTokenKey</div><div class="line">        (JNIEnv *env, jclass) &#123;</div><div class="line">    <span class="keyword">return</span> env -&gt; NewStringUTF(APP_TOKEN_KEY);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>我们获得 token key 之后，就可以加密，然后任意存储加密后的数据即可。当我们需要再次使用的时候，只需要对其解密就能得到 token 了。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;整体思路：so 文件在加载时会自动加载 JNI_OnLoad() ，在该方法中对应用签名进行比较，如果签名验证失败，直接在 JNI_OnLoad() 中返回失败。如果验证通过就可以通过 JNI 调用方法获取相应的值。这样可畏是既解决了通常的数据外泄，又解决了 so 文件被提
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
     <title>解决Mac 下 Terminal Shadowsocks 科学上网</title>
     <link href="http://www.tipdev.xyz/2018/02/01/2018-02-01-%E8%A7%A3%E5%86%B3Mac%20%E4%B8%8B%20Terminal%20%20Shadowsocks%20%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/"/>
     <id>http://www.tipdev.xyz/2018/02/01/2018-02-01-解决Mac 下 Terminal  Shadowsocks 科学上网/</id>
@@ -219,37 +306,6 @@
     
       &lt;p&gt;最近在安装 vim-go 和 golang 依赖的过程中遇到了一些  “墙” 的问题。众所周知在 Terminal 中是不走Sock5 代理的，那么怎么才能在 Terminal 中科学上网呢？&lt;/p&gt;
 &lt;p&gt;首先你得有 Shadowsocks 账号，这里就不赘述了，网上教程
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Android Native层静态数据安全加密</title>
-    <link href="http://www.tipdev.xyz/2018/02/01/2018-02-01-Android%20Native%E5%B1%82%E9%9D%99%E6%80%81%E6%95%B0%E6%8D%AE%E5%AE%89%E5%85%A8%E5%8A%A0%E5%AF%86/"/>
-    <id>http://www.tipdev.xyz/2018/02/01/2018-02-01-Android Native层静态数据安全加密/</id>
-    <published>2018-01-31T16:00:00.000Z</published>
-    <updated>2018-02-01T03:39:02.968Z</updated>
-    
-    <content type="html"><![CDATA[<p>整体思路：so 文件在加载时会自动加载 JNI_OnLoad() ，在该方法中对应用签名进行比较，如果签名验证失败，直接在 JNI_OnLoad() 中返回失败。如果验证通过就可以通过 JNI 调用方法获取相应的值。这样可畏是既解决了通常的数据外泄，又解决了 so 文件被提取二次打包造成的重要数据外泄。</p>
-<h4 id="加载-so-文件入口"><a href="#加载-so-文件入口" class="headerlink" title="加载 so 文件入口"></a>加载 so 文件入口</h4><figure class="highlight c++"><table><tr><td class="code"><pre><div class="line">JNIEXPORT jint JNICALL</div><div class="line">JNI_OnLoad(JavaVM *vm, <span class="keyword">void</span> *reserved) &#123;</div><div class="line">    JNIEnv *env;</div><div class="line">    LOGI(<span class="string">"  JNI_OnLoad  "</span>);</div><div class="line">    <span class="keyword">if</span> (vm-&gt;GetEnv((<span class="keyword">void</span> **) (&amp;env), JNI_VERSION_1_6) != JNI_OK) &#123;</div><div class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</div><div class="line">    &#125;</div><div class="line">    LOGI(<span class="string">"start checkSignature"</span>);</div><div class="line">    <span class="comment">// 调用验证签名</span></div><div class="line">    <span class="keyword">if</span> (checkSignature(env) != JNI_TRUE) &#123;</div><div class="line">        LOGI(<span class="string">"checkSignature error"</span>);</div><div class="line">        <span class="comment">// 签名失败</span></div><div class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> JNI_VERSION_1_6;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>当签名失败的时候，表示 so 文件加载失败，无法执行后续操作，比如获取 token md5加密 key</p>
-<h4 id="通过-Java-反射获取-Context"><a href="#通过-Java-反射获取-Context" class="headerlink" title="通过 Java 反射获取 Context"></a>通过 Java 反射获取 Context</h4><figure class="highlight c++"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">static</span> jboolean <span class="title">checkSignature</span><span class="params">(JNIEnv *env)</span> </span>&#123;</div><div class="line">    <span class="comment">// 1.查找 App 的 ContextHolder 类</span></div><div class="line">    jclass classNativeContextHolder = env-&gt;FindClass(CLASS_NAME_NATIVECONTEXT);</div><div class="line">    <span class="comment">// 2.找到 getContext 静态方法</span></div><div class="line">    jmethodID midGetContext = env-&gt;GetStaticMethodID(classNativeContextHolder,</div><div class="line">                                                     METHOD_NAME_GET_CONTEXT,</div><div class="line">                                                     METHOD_SIGNATURE_GETCONTEXT);</div><div class="line">    <span class="comment">// 3.调用 getContext 方法获取 Context 对象</span></div><div class="line">    jobject appContext = env-&gt;CallStaticObjectMethod(classNativeContextHolder, midGetContext);</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (appContext != <span class="literal">NULL</span>) &#123;</div><div class="line">        jboolean signatureValid = Java_com_laipaiya_jni_MainActivity_checkSignature(</div><div class="line">                env, appContext);</div><div class="line">        <span class="keyword">return</span> signatureValid;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> JNI_FALSE;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>调用 Java_com_laipaiya_jni_MainActivity_checkSignature 方法比较签名是否想用。</p>
-<h4 id="比较当前签名和-release-签名"><a href="#比较当前签名和-release-签名" class="headerlink" title="比较当前签名和 release 签名"></a>比较当前签名和 release 签名</h4><figure class="highlight c++"><table><tr><td class="code"><pre><div class="line"><span class="keyword">extern</span> <span class="string">"C"</span> JNIEXPORT jboolean JNICALL</div><div class="line">Java_com_laipaiya_jni_MainActivity_checkSignature(</div><div class="line">        JNIEnv *env, jobject context) &#123;</div><div class="line">    jstring appSignature = loadSignature(env, context);          <span class="comment">// 获取当前签名</span></div><div class="line">    jstring releaseSignature = env-&gt;NewStringUTF(APP_SIGNATURE); <span class="comment">// release 版签名 </span></div><div class="line">    <span class="keyword">const</span> <span class="keyword">char</span> *charAppSignature = env-&gt;GetStringUTFChars(appSignature, <span class="literal">NULL</span>);</div><div class="line">    <span class="keyword">const</span> <span class="keyword">char</span> *charReleaseSignature = env-&gt;GetStringUTFChars(releaseSignature, <span class="literal">NULL</span>);</div><div class="line"></div><div class="line">    LOGI(<span class="string">"  start cmp  getSignature"</span>);</div><div class="line">    __android_log_print(ANDROID_LOG_INFO, LOG_TAG, charAppSignature);</div><div class="line">    LOGI(<span class="string">"  start cmp  getReleaseSignature"</span>);</div><div class="line">    __android_log_print(ANDROID_LOG_INFO, LOG_TAG, charAppSignature);</div><div class="line"></div><div class="line">    jboolean result = JNI_FALSE;</div><div class="line">    <span class="comment">// 判断比较是否相等</span></div><div class="line">    <span class="keyword">if</span> (charAppSignature != <span class="literal">NULL</span> &amp;&amp; charReleaseSignature != <span class="literal">NULL</span>) &#123;</div><div class="line">        <span class="keyword">if</span> (<span class="built_in">strcmp</span>(charAppSignature, charReleaseSignature) == <span class="number">0</span>) &#123;</div><div class="line">            result = JNI_TRUE;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    env-&gt;ReleaseStringUTFChars(appSignature, charAppSignature);</div><div class="line">    env-&gt;ReleaseStringUTFChars(releaseSignature, charReleaseSignature);</div><div class="line">    <span class="keyword">return</span> result;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="获取当前签名"><a href="#获取当前签名" class="headerlink" title="获取当前签名"></a>获取当前签名</h4><p>获取当前 App 签名，并调用 md5 方法 进行加密</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><div class="line"><span class="function">jstring <span class="title">loadSignature</span><span class="params">(JNIEnv *env, jobject context)</span> </span>&#123;</div><div class="line">    <span class="comment">// 获得Context类</span></div><div class="line">    jclass cls = env-&gt;GetObjectClass(context);</div><div class="line">    <span class="comment">// 得到getPackageManager方法的ID</span></div><div class="line">    jmethodID mid = env-&gt;GetMethodID(cls, <span class="string">"getPackageManager"</span>,</div><div class="line">                                     <span class="string">"()Landroid/content/pm/PackageManager;"</span>);</div><div class="line">    <span class="comment">// 获得应用包的管理器</span></div><div class="line">    jobject pm = env-&gt;CallObjectMethod(context, mid);</div><div class="line"></div><div class="line">    <span class="comment">// 得到getPackageName方法的ID</span></div><div class="line">    mid = env-&gt;GetMethodID(cls, <span class="string">"getPackageName"</span>, <span class="string">"()Ljava/lang/String;"</span>);</div><div class="line">    <span class="comment">// 获得当前应用包名</span></div><div class="line">    jstring packageName = (jstring) env-&gt;CallObjectMethod(context, mid);</div><div class="line">    <span class="comment">// 获得PackageManager类</span></div><div class="line">    cls = env-&gt;GetObjectClass(pm);</div><div class="line">    <span class="comment">// 得到getPackageInfo方法的ID</span></div><div class="line">    mid = env-&gt;GetMethodID(cls, <span class="string">"getPackageInfo"</span>,</div><div class="line">                           <span class="string">"(Ljava/lang/String;I)Landroid/content/pm/PackageInfo;"</span>);</div><div class="line">    <span class="comment">// 获得应用包的信息</span></div><div class="line">    jobject packageInfo = env-&gt;CallObjectMethod(pm, mid, packageName, <span class="number">0x40</span>);        </div><div class="line">    <span class="comment">// 获得PackageInfo 类</span></div><div class="line">    cls = env-&gt;GetObjectClass(packageInfo);</div><div class="line">    <span class="comment">// 获得签名数组属性的ID</span></div><div class="line">    jfieldID fid = env-&gt;GetFieldID(cls, <span class="string">"signatures"</span>, <span class="string">"[Landroid/content/pm/Signature;"</span>);</div><div class="line">    <span class="comment">// 得到签名数组</span></div><div class="line">    jobjectArray signatures = (jobjectArray) env-&gt;GetObjectField(packageInfo, fid);</div><div class="line">    <span class="comment">// 得到签名</span></div><div class="line">    jobject signature = env-&gt;GetObjectArrayElement(signatures, <span class="number">0</span>);</div><div class="line">    <span class="comment">// 获得Signature类</span></div><div class="line">    cls = env-&gt;GetObjectClass(signature);</div><div class="line">    <span class="comment">// 得到toCharsString方法的ID</span></div><div class="line">    mid = env-&gt;GetMethodID(cls, <span class="string">"toByteArray"</span>, <span class="string">"()[B"</span>);</div><div class="line">    <span class="comment">// 返回当前应用签名信息</span></div><div class="line">    jbyteArray signatureByteArray = (jbyteArray) env-&gt;CallObjectMethod(signature, mid);</div><div class="line">    <span class="keyword">return</span> ToMd5(env, signatureByteArray);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="MD5-对签名进行加密"><a href="#MD5-对签名进行加密" class="headerlink" title="MD5 对签名进行加密"></a>MD5 对签名进行加密</h4><figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="function">jstring <span class="title">ToMd5</span><span class="params">(JNIEnv *env, jbyteArray source)</span> </span>&#123;</div><div class="line">    <span class="comment">// MessageDigest类</span></div><div class="line">    jclass classMessageDigest = env-&gt;FindClass(<span class="string">"java/security/MessageDigest"</span>);</div><div class="line">    <span class="comment">// MessageDigest.getInstance()静态方法</span></div><div class="line">    jmethodID midGetInstance = env-&gt;GetStaticMethodID(classMessageDigest, <span class="string">"getInstance"</span>,</div><div class="line">                                                      <span class="string">"(Ljava/lang/String;)Ljava/security/MessageDigest;"</span>);</div><div class="line">    <span class="comment">// MessageDigest object</span></div><div class="line">    jobject objMessageDigest = env-&gt;CallStaticObjectMethod(classMessageDigest, midGetInstance,</div><div class="line">                                                           env-&gt;NewStringUTF(<span class="string">"md5"</span>));</div><div class="line"></div><div class="line">    <span class="comment">// update方法，这个函数的返回值是void，写V</span></div><div class="line">    jmethodID midUpdate = env-&gt;GetMethodID(classMessageDigest, <span class="string">"update"</span>, <span class="string">"([B)V"</span>);</div><div class="line">    env-&gt;CallVoidMethod(objMessageDigest, midUpdate, source);</div><div class="line">    <span class="comment">// digest方法</span></div><div class="line">    jmethodID midDigest = env-&gt;GetMethodID(classMessageDigest, <span class="string">"digest"</span>, <span class="string">"()[B"</span>);</div><div class="line">    jbyteArray objArraySign = (jbyteArray) env-&gt;CallObjectMethod(objMessageDigest, midDigest);</div><div class="line">    jsize intArrayLength = env-&gt;GetArrayLength(objArraySign);</div><div class="line">    jbyte *byte_array_elements = env-&gt;GetByteArrayElements(objArraySign, NULL);</div><div class="line">    size_t length = (size_t) intArrayLength * <span class="number">2</span> + <span class="number">1</span>;</div><div class="line">    <span class="keyword">char</span> *char_result = (<span class="keyword">char</span> *) malloc(length);</div><div class="line">    memset(char_result, <span class="number">0</span>, length);</div><div class="line"></div><div class="line">    <span class="comment">// 将byte数组转换成16进制字符串，发现这里不用强转，jbyte和unsigned char应该字节数是一样的</span></div><div class="line">    ByteToHexStr((<span class="keyword">const</span> <span class="keyword">char</span> *) byte_array_elements, char_result, intArrayLength);</div><div class="line">    <span class="comment">// 在末尾补\0</span></div><div class="line">    *(char_result + intArrayLength * <span class="number">2</span>) = <span class="string">'\0'</span>;</div><div class="line"></div><div class="line">    jstring stringResult = env-&gt;NewStringUTF(char_result);</div><div class="line">    <span class="comment">// release</span></div><div class="line">    env-&gt;ReleaseByteArrayElements(objArraySign, byte_array_elements, JNI_ABORT);</div><div class="line">    <span class="comment">// 释放指针使用free</span></div><div class="line">    free(char_result);</div><div class="line">    <span class="keyword">return</span> stringResult;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="byte数组转换成16进制字符串"><a href="#byte数组转换成16进制字符串" class="headerlink" title="byte数组转换成16进制字符串"></a>byte数组转换成16进制字符串</h4><figure class="highlight c++"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">ByteToHexStr</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *source, <span class="keyword">char</span> *dest, <span class="keyword">int</span> sourceLen)</span> </span>&#123;</div><div class="line">    <span class="keyword">short</span> i;</div><div class="line">    <span class="keyword">char</span> highByte, lowByte;</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; sourceLen; i++) &#123;</div><div class="line">        highByte = source[i] &gt;&gt; <span class="number">4</span>;</div><div class="line">        lowByte = source[i] &amp; <span class="number">0x0f</span>;</div><div class="line">        highByte += <span class="number">0x30</span>;</div><div class="line"></div><div class="line">        <span class="keyword">if</span> (highByte &gt; <span class="number">0x39</span>) &#123;</div><div class="line">            dest[i * <span class="number">2</span>] = highByte + <span class="number">0x07</span>;</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            dest[i * <span class="number">2</span>] = highByte;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        lowByte += <span class="number">0x30</span>;</div><div class="line">        <span class="keyword">if</span> (lowByte &gt; <span class="number">0x39</span>) &#123;</div><div class="line">            dest[i * <span class="number">2</span> + <span class="number">1</span>] = lowByte + <span class="number">0x07</span>;</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            dest[i * <span class="number">2</span> + <span class="number">1</span>] = lowByte;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="创建获取token-key-方法"><a href="#创建获取token-key-方法" class="headerlink" title="创建获取token key 方法"></a>创建获取token key 方法</h4><p>使用场景，很多情况下我们把用户登录后的 token 存储下来，以免下次重新登录。这个时候我们需要使用 token key 对服务端返回下来的 token 进行加密。</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><div class="line"><span class="keyword">extern</span> <span class="string">"C"</span> JNIEXPORT jstring JNICALL</div><div class="line">Java_com_laipaiya_jni_MainActivity_getTokenKey</div><div class="line">        (JNIEnv *env, jclass) &#123;</div><div class="line">    <span class="keyword">return</span> env -&gt; NewStringUTF(APP_TOKEN_KEY);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>我们获得 token key 之后，就可以加密，然后任意存储加密后的数据即可。当我们需要再次使用的时候，只需要对其解密就能得到 token 了。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;整体思路：so 文件在加载时会自动加载 JNI_OnLoad() ，在该方法中对应用签名进行比较，如果签名验证失败，直接在 JNI_OnLoad() 中返回失败。如果验证通过就可以通过 JNI 调用方法获取相应的值。这样可畏是既解决了通常的数据外泄，又解决了 so 文件被提
     
     </summary>
     
@@ -907,422 +963,6 @@
       <category term="git" scheme="http://www.tipdev.xyz/tags/git/"/>
     
       <category term="github" scheme="http://www.tipdev.xyz/tags/github/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Android 命名规范</title>
-    <link href="http://www.tipdev.xyz/2017/02/07/2017-02-07-Android%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83/"/>
-    <id>http://www.tipdev.xyz/2017/02/07/2017-02-07-Android命名规范/</id>
-    <published>2017-02-06T16:00:00.000Z</published>
-    <updated>2017-05-23T16:14:43.000Z</updated>
-    
-    <content type="html"><![CDATA[<h5 id="说明：android开发中，常用的命名方式主要有大驼峰式（帕斯卡）、小驼峰式（驼峰）、下划线命名法。"><a href="#说明：android开发中，常用的命名方式主要有大驼峰式（帕斯卡）、小驼峰式（驼峰）、下划线命名法。" class="headerlink" title="说明：android开发中，常用的命名方式主要有大驼峰式（帕斯卡）、小驼峰式（驼峰）、下划线命名法。"></a><em>说明：android开发中，常用的命名方式主要有大驼峰式（帕斯卡）、小驼峰式（驼峰）、下划线命名法。</em></h5><ol>
-<li>驼峰命名法:又称小驼峰命名法，除首单词外，其余所有单词的第一个字母大写。例如：<code>onCreate()</code></li>
-<li>帕斯卡命名法:又称大驼峰命名法，所有单词的第一个字母大写。例如：<code>Foo()</code></li>
-<li>下划线命名法:单词与单词间用下划线做间隔。例如：activity_main.xml</li>
-</ol>
-<h2 id="项目包名命名"><a href="#项目包名命名" class="headerlink" title="项目包名命名"></a>项目包名命名</h2><p>采用反向命名规则，全部使用小写字母，一级包名为顶级域名，二级包名为公司、部门或者个人名，三级包名为项目名。例如：xyz.tipdev.parking</p>
-<h2 id="类命名"><a href="#类命名" class="headerlink" title="类命名"></a>类命名</h2><p>采用大驼峰式命名，首字母大写，尽量避免缩写。</p>
-<p>例：</p>
-<table>
-<thead>
-<tr>
-<th>类</th>
-<th>命名规则</th>
-<th>示例</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Activity</td>
-<td>XXX功能+Activity</td>
-<td>MainActivity</td>
-</tr>
-<tr>
-<td>Service</td>
-<td>XXX功能+Service</td>
-<td>PollService</td>
-</tr>
-<tr>
-<td>Fragment</td>
-<td>XXX功能+Fragment</td>
-<td>PayFragment</td>
-</tr>
-<tr>
-<td>Adapter</td>
-<td>XXX功能+Adapter</td>
-<td>OrderAdapter</td>
-</tr>
-<tr>
-<td>Utils</td>
-<td>XXX功能+Utils</td>
-<td>FileUtils</td>
-</tr>
-<tr>
-<td>Bean</td>
-<td>XXX功能+Bean</td>
-<td>UserBean</td>
-</tr>
-<tr>
-<td>共享基础类</td>
-<td>以Base开头</td>
-<td>BaseActivity/BaseFragment</td>
-</tr>
-</tbody>
-</table>
-<h2 id="接口命名"><a href="#接口命名" class="headerlink" title="接口命名"></a>接口命名</h2><p>采用大驼峰式，首字母大写。</p>
-<p>例： interface OnClickListener;</p>
-<h2 id="方法命名"><a href="#方法命名" class="headerlink" title="方法命名"></a>方法命名</h2><p>采用小驼峰式，首字母小写，方法名一般采用动词。</p>
-<p>例：</p>
-<table>
-<thead>
-<tr>
-<th>方法名</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>getXX()</td>
-<td>获取</td>
-</tr>
-<tr>
-<td>setXX()</td>
-<td>设置</td>
-</tr>
-<tr>
-<td>initXX()</td>
-<td>初始化</td>
-</tr>
-<tr>
-<td>updateXX()</td>
-<td>更新数据</td>
-</tr>
-<tr>
-<td>saveXX()</td>
-<td>保存数据</td>
-</tr>
-<tr>
-<td>clearXX()</td>
-<td>清除数据</td>
-</tr>
-<tr>
-<td>removeXX()</td>
-<td>移除数据</td>
-</tr>
-<tr>
-<td>addXX()</td>
-<td>添加数据</td>
-</tr>
-<tr>
-<td>isXX()</td>
-<td>判断true/false</td>
-</tr>
-</tbody>
-</table>
-<h2 id="字段命名"><a href="#字段命名" class="headerlink" title="字段命名"></a>字段命名</h2><ol>
-<li><p>非public的、非static的字段名以m开头。</p>
-</li>
-<li><p>static开头的字段名以s开头。</p>
-</li>
-<li><p>其他字段名以小写字母开头。</p>
-</li>
-<li><p>publicstatic final 字段 （常量） 全部用大写字母并使用下划线分割。</p>
-</li>
-</ol>
-<h2 id="控件命名"><a href="#控件命名" class="headerlink" title="控件命名"></a>控件命名</h2><p>变量命名规则+iD名  </p>
-<p>例： </p>
-<table>
-<thead>
-<tr>
-<th>控件</th>
-<th>iD</th>
-<th>示例</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Button</td>
-<td>btn_</td>
-<td>btn_login</td>
-</tr>
-<tr>
-<td>ImageButton</td>
-<td>ibtn_</td>
-<td>ibtn_login</td>
-</tr>
-<tr>
-<td>TextView</td>
-<td>tv_</td>
-<td>tv_content</td>
-</tr>
-<tr>
-<td>ImageView</td>
-<td>iv_</td>
-<td>iv_car</td>
-</tr>
-<tr>
-<td>EditText</td>
-<td>et_</td>
-<td>et_name</td>
-</tr>
-<tr>
-<td>GroupView</td>
-<td>gv_</td>
-<td>gv_way</td>
-</tr>
-<tr>
-<td>RadioButton</td>
-<td>rbtn_</td>
-<td>rbtn_report</td>
-</tr>
-<tr>
-<td>SeekBar</td>
-<td>seek_</td>
-<td>seek_dis</td>
-</tr>
-<tr>
-<td>CheckBox</td>
-<td>cb_</td>
-<td>cb_msg</td>
-</tr>
-<tr>
-<td>Spinner</td>
-<td>spinner_</td>
-<td>spinner_way</td>
-</tr>
-<tr>
-<td>ToolBar</td>
-<td>tb_</td>
-<td>tb_toolbar</td>
-</tr>
-<tr>
-<td>RecyclerView</td>
-<td>rv_</td>
-<td>rv_order</td>
-</tr>
-<tr>
-<td>ListView</td>
-<td>lv_</td>
-<td>lv_order</td>
-</tr>
-<tr>
-<td>LinearLayout</td>
-<td>ll_</td>
-<td>ll_main</td>
-</tr>
-<tr>
-<td>RelativeLayout</td>
-<td>rl_</td>
-<td>rl_main</td>
-</tr>
-<tr>
-<td>ScrollView</td>
-<td>scroll_</td>
-<td>scroll_main</td>
-</tr>
-<tr>
-<td>SearchView</td>
-<td>search_</td>
-<td>search_address</td>
-</tr>
-</tbody>
-</table>
-<h2 id="资源文件命名"><a href="#资源文件命名" class="headerlink" title="资源文件命名"></a>资源文件命名</h2><h3 id="layout命名"><a href="#layout命名" class="headerlink" title="layout命名"></a>layout命名</h3><p>全部小写，采用下划线命名</p>
-<table>
-<thead>
-<tr>
-<th>命名规范</th>
-<th>类型</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>activity<em>{模块</em>}功能</td>
-<td>Activity命名格式</td>
-</tr>
-<tr>
-<td>fragment<em>{模块</em>}功能</td>
-<td>Fragment命名格式</td>
-</tr>
-<tr>
-<td>dialog<em>{模块</em>}功能</td>
-<td>Dialog命名格式</td>
-</tr>
-<tr>
-<td>item<em>list</em>{模块_}功能</td>
-<td>RecyclerView/ListView命名格式</td>
-</tr>
-</tbody>
-</table>
-<h3 id="drawable命名"><a href="#drawable命名" class="headerlink" title="drawable命名"></a>drawable命名</h3><p>模式：前缀{<em>控件}{</em>范围}{_后缀}</p>
-<table>
-<thead>
-<tr>
-<th>Drawable</th>
-<th>命名规范</th>
-<th>示例</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>图标</td>
-<td>ic_</td>
-<td>ic_wechat</td>
-</tr>
-<tr>
-<td>背景</td>
-<td>bg_</td>
-<td>bg_banner</td>
-</tr>
-<tr>
-<td>分割线</td>
-<td>div_</td>
-<td>div_redline</td>
-</tr>
-<tr>
-<td>默认</td>
-<td>def_</td>
-<td>def_user</td>
-</tr>
-<tr>
-<td>区分状态，默认</td>
-<td>_normal</td>
-<td>login_normal</td>
-</tr>
-<tr>
-<td>区分状态，按下</td>
-<td>_pressed</td>
-<td>login_pressed</td>
-</tr>
-<tr>
-<td>区分状态，选中</td>
-<td>_selected</td>
-<td>login_selected</td>
-</tr>
-<tr>
-<td>区分状态，不可用</td>
-<td>_disable</td>
-<td>login_disable</td>
-</tr>
-</tbody>
-</table>
-<h3 id="动画命名"><a href="#动画命名" class="headerlink" title="动画命名"></a>动画命名</h3><table>
-<thead>
-<tr>
-<th>命名规范</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>fade_in</td>
-<td>淡入</td>
-</tr>
-<tr>
-<td>fade_out</td>
-<td>淡出</td>
-</tr>
-<tr>
-<td>push_down_in</td>
-<td>从下方推入</td>
-</tr>
-<tr>
-<td>push_down_out</td>
-<td>从下方推出</td>
-</tr>
-<tr>
-<td>silde_in_from_top</td>
-<td>从上滑动进入</td>
-</tr>
-<tr>
-<td>zoom_enter</td>
-<td>变形进入</td>
-</tr>
-<tr>
-<td>Shrink_to_middle</td>
-<td>中间缩小</td>
-</tr>
-</tbody>
-</table>
-<h3 id="strings-xml命名"><a href="#strings-xml命名" class="headerlink" title="strings.xml命名"></a>strings.xml命名</h3><table>
-<thead>
-<tr>
-<th>命名规范</th>
-<th>示例</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>activity名<em>{范围</em>}逻辑名</td>
-<td>login_username (LoginActivity)</td>
-</tr>
-<tr>
-<td>fragment名<em>{范围</em>}逻辑名</td>
-<td>order_tip (OrderFragment)</td>
-</tr>
-</tbody>
-</table>
-<h3 id="colors-xml命名"><a href="#colors-xml命名" class="headerlink" title="colors.xml命名"></a>colors.xml命名</h3><table>
-<thead>
-<tr>
-<th>colors</th>
-<th>命名规范</th>
-<th>示例</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>背景颜色</td>
-<td>bg_</td>
-<td>bg_red</td>
-</tr>
-<tr>
-<td>文本颜色</td>
-<td>text_</td>
-<td>text_hint</td>
-</tr>
-<tr>
-<td>分割线颜色</td>
-<td>div_</td>
-<td>div_black</td>
-</tr>
-<tr>
-<td>区分状态，默认</td>
-<td>_normal</td>
-<td>login_normal</td>
-</tr>
-<tr>
-<td>区分状态，按下</td>
-<td>_pressed</td>
-<td>login_pressed</td>
-</tr>
-<tr>
-<td>区分状态，选中</td>
-<td>_selected</td>
-<td>login_selected</td>
-</tr>
-<tr>
-<td>区分状态，不可用</td>
-<td>_disable</td>
-<td>login_disable</td>
-</tr>
-</tbody>
-</table>
-<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>英文缩写规则：该单词有英文缩写的取英文缩写，无英文缩写取开头3-4个字母</p>
-<p>例如：initialization() —— init()</p>
-<p>限制代码行长度：每行代码不应该超过Android Studio 建议分割线。</p>
-<p>使用标准大括号风格：大括号不单独占用一行。</p>
-<p>临时注释：使用TODO来注释一些临时、短期、不完美代码（常用注释勿用）</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h5 id=&quot;说明：android开发中，常用的命名方式主要有大驼峰式（帕斯卡）、小驼峰式（驼峰）、下划线命名法。&quot;&gt;&lt;a href=&quot;#说明：android开发中，常用的命名方式主要有大驼峰式（帕斯卡）、小驼峰式（驼峰）、下划线命名法。&quot; class=&quot;headerlink&quot;
-    
-    </summary>
-    
     
   </entry>
   

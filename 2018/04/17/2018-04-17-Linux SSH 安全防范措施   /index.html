@@ -1,0 +1,38 @@
+<!DOCTYPE html><html lang="zh-Hans"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> Linux SSH 安全防范措施  · wkchen's blog</title><meta name="description" content="Linux SSH 安全防范措施  - wkchen"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.tipdev.xyz/atom.xml" title="wkchen's blog"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">TIMELINE</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">Linux SSH 安全防范措施 </h1><div class="post-info">Apr 17, 2018</div><div class="post-content"><p>在日常服务器的管理中，安全隐患始终困扰着我们，例如：DDos攻击、ARP攻击等。如果你忽视了这些，那么你的重要信息就很容易被黑客拿到，夸张点来说小白用户都能攻破你的服务器。接下来分享下我关于SSH 安全防范的学习心得。</p>
+<p>SSH 是一种非对称加密的网络传输协议，方便于客户端与服务端的连接，通常用来远程执行服务端的命令。虽然它方便了我们与服务端的连接，但是存在不少隐患，一旦这一道安全锁被打开，就相当于把所有的信息公之于众。防范措施常见的有关闭 root 用户登录（避免超级权限滥用）、使用 RSA 密钥登录、IP 限制等。</p>
+<h3 id="限制-ROOT-用户登录"><a href="#限制-ROOT-用户登录" class="headerlink" title="限制 ROOT 用户登录"></a>限制 ROOT 用户登录</h3><p>为什么建议关闭 root 用户登录 ssh？</p>
+<ol>
+<li><p>被攻破的情况下尽可能得避免最大的损失，假设服务器被暴力破解了成功的用 root 登录了上去，此时它已经拿到了你的 root 密码，并且拥有超级权限，想怎么做就怎么做。</p>
+</li>
+<li><p>限制权限，在团队开发中，时长需要多人操作服务器，如果你把 root 账号告诉所有人是一种不负责任的表现，那些删数据库、删服务器跑路就这样来的吧。（ps：遇到过 rm -rf / 删服务器的，当然他不是故意的2333）</p>
+</li>
+<li><p>避免误操作，有些时候真的是自己的误操作，导致数据的丢失或服务器的异常。非 root 用执行一些重要的命令时需要使用 sudo 来获取权限，并且会提示输入密码，以防误操。</p>
+</li>
+</ol>
+<p>修改 ssh 配置</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">vim /etc/ssh/sshd_config</div></pre></td></tr></table></figure>
+<p>修改以下内容：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">// 禁用 root 用户登录</div><div class="line">PermitRootLogin yes</div></pre></td></tr></table></figure>
+<p>重启服务应用配置</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">// centos 7，7 以下 service sshd restart</div><div class="line">systemctl restart sshd</div></pre></td></tr></table></figure>
+<h3 id="SSH-RSA-密钥"><a href="#SSH-RSA-密钥" class="headerlink" title="SSH RSA 密钥"></a>SSH RSA 密钥</h3><p>在关闭 root 用户登录限制的同时，还可以配合 RSA 密钥，进一步增加破解的难度。RSA 密钥采用公钥和私钥验证的方式限制非法登录，在客户端生成公钥和私钥，在服务端增加生成的公钥，当 ssh 登录时，只有拥有与之匹配的私钥才能登录成功，其余一律拦截。</p>
+<p>Step1. 修改 ssh 配置</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">vim /etc/ssh/sshd_config</div></pre></td></tr></table></figure>
+<p>修改以下内容：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">// 开启 RSA 验证</div><div class="line">RSAAuthentication yes</div><div class="line">// 开启公钥验证</div><div class="line">PubkeyAuthentication yes</div><div class="line">// 设置公钥文件路径</div><div class="line">AuthorizedKeysFile  .ssh/authorized_keys</div></pre></td></tr></table></figure>
+<p>Step2. 在客户端生成 RSA 密钥</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">ssh-keygen -t rsa</div></pre></td></tr></table></figure>
+<p>一路回车，使用过git 的应该对这句命令不会陌生吧。</p>
+<p>Step3. 复制公钥到服务器 .ssh/authorized_keys</p>
+<p>在服务器登录用户主目录下，创建 .ssh/authorized_keys 文件，并把客户端id_rsa.pub 内容复制到authorized_keys 中。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">vim /home/[user]/.ssh/authorized_keys</div></pre></td></tr></table></figure>
+<p>Step4. 重启服务应用配置</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">// centos 7，7 以下 service sshd restart</div><div class="line">systemctl restart sshd</div></pre></td></tr></table></figure>
+<p>当我完成以上配置后，ssh 到服务器时，发现依然需要密码登录，并且发现 we did not send a packet, disable method 错误。</p>
+<p>打开debug 调试，指定 2222 端口看看具体错误是什么？</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">// 服务端</div><div class="line">sudo /usr/sbin/sshd -p 2222 -d</div><div class="line">// 客户端</div><div class="line">ssh test@xxx.cz1y.com -vv -p 2222</div></pre></td></tr></table></figure>
+<p>发现 debug1: Could not open authorized keys ‘/home/test/.ssh/authorized_keys’: Permission denied 权限不足问题。</p>
+<p>现在知道可原因：<img src="/images/linux_ssh/ll-a.png" alt="查看权限">我这里使用 root 用户在 /home/[user] 目录下手动创建了 .ssh 和authorized_keys 文件，导致拥有者和拥有组都是 root。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">// 把 .ssh 文件夹和 authorized_keys 文件修改成 [user]</div><div class="line">chown [user]:[user] .ssh .ssh/authorized_keys</div></pre></td></tr></table></figure>
+<p>这里的 .ssh 文件夹和 authorized_keys 文件的拥有者和拥有组必须是对应的当前用户。</p>
+</div></article></div></main><footer><div class="paginator"><a href="/2018/03/26/2018-03-26-Android源码分析View 事件分发机制/" class="next">NEXT</a></div><div class="copyright"><p>© 2015 - 2018 <a href="http://www.tipdev.xyz">wkchen</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-65933410-1",'auto');ga('send','pageview');</script></body></html>
