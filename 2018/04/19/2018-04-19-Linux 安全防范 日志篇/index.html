@@ -1,0 +1,34 @@
+<!DOCTYPE html><html lang="zh-Hans"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> Linux 安全防范 日志篇 · wkchen's blog</title><meta name="description" content="Linux 安全防范 日志篇 - wkchen"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.tipdev.xyz/atom.xml" title="wkchen's blog"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">TIMELINE</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">Linux 安全防范 日志篇</h1><div class="post-info">Apr 19, 2018</div><div class="post-content"><p>上一篇学习了如何防范 SSH 暴力破解，虽然增加了一定的破解难度，但是总是还会有黑客通过各种方法侵入服务器。Linux 自带的日志管理系统能够有效的帮助到我们，当客户端连接到服务器后的一举一动都将被记录在日志文件中，尽管一些”聪明“的黑客会设法去修改这些日志，但通过日志还是能让我们找到蛛丝马迹（就像罪犯在作案的过程中总会留下一些细微的证据，刑侦专家就能利用这些细节破案）。</p>
+<h3 id="登录日志"><a href="#登录日志" class="headerlink" title="登录日志"></a>登录日志</h3><p>用户登录服务器时会与多个线程关联，系统会自动把对应的日志写入到 <code>/var/run/utmp</code>和 <code>/var/log/wtmp</code> 中。utmp 记录着当前登录成功的用户信息，wtmp 记录着每个成功登录的用户信息（登录时间、注销时间、登录时长等）。utmp 和 wtmp 都是二进制文件，不能直接使用cat 或 vim 查看，可以使用 <code>utmpdump [选项] [文件名]</code> 来查看 。</p>
+<p>查看当前登录用户信息:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">utmpdump /var/run/utmp</div></pre></td></tr></table></figure>
+<p>或者直接使用 <code>who</code> 命令</p>
+<p>查看历史用户登录信息:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">utmpdump /var/log/wtmp</div></pre></td></tr></table></figure>
+<p>或者直接使用 <code>last</code> 命令</p>
+<p><img src="/images/linux_log/who-last.png" alt="who-last"></p>
+<h3 id="进程记录"><a href="#进程记录" class="headerlink" title="进程记录"></a>进程记录</h3><p>进程记录是对进程活动的记录，由系统内核完成操作。当一个进程终止时，系统就自己记录该进程。这里使用 psacct 工具来监控系统用户活动情况，可以非常快速的追踪到用户使用了那些命令，什么时候登录，什么时候退出，还可以获取系统服务的资源使用情况。</p>
+<p>安装 Psacct 工具</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">sudo yum install psacct</div></pre></td></tr></table></figure>
+<p>启动服务</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">// centos 7 以下使用 service psacct start</div><div class="line">systemctl start psacct</div></pre></td></tr></table></figure>
+<p>创建并开启日志文件</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">touch /var/log/pacct</div><div class="line">// 开启进程记录</div><div class="line">accton /var/log/pacct</div></pre></td></tr></table></figure>
+<p>如何查看？ 有以下几种方式：</p>
+<p>1、dump-acct 命令：读取进程记录，用法和 utmpdump 相同。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">dump-acct /var/log/pacct</div></pre></td></tr></table></figure>
+<p>2、sa 命令：可以会的每个用户或每个命令进程的使用情况。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">// [user] 表示你要查看那个用户的记录</div><div class="line">sa -u | grep [user]</div></pre></td></tr></table></figure>
+<p>3、lastcomm 命令：提供每个命令的输出结果，同时打印出每个命令的执行时间戳等。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">lastcomm [user]</div></pre></td></tr></table></figure>
+<p><img src="/images/linux_log/sa-lastcomm.png" alt="sa-lastcomm"></p>
+<h3 id="系统日志"><a href="#系统日志" class="headerlink" title="系统日志"></a>系统日志</h3><p>在 Linux 下使用各种日志记录活动，为系统的安全状态提供了记录，一般这些日志存放在 <code>/var/log</code> 或 <code>/var/run</code> 中。在大部分 Linux 发行版中都默认使用 rsyslog 进行日志管理，在老版本中使用 syslog 。</p>
+<p>检查 rsyslog 进程</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">ps -aux | grep rsyslog</div></pre></td></tr></table></figure>
+<p>如果已经安装并且已启动，省略一下步骤。</p>
+<p>安装 rsyslog，一般情况下系统默认自带</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">sudo yum install rsyslog</div></pre></td></tr></table></figure>
+<p>启动 rsyslog</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">// 比如 centos6 以前的版本，默认自带 syslog 需要先停止</div><div class="line">service syslog stop</div><div class="line">// centos 7 使用 systemctl，之前使用 service </div><div class="line">systemctl start rsyslog</div></pre></td></tr></table></figure>
+<p>rsyslog 能做的不仅仅是管理本地日志，在集群服务器中可以用来发送日志到日志服务器上，比如：有三台服务器，华北服务器A、华东服务器B、日志服务器C，服务器A 和 服务器B 把日志发送到 日志服务器C 上，那么管理员就能方便的去查看每台服务器做了什么。</p>
+</div></article></div></main><footer><div class="paginator"><a href="/2018/04/17/2018-04-17-Linux 安全防范 SSH篇/" class="next">NEXT</a></div><div class="copyright"><p>© 2015 - 2018 <a href="http://www.tipdev.xyz">wkchen</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-65933410-1",'auto');ga('send','pageview');</script></body></html>

@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.tipdev.xyz/"/>
-  <updated>2018-04-17T10:06:28.906Z</updated>
+  <updated>2018-04-19T05:48:22.948Z</updated>
   <id>http://www.tipdev.xyz/</id>
   
   <author>
@@ -16,11 +16,62 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Linux SSH 安全防范措施 </title>
-    <link href="http://www.tipdev.xyz/2018/04/17/2018-04-17-Linux%20SSH%20%E5%AE%89%E5%85%A8%E9%98%B2%E8%8C%83%E6%8E%AA%E6%96%BD%20%20%20/"/>
-    <id>http://www.tipdev.xyz/2018/04/17/2018-04-17-Linux SSH 安全防范措施   /</id>
+    <title>Linux 安全防范 日志篇</title>
+    <link href="http://www.tipdev.xyz/2018/04/19/2018-04-19-Linux%20%E5%AE%89%E5%85%A8%E9%98%B2%E8%8C%83%20%E6%97%A5%E5%BF%97%E7%AF%87/"/>
+    <id>http://www.tipdev.xyz/2018/04/19/2018-04-19-Linux 安全防范 日志篇/</id>
+    <published>2018-04-18T16:00:00.000Z</published>
+    <updated>2018-04-19T05:48:22.948Z</updated>
+    
+    <content type="html"><![CDATA[<p>上一篇学习了如何防范 SSH 暴力破解，虽然增加了一定的破解难度，但是总是还会有黑客通过各种方法侵入服务器。Linux 自带的日志管理系统能够有效的帮助到我们，当客户端连接到服务器后的一举一动都将被记录在日志文件中，尽管一些”聪明“的黑客会设法去修改这些日志，但通过日志还是能让我们找到蛛丝马迹（就像罪犯在作案的过程中总会留下一些细微的证据，刑侦专家就能利用这些细节破案）。</p>
+<h3 id="登录日志"><a href="#登录日志" class="headerlink" title="登录日志"></a>登录日志</h3><p>用户登录服务器时会与多个线程关联，系统会自动把对应的日志写入到 <code>/var/run/utmp</code>和 <code>/var/log/wtmp</code> 中。utmp 记录着当前登录成功的用户信息，wtmp 记录着每个成功登录的用户信息（登录时间、注销时间、登录时长等）。utmp 和 wtmp 都是二进制文件，不能直接使用cat 或 vim 查看，可以使用 <code>utmpdump [选项] [文件名]</code> 来查看 。</p>
+<p>查看当前登录用户信息:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">utmpdump /var/run/utmp</div></pre></td></tr></table></figure>
+<p>或者直接使用 <code>who</code> 命令</p>
+<p>查看历史用户登录信息:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">utmpdump /var/log/wtmp</div></pre></td></tr></table></figure>
+<p>或者直接使用 <code>last</code> 命令</p>
+<p><img src="/images/linux_log/who-last.png" alt="who-last"></p>
+<h3 id="进程记录"><a href="#进程记录" class="headerlink" title="进程记录"></a>进程记录</h3><p>进程记录是对进程活动的记录，由系统内核完成操作。当一个进程终止时，系统就自己记录该进程。这里使用 psacct 工具来监控系统用户活动情况，可以非常快速的追踪到用户使用了那些命令，什么时候登录，什么时候退出，还可以获取系统服务的资源使用情况。</p>
+<p>安装 Psacct 工具</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">sudo yum install psacct</div></pre></td></tr></table></figure>
+<p>启动服务</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">// centos 7 以下使用 service psacct start</div><div class="line">systemctl start psacct</div></pre></td></tr></table></figure>
+<p>创建并开启日志文件</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">touch /var/log/pacct</div><div class="line">// 开启进程记录</div><div class="line">accton /var/log/pacct</div></pre></td></tr></table></figure>
+<p>如何查看？ 有以下几种方式：</p>
+<p>1、dump-acct 命令：读取进程记录，用法和 utmpdump 相同。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">dump-acct /var/log/pacct</div></pre></td></tr></table></figure>
+<p>2、sa 命令：可以会的每个用户或每个命令进程的使用情况。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">// [user] 表示你要查看那个用户的记录</div><div class="line">sa -u | grep [user]</div></pre></td></tr></table></figure>
+<p>3、lastcomm 命令：提供每个命令的输出结果，同时打印出每个命令的执行时间戳等。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">lastcomm [user]</div></pre></td></tr></table></figure>
+<p><img src="/images/linux_log/sa-lastcomm.png" alt="sa-lastcomm"></p>
+<h3 id="系统日志"><a href="#系统日志" class="headerlink" title="系统日志"></a>系统日志</h3><p>在 Linux 下使用各种日志记录活动，为系统的安全状态提供了记录，一般这些日志存放在 <code>/var/log</code> 或 <code>/var/run</code> 中。在大部分 Linux 发行版中都默认使用 rsyslog 进行日志管理，在老版本中使用 syslog 。</p>
+<p>检查 rsyslog 进程</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">ps -aux | grep rsyslog</div></pre></td></tr></table></figure>
+<p>如果已经安装并且已启动，省略一下步骤。</p>
+<p>安装 rsyslog，一般情况下系统默认自带</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">sudo yum install rsyslog</div></pre></td></tr></table></figure>
+<p>启动 rsyslog</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">// 比如 centos6 以前的版本，默认自带 syslog 需要先停止</div><div class="line">service syslog stop</div><div class="line">// centos 7 使用 systemctl，之前使用 service </div><div class="line">systemctl start rsyslog</div></pre></td></tr></table></figure>
+<p>rsyslog 能做的不仅仅是管理本地日志，在集群服务器中可以用来发送日志到日志服务器上，比如：有三台服务器，华北服务器A、华东服务器B、日志服务器C，服务器A 和 服务器B 把日志发送到 日志服务器C 上，那么管理员就能方便的去查看每台服务器做了什么。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;上一篇学习了如何防范 SSH 暴力破解，虽然增加了一定的破解难度，但是总是还会有黑客通过各种方法侵入服务器。Linux 自带的日志管理系统能够有效的帮助到我们，当客户端连接到服务器后的一举一动都将被记录在日志文件中，尽管一些”聪明“的黑客会设法去修改这些日志，但通过日志还是
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Linux 安全防范 SSH篇</title>
+    <link href="http://www.tipdev.xyz/2018/04/17/2018-04-17-Linux%20%E5%AE%89%E5%85%A8%E9%98%B2%E8%8C%83%20SSH%E7%AF%87/"/>
+    <id>http://www.tipdev.xyz/2018/04/17/2018-04-17-Linux 安全防范 SSH篇/</id>
     <published>2018-04-16T16:00:00.000Z</published>
-    <updated>2018-04-17T10:06:28.906Z</updated>
+    <updated>2018-04-19T05:27:31.230Z</updated>
     
     <content type="html"><![CDATA[<p>在日常服务器的管理中，安全隐患始终困扰着我们，例如：DDos攻击、ARP攻击等。如果你忽视了这些，那么你的重要信息就很容易被黑客拿到，夸张点来说小白用户都能攻破你的服务器。接下来分享下我关于SSH 安全防范的学习心得。</p>
 <p>SSH 是一种非对称加密的网络传输协议，方便于客户端与服务端的连接，通常用来远程执行服务端的命令。虽然它方便了我们与服务端的连接，但是存在不少隐患，一旦这一道安全锁被打开，就相当于把所有的信息公之于众。防范措施常见的有关闭 root 用户登录（避免超级权限滥用）、使用 RSA 密钥登录、IP 限制等。</p>
@@ -963,65 +1014,6 @@
       <category term="git" scheme="http://www.tipdev.xyz/tags/git/"/>
     
       <category term="github" scheme="http://www.tipdev.xyz/tags/github/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>RxJava 2.x 基础使用</title>
-    <link href="http://www.tipdev.xyz/2017/02/07/2017-02-07-RxJava%202.x%20%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8/"/>
-    <id>http://www.tipdev.xyz/2017/02/07/2017-02-07-RxJava 2.x 基础使用/</id>
-    <published>2017-02-06T16:00:00.000Z</published>
-    <updated>2017-05-23T16:14:37.000Z</updated>
-    
-    <content type="html"><![CDATA[<h5 id="在开始之前，先说说-RxJava2-0-的变化，或者直接去看官方文档-What’s-different-in-2-0-。简单总结为以下几点。"><a href="#在开始之前，先说说-RxJava2-0-的变化，或者直接去看官方文档-What’s-different-in-2-0-。简单总结为以下几点。" class="headerlink" title="在开始之前，先说说 RxJava2.0 的变化，或者直接去看官方文档 What’s different in 2.0 。简单总结为以下几点。"></a><em>在开始之前，先说说 RxJava2.0 的变化，或者直接去看官方文档 <a href="https://github.com/ReactiveX/RxJava/wiki/What&#39;s-different-in-2.0" target="_blank" rel="external">What’s different in 2.0</a> 。简单总结为以下几点。</em></h5><ol>
-<li>RxJava2.x 不再接受null</li>
-<li>背压（backpressure） Observable 不支持背压  全新的Flowable 支持背压</li>
-<li>新增onSubscribe(Disposable d) 回调 </li>
-<li>Consumer、BiConsumer替代 Action1、Action2 等</li>
-<li>调整from() 为 fromArray、fromIterable、fromFuture</li>
-<li>Func1和Func2改为Function和BiFunction，Func3-9改为Function3-9</li>
-<li>修改Single、Completable为Reactive-Streams风格</li>
-<li>新增Maybe基本类…</li>
-</ol>
-<h3 id="Observable-和-Flowable"><a href="#Observable-和-Flowable" class="headerlink" title="Observable 和 Flowable"></a>Observable 和 Flowable</h3><ul>
-<li>Observablle：不支持背压；</li>
-<li>Flowable：RxJava2.x 新增，支持背压；</li>
-</ul>
-<p>那么问题来了什么是背压呢？</p>
-<p>我们系统资源有限，很多情况下我们处理数据的速度跟不上发送数据的速度，导致占用很大的资源，以至于内存泄漏等。背压就是用来解决这样的情况的，背压是一种告诉所有发送数据的组件减缓它们发送数据的速度的方法。</p>
-<h5 id="什么时候使用Observable"><a href="#什么时候使用Observable" class="headerlink" title="什么时候使用Observable"></a>什么时候使用Observable</h5><ul>
-<li>不超过1000条数据流，并且不存在内存溢出。</li>
-<li>GUI鼠标事件，如鼠标移动、触摸事件等，这种很少可以合理地背压</li>
-<li>处理的式同步流而你的Java平台又不支持Java Stream</li>
-</ul>
-<h5 id="什么时候使用Flowable"><a href="#什么时候使用Flowable" class="headerlink" title="什么时候使用Flowable"></a>什么时候使用Flowable</h5><ul>
-<li>处理1000+ 元素</li>
-<li>文件读写</li>
-<li>数据库操作</li>
-<li>网络IO操作</li>
-</ul>
-<p>一个简单的例子使用Observable</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><div class="line">Observable.create(<span class="keyword">new</span> ObservableOnSubscribe&lt;String&gt;() &#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">subscribe</span><span class="params">(ObservableEmitter&lt;String&gt; e)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">         <span class="comment">// ObservableEmitter ?  发射器，可以用来触发 onNext onError onComplete 事件</span></div><div class="line">         e.onNext(<span class="string">"A"</span>);</div><div class="line">         e.onNext(<span class="string">"B"</span>);</div><div class="line">         e.onNext(<span class="string">"C"</span>);</div><div class="line">         e.onComplete();</div><div class="line">    &#125;</div><div class="line">&#125;).subscribeOn(Schedulers.io())</div><div class="line">  .observeOn(AndroidSchedulers.mainThread())</div><div class="line">  .subscribe(<span class="keyword">new</span> Observer&lt;String&gt;() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onSubscribe</span><span class="params">(Disposable d)</span> </span>&#123;</div><div class="line">                <span class="comment">// onSubscribe 是 RxJava 2.x 新增回调，一般用于取消订阅d.dispose()</span></div><div class="line">                <span class="comment">// Disposable 是 RxJava 1.x 中的 Subscription 改名  遵循Reactive-Streams规范</span></div><div class="line">                Log.d(TAG, <span class="string">"ObserableCreate onSubscribe: "</span> + d.isDisposed());</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onNext</span><span class="params">(String s)</span> </span>&#123;</div><div class="line">                Log.d(TAG, <span class="string">"onNext: "</span> + s);</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onError</span><span class="params">(Throwable e)</span> </span>&#123;</div><div class="line">                Log.d(TAG, <span class="string">"onError: "</span> + e.getMessage());</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onComplete</span><span class="params">()</span> </span>&#123;</div><div class="line">                Log.d(TAG, <span class="string">"onComplete: "</span>);</div><div class="line">            &#125;</div><div class="line">        &#125;);</div></pre></td></tr></table></figure>
-<p>使用Flowable 是这样的</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><div class="line">Flowable.create(<span class="keyword">new</span> FlowableOnSubscribe&lt;String&gt;() &#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">subscribe</span><span class="params">(FlowableEmitter&lt;String&gt; e)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">        <span class="comment">// ObservableEmitter ?  发射器，可以用来触发 onNext onError onComplete 事件</span></div><div class="line">        e.onNext(<span class="string">"A"</span>);</div><div class="line">        e.onNext(<span class="string">"B"</span>);</div><div class="line">        e.onNext(<span class="string">"C"</span>);</div><div class="line">        e.onComplete();</div><div class="line">    &#125;</div><div class="line">&#125;, BackpressureStrategy.BUFFER)</div><div class="line">        .subscribeOn(Schedulers.io())</div><div class="line">        .observeOn(AndroidSchedulers.mainThread())</div><div class="line">        .subscribe(<span class="keyword">new</span> Subscriber&lt;String&gt;() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onSubscribe</span><span class="params">(Subscription s)</span> </span>&#123;</div><div class="line">                <span class="comment">// 初始化操作  (初始化需要再request前面)</span></div><div class="line">                <span class="comment">// 调用request()方法，会立即触发onNext()方法</span></div><div class="line">                Log.d(TAG, <span class="string">"FlowableCreate onSubscribe: "</span>);</div><div class="line">                s.request(Long.MAX_VALUE);   <span class="comment">// 必须</span></div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onNext</span><span class="params">(String s)</span> </span>&#123;</div><div class="line">                Log.d(TAG, <span class="string">"onNext: "</span> + s);</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onError</span><span class="params">(Throwable e)</span> </span>&#123;</div><div class="line">                Log.d(TAG, <span class="string">"onError: "</span> + e.getMessage());</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onComplete</span><span class="params">()</span> </span>&#123;</div><div class="line">                Log.d(TAG, <span class="string">"onComplete: "</span>);</div><div class="line">            &#125;</div><div class="line">        &#125;);</div></pre></td></tr></table></figure>
-<h3 id="onSubscribe-Disposable-d"><a href="#onSubscribe-Disposable-d" class="headerlink" title="onSubscribe(Disposable d)"></a>onSubscribe(Disposable d)</h3><p>传递参数为Disposable ，Disposable相当于RxJava1.x中的Subscription,用于解除订阅。那为什么不像RxJava1.x中订阅时返回Disposable，而是选择回调出来呢。官方说是为了设计成Reactive-Streams架构。</p>
-<h3 id="Consumer、BiConsumer等"><a href="#Consumer、BiConsumer等" class="headerlink" title="Consumer、BiConsumer等"></a>Consumer、BiConsumer等</h3><p>在2.x中使用Consumer来代替Action1，如果是两个参数，则用BiConsumer来代替Action2，而且在2.x中删除了Action3-9，如果是多个参数则用Custom代替ActionN。</p>
-<h3 id="fromArray、fromIterable、fromFuture"><a href="#fromArray、fromIterable、fromFuture" class="headerlink" title="fromArray、fromIterable、fromFuture"></a>fromArray、fromIterable、fromFuture</h3><p>在1.x中可以使用from()来发送数据，但是因为在使用java8编译时，javac不能够区分功能接口类型，所以它在2.x中被拆分为：fromArray,fromIterable,fromFuture</p>
-<h3 id="Function和BiFunction"><a href="#Function和BiFunction" class="headerlink" title="Function和BiFunction"></a>Function和BiFunction</h3><p>在2.x中将1.x的Func1和Func2改为Function和BiFunction，Func3-9改为Function3-9，多参数FuncN改为Function</p>
-<h3 id="Single"><a href="#Single" class="headerlink" title="Single"></a>Single</h3><p>它可以发出单个的onSuccess 或者 onError ，重新设计为Reactive-Streams架构。</p>
-<h3 id="Completable"><a href="#Completable" class="headerlink" title="Completable"></a>Completable</h3><p>Completable也被重新设计为Reactive-Streams架构，RxJava1.x的<code>CompletableSubscriber</code>改为<code>CompletableObserver</code></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">interface</span> <span class="title">CompletableObserver</span>&lt;<span class="title">T</span>&gt; </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">onSubscribe</span><span class="params">(Disposable d)</span></span>;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">onComplete</span><span class="params">()</span></span>;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">onError</span><span class="params">(Throwable error)</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="Maybe"><a href="#Maybe" class="headerlink" title="Maybe"></a>Maybe</h3><p>它是Single 和 Completable 的结合体，它可以发射0个或1个通知或错误的信号。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h5 id=&quot;在开始之前，先说说-RxJava2-0-的变化，或者直接去看官方文档-What’s-different-in-2-0-。简单总结为以下几点。&quot;&gt;&lt;a href=&quot;#在开始之前，先说说-RxJava2-0-的变化，或者直接去看官方文档-What’s-differen
-    
-    </summary>
-    
-    
-      <category term="RxJava2.x" scheme="http://www.tipdev.xyz/tags/RxJava2-x/"/>
     
   </entry>
   
