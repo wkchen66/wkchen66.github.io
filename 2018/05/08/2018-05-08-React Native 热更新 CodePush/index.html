@@ -1,0 +1,33 @@
+<!DOCTYPE html><html lang="zh-Hans"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> React Native 热更新 CodePush · wkchen's blog</title><meta name="description" content="React Native 热更新 CodePush - wkchen"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.tipdev.xyz/atom.xml" title="wkchen's blog"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">TIMELINE</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">React Native 热更新 CodePush</h1><div class="post-info">May 8, 2018</div><div class="post-content"><p>去年跨平台应用开发非常热门比如React Native、Weex等等，这些框架一般都采用 JavaScript 和原生 Native混合开发，今年热度有所下降，似乎在技术瓶颈还上存在一定的缺陷。抱着试一试的心态，简单分享一下RN下热更新的使用。</p>
+<p>环境：</p>
+<blockquote>
+<p>CodePush 2.1.8</p>
+<p>Node 8.9.0</p>
+<p>React Native 0.55.3</p>
+</blockquote>
+<h3 id="初始化-RN-项目"><a href="#初始化-RN-项目" class="headerlink" title="初始化 RN 项目"></a>初始化 RN 项目</h3><p>从头开始捋一遍，先创建项目（React Native 的环境搭建就不多说了，可以直接看官网教程）。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">// 初始化项目</div><div class="line">react-native init codepushdemo</div></pre></td></tr></table></figure>
+<h3 id="安装配置CodePush"><a href="#安装配置CodePush" class="headerlink" title="安装配置CodePush"></a>安装配置CodePush</h3><p>CodePush 是一个用来提供 React Native 代码部署和客户端同步的服务，可以看作是 Git仓库，客户端启动后查看是否有代码更新，有就pull 下来。</p>
+<p>Step1. 安装CodePush CLI</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">npm	install -g code-push-cli</div></pre></td></tr></table></figure>
+<p>Step2. 注册账号</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">code-push register</div></pre></td></tr></table></figure>
+<p>这个时候会启动浏览器，使用 Github 账号登录后会生成一个密钥Key，粘贴到终端中。</p>
+<p>Step3. 创建应用</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">code-push app add codepushdemo ios react-native</div></pre></td></tr></table></figure>
+<p>会生成Production和Staging两个开发密钥，Production用于正式环境，Staging用于测试环境。<img src="/images/rn_codepush/deployment_key.png" alt="deployment key"></p>
+<h3 id="集成CodePush-SDK-iOS"><a href="#集成CodePush-SDK-iOS" class="headerlink" title="集成CodePush SDK iOS"></a>集成CodePush SDK iOS</h3><p>CodePush 提供了几种集成的方式，这里演示RNPM如何在iOS项目中集成CodePush。</p>
+<p>Step1. 安装react-native-code-push 插件</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">npm install --save react-native-code-push</div></pre></td></tr></table></figure>
+<p>Step2. 配置 deployment key 和自动化配置sdk</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">react-native link react-native-code-push</div></pre></td></tr></table></figure>
+<p>这里需要输入 deployment key，如果忘记了可以使用 <code>code-push deployment ls codepushdemo -k</code>查看。</p>
+<p>其他的集成方式参考<a href="https://github.com/Microsoft/react-native-code-push/blob/master/docs/setup-ios.md" target="_blank" rel="external">官方文档</a>。</p>
+<h3 id="发布更新"><a href="#发布更新" class="headerlink" title="发布更新"></a>发布更新</h3><p>Step1. 使用CodePush </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">// 1.导入CodePush 模块</div><div class="line">import codePush from &apos;react-native-code-push&apos;</div><div class="line">// 2.请求更新，在 componentDidMount 中调用 sync </div><div class="line">codePush.sync()</div></pre></td></tr></table></figure>
+<p>Step2. 发布更新</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">// --t 版本号，--dev 是否开启开发者模式，--d 发布更新环境，--des 更新说明，-m 是否强制更新</div><div class="line">code-push release-react codepushdemo ios --t 1.0.0</div></pre></td></tr></table></figure>
+<p>注意：这里版本号需要和安装时的版本号相同，比如安装时的版本为1.0.0，发布更新时修改成1.0.1 ，这样是无法更新的，只能是1.0.0。</p>
+<p>Step3. 客户端更新</p>
+<p>此时打开App就能收到更新，不过要等到下一次启动才会生效。</p>
+</div></article></div></main><footer><div class="paginator"><a href="/2018/04/19/2018-04-19-Linux 安全防范 日志篇/" class="next">NEXT</a></div><div class="copyright"><p>© 2015 - 2018 <a href="http://www.tipdev.xyz">wkchen</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-65933410-1",'auto');ga('send','pageview');</script></body></html>
