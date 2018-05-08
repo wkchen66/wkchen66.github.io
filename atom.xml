@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.tipdev.xyz/"/>
-  <updated>2018-05-08T02:13:49.072Z</updated>
+  <updated>2018-05-08T02:20:54.789Z</updated>
   <id>http://www.tipdev.xyz/</id>
   
   <author>
@@ -20,9 +20,9 @@
     <link href="http://www.tipdev.xyz/2018/05/08/2018-05-08-React%20Native%20%E7%83%AD%E6%9B%B4%E6%96%B0%20CodePush/"/>
     <id>http://www.tipdev.xyz/2018/05/08/2018-05-08-React Native 热更新 CodePush/</id>
     <published>2018-05-07T16:00:00.000Z</published>
-    <updated>2018-05-08T02:13:49.072Z</updated>
+    <updated>2018-05-08T02:20:54.789Z</updated>
     
-    <content type="html"><![CDATA[<p>去年跨平台应用开发非常热门比如React Native、Weex等等，这些框架一般都采用 JavaScript 和原生 Native混合开发，今年热度有所下降，似乎在技术瓶颈还上存在一定的缺陷。抱着试一试的心态，简单分享一下RN下热更新的使用。</p>
+    <content type="html"><![CDATA[<p>去年跨平台应用开发非常热门比如React Native、Weex等等，这些框架一般都采用 JavaScript 和原生 Native混合开发，今年热度有所下降，似乎在技术瓶颈还上存在一定的缺陷。抱着试一试的心态，开发了个小应用，简单分享一下RN下热更新的使用。</p>
 <p>环境：</p>
 <blockquote>
 <p>CodePush 2.1.8</p>
@@ -33,7 +33,7 @@
 <figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">// 初始化项目</div><div class="line">react-native init codepushdemo</div></pre></td></tr></table></figure>
 <h3 id="安装配置CodePush"><a href="#安装配置CodePush" class="headerlink" title="安装配置CodePush"></a>安装配置CodePush</h3><p>CodePush 是一个用来提供 React Native 代码部署和客户端同步的服务，可以看作是 Git仓库，客户端启动后查看是否有代码更新，有就pull 下来。</p>
 <p>Step1. 安装CodePush CLI</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">npm	install -g code-push-cli</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">npm install -g code-push-cli</div></pre></td></tr></table></figure>
 <p>Step2. 注册账号</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">code-push register</div></pre></td></tr></table></figure>
 <p>这个时候会启动浏览器，使用 Github 账号登录后会生成一个密钥Key，粘贴到终端中。</p>
@@ -58,8 +58,8 @@
     
     <summary type="html">
     
-      &lt;p&gt;去年跨平台应用开发非常热门比如React Native、Weex等等，这些框架一般都采用 JavaScript 和原生 Native混合开发，今年热度有所下降，似乎在技术瓶颈还上存在一定的缺陷。抱着试一试的心态，简单分享一下RN下热更新的使用。&lt;/p&gt;
-&lt;p&gt;环境：&lt;/p&gt;
+      &lt;p&gt;去年跨平台应用开发非常热门比如React Native、Weex等等，这些框架一般都采用 JavaScript 和原生 Native混合开发，今年热度有所下降，似乎在技术瓶颈还上存在一定的缺陷。抱着试一试的心态，开发了个小应用，简单分享一下RN下热更新的使用。&lt;/p&gt;
+&lt;p
     
     </summary>
     
