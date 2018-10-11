@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.tipdev.xyz/"/>
-  <updated>2018-10-08T08:50:24.357Z</updated>
+  <updated>2018-10-11T09:20:14.268Z</updated>
   <id>http://www.tipdev.xyz/</id>
   
   <author>
@@ -16,11 +16,93 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>ElaticSearch Kibana 安装指南</title>
-    <link href="http://www.tipdev.xyz/2018/10/08/2018-10-08-ElaticSearch%20Kibana%20%E5%AE%89%E8%A3%85%E6%8C%87%E5%8D%97/"/>
-    <id>http://www.tipdev.xyz/2018/10/08/2018-10-08-ElaticSearch Kibana 安装指南/</id>
+    <title>Elastic 入门 — Filebeat 和 Logstash 收集日志</title>
+    <link href="http://www.tipdev.xyz/2018/10/11/2018-10-11-Elastic%20%E5%85%A5%E9%97%A8%20%E2%80%94%20Filebeat%20%E5%92%8C%20Logstash%20%E6%94%B6%E9%9B%86%E6%97%A5%E5%BF%97/"/>
+    <id>http://www.tipdev.xyz/2018/10/11/2018-10-11-Elastic 入门 — Filebeat 和 Logstash 收集日志/</id>
+    <published>2018-10-10T16:00:00.000Z</published>
+    <updated>2018-10-11T09:20:14.268Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="前置条件："><a href="#前置条件：" class="headerlink" title="前置条件："></a>前置条件：</h3><blockquote>
+<p>Linux / Mac OS (Centos 7)</p>
+<p>JDK (v1.8.0)</p>
+<p>NGINX (v1.14.0)</p>
+</blockquote>
+<h3 id="Filebeat"><a href="#Filebeat" class="headerlink" title="Filebeat"></a>Filebeat</h3><p>Filebeat 是一款轻量型日志采集器，官方对Filebeat 的介绍：当您要面对成百上千、甚至成千上万的服务器、虚拟机和容器生成的日志时，请告别 SSH 吧。Filebeat 将为您提供一种轻量型方法，用于转发和汇总日志与文件，让简单的事情不再繁杂。</p>
+<p>Filebeat 内置了多种模块（Apache、NGINX、MySQL、System和 auditd）可实现对常见日志格式的一键收集、解析和可视化。</p>
+<p>以收集nginx 日志存储到 Elasticsearch为例：</p>
+<ol>
+<li><p>下载Filebeat</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">wget https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-6.4.2-linux-x86_64.tar.gz</div></pre></td></tr></table></figure>
+</li>
+<li><p>解压</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"># 解压</div><div class="line">tar zxvf filebeat-6.4.2-linux-x86_64.tar.gz</div><div class="line"># 个人把第三方软件文件放在 /opt 下</div><div class="line">mv filebeat-6.4.2-linux-x86_64 /opt/filebeat</div></pre></td></tr></table></figure>
+</li>
+<li><p>配置 nginx 模块</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"># 开启 nginx 模块</div><div class="line">mv modules.d/nginx.yml.disabled nginx.yml</div></pre></td></tr></table></figure>
+<p>修改 nginx.yml 文件</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">- module: nginx</div><div class="line">  access:</div><div class="line">    enabled: true</div><div class="line">    var.paths: [&quot;/var/run/access.log*&quot;]</div><div class="line"></div><div class="line">  error:</div><div class="line">    enabled: true</div><div class="line">    var.paths: [&quot;/var/run/error.log*&quot;]</div></pre></td></tr></table></figure>
+</li>
+<li><p>配置 Filebeat</p>
+<p>修改 filebeat.yml 文件</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><div class="line"><span class="comment"># 设置output 为 elasticsearch，并指定 host 地址</span></div><div class="line">output.elasticsearch &#123;</div><div class="line"><span class="attr">    hosts:</span> [<span class="string">"localhost:9200"</span>]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>除了 <code>output.elasticsearch</code> ，Filebeat 还提供了 <code>output.logstash</code> 。</p>
+</li>
+<li><p>启动</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">cd filebeat-6.4.2-linux-x86_64</div><div class="line"># 开启 nginx 模块</div><div class="line">./bin/filebeat modules enable nginx</div><div class="line"># 启动filebea 并且加载nginx 配置</div><div class="line">./bin/filebeat --e --modules=nginx</div></pre></td></tr></table></figure>
+<p>注意：使用 <code>./bin/filebeat modueles list</code> 查看已经开启的模块。</p>
+<p>至此，启动 nginx，访问 localhost:80 （nginx 默认端口为80）产生日志后，查看 elasticsearch 是否捕获到日志信息。</p>
+</li>
+</ol>
+<h3 id="Logstash"><a href="#Logstash" class="headerlink" title="Logstash"></a>Logstash</h3><p>Logstash 是用于数据的转换、集中收集和存储。官方对Logstash 的介绍：Logstash 是开源的服务器端数据处理管道，能够同时从多个来源采集数据，转换数据，然后将数据发送到您最喜欢的 “存储库” 中。</p>
+<p>以收集nginx 日志存储到 Elasticsearch为例：</p>
+<ol>
+<li><p>下载 Logstash</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">wget https://artifacts.elastic.co/downloads/logstash/logstash-6.4.2.tar.gz</div></pre></td></tr></table></figure>
+</li>
+<li><p>解压</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"># 解压</div><div class="line">tar zxvf logstash-6.4.2.tar.gz</div><div class="line"># 个人把第三方软件文件放在 /opt 下</div><div class="line">mv logstash-6.4.2 /opt/logstash</div></pre></td></tr></table></figure>
+</li>
+<li><p>配置 logstash nginx</p>
+<p>新建 <code>logstash-nginx.conf</code></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"># 参考 sample 模版</div><div class="line">cp config/logstash-sample.conf config/logstash-nginx.conf</div></pre></td></tr></table></figure>
+<p>修改 <code>logstash-nginx.conf</code></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"># 输入</div><div class="line">input &#123;</div><div class="line">    file &#123;</div><div class="line">        path =&gt; [&quot;/var/log/nginx/access.log&quot;]</div><div class="line">        type =&gt; &quot;nginx-access-log&quot;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"># 过滤</div><div class="line">filter &#123;</div><div class="line">    grok &#123;</div><div class="line">        match =&gt; &#123;</div><div class="line">        	&quot;message&quot; =&gt; &apos;%&#123;IPORHOST:remote_ip&#125; - %&#123;DATA:user_name&#125; \[%&#123;HTTPDATE:time&#125;\]</div><div class="line">                &quot;%&#123;WORD:request_action&#125; %&#123;DATA:request&#125; HTTP/%&#123;NUMBER:http_version&#125;&quot;</div><div class="line">                %&#123;NUMBER:request&#125; %&#123;NUMBER:bytes&#125; &quot;%&#123;DATA;referrer&#125;&quot; &quot;%&#123;DATA:agent&#125;&quot;&apos;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    date &#123;</div><div class="line">        match =&gt; [ &quot;time&quot;, &quot;dd/MMM/YYYY:HH:mm:ss Z&quot;]</div><div class="line">        locale =&gt; en</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"># 输出</div><div class="line">output &#123;</div><div class="line">    elasticsearch &#123;</div><div class="line">        hosts =&gt; [&quot;localhost:9200&quot;]</div><div class="line">        index =&gt; &quot;nginx-access-log-%&#123;+YYYY.MM.dd&#125;&quot;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>输入：Logstash 支持各种输入选择，以上使用了 File 的方式，其他方式参考 <a href="https://www.elastic.co/guide/en/logstash/current/input-plugins.html" target="_blank" rel="external">Input Plugins</a></p>
+<p>过滤：Fileter 提供了多种解析过滤。更多方式参考 <a href="https://www.elastic.co/guide/en/logstash/current/filter-plugins.html" target="_blank" rel="external">Filter Plugins</a></p>
+<ul>
+<li>利用 Grok 从非结构化数据中派生出结构</li>
+<li>从 IP 地址破译出地理坐标</li>
+<li>将 PII 数据匿名化，完全排除敏感字段</li>
+<li>简化整体处理，不受数据源、格式或架构的影响</li>
+</ul>
+<p>输出：不仅仅 elasticsearch，Logstash 同样支持多种输出选择，其他方式参考 <a href="https://www.elastic.co/guide/en/logstash/current/output-plugins.html" target="_blank" rel="external">Output Plugins</a></p>
+</li>
+<li><p>启动 Logstash</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"># 启动，并应用logstash-nginx.conf 配置</div><div class="line">./bin/logstash -f config/logstash-nginx.conf</div></pre></td></tr></table></figure>
+<p>注意：这里收集日志需要使用root 权限。</p>
+<p>至此，启动 nginx，访问 localhost:80 （nginx 默认端口为80）产生日志后，查看 elasticsearch 是否捕获到日志信息。最终输入如下：</p>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"_index"</span>: <span class="string">"nginx-access-log-2018.10.11"</span>,</div><div class="line">    <span class="attr">"_type"</span>: <span class="string">"doc"</span>,</div><div class="line">    <span class="attr">"_id"</span>: <span class="string">"ysQRYmYBKO2uGGl2jT4M"</span>,</div><div class="line">    <span class="attr">"_score"</span>: <span class="number">1</span>,</div><div class="line">    <span class="attr">"_source"</span>: &#123;</div><div class="line">        <span class="attr">"remote_ip"</span>: <span class="string">"192.168.1.144"</span>,</div><div class="line">        <span class="attr">"http_version"</span>: <span class="string">"1.1"</span>,</div><div class="line">        <span class="attr">"bytes"</span>: <span class="string">"612"</span>,</div><div class="line">        <span class="attr">"@version"</span>: <span class="string">"1"</span>,</div><div class="line">        <span class="attr">"request_action"</span>: <span class="string">"GET"</span>,</div><div class="line">        <span class="attr">"user_name"</span>: <span class="string">"-"</span>,</div><div class="line">        <span class="attr">"type"</span>: <span class="string">"nginx-access-log"</span>,</div><div class="line">        <span class="attr">"@timestamp"</span>: <span class="string">"2018-10-11T07:40:07.000Z"</span>,</div><div class="line">        <span class="attr">"time"</span>: <span class="string">"11/Oct/2018:15:40:07 +0800"</span>,</div><div class="line">        <span class="attr">"agent"</span>: <span class="string">"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_5) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/11.1.1 Safari/605.1.15"</span>,</div><div class="line">        <span class="attr">"path"</span>: <span class="string">"/var/log/nginx/access.log"</span>,</div><div class="line">        <span class="attr">"request"</span>: [</div><div class="line">            <span class="string">"/"</span>,</div><div class="line">            <span class="string">"200"</span></div><div class="line">        ],</div><div class="line">        "message": """192.168.1.144 - - [11/Oct/2018:15:40:07 +0800] "GET / HTTP/1.1" 200 612 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_5) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/11.1.1 Safari/605.1.15" "-"""",</div><div class="line">        "host": "localhost.localdomain"</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;前置条件：&quot;&gt;&lt;a href=&quot;#前置条件：&quot; class=&quot;headerlink&quot; title=&quot;前置条件：&quot;&gt;&lt;/a&gt;前置条件：&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;Linux / Mac OS (Centos 7)&lt;/p&gt;
+&lt;p&gt;JDK (v1.8.0)
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Elastic 入门 — ElaticSearch Kibana 安装</title>
+    <link href="http://www.tipdev.xyz/2018/10/08/2018-10-08-Elastic%20%E5%85%A5%E9%97%A8%20%E2%80%94%20ElaticSearch%20Kibana%20%E5%AE%89%E8%A3%85/"/>
+    <id>http://www.tipdev.xyz/2018/10/08/2018-10-08-Elastic 入门 — ElaticSearch Kibana 安装/</id>
     <published>2018-10-07T16:00:00.000Z</published>
-    <updated>2018-10-08T08:50:24.357Z</updated>
+    <updated>2018-10-11T09:14:14.413Z</updated>
     
     <content type="html"><![CDATA[<h3 id="前置条件："><a href="#前置条件：" class="headerlink" title="前置条件："></a>前置条件：</h3><blockquote>
 <p>Linux / Mac OS (Centos 7)</p>
@@ -32,8 +114,8 @@
 <p>在linux 下下载很方便，首先在官网找到linux 可以使用的tar 或者zip 包，复制其下载地址。直接使用wget + url 方式下载。如下：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-6.4.2.tar.gz</div></pre></td></tr></table></figure>
 </li>
-<li><p>安装</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">// 解压tar 安装包</div><div class="line">tar zxvf elasticsearch-6.4.2.tar.gz</div><div class="line">// 个人习惯把第三方源文件放到/usr/local 下</div><div class="line">mv elasticsearch-6.4.2 /usr/local</div></pre></td></tr></table></figure>
+<li><p>解压</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">// 解压tar 安装包</div><div class="line">tar zxvf elasticsearch-6.4.2.tar.gz</div><div class="line">// 个人习惯把第三方源文件放到/opt 下</div><div class="line">mv elasticsearch-6.4.2 /opt/elasticsearch</div></pre></td></tr></table></figure>
 </li>
 <li><p>启动</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">cd elasticsearch-6.4.2/</div><div class="line">// 启动 Elaticsearch</div><div class="line">./bin/elaticsearch</div></pre></td></tr></table></figure>
@@ -61,7 +143,7 @@
 <figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">wget https://artifacts.elastic.co/downloads/kibana/kibana-6.4.2-linux-x86_64.tar.gz</div></pre></td></tr></table></figure>
 </li>
 <li><p>安装</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">// 解压tar 安装包</div><div class="line">tar zxvf kibana-6.4.2-linux-x86_64</div><div class="line">// 同上把第三方源文件放到/usr/local 下</div><div class="line">mv kibana-6.4.2-linux-x86_64 /usr/local</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">// 解压tar 安装包</div><div class="line">tar zxvf kibana-6.4.2-linux-x86_64</div><div class="line">// 个人习惯把第三方源文件放到/opt 下</div><div class="line">mv kibana-6.4.2-linux-x86_64 /opt/kibana</div></pre></td></tr></table></figure>
 </li>
 <li><p>启动</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">cd kibana-6.4.2-linux-x86_64</div><div class="line">// 启动 kibana</div><div class="line">./bin/kibana</div></pre></td></tr></table></figure>
@@ -1019,37 +1101,6 @@
       <category term="Gradle" scheme="http://www.tipdev.xyz/tags/Gradle/"/>
     
       <category term="Tomcat" scheme="http://www.tipdev.xyz/tags/Tomcat/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JAVA错误 No default constructor for entity ...</title>
-    <link href="http://www.tipdev.xyz/2017/04/17/2017-04-17-JAVA%E9%94%99%E8%AF%AF%20No%20default%20constructor%20for%20entity/"/>
-    <id>http://www.tipdev.xyz/2017/04/17/2017-04-17-JAVA错误 No default constructor for entity/</id>
-    <published>2017-04-16T16:00:00.000Z</published>
-    <updated>2017-05-23T16:14:15.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>今天在使用JPA的时候，发现以下错误：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">org.hibernate.InstantiationException: No default constructor for entity:  : com.cz1.domain.Image</div></pre></td></tr></table></figure>
-<p>原因:缺少无参构造，Hibernate必须要使用Java反射机制来实例化对象。</p>
-<p>解决方法：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Image</span><span class="params">()</span></span>&#123;&#125;   <span class="comment">// 加上无参构造</span></div></pre></td></tr></table></figure>
-<p>解决了，记录一下！</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;今天在使用JPA的时候，发现以下错误：&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;org.hibernate.InstantiationExc
-    
-    </summary>
-    
-    
-      <category term="Java" scheme="http://www.tipdev.xyz/tags/Java/"/>
-    
-      <category term="Hibernate" scheme="http://www.tipdev.xyz/tags/Hibernate/"/>
-    
-      <category term="JPA" scheme="http://www.tipdev.xyz/tags/JPA/"/>
     
   </entry>
   
